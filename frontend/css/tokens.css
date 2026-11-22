@@ -1,0 +1,30 @@
+:root {
+  --bg0: #07090d;
+  --bg1: #0c1117;
+  --surface: #121a23;
+  --surface2: #1a2530;
+  --line: #223140;
+  --line2: #31465c;
+  --ink: #e8eef4;
+  --muted: #8fa3b0;
+  --faint: #5c7181;
+  --accent: #ff8a2a;
+  --accent2: #ff5c2a;
+  --ecg: #35e0a1;
+  --ok: #2fd08c;
+  --warn: #ffb224;
+  --danger: #ff4757;
+  --info: #3aa6ff;
+  --magenta: #e05fd0;
+  --murmur: #dfe9f2;
+  --font-body: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+  --font-disp: "Bahnschrift", "Avenir Next Condensed", "Arial Narrow", "Segoe UI", sans-serif;
+  --font-mono: "Cascadia Mono", ui-monospace, Consolas, Menlo, monospace;
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --dur: .45s;
+  --ease: cubic-bezier(.22, .9, .28, 1);
+  --shadow: 0 12px 32px rgba(0, 0, 0, .38);
+  --glow-accent: 0 0 18px rgba(255, 138, 42, .25);
+}

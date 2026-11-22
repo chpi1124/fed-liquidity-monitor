@@ -1,0 +1,54 @@
+{
+  "id": "gold",
+  "region": "us",
+  "order": 22,
+  "surface": "gold",
+  "axis": "right",
+  "axisPos": "right",
+  "axisName": "GLD $/股",
+  "axisPrefix": "$",
+  "render": "line",
+  "area": "rgba(107,139,163,.10)",
+  "sourceNote": "GLD 份额价（交易所日内代理，非盎司价）",
+  "defaultOn": false,
+  "name": "GLD 份额价",
+  "en": "SPDR Gold ETF (GLD) Close",
+  "formula": "NYSE Arca 实物黄金 ETF GLD 收盘价（美元／股）",
+  "unit": " $/股",
+  "hue": "#6b8ba3",
+  "publication": "T",
+  "precision": 2,
+  "operation": "level",
+  "scale": 1,
+  "start": "2016-11-01",
+  "description": "GLD（SPDR Gold Shares）收盘价，单位为「美元／股」，不是美元／盎司金价：每股对应约 0.09 金衡盎司黄金（随信托费用缓慢下降），故数值约为同期盎司价的 9%。本序列的价值在于交易所日频收盘价的时效性，用于在实际利率旁观察金价的日内—月度形态；官方美元／盎司月度均价由「金价（美元/盎司）」序列给出（世界银行 Pink Sheet）。LBMA 定盘价由 ICE 基准管理、历史数据自 2025-03 起需许可且站点受 Cloudflare 反爬保护，Node 在不绕过 WAF 的前提下无法取数（与港交所 AI 指数同一处理原则），故此处仅作交易所代理并透明标注，非静默冒充 LBMA。Nasdaq 公开行情留存约 10 年，故区间自 2016 年起。交叉验证：GLD 由 Nasdaq 交易所行情取得、世行金价由世界银行 Pink Sheet 官方月均价取得，两家机构互不依赖。比值带 [0.0897, 0.0973] 由 2016-11 至 2026-10 共 120 个月实测 min/max（0.09154~0.09544）各外扩 2% 定标；GLD 每股黄金重量长期稳定在 0.09 盎司附近，比值出界即说明某一侧价格、单位或份额换算出错。",
+  "legs": [
+    {
+      "key": "gld",
+      "label": "GLD",
+      "primary": {
+        "provider": "nasdaq",
+        "symbol": "GLD",
+        "assetclass": "etf"
+      },
+      "check": {
+        "provider": "series",
+        "id": "gold-oz",
+        "mode": "ratio",
+        "align": "month-mean",
+        "band": [
+          0.0897,
+          0.0974
+        ]
+      }
+    }
+  ],
+  "checkKind": "跨机构比值带（GLD 月度均价 ÷ 世界银行官方月度金价，1 股 ≈ 0.09 盎司）",
+  "integrity": {
+    "range": [
+      50,
+      1000
+    ],
+    "maxRelJump": 0.15
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "id": "effr",
+  "order": 12,
+  "surface": "strip",
+  "name": "EFFR",
+  "en": "Effective Federal Funds Rate",
+  "formula": "联邦基金有效利率",
+  "unit": "%",
+  "hue": "#3aa6ff",
+  "publication": "T+1",
+  "description": "EFFR（联邦基金有效利率），纽约联储每日发布；与圣路易斯联储 FRED DFF 序列双源交叉验证。点击利率卡可查看其历史走势。",
+  "operation": "level",
+  "scale": 1,
+  "precision": 2,
+  "start": "2018-04-01",
+  "tolerance": 0.011,
+  "legs": [
+    {
+      "key": "effr",
+      "primary": {
+        "provider": "nyfed",
+        "series": "effr"
+      },
+      "check": {
+        "provider": "fred",
+        "series": "DFF",
+        "label": "FRED DFF"
+      }
+    }
+  ],
+  "checkKind": "官方双源逐点（纽约联储 ↔ FRED 圣路易斯联储）",
+  "integrity": {
+    "range": [
+      0,
+      8
+    ],
+    "maxAbsJump": 1.5
+  }
+}

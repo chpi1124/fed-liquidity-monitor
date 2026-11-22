@@ -1,0 +1,41 @@
+{
+  "id": "iorb",
+  "order": 13,
+  "surface": "strip",
+  "name": "IORB 准备金",
+  "en": "Interest on Reserve Balances",
+  "formula": "准备金余额利率",
+  "unit": "%",
+  "hue": "#35e0a1",
+  "description": "IORB（准备金余额利率），美联储理事会管理利率，FRED IORB 序列（理事会源）。校验：与 FRED 联邦基金目标上限 DFEDTARU 的政策利差一致性（上限 −10bp，2021-07-29 以来恒等）。点击利率卡可查看其历史走势。",
+  "validationNote": "校验口径：FRED 目标上限 −10bp（政策利差一致性）",
+  "operation": "level",
+  "scale": 1,
+  "precision": 2,
+  "start": "2021-07-29",
+  "tolerance": 0.005,
+  "legs": [
+    {
+      "key": "iorb",
+      "primary": {
+        "provider": "fred",
+        "series": "IORB",
+        "label": "FRED IORB（理事会）"
+      },
+      "check": {
+        "provider": "fred",
+        "series": "DFEDTARU",
+        "offset": -0.1,
+        "label": "FRED 目标上限 −10bp"
+      }
+    }
+  ],
+  "checkKind": "官方双源逐点（纽约联储 ↔ FRED 圣路易斯联储）",
+  "integrity": {
+    "range": [
+      0,
+      8
+    ],
+    "maxAbsJump": 1.5
+  }
+}

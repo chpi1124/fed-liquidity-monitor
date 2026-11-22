@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>鸿学院 · 金融指标监控</title>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/layout.css">
+<script src="vendor/echarts.min.js"></script>
+</head>
+<body>
+<aside class="side">
+  <div class="side__brand">鸿学院<span>FED LIQUIDITY MONITOR · 金融指标监控</span></div>
+  <div id="region-switch" class="region-switch" aria-label="市场切换"></div>
+  <div id="page-nav"></div>
+  <div id="indicator-nav"></div>
+  <div class="side__foot">数据源：纽约联储 Markets API · 圣路易斯联储 FRED · 美联储理事会 H.4.1<br>双源交叉验证 · 每日自动更新（美东 9 点后）</div>
+</aside>
+<main class="main">
+  <div id="page-monitor">
+    <div id="header"></div>
+    <div id="strip" class="strip" aria-label="政策利率走廊"></div>
+    <div id="toolbar"></div>
+    <section class="panel chart-panel">
+      <div id="chart"></div>
+      <div id="chart-empty" hidden></div>
+    </section>
+    <p id="desc" class="desc"></p>
+  </div>
+  <div id="page-balance" hidden>
+    <div id="bh-header"></div>
+    <div id="bh-toolbar"></div>
+    <div id="bh-comp"></div>
+    <section class="panel chart-panel">
+      <div id="bh-chart"></div>
+      <div id="bh-chart-empty" hidden></div>
+    </section>
+    <div id="bh-tables"></div>
+    <p id="bh-desc" class="desc"></p>
+  </div>
+  <div id="page-summary" hidden>
+    <div id="sum-header"></div>
+    <div id="sum-tables"></div>
+    <p id="sum-desc" class="desc"></p>
+  </div>
+  <div id="page-gold" hidden>
+    <div id="gold-header"></div>
+    <div id="gold-toolbar"></div>
+    <section class="panel chart-panel">
+      <div id="gold-chart"></div>
+      <div id="gold-chart-empty" hidden></div>
+    </section>
+    <p id="gold-desc" class="desc"></p>
+  </div>
+  <footer class="foot">指标 / 分区 / 阈值由 indicators/*.json 驱动，报表由 sheets/*.json 驱动，周度汇总由 summaries/*.json 驱动 · 自动发现 · 组件族渲染 · 单一数据管道（源 → 校验 → 存储 → API → 状态 → 组件）</footer>
+</main>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

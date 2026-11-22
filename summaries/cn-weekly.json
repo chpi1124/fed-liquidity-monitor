@@ -1,0 +1,88 @@
+{
+  "id": "cn-weekly",
+  "region": "cn",
+  "order": 1,
+  "anchor": "daily",
+  "name": "中国周度资金面汇总",
+  "columns": ["指标", "上周", "本周", "警示区"],
+  "tolerance": 0.01,
+  "description": "中国人民银行体系资金面与政策利率周度观察。以最新自然日为锚，本周=近 7 天、上周=前 7 天。市场利率（FDR007、SHIBOR、期限利差）与 LPR 取全国银行间同业拆借中心 / 中国外汇交易中心（CFETS，央行直属）官方发布，自动计算周度最高/水平；CFETS 为中国利率的唯一权威发布方，无 FRED 式第二机构，故为透明单官方源。央行公开市场操作（OMO 逆回购、MLF、SLF）与外汇储备由中国人民银行、国家外汇管理局官网发布，自动抓取适配器待接入，未接入前透明标注缺口、绝不手工造数。",
+  "rows": [
+    {
+      "id": "fdr007", "kind": "store", "indicator": "cn-fdr007", "agg": "max",
+      "zh": "FDR007（本周最高）", "en": "Deposit-taking 7-Day Repo Fixing", "unit": "%", "precision": 3,
+      "sourceLabel": "CFETS 官方", "checkLabel": "唯一官方发布方",
+      "note": "存款类机构7天回购定盘利率周度最高，央行观察资金面核心指标，对标 7 天逆回购 OMO。",
+      "zones": [
+        { "label": "宽松", "max": 1.4, "color": "#3aa6ff" },
+        { "label": "中性", "max": 1.9, "color": "#2fd08c" },
+        { "label": "偏紧", "max": null, "color": "#ffb224" }
+      ]
+    },
+    {
+      "id": "shibor-on", "kind": "store", "indicator": "cn-shibor-on", "agg": "max",
+      "zh": "SHIBOR 隔夜（最高）", "en": "SHIBOR O/N", "unit": "%", "precision": 3,
+      "sourceLabel": "CFETS 官方", "checkLabel": "唯一官方发布方",
+      "note": "隔夜上海银行间同业拆放利率周度最高。"
+    },
+    {
+      "id": "shibor-3m", "kind": "store", "indicator": "cn-shibor-3m", "agg": "max",
+      "zh": "SHIBOR 3M（最高）", "en": "SHIBOR 3M", "unit": "%", "precision": 3,
+      "sourceLabel": "CFETS 官方", "checkLabel": "唯一官方发布方",
+      "note": "3 个月 SHIBOR 周度最高。"
+    },
+    {
+      "id": "term-spread", "kind": "store", "indicator": "cn-shibor-spread", "agg": "max",
+      "zh": "期限利差 3M−O/N（最高）", "en": "SHIBOR 3M − O/N spread", "unit": "bp", "precision": 0,
+      "sourceLabel": "CFETS 官方", "checkLabel": "唯一官方发布方",
+      "note": "3 个月减隔夜，刻画收益率曲线形态与资金面松紧。",
+      "zones": [
+        { "label": "倒挂", "max": 0, "includeMax": false, "color": "#ef4444" },
+        { "label": "平缓", "max": 15, "color": "#e5e7eb" },
+        { "label": "正常", "max": 40, "color": "#eab308" },
+        { "label": "陡峭", "max": null, "color": "#22c55e" }
+      ]
+    },
+    {
+      "id": "lpr-1y", "kind": "store", "indicator": "cn-lpr-1y", "agg": "level",
+      "zh": "LPR 1Y", "en": "Loan Prime Rate 1Y", "unit": "%", "precision": 2,
+      "sourceLabel": "CFETS 官方（每月20日）", "checkLabel": "唯一官方发布方",
+      "note": "1 年期贷款市场报价利率（最新值，月度）。"
+    },
+    {
+      "id": "rmb", "kind": "series", "agg": "level",
+      "primary": { "provider": "cfets-rmb", "pair": "USD/CNY" },
+      "zh": "人民币中间价 USD/CNY", "en": "RMB central parity", "unit": "元", "precision": 4,
+      "sourceLabel": "CFETS 官方", "checkLabel": "央行授权发布",
+      "note": "美元/人民币中间价（当日）。"
+    },
+    {
+      "id": "omo7d", "kind": "static", "pending": true,
+      "zh": "7天逆回购 OMO 利率", "en": "PBOC 7-Day Reverse Repo (OMO)", "unit": "%",
+      "sourceLabel": "中国人民银行 官网公告", "checkLabel": "待接入自动抓取",
+      "noSourceNote": "7 天期逆回购操作利率为中国人民银行公开市场政策利率（当前由央行公告、变动频率低）。官方权威源为中国央行官网，自动抓取适配器待接入；未接入前透明标注缺口、绝不手工填数。",
+      "evidence": ["https://www.pbc.gov.cn/zhengcehuobisi/125207/index.html"]
+    },
+    {
+      "id": "mlf", "kind": "static", "pending": true,
+      "zh": "MLF 1Y 利率", "en": "Medium-term Lending Facility", "unit": "%",
+      "sourceLabel": "中国人民银行 官网公告", "checkLabel": "待接入自动抓取",
+      "noSourceNote": "中期借贷便利（MLF）利率由中国人民银行公告。自动抓取适配器待接入；不手工填数。",
+      "evidence": ["https://www.pbc.gov.cn/"]
+    },
+    {
+      "id": "rrr", "kind": "static", "pending": true,
+      "zh": "存款准备金率（加权）", "en": "Reserve Requirement Ratio", "unit": "%",
+      "sourceLabel": "中国人民银行", "checkLabel": "待接入自动抓取",
+      "noSourceNote": "存款准备金率由中国人民银行调整并公告，降准信息为政策利率之外的核心流动性变量。自动抓取适配器待接入；不手工填数。",
+      "evidence": ["https://www.pbc.gov.cn/"]
+    },
+    {
+      "id": "fx-reserve", "kind": "static", "pending": true,
+      "zh": "外汇储备", "en": "Foreign Exchange Reserves", "unit": "亿美元", "precision": 0,
+      "sourceLabel": "国家外汇管理局 SAFE", "checkLabel": "待接入自动抓取",
+      "noSourceNote": "国家外汇管理局每月公布官方储备资产。官网可达（HTML），自动抓取适配器待接入；不手工填数。",
+      "evidence": ["https://www.safe.gov.cn/safe/whccbjj/index.html"]
+    }
+  ]
+}

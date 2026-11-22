@@ -1,0 +1,44 @@
+{
+  "id": "cn-shibor-3m",
+  "region": "cn",
+  "order": 3,
+  "surface": "strip",
+  "name": "SHIBOR 3M",
+  "en": "SHIBOR 3-Month",
+  "formula": "3 个月 SHIBOR",
+  "unit": "%",
+  "hue": "#2fd08c",
+  "publication": "T",
+  "description": "SHIBOR 3 个月利率，CFETS 官方发布，信用与同业负债成本的中间指针。交叉验证：3M 与 O/N 利差带宽 [-0.75, 2.45] 取十年实测 min/max（2508 日）；利差不可能长期为负且不会超过该幅度，越界即说明某一期限取数异常。",
+  "operation": "level",
+  "scale": 1,
+  "precision": 4,
+  "start": "2024-01-01",
+  "legs": [
+    {
+      "key": "3m",
+      "label": "SHIBOR 3M",
+      "primary": {
+        "provider": "cfets-shibor",
+        "tenor": "3M"
+      },
+      "check": {
+        "provider": "series",
+        "id": "cn-shibor-on",
+        "mode": "diff",
+        "band": [
+          -0.75,
+          2.45
+        ]
+      }
+    }
+  ],
+  "checkKind": "期限结构逐日带宽（Shibor 3M − Shibor O/N，已独立入库并各自校验的官方序列）",
+  "integrity": {
+    "range": [
+      1,
+      6
+    ],
+    "maxAbsJump": 0.6
+  }
+}

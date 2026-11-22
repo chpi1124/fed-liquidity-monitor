@@ -1,0 +1,51 @@
+{
+  "id": "srf",
+  "order": 2,
+  "name": "SRF动用量",
+  "formula": "常备回购便利每日接受量",
+  "unit": "十亿美元",
+  "description": "SRF（Standing Repo Facility，常备回购便利）每日早/午操作接受量合计（按操作日，含期限操作），十亿美元。主源：纽约联储回购操作 API；校验源：圣路易斯联储 FRED 之 RPONTSYD+RPONAGYD+RPONMBSD（国债+机构债+MBS）。校验口径：隔夜操作按结算日对齐比较（FRED 以结算日记账且仅覆盖隔夜操作），期限操作不在 FRED 隔夜序列口径内。2021-07-29 设立日起。任何动用均为流动性后备支持被激活的信号。",
+  "operation": "level",
+  "scale": 1,
+  "precision": 3,
+  "start": "2021-07-29",
+  "tolerance": 0.002,
+  "legs": [
+    {
+      "key": "srf",
+      "label": "SRF",
+      "primary": {
+        "provider": "nyfed-repo",
+        "series": "srf"
+      },
+      "check": {
+        "provider": "fred",
+        "series": [
+          "RPONTSYD",
+          "RPONAGYD",
+          "RPONMBSD"
+        ]
+      }
+    }
+  ],
+  "zones": [
+    {
+      "label": "未动用",
+      "max": 0,
+      "color": "#22c55e"
+    },
+    {
+      "label": "已动用",
+      "max": null,
+      "color": "#ef4444"
+    }
+  ],
+  "checkKind": "官方双源逐点（纽约联储竞价结果 ↔ FRED 圣路易斯联储）",
+  "integrity": {
+    "range": [
+      0,
+      500
+    ],
+    "maxAbsJump": 120
+  }
+}

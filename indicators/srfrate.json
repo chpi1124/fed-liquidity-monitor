@@ -1,0 +1,41 @@
+{
+  "id": "srfrate",
+  "order": 14,
+  "surface": "strip",
+  "name": "SRF 利率",
+  "en": "Standing Repo Facility Offering Rate",
+  "formula": "常备回购便利利率",
+  "unit": "%",
+  "hue": "#e05fd0",
+  "role": "走廊上限",
+  "description": "SRF（常备回购便利）每日操作提供利率（offering rate / 最低投标利率，不含竞价 stop-out），纽约联储回购操作 API。校验：与 FRED 联邦基金目标上限 DFEDTARU 一致性（SRF 利率设于目标上限，2021-07-29 以来恒等）。利率走廊上限。点击利率卡可查看其历史走势。",
+  "validationNote": "校验口径：FRED 目标上限（SRF 设于上限）",
+  "operation": "level",
+  "scale": 1,
+  "precision": 2,
+  "start": "2021-07-29",
+  "tolerance": 0.005,
+  "legs": [
+    {
+      "key": "srfrate",
+      "primary": {
+        "provider": "nyfed-rp-rate",
+        "series": "srf"
+      },
+      "check": {
+        "provider": "fred",
+        "series": "DFEDTARU",
+        "offset": 0,
+        "label": "FRED 目标上限"
+      }
+    }
+  ],
+  "checkKind": "官方双源逐点（纽约联储 ↔ FRED 圣路易斯联储）",
+  "integrity": {
+    "range": [
+      0,
+      8
+    ],
+    "maxAbsJump": 1.5
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "cn-lpr-1y",
+  "region": "cn",
+  "order": 7,
+  "surface": "strip",
+  "name": "LPR 1Y",
+  "en": "Loan Prime Rate 1Y",
+  "formula": "1 年期贷款市场报价利率",
+  "unit": "%",
+  "hue": "#38bdf8",
+  "publication": "M",
+  "description": "1 年期 LPR（贷款市场报价利率），由全国银行间同业拆借中心（央行直属）每月 20 日公布，是当前中国贷款利率定价基准。源端限制：中国货币网 LprHis 无论是否携带日期区间都只回最近 12 期，官方 Excel 导出的数值列为空，因此本行历史长度受发布方限制，只用官方已发布的期次，绝不外推造数。交叉验证：LPR 1Y 与 Shibor 1Y 差值带宽 [1.10, 1.90]，按官方接口可得的近 12 期实测（1.35~1.56）留出政策利率调降空间。",
+  "operation": "level",
+  "scale": 1,
+  "precision": 2,
+  "start": "2024-01-01",
+  "legs": [
+    {
+      "key": "lpr1y",
+      "label": "LPR 1Y",
+      "primary": {
+        "provider": "cfets-lpr",
+        "tenor": "1Y"
+      },
+      "check": {
+        "provider": "series",
+        "id": "cn-shibor-1y",
+        "mode": "diff",
+        "band": [
+          1.1,
+          1.9
+        ]
+      }
+    }
+  ],
+  "checkKind": "跨市场逐期带宽（LPR 1Y ↔ Shibor 1Y：贷款端定价 ↔ 拆借端定价）",
+  "integrity": {
+    "range": [
+      1.5,
+      6
+    ],
+    "maxAbsJump": 0.5
+  }
+}

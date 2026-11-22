@@ -1,0 +1,39 @@
+{
+  "id": "onrrp",
+  "order": 10,
+  "surface": "strip",
+  "name": "ON RRP",
+  "en": "Overnight Reverse Repo Award Rate",
+  "formula": "隔夜逆回购利率",
+  "unit": "%",
+  "hue": "#ffb224",
+  "role": "地板利率",
+  "description": "ON RRP（隔夜逆回购便利）每日操作授予利率，纽约联储回购操作 API；与圣路易斯联储 FRED RRPONTSYAWARD 序列双源交叉验证。利率走廊的地板利率（下限）：非银机构可将现金以该利率存入美联储，构成货币市场利率的下限。点击利率卡可查看其历史走势。",
+  "operation": "level",
+  "scale": 1,
+  "precision": 2,
+  "start": "2021-07-29",
+  "tolerance": 0.005,
+  "legs": [
+    {
+      "key": "onrrp",
+      "primary": {
+        "provider": "nyfed-rp-rate",
+        "series": "onrrp"
+      },
+      "check": {
+        "provider": "fred",
+        "series": "RRPONTSYAWARD",
+        "label": "FRED RRPONTSYAWARD"
+      }
+    }
+  ],
+  "checkKind": "官方双源逐点（纽约联储 ↔ FRED 圣路易斯联储）",
+  "integrity": {
+    "range": [
+      0,
+      8
+    ],
+    "maxAbsJump": 1.5
+  }
+}

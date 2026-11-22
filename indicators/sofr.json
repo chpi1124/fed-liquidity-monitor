@@ -1,0 +1,39 @@
+{
+  "id": "sofr",
+  "order": 11,
+  "surface": "strip",
+  "name": "SOFR",
+  "en": "Secured Overnight Financing Rate",
+  "formula": "有担保隔夜融资利率",
+  "unit": "%",
+  "hue": "#ff8a2a",
+  "publication": "T+1",
+  "description": "SOFR（有担保隔夜融资利率），纽约联储每日发布；与圣路易斯联储 FRED SOFR 序列双源交叉验证。点击利率卡可查看其历史走势。",
+  "operation": "level",
+  "scale": 1,
+  "precision": 2,
+  "start": "2018-04-01",
+  "tolerance": 0.011,
+  "legs": [
+    {
+      "key": "sofr",
+      "primary": {
+        "provider": "nyfed",
+        "series": "sofr"
+      },
+      "check": {
+        "provider": "fred",
+        "series": "SOFR",
+        "label": "FRED SOFR"
+      }
+    }
+  ],
+  "checkKind": "官方双源逐点（纽约联储 ↔ FRED 圣路易斯联储）",
+  "integrity": {
+    "range": [
+      0,
+      8
+    ],
+    "maxAbsJump": 3.5
+  }
+}

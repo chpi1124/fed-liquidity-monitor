@@ -1,0 +1,54 @@
+{
+  "id": "gold-oz",
+  "region": "us",
+  "order": 21,
+  "surface": "gold",
+  "axis": "oz",
+  "axisPos": "right",
+  "axisName": "金价 $/oz",
+  "axisPrefix": "$",
+  "render": "month-line",
+  "freq": "month",
+  "name": "金价（美元/盎司）",
+  "en": "Gold Price (USD per troy ounce)",
+  "formula": "世界银行 Pink Sheet 月度黄金均价（美元/金衡盎司）",
+  "unit": " $/oz",
+  "hue": "#ffb224",
+  "publication": "M+1",
+  "precision": 2,
+  "operation": "level",
+  "scale": 1,
+  "start": "2016-11-01",
+  "sourceNote": "世界银行 Pink Sheet 官方单源",
+  "description": "黄金的美元／金衡盎司价格（月度均价）。主源：世界银行大宗商品价格数据（The World Bank Commodity Price Data，即 Pink Sheet）月度 XLSX 的 Gold 列，表内单位标注为 ($/troy oz)，1960-01 起连续 802 个月，本站区间自 2016-11 起与实际利率对齐；该文件每月 3 日前后更新，当前最新月 2026-10。下载链接由本站从世界银行官方 commodity-markets 页面自动发现（文档哈希随批次变化，故不写死），解析为零依赖 ZIP+XLSX 读取，并按表内「Gold」表头动态定位列，列序变动不会导致错位。口径与交叉验证：国际基准为 LBMA 黄金定盘价，但其已由 ICE Benchmark Administration 管理、历史数据自 2025-03 起需许可，且 prices.lbma.org.uk 受 Cloudflare 反爬保护（403）；IMF 与澳大利亚储备银行的对应表亦无公开机读端点。故本行按既定「双机构可比则交叉验证、单源必须透明标注」原则标注为世界银行官方单源，不静默替换、不造数。独立市场印证：GLD 交易所份额价约为同期盎司价的 9%（每股含约 0.09 盎司黄金），两者分属申报均价与 NYSE 收盘价两条独立市场口径，可在图中同时开启对照。交叉验证方向与 GLD 行互为逆运算，带宽 [10.478, 10.925] 即 0.09154~0.09544 的倒数，同样由 120 个月实测定标。世行 Pink Sheet 每月约在月末更新上月均价，故发布滞后上限取 75 天而非默认 45 天，避免把正常的月度发布节奏误报为陈旧。",
+  "legs": [
+    {
+      "key": "wb",
+      "label": "World Bank Pink Sheet",
+      "primary": {
+        "provider": "worldbank",
+        "sheet": "Monthly Prices",
+        "column": "Gold"
+      },
+      "check": {
+        "provider": "series",
+        "id": "gold",
+        "mode": "ratio",
+        "align": "month-mean",
+        "band": [
+          10.2682,
+          11.1433
+        ]
+      }
+    }
+  ],
+  "checkKind": "跨机构比值带（世界银行官方月度金价 ÷ GLD 月度均价，1 盎司 ≈ 10.5~10.9 股）",
+  "integrity": {
+    "range": [
+      500,
+      12000
+    ],
+    "maxRelJump": 0.15,
+    "maxLagDays": 75
+  }
+}

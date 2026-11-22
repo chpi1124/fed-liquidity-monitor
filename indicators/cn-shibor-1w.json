@@ -1,0 +1,44 @@
+{
+  "id": "cn-shibor-1w",
+  "region": "cn",
+  "order": 4,
+  "surface": "strip",
+  "name": "SHIBOR 1W",
+  "en": "SHIBOR 1-Week",
+  "formula": "1 周 SHIBOR",
+  "unit": "%",
+  "hue": "#ffb224",
+  "publication": "T",
+  "description": "SHIBOR 1 周利率，CFETS 官方发布，最贴近央行 7 天逆回购政策利率（OMO）的同期限市场利率。交叉验证：1 周报价与 7 天成交定盘为最接近的同口径对手序列，带宽 [-0.55, 0.85] 取十年实测 min/max。",
+  "operation": "level",
+  "scale": 1,
+  "precision": 4,
+  "start": "2024-01-01",
+  "legs": [
+    {
+      "key": "1w",
+      "label": "SHIBOR 1W",
+      "primary": {
+        "provider": "cfets-shibor",
+        "tenor": "1W"
+      },
+      "check": {
+        "provider": "cfets-repo",
+        "tenor": "FDR007",
+        "mode": "diff",
+        "band": [
+          -0.55,
+          0.85
+        ]
+      }
+    }
+  ],
+  "checkKind": "报价制 ↔ 成交制逐日带宽（Shibor 1W ↔ FDR007 7 天回购定盘）",
+  "integrity": {
+    "range": [
+      0.5,
+      5
+    ],
+    "maxAbsJump": 1
+  }
+}

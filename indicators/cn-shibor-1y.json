@@ -1,0 +1,44 @@
+{
+  "id": "cn-shibor-1y",
+  "region": "cn",
+  "order": 5,
+  "surface": "strip",
+  "name": "SHIBOR 1Y",
+  "en": "SHIBOR 1-Year",
+  "formula": "1 年 SHIBOR",
+  "unit": "%",
+  "hue": "#a78bfa",
+  "publication": "T",
+  "description": "SHIBOR 1 年利率，CFETS 官方发布，与 1 年期 LPR、MLF 政策利率共同刻画中长期资金定价。交叉验证：1Y 与 3M 利差带宽 [-0.40, 0.75] 取十年实测 min/max；该带同时约束期限结构不得异常倒挂。",
+  "operation": "level",
+  "scale": 1,
+  "precision": 4,
+  "start": "2024-01-01",
+  "legs": [
+    {
+      "key": "1y",
+      "label": "SHIBOR 1Y",
+      "primary": {
+        "provider": "cfets-shibor",
+        "tenor": "1Y"
+      },
+      "check": {
+        "provider": "series",
+        "id": "cn-shibor-3m",
+        "mode": "diff",
+        "band": [
+          -0.4,
+          0.75
+        ]
+      }
+    }
+  ],
+  "checkKind": "期限结构逐日带宽（Shibor 1Y − Shibor 3M）",
+  "integrity": {
+    "range": [
+      1,
+      6
+    ],
+    "maxAbsJump": 0.6
+  }
+}

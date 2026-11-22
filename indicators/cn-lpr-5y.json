@@ -1,0 +1,44 @@
+{
+  "id": "cn-lpr-5y",
+  "region": "cn",
+  "order": 8,
+  "surface": "strip",
+  "name": "LPR 5Y+",
+  "en": "Loan Prime Rate 5Y+",
+  "formula": "5 年期以上贷款市场报价利率",
+  "unit": "%",
+  "hue": "#c084fc",
+  "publication": "M",
+  "description": "5 年期以上 LPR，全国银行间同业拆借中心（央行直属）每月 20 日公布，主要影响房贷等中长期贷款定价。源端限制同 LPR 1Y：官方接口只回最近 12 期。交叉验证：5Y−1Y 利差带 [-0.50, 1.50]，近 12 期实测恒为 0.50，带宽放宽以容纳长端单独调整与房贷利率结构变化，同时排除倒挂式取数错误。",
+  "operation": "level",
+  "scale": 1,
+  "precision": 2,
+  "start": "2024-01-01",
+  "legs": [
+    {
+      "key": "lpr5y",
+      "label": "LPR 5Y",
+      "primary": {
+        "provider": "cfets-lpr",
+        "tenor": "5Y"
+      },
+      "check": {
+        "provider": "series",
+        "id": "cn-lpr-1y",
+        "mode": "diff",
+        "band": [
+          -0.5,
+          1.5
+        ]
+      }
+    }
+  ],
+  "checkKind": "结构带宽（LPR 5Y − LPR 1Y，两期限同月发布）",
+  "integrity": {
+    "range": [
+      1.5,
+      6
+    ],
+    "maxAbsJump": 0.5
+  }
+}

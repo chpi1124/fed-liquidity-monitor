@@ -1,0 +1,47 @@
+{
+  "id": "tips10",
+  "region": "us",
+  "order": 20,
+  "surface": "gold",
+  "axis": "left",
+  "axisPos": "left",
+  "axisName": "实际利率 %",
+  "axisSuffix": "%",
+  "render": "line",
+  "sourceNote": "财政部 TIIS × FRED 双官方源逐日验证",
+  "invert": true,
+  "name": "10Y TIPS 实际利率",
+  "en": "10-Year TIPS Real Yield",
+  "formula": "美国财政部通胀保值证券 10 年期实际收益率",
+  "unit": "%",
+  "hue": "#3aa6ff",
+  "publication": "T",
+  "precision": 2,
+  "operation": "level",
+  "scale": 1,
+  "start": "2016-11-01",
+  "tolerance": 0.05,
+  "description": "10 年期 TIPS 实际收益率（真实利率）。主源：美国财政部每日通胀保值（TIIS）收益率曲线；校验源：FRED DFII10（同源于财政部）。双官方源逐日交叉验证。实际利率是黄金定价的核心驱动，二者通常负相关——真实利率越低（尤其转负）越利多金价。",
+  "legs": [
+    {
+      "key": "tips",
+      "primary": {
+        "provider": "treasury-real",
+        "tenor": "10 YR"
+      },
+      "check": {
+        "provider": "fred",
+        "series": "DFII10",
+        "label": "FRED DFII10"
+      }
+    }
+  ],
+  "checkKind": "官方双源逐点（美国财政部实际利率 ↔ FRED DFII10）",
+  "integrity": {
+    "range": [
+      -2,
+      6
+    ],
+    "maxAbsJump": 1
+  }
+}

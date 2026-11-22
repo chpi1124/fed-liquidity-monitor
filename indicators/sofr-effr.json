@@ -1,0 +1,70 @@
+{
+  "id": "sofr-effr",
+  "order": 1,
+  "name": "梗差",
+  "formula": "SOFR − EFFR",
+  "unit": "bp",
+  "publication": "T+1",
+  "description": "梗差 = SOFR（有担保隔夜融资利率）− EFFR（联邦基金有效利率），单位基点。反映美元融资市场压力：<0 正常；0–7bp 心律杂音；>7bp 心绞痛；>17bp 心肌梗塞。主源纽约联储，校验源圣路易斯联储 FRED。",
+  "operation": "diff",
+  "scale": 100,
+  "start": "2018-04-01",
+  "tolerance": 0.011,
+  "legs": [
+    {
+      "key": "sofr",
+      "label": "SOFR",
+      "primary": {
+        "provider": "nyfed",
+        "series": "sofr"
+      },
+      "check": {
+        "provider": "fred",
+        "series": "SOFR"
+      }
+    },
+    {
+      "key": "effr",
+      "label": "EFFR",
+      "primary": {
+        "provider": "nyfed",
+        "series": "effr"
+      },
+      "check": {
+        "provider": "fred",
+        "series": "DFF"
+      }
+    }
+  ],
+  "zones": [
+    {
+      "label": "正常",
+      "max": 0,
+      "includeMax": false,
+      "color": "#22c55e"
+    },
+    {
+      "label": "心律杂音",
+      "max": 7,
+      "color": "#e5e7eb"
+    },
+    {
+      "label": "心绞痛",
+      "max": 17,
+      "color": "#eab308"
+    },
+    {
+      "label": "心肌梗塞",
+      "max": null,
+      "color": "#ef4444"
+    }
+  ],
+  "checkKind": "官方双源逐点（两腿分别 NY Fed ↔ FRED 确认后再相减）",
+  "integrity": {
+    "range": [
+      -100,
+      400
+    ],
+    "maxAbsJump": 300
+  }
+}

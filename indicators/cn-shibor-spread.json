@@ -1,0 +1,74 @@
+{
+  "id": "cn-shibor-spread",
+  "region": "cn",
+  "order": 1,
+  "name": "中国期限利差",
+  "en": "SHIBOR 3M − O/N Term Spread",
+  "formula": "= SHIBOR 3M − SHIBOR O/N（bp）",
+  "unit": "bp",
+  "hue": "#ff8a2a",
+  "publication": "T",
+  "description": "中国银行间资金面与收益率曲线形态观察。主源：全国银行间同业拆借中心 / 中国外汇交易中心（CFETS，中国人民银行直属）官方发布的 SHIBOR（上海银行间同业拆放利率）3 个月与隔夜期限。期限利差=3M−O/N（bp）。交叉验证为恒等式：本行由 3M 与 O/N 两腿现算，再与两条各自已校验入库的官方序列逐点相减比对（本行按整数 bp 四舍五入、参照值不舍入，故容差取略大于最大舍入差 0.5 的 0.51bp。任何期限错配、列错位、日期错并或缩放写错都会立刻在逐点比对中暴露，属可自动改值的数值级校验。",
+  "operation": "diff",
+  "scale": 100,
+  "precision": 0,
+  "start": "2024-01-01",
+  "legs": [
+    {
+      "key": "s3m",
+      "label": "SHIBOR 3M",
+      "primary": {
+        "provider": "cfets-shibor",
+        "tenor": "3M"
+      },
+      "check": {
+        "provider": "series",
+        "id": "cn-shibor-3m",
+        "minus": "cn-shibor-on",
+        "scale": 100,
+        "mode": "abs",
+        "checkOn": "value"
+      }
+    },
+    {
+      "key": "son",
+      "label": "SHIBOR O/N",
+      "primary": {
+        "provider": "cfets-shibor",
+        "tenor": "ON"
+      }
+    }
+  ],
+  "zones": [
+    {
+      "label": "倒挂",
+      "max": 0,
+      "includeMax": false,
+      "color": "#ef4444"
+    },
+    {
+      "label": "平缓",
+      "max": 15,
+      "color": "#e5e7eb"
+    },
+    {
+      "label": "正常",
+      "max": 40,
+      "color": "#eab308"
+    },
+    {
+      "label": "陡峭",
+      "max": null,
+      "color": "#22c55e"
+    }
+  ],
+  "tolerance": 0.51,
+  "checkKind": "恒等式逐点（本行 3M−O/N ↔ 两条已独立入库序列之差 ×100bp）",
+  "integrity": {
+    "range": [
+      -300,
+      600
+    ],
+    "maxAbsJump": 120
+  }
+}

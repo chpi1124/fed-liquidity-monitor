@@ -1,0 +1,43 @@
+{
+  "id": "cn-shibor-on",
+  "region": "cn",
+  "order": 2,
+  "name": "SHIBOR 隔夜",
+  "en": "Shanghai Interbank Offered Rate O/N",
+  "formula": "隔夜上海银行间同业拆放利率",
+  "unit": "%",
+  "hue": "#3aa6ff",
+  "publication": "T",
+  "description": "SHIBOR 隔夜利率，全国银行间同业拆借中心 / 中国外汇交易中心（CFETS，央行直属）官方发布，每日 11:00 报价。中国。交叉验证：Shibor 隔夜为报价制、FDR001 为成交制，二者是同一隔夜资金成本的两套独立测度，带宽 [-0.08, 0.25] 取十年实测 min/max（2364 个重叠日）。",
+  "operation": "level",
+  "scale": 1,
+  "precision": 4,
+  "start": "2024-01-01",
+  "legs": [
+    {
+      "key": "on",
+      "label": "SHIBOR O/N",
+      "primary": {
+        "provider": "cfets-shibor",
+        "tenor": "ON"
+      },
+      "check": {
+        "provider": "cfets-repo",
+        "tenor": "FDR001",
+        "mode": "diff",
+        "band": [
+          -0.08,
+          0.25
+        ]
+      }
+    }
+  ],
+  "checkKind": "报价制 ↔ 成交制逐日带宽（Shibor O/N ↔ FDR001 隔夜回购定盘）",
+  "integrity": {
+    "range": [
+      0.3,
+      4
+    ],
+    "maxAbsJump": 1
+  }
+}

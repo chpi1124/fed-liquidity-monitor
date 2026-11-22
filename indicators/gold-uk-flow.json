@@ -1,0 +1,59 @@
+{
+  "id": "gold-uk-flow",
+  "region": "us",
+  "order": 23,
+  "surface": "gold",
+  "axis": "flow",
+  "axisPos": "left",
+  "axisName": "净环流 吨",
+  "render": "bar",
+  "barWidth": 4,
+  "posColor": "#ff6b5b",
+  "negColor": "#4aa3ff",
+  "freq": "month",
+  "name": "伦敦黄金净环流",
+  "en": "UK Monthly Net Gold Flow",
+  "formula": "HMRC HS7108（含货币黄金 71082000）进口 − 出口，申报净重折公吨",
+  "unit": " 吨",
+  "hue": "#ff6b5b",
+  "publication": "M+2",
+  "precision": 2,
+  "operation": "level",
+  "scale": 1,
+  "start": "2016-11-01",
+  "tolerance": 0.5,
+  "sourceNote": "HMRC × UN Comtrade 双官方源",
+  "description": "伦敦黄金净环流（月度，公吨；正=净流入·吸纳，负=净流出·吐出）。主源：英国税务海关总署 HMRC『UK Trade Info』官方对外贸易统计 OData 服务，取 HS 7108 项下全部五个 CN8 子目（71081100 未锻造/粉末、71081200 其他非货币形态、71081310 与 71081380 半制成、71082000 货币黄金），净环流 =（FlowType 1 欧盟进口 + 3 非欧盟进口）−（2 欧盟出口 + 4 非欧盟出口），按申报净重 NetMass（kg）/1000 换算公吨。校验源：联合国商品贸易统计数据库 UN Comtrade（联合国对各成员国海关申报数据的官方汇编）英国 HS7108 月度进口与出口净重，逐月比对最近 6 个月。口径教训（本站实测留痕）：若漏掉 71082000 货币黄金，月度净环流会被压低约 100 倍（2024-01 全口径进口 66.1 吨 vs 仅非货币 0.68 吨），并且因出口净重多落在货币黄金项下而人为呈现『几乎每月净流入』的假象；补齐后与 UN Comtrade 逐公斤吻合（2024-01 进口 66.1 吨 / 出口 140.3 吨，净 −74.2 吨），2013-05 净流出 342 吨亦与参考图那根约 −350 吨的大柱对应。本站只呈现官方申报净重原值，不做货值折算、不凑量级。发布滞后：HMRC 月度对外贸易统计滞后约 2 个月，最新月份之后为空属官方尚未发布，非数据缺失。发布滞后：HMRC 月度外贸统计约在月末后两个多月发布，故滞后上限取 100 天，避免正常发布节奏被误判为陈旧。",
+  "legs": [
+    {
+      "key": "hmrc",
+      "label": "HMRC UK Trade Info",
+      "primary": {
+        "provider": "uk-trade",
+        "commodity": [
+          71081100,
+          71081200,
+          71081310,
+          71081380,
+          71082000
+        ],
+        "measure": "net"
+      },
+      "check": {
+        "provider": "uncomtrade",
+        "reporterCode": 826,
+        "cmdCode": "7108",
+        "maxMonths": 6
+      }
+    }
+  ],
+  "checkKind": "跨机构逐点（HMRC 英国对外贸易统计 ↔ 联合国 Comtrade 申报值）",
+  "integrity": {
+    "range": [
+      -1200,
+      1200
+    ],
+    "maxAbsJump": 700,
+    "maxLagDays": 100
+  }
+}
