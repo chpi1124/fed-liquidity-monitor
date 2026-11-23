@@ -280,5 +280,21 @@
       "fix": "replace 模式保留 overlay 层声明（此前叠加静默失效）"
     },
     "consoleErrors": 0
+  },
+  "ciHardeningRound": {
+    "at": "2026-11-23T18:55:00+08:00",
+    "finding": "FRED(fredgraph.csv) 对 GitHub Actions 机房 IP 全量 60s 超时：9 个校验腿 0/0（如实降级记 checkErrors），iorb 与 us-reserve-share 两个 FRED 主源指标连补跑也超时 → G8/G10/G16 红",
+    "fixes": [
+      "自愈三：失败指标整轮末尾补跑一次（实测仍超时，证明是硬阻断非抖动）",
+      "自愈四：实取失败且有已提交导出时显式回放——fetch=degraded+出处写进五态，validate/correct=skipped；本地模拟 FRED 被墙实测 mode=export-replay/status=degraded 五态齐全",
+      "actions/cache 跨 run 复用 monitor.db：命中走分钟级增量，未命中空库按 start 全量",
+      "CI timeout 30→60 分钟（冷启动全量重建实测 2407s）"
+    ],
+    "localProof": {
+      "replayTest": "mode=export-replay, 五态 plan=ok/fetch=degraded/validate=skipped/correct=skipped/commit=ok",
+      "gates": "G8/G10/G16 GREEN（水位线 24 行均带修订窗）"
+    },
+    "gates": "门禁 26 条：GREEN 23 / RED 3 → 修复后待本轮 CI 终审",
+    "consoleErrors": 0
   }
 }
