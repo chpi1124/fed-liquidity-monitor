@@ -60,8 +60,17 @@ export function list(region) {
 // 图表标注线：全站同一套，不按本页 region 过滤。
 // 「所有图中必须用竖向虚线标注美联储加息/降息/缩表/扩表」是产品指令，
 // 且美联储资产负债表动作确实驱动全球流动性（中国外汇占款即其镜像），不是可省的装饰。
+// 无头可复现：视觉回归用 setSource 注入冻结的政策事件，运行时仍读库。
+// 与 frontend/js/core/theme.js 的 setSource 同构——同一份事实，两种投影。
+let sourceOverride = null;
+export function setSource(fn) {
+  sourceOverride = fn;
+  return () => { sourceOverride = null; };
+}
+
 export function chartList() {
-  return db.policyEventsAll().map((r) => ({ ...r, label: labelOf(r), kind: r.action }));
+  const rows = sourceOverride ? sourceOverride() : db.policyEventsAll();
+  return rows.map((r) => ({ ...r, label: labelOf(r), kind: r.action }));
 }
 
 export function noteFor(region, events) {

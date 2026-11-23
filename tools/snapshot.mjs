@@ -16,6 +16,7 @@ const check = process.argv.includes("--check");
 
 const panels = await import(pathToFileURL(path.join(ROOT, "backend/lib/panels.js")).href);
 const store = await import(pathToFileURL(path.join(ROOT, "backend/lib/store.js")).href);
+const policy = await import(pathToFileURL(path.join(ROOT, "backend/lib/policy.js")).href);
 const theme = await import(pathToFileURL(path.join(ROOT, "frontend/js/core/theme.js")).href);
 const { buildOption } = await import(pathToFileURL(path.join(ROOT, "frontend/js/core/chart-option.js")).href);
 
@@ -68,8 +69,24 @@ if (!bless) {
     process.exit(1);
   }
   fixture = JSON.parse(fs.readFileSync(FIXTURE, "utf8"));
+  // 政策事件也必须冻结：否则 CI 重建库后事件条数/标签变了，G24 会把数据前进误判成渲染回归。
+  if (!Array.isArray(fixture.policy)) {
+    console.log("fixture 缺 policy 字段：先执行 node tools/snapshot.mjs --bless（重新冻结输入）");
+    process.exit(1);
+  }
+  policy.setSource(() => fixture.policy);
 }
-if (bless) recorded = {};
+if (bless) {
+  recorded = {};
+  policy.setSource(() => dbPolicyEvents());
+}
+function dbPolicyEvents() {
+  // 走 policy 自身的默认读库路径：先清空 override 再取，然后恢复 override
+  const restore = policy.setSource(null);
+  const rows = policy.chartList().map(({ label, kind, ...r }) => r);
+  restore();
+  return rows;
+}
 
 fs.mkdirSync(path.join(ROOT, "snapshots"), { recursive: true });
 const generated = [];
@@ -126,6 +143,7 @@ if (bless) {
     note: "视觉回归的冻结输入：装配过程中问过的每个数据 id 及其库内返回值。换数据 = 重新 --bless（显式动作）。",
     combos: expected.length,
     reads: recorded,
+    policy: dbPolicyEvents(),
   };
   fs.writeFileSync(FIXTURE, JSON.stringify(out, null, 2) + "\n");
   blessed = out;
@@ -139,7 +157,7 @@ const manifest = {
   generated,
   skipped,
   granularities,
-  fixture: fx ? { blessedAt: fx.blessedAt, reads: Object.keys(fx.reads).length } : null,
+  fixture: fx ? { blessedAt: fx.blessedAt, reads: Object.keys(fx.reads).length, policy: (fx.policy || []).length } : null,
   at: new Date().toISOString(),
 };
 fs.writeFileSync(path.join(ROOT, "snapshots", "manifest.json"), JSON.stringify(manifest, null, 2) + "\n");

@@ -37,6 +37,13 @@ jobs:
           done
           echo "OK: 全部源码可解析"
 
+      # SQLite 与五态记录不入库（data/monitor.db* 在 .gitignore），CI 须从官方源重建。
+      # 管道 owner 只有 backend/lib/pipeline.js，这里只调 CLI 入口，不复制一份更新循环。
+      - name: 全量重建数据（水位线/五态/政策事件/报表）
+        run: node tools/run-update.mjs --force
+
+      # 快照绑的是冻结输入（fixtures + 本地离线数据），但 policyLines 等元数据取自当前库；
+      # CI 重建后须确认视觉基线仍一致；如官方当日新发数据导致漂移，应先查数据源，不直接 --write。
       - name: 全量门禁（含 G4 出网纠错负向对照）
         run: node tools/gates.mjs --net
 
