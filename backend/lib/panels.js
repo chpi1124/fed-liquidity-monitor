@@ -365,11 +365,20 @@ export function buildPanel(specId, params, specsArg, read = store.read) {
   const viewModes = spec.viewModes || [];
   const view = [...viewModes.map((m) => m.id), null].includes(params.view) && params.view ? params.view : spec.defaultView || viewModes[0]?.id || null;
   const mode = viewModes.find((m) => m.id === view) || null;
+  // 叠加能力独立于视图模式：替换型模式清掉基础层时，overlay 层声明必须保留，
+  // 否则「叠加到其他参数图」会在走廊/SOFR 模式下静默失效（本轮实测踩过）。
+  const overlaySpecs = (spec.layers || []).filter((l) => l.series === "overlay");
   const baseWanted = wanted.slice();
   if (mode?.replace) wanted.length = 0;
   for (const ml of mode?.layers || (mode?.layer ? [mode.layer] : [])) {
     const cfg = indicators.find((c) => c.id === ml.indicator);
     if (cfg && !wanted.some((w) => w.cfg?.id === cfg.id)) wanted.push({ layerSpec: { series: cfg.id, recipe: ml.recipe, style: ml.style }, cfg });
+  }
+  for (const layerSpec of mode?.replace ? overlaySpecs : []) {
+    for (const id of (params.overlay || "").split(",").filter(Boolean)) {
+      const cfg = indicators.find((c) => c.id === id);
+      if (cfg && !wanted.some((w) => w.cfg?.id === cfg.id)) wanted.push({ layerSpec, cfg });
+    }
   }
   // 替换型模式在该市场没有对应序列时（如中国市场的美联储走廊线）回落到基础层：
   // 视图模式可以换看法，但不能把面板变空白或抛错。
