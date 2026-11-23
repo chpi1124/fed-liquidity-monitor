@@ -108,14 +108,46 @@
     "how": "Edge headless + CDP，690×780 iframe 内读 computed style / ECharts 实例；重启后的本地服务实跑。",
     "computed": {
       "bodyBefore": "none",
-      "tile": { "bg": "rgb(25,29,35)", "color": "rgb(242,244,247)", "radius": "14px", "shadow": "none", "gradient": "none", "font": "-apple-system" },
-      "panel": { "bg": "rgb(25,29,35)", "border": "rgb(42,48,57)", "radius": "20px", "shadow": "none", "gradient": "none" },
-      "activeSegment": { "bg": "rgb(217,138,61)", "color": "rgb(10,12,15)" },
+      "tile": {
+        "bg": "rgb(25,29,35)",
+        "color": "rgb(242,244,247)",
+        "radius": "14px",
+        "shadow": "none",
+        "gradient": "none",
+        "font": "-apple-system"
+      },
+      "panel": {
+        "bg": "rgb(25,29,35)",
+        "border": "rgb(42,48,57)",
+        "radius": "20px",
+        "shadow": "none",
+        "gradient": "none"
+      },
+      "activeSegment": {
+        "bg": "rgb(217,138,61)",
+        "color": "rgb(10,12,15)"
+      },
       "loopingAnimations": 0,
       "chartSeries": 5
     },
-    "reflow": { "at690": { "scrollWidth": 690, "clientWidth": 690, "overflow": false }, "at320": { "scrollWidth": 320, "clientWidth": 320, "overflow": false } },
-    "viewToggle": { "corridorWithSofr": 5, "spread": 1, "applyDelayMs": "≈150（setView→loadPage 走网络；判据须等 active 态翻转再读）", "policyLines": 91 },
+    "reflow": {
+      "at690": {
+        "scrollWidth": 690,
+        "clientWidth": 690,
+        "overflow": false
+      },
+      "at320": {
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "overflow": false
+      }
+    },
+    "viewToggle": {
+      "corridorWithSofr": 5,
+      "spread": 1,
+      "applyDelayMs": "≈150（setView→loadPage 走网络；判据须等 active 态翻转再读）",
+      "policyLines": 91
+    },
     "consoleErrors": 0,
     "gates": "26/26 GREEN（--net）· selftest 15/15 PASS"
   },
@@ -123,20 +155,59 @@
     "at": "2026-11-23T13:55:00+08:00",
     "how": "Edge headless + CDP，1100×820 iframe 内真实 pointer 点击，读 Segmented active 态与 ECharts 实例；默认行为由 G24 快照守住。",
     "monitor": {
-      "selector": { "type": "single-level two buttons", "options": ["梗差图", "走廊与SOFR"], "note": "走廊与SOFR 同图共存，无二级互斥切换" },
-      "spreadOnly": ["bar:梗差（柱）"],
-      "corridorWithSofr": ["line:SRF 利率", "line:ON RRP", "line:EFFR", "line:IORB 准备金", "bar:SOFR"],
+      "selector": {
+        "type": "single-level two buttons",
+        "options": [
+          "梗差图",
+          "走廊与SOFR"
+        ],
+        "note": "走廊与SOFR 同图共存，无二级互斥切换"
+      },
+      "spreadOnly": [
+        "bar:梗差（柱）"
+      ],
+      "corridorWithSofr": [
+        "line:SRF 利率",
+        "line:ON RRP",
+        "line:EFFR",
+        "line:IORB 准备金",
+        "bar:SOFR"
+      ],
       "noOverlay": "梗差 与 SOFR 从不同屏出现：梗差图 1 条、走廊与SOFR 5 条（4 线 + SOFR 柱同图）",
       "cnFallback": "中国市场无四条美联储走廊线，替换型模式回落到基础层，快照 cn.monitor.main-trend.day layers=1（不留空面板）"
     },
     "policySwitch": {
       "scope": "全局（页眉，所有页面可见），一处切换影响所有面板",
-      "on": { "label": "政策事件 开", "ariaChecked": "true", "policyLines": 91, "tooltipPolicy": "显示" },
-      "off": { "label": "政策事件 关", "ariaChecked": "false", "policyLines": 0, "tooltipPolicy": "隐藏" },
-      "controls": ["markLine 竖线", "tooltip 政策列", "逐点政策文字", "来源尾注"]
+      "on": {
+        "label": "政策事件 开",
+        "ariaChecked": "true",
+        "policyLines": 91,
+        "tooltipPolicy": "显示"
+      },
+      "off": {
+        "label": "政策事件 关",
+        "ariaChecked": "false",
+        "policyLines": 0,
+        "tooltipPolicy": "隐藏"
+      },
+      "controls": [
+        "markLine 竖线",
+        "tooltip 政策列",
+        "逐点政策文字",
+        "来源尾注"
+      ]
     },
     "goldParams": {
-      "selector": { "top": ["黄金视角"], "sub": ["全景", "实际利率", "伦敦净环流"] },
+      "selector": {
+        "top": [
+          "黄金视角"
+        ],
+        "sub": [
+          "全景",
+          "实际利率",
+          "伦敦净环流"
+        ]
+      },
       "all": 4,
       "realRate": 2,
       "roundTripToAll": 4
@@ -146,11 +217,68 @@
   "coPlotRound": {
     "at": "2026-11-23T15:45:00+08:00",
     "how": "用户澄清「走廊与SOFR柱必须在一张图上」：合并为单模式同图共存，取消二级互斥切换。Edge headless + CDP 实测。",
-    "selector": ["梗差图", "走廊与SOFR"],
-    "default": { "series": ["line:SRF 利率", "line:ON RRP", "line:EFFR", "line:IORB 准备金", "bar:SOFR"], "policyLines": 91 },
-    "spread": { "series": ["bar:梗差（柱）"], "policyLines": 91 },
-    "snapshot": { "layers": 5, "types": "line,line,line,line,bar", "policyLines": 91 },
+    "selector": [
+      "梗差图",
+      "走廊与SOFR"
+    ],
+    "default": {
+      "series": [
+        "line:SRF 利率",
+        "line:ON RRP",
+        "line:EFFR",
+        "line:IORB 准备金",
+        "bar:SOFR"
+      ],
+      "policyLines": 91
+    },
+    "spread": {
+      "series": [
+        "bar:梗差（柱）"
+      ],
+      "policyLines": 91
+    },
+    "snapshot": {
+      "layers": 5,
+      "types": "line,line,line,line,bar",
+      "policyLines": 91
+    },
     "consoleErrors": 0,
     "gates": "26/26 GREEN（--net）· selftest 15/15 PASS"
+  },
+  "reserveShareRound": {
+    "at": "2026-11-23T16:50:00+08:00",
+    "how": "Edge headless + CDP（1200×1000）读 ECharts 实例；数据源 FRED WRESBAL × TLAACBW027NBOG 实测入库 1248 周。",
+    "indicator": {
+      "id": "us-reserve-share",
+      "formula": "WRESBAL ÷ TLAACBW027NBOG × 0.1",
+      "latest": "2026-11-11 = 11.33%",
+      "history": {
+        "min": 0.03,
+        "max": 19.31,
+        "trough2019": "7.99%",
+        "peak2021": "≈16.19%",
+        "maxJump": "2.38 @2014-12-17"
+      },
+      "check": "H.8 SA/NSA 双口径逐点比值带 [0.9884,1.0108]，n=1248 全过"
+    },
+    "panel": {
+      "container": "rs-chart",
+      "recipe": "line（spec 显式声明，覆盖语义推导的 zoneBar）",
+      "hLines": [
+        "充足 > 11%",
+        "过剩 > 14%",
+        "充足中枢 12.5%（11–14 中点 · 本站标注）"
+      ],
+      "policyLines": 91,
+      "note": "三根横线全部渲染；zones 两条来自纽联储阈值，中枢为声明式参考线"
+    },
+    "overlay": {
+      "button": "准备金/银行资产",
+      "before": 5,
+      "after": 6,
+      "axis": "独立 share 右轴（resolve independent）",
+      "fix": "replace 模式保留 overlay 层声明（此前叠加静默失效）"
+    },
+    "consoleErrors": 0
   }
 }
