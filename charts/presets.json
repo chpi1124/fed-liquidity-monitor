@@ -1,0 +1,17 @@
+{
+  "standard": [
+    { "id": "2W", "label": "近两周", "days": 14, "title": "一键定位最近两周" },
+    { "id": "1M", "label": "1M", "days": 30 },
+    { "id": "3M", "label": "3M", "days": 91 },
+    { "id": "6M", "label": "6M", "days": 182 },
+    { "id": "1Y", "label": "1Y", "days": 365 },
+    { "id": "ALL", "label": "全部", "days": null }
+  ],
+  "long": [
+    { "id": "1Y", "label": "1Y", "days": 365 },
+    { "id": "3Y", "label": "3Y", "days": 1095 },
+    { "id": "5Y", "label": "5Y", "days": 1825 },
+    { "id": "10Y", "label": "10Y", "days": 3650 },
+    { "id": "ALL", "label": "全部", "days": null, "title": "2002 年至今全部周度数据" }
+  ]
+}

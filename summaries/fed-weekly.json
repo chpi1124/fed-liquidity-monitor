@@ -2,98 +2,247 @@
   "id": "fed-weekly",
   "order": 1,
   "name": "美联储周度汇总",
-  "columns": ["指标", "上周", "本周", "警示区"],
+  "columns": [
+    "指标",
+    "上周",
+    "本周",
+    "警示区"
+  ],
   "tolerance": 1,
   "description": "以 H.4.1 最新周三（asOf）为锚，本周=截至 asOf 的 7 天，上周=前 7 天。利率/成交量类按日度官方数据窗口聚合（最高/均值/合计）；贴现窗口、准备金、TGA 取 H.4.1 官方周度口径并与 FRED 对应序列逐点交叉验证。所有数值全自动计算，无任何手工维护。",
   "rows": [
     {
-      "id": "spread", "kind": "store", "indicator": "sofr-effr", "agg": "max",
-      "zh": "★鸿学院梗差（本周最高）", "en": "SOFR − EFFR spread", "unit": "bp", "precision": 0, "highlight": true,
-      "sourceLabel": "纽约联储 SOFR − EFFR", "checkLabel": "FRED SOFR / DFF（已校验存储）",
+      "id": "spread",
+      "kind": "store",
+      "indicator": "sofr-effr",
+      "agg": "max",
+      "zh": "★鸿学院梗差（本周最高）",
+      "en": "SOFR − EFFR spread",
+      "unit": "bp",
+      "precision": 0,
+      "highlight": true,
+      "sourceLabel": "纽约联储 SOFR − EFFR",
+      "checkLabel": "FRED SOFR / DFF（已校验存储）",
       "note": "梗差=SOFR−EFFR（bp）。分区：<0 正常 / 0–7 心律杂音 / >7 心绞痛 / >17 心肌梗塞。"
     },
     {
-      "id": "effr", "kind": "store", "indicator": "effr", "agg": "max",
-      "zh": "★EFFR（本周最高）", "en": "Effective Federal Funds Rate", "unit": "%", "precision": 2, "highlight": true,
-      "sourceLabel": "纽约联储 EFFR", "checkLabel": "FRED DFF（已校验存储）",
+      "id": "effr",
+      "kind": "store",
+      "indicator": "effr",
+      "agg": "max",
+      "zh": "★EFFR（本周最高）",
+      "en": "Effective Federal Funds Rate",
+      "unit": "%",
+      "precision": 2,
+      "highlight": true,
+      "sourceLabel": "纽约联储 EFFR",
+      "checkLabel": "FRED DFF（已校验存储）",
       "note": "联邦基金有效利率，本周窗口内最高值。"
     },
     {
-      "id": "discount", "kind": "factors", "factors": "Primary credit", "check": "WPC", "tolerance": 1,
-      "zh": "贴现窗口（日均）", "en": "Primary credit, daily average", "unit": "百万美元", "precision": 0,
-      "sourceLabel": "H.4.1 Table 2 日均", "checkLabel": "FRED WPC",
+      "id": "discount",
+      "kind": "factors",
+      "factors": "Primary credit",
+      "check": "WPC",
+      "tolerance": 1,
+      "zh": "贴现窗口（日均）",
+      "en": "Primary credit, daily average",
+      "unit": "百万美元",
+      "precision": 0,
+      "sourceLabel": "H.4.1 Table 2 日均",
+      "checkLabel": "FRED WPC",
       "note": "一级信贷日均余额，H.4.1 供因表日均列与 FRED WPC 同口径交叉验证。"
     },
     {
-      "id": "effrvol", "kind": "series", "agg": "mean",
-      "primary": { "provider": "nyfed", "series": "effr", "field": "volume" },
-      "check": { "provider": "fred", "series": "EFFRVOL" }, "tolerance": 1,
-      "zh": "联邦基金交易量（均值）", "en": "EFFR volume", "unit": "十亿美元", "precision": 0,
-      "sourceLabel": "纽约联储 EFFR 成交量", "checkLabel": "FRED EFFRVOL",
+      "id": "effrvol",
+      "kind": "series",
+      "agg": "mean",
+      "primary": {
+        "provider": "nyfed",
+        "series": "effr",
+        "field": "volume"
+      },
+      "check": {
+        "provider": "fred",
+        "series": "EFFRVOL"
+      },
+      "tolerance": 1,
+      "zh": "联邦基金交易量（均值）",
+      "en": "EFFR volume",
+      "unit": "十亿美元",
+      "precision": 0,
+      "sourceLabel": "纽约联储 EFFR 成交量",
+      "checkLabel": "FRED EFFRVOL",
       "note": "联邦基金市场日成交量，本周均值。"
     },
     {
-      "id": "sofrvol", "kind": "series", "agg": "mean",
-      "primary": { "provider": "nyfed", "series": "sofr", "field": "volume" },
-      "check": { "provider": "fred", "series": "SOFRVOL" }, "tolerance": 1,
-      "zh": "SOFR 交易量（均值）", "en": "SOFR volume", "unit": "十亿美元", "precision": 0,
-      "sourceLabel": "纽约联储 SOFR 成交量", "checkLabel": "FRED SOFRVOL",
+      "id": "sofrvol",
+      "kind": "series",
+      "agg": "mean",
+      "primary": {
+        "provider": "nyfed",
+        "series": "sofr",
+        "field": "volume"
+      },
+      "check": {
+        "provider": "fred",
+        "series": "SOFRVOL"
+      },
+      "tolerance": 1,
+      "zh": "SOFR 交易量（均值）",
+      "en": "SOFR volume",
+      "unit": "十亿美元",
+      "precision": 0,
+      "sourceLabel": "纽约联储 SOFR 成交量",
+      "checkLabel": "FRED SOFRVOL",
       "note": "三方回购市场日成交量，本周均值。"
     },
     {
-      "id": "sofr99", "kind": "series", "agg": "max",
-      "primary": { "provider": "nyfed", "series": "sofr", "field": "p99" },
-      "check": { "provider": "fred", "series": "SOFR99" }, "tolerance": 0.005,
-      "zh": "SOFR 99% 分位（最高）", "en": "SOFR 99th percentile", "unit": "%", "precision": 2,
-      "sourceLabel": "纽约联储 SOFR 99 分位", "checkLabel": "FRED SOFR99",
+      "id": "sofr99",
+      "kind": "series",
+      "agg": "max",
+      "primary": {
+        "provider": "nyfed",
+        "series": "sofr",
+        "field": "p99"
+      },
+      "check": {
+        "provider": "fred",
+        "series": "SOFR99"
+      },
+      "tolerance": 0.005,
+      "zh": "SOFR 99% 分位（最高）",
+      "en": "SOFR 99th percentile",
+      "unit": "%",
+      "precision": 2,
+      "sourceLabel": "纽约联储 SOFR 99 分位",
+      "checkLabel": "FRED SOFR99",
       "note": "SOFR 成交量加权 99 分位利率，本周最高值。"
     },
     {
-      "id": "reserves", "kind": "factors", "factors": "Reserve balances with Federal Reserve Banks", "check": "WRESBAL", "tolerance": 1,
-      "zh": "准备金余额（日均）", "en": "Reserve balances, daily average", "unit": "万亿美元", "precision": 2, "scale": 1e-6,
-      "sourceLabel": "H.4.1 Table 2 日均", "checkLabel": "FRED WRESBAL",
+      "id": "reserves",
+      "kind": "factors",
+      "factors": "Reserve balances with Federal Reserve Banks",
+      "check": "WRESBAL",
+      "tolerance": 1,
+      "zh": "准备金余额（日均）",
+      "en": "Reserve balances, daily average",
+      "unit": "万亿美元",
+      "precision": 2,
+      "scale": 0.000001,
+      "sourceLabel": "H.4.1 Table 2 日均",
+      "checkLabel": "FRED WRESBAL",
       "note": "存款机构准备金日均余额。稀缺区 <2.3 万亿、适度区 <3 万亿、充裕区 ≥3 万亿。",
       "zones": [
-        { "label": "稀缺", "max": 2.3, "color": "#ef4444" },
-        { "label": "适度", "max": 3, "color": "#ffb224" },
-        { "label": "充裕", "max": null, "color": "#2fd08c" }
+        {
+          "label": "稀缺",
+          "max": 2.3,
+          "color": "risk-1"
+        },
+        {
+          "label": "适度",
+          "max": 3,
+          "color": "warn"
+        },
+        {
+          "label": "充裕",
+          "max": null,
+          "color": "ok"
+        }
       ]
     },
     {
-      "id": "onrrp", "kind": "series", "agg": "mean", "aggExtra": "min",
-      "primary": { "provider": "nyfed-repo", "series": "onrrp" },
-      "check": { "provider": "fred", "series": "RRPONTSYD" }, "tolerance": 0.002,
-      "zh": "ON-RRP（均值 / 最低）", "en": "Overnight reverse repo", "unit": "十亿美元", "precision": 3,
-      "sourceLabel": "纽约联储逆向回购操作", "checkLabel": "FRED RRPONTSYD",
+      "id": "onrrp",
+      "kind": "series",
+      "agg": "mean",
+      "aggExtra": "min",
+      "primary": {
+        "provider": "nyfed-repo",
+        "series": "onrrp"
+      },
+      "check": {
+        "provider": "fred",
+        "series": "RRPONTSYD"
+      },
+      "tolerance": 0.002,
+      "zh": "ON-RRP（均值 / 最低）",
+      "en": "Overnight reverse repo",
+      "unit": "十亿美元",
+      "precision": 3,
+      "sourceLabel": "纽约联储逆向回购操作",
+      "checkLabel": "FRED RRPONTSYD",
       "note": "隔夜逆向回购日均接受量与本周最低。稀缺区 <3750 亿（375 十亿）。",
       "zones": [
-        { "label": "稀缺", "max": 375, "color": "#ef4444" },
-        { "label": "充裕", "max": null, "color": "#2fd08c" }
+        {
+          "label": "稀缺",
+          "max": 375,
+          "color": "risk-1"
+        },
+        {
+          "label": "充裕",
+          "max": null,
+          "color": "ok"
+        }
       ]
     },
     {
-      "id": "tga", "kind": "board", "board": "U.S. Treasury, General Account", "check": "WDTGAL", "tolerance": 1,
-      "zh": "TGA（周三水平）", "en": "Treasury General Account", "unit": "百万美元", "precision": 0,
-      "sourceLabel": "H.4.1 Table 1/3 周三", "checkLabel": "FRED WDTGAL",
+      "id": "tga",
+      "kind": "board",
+      "board": "U.S. Treasury, General Account",
+      "check": "WDTGAL",
+      "tolerance": 1,
+      "zh": "TGA（周三水平）",
+      "en": "Treasury General Account",
+      "unit": "百万美元",
+      "precision": 0,
+      "sourceLabel": "H.4.1 Table 1/3 周三",
+      "checkLabel": "FRED WDTGAL",
       "note": "财政部一般账户周三余额。稀缺区 <5000 亿（500000 百万）。",
       "zones": [
-        { "label": "稀缺", "max": 500000, "color": "#ef4444" },
-        { "label": "正常", "max": null, "color": "#2fd08c" }
+        {
+          "label": "稀缺",
+          "max": 500000,
+          "color": "risk-1"
+        },
+        {
+          "label": "正常",
+          "max": null,
+          "color": "ok"
+        }
       ]
     },
     {
-      "id": "srf", "kind": "store", "indicator": "srf", "agg": "sum",
-      "zh": "SRF（周合计）", "en": "Standing Repo Facility", "unit": "十亿美元", "precision": 3,
-      "sourceLabel": "纽约联储回购操作", "checkLabel": "FRED RPONTSYD+AGY+MBS（已校验存储）",
+      "id": "srf",
+      "kind": "store",
+      "indicator": "srf",
+      "agg": "sum",
+      "zh": "SRF（周合计）",
+      "en": "Standing Repo Facility",
+      "unit": "十亿美元",
+      "precision": 3,
+      "sourceLabel": "纽约联储回购操作",
+      "checkLabel": "FRED RPONTSYD+AGY+MBS（已校验存储）",
       "note": "常备回购便利本周接受量合计。任何动用均为流动性后备支持被激活的信号。"
     },
     {
-      "id": "oracle-cds", "kind": "series", "agg": "max",
-      "primary": { "provider": "cds-feed", "file": "oracle.csv" },
-      "check": { "provider": "cds-feed", "file": "oracle.check.csv" },
-      "tolerance": 1, "unit": "bp", "precision": 0,
-      "zh": "甲骨文 CDS（最高）", "en": "Oracle 5Y CDS",
-      "sourceLabel": "权威快照 data/cds/oracle.csv", "checkLabel": "第二独立源 oracle.check.csv",
+      "id": "oracle-cds",
+      "kind": "series",
+      "agg": "max",
+      "primary": {
+        "provider": "cds-feed",
+        "file": "oracle.csv"
+      },
+      "check": {
+        "provider": "cds-feed",
+        "file": "oracle.check.csv"
+      },
+      "tolerance": 1,
+      "unit": "bp",
+      "precision": 0,
+      "zh": "甲骨文 CDS（最高）",
+      "en": "Oracle 5Y CDS",
+      "sourceLabel": "权威快照 data/cds/oracle.csv",
+      "checkLabel": "第二独立源 oracle.check.csv",
       "noSourceNote": "单名 CDS 为 OTC 许可数据（ICE Data Services / Bloomberg CDSW / LSEG），无免费权威公开 feed；DTCC 仅公布持仓名义规模无价格；SEC Reg SBSR 免费公开 dissemination 已豁免至 2029-11-05（90 FR 17225）。本站不造数、不静默替换：放入有权获得的权威快照 CSV（date,spread_bp）即自动算周高点并双源交叉验证，透明标注缺口。",
       "evidence": [
         "https://www.sec.gov/rules-regulations/2015/02/regulation-sbsr-reporting-dissemination-security-based-swap-information",
@@ -101,5 +250,11 @@
         "https://www.dtcc.com/repository-and-derivatives-services/repository/single-name-cds"
       ]
     }
-  ]
+  ],
+  "providers": {
+    "board": "frb-h41",
+    "factors": "frb-h41-factors",
+    "series": "fred"
+  },
+  "historyStart": "2002-12-18"
 }

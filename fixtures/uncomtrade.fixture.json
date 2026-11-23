@@ -1,0 +1,23 @@
+{
+  "id": "uncomtrade",
+  "org": "UN Statistics Division (Comtrade)",
+  "cadence": "monthly",
+  "incremental": "monthly-step",
+  "requested": {
+    "src": {
+      "maxMonths": 1,
+      "paceMs": 0
+    },
+    "start": "2025-08-30",
+    "end": "2026-01-27"
+  },
+  "rows": 1,
+  "bytes": 27,
+  "at": "2026-11-23T04:02:19.197Z",
+  "payload": [
+    [
+      "2026-01-01",
+      106.256421
+    ]
+  ]
+}

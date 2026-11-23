@@ -1,0 +1,57 @@
+name: 缺陷 / Bug
+description: 数据、门禁、前端或后端出现与预期不符的行为
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        提交前请先跑 `node tools/gates.mjs --net` 与 `node tools/selftest.mjs`，把失败门禁编号贴进来。
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: 涉及层面
+      options:
+        - 数据/官方源
+        - 后端装配
+        - 前端渲染
+        - 门禁/CI
+        - 文档
+    validations:
+      required: true
+
+  - type: textarea
+    id: what
+    attributes:
+      label: 现象
+      description: 具体发生了什么，哪条门禁红、哪个数字不对
+    validations:
+      required: true
+
+  - type: textarea
+    id: expect
+    attributes:
+      label: 预期
+      description: 应当是什么行为
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: 复现步骤
+      description: 命令、URL、点击路径
+      placeholder: |
+        1. node tools/gates.mjs --only=G24
+        2. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 证据
+      description: 门禁输出、file:line、截图或 ECharts 实例读数
+    validations:
+      required: false

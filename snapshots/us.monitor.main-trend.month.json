@@ -1,0 +1,3059 @@
+{
+  "key": "us.monitor.main-trend.month",
+  "layers": 5,
+  "axes": 1,
+  "grid": {
+    "left": 56,
+    "right": 20,
+    "top": 30,
+    "bottom": 64
+  },
+  "xCount": 104,
+  "policyLines": 91,
+  "window": [
+    [
+      92,
+      103
+    ],
+    [
+      92,
+      103
+    ]
+  ],
+  "option": {
+    "animation": false,
+    "backgroundColor": "transparent",
+    "dataZoom": [
+      {
+        "endValue": 103,
+        "startValue": 92,
+        "type": "inside"
+      },
+      {
+        "backgroundColor": "rgba(25,29,35,0.8)",
+        "borderColor": "#2a3039",
+        "bottom": 10,
+        "dataBackground": {
+          "areaStyle": {
+            "color": "rgba(58,66,77,0.3)"
+          },
+          "lineStyle": {
+            "color": "#3a424d"
+          }
+        },
+        "endValue": 103,
+        "fillerColor": "rgba(217,138,61,0.16)",
+        "handleStyle": {
+          "borderColor": "#d98a3d",
+          "color": "#d98a3d"
+        },
+        "height": 22,
+        "moveHandleStyle": {
+          "color": "#3a424d"
+        },
+        "startValue": 92,
+        "textStyle": {
+          "color": "#98a3b0"
+        },
+        "type": "slider"
+      }
+    ],
+    "grid": {
+      "bottom": 64,
+      "left": 56,
+      "right": 20,
+      "top": 30
+    },
+    "legend": {
+      "data": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "inactiveColor": "#46515d",
+      "itemGap": 16,
+      "selected": {
+        "undefined": true
+      },
+      "selectedMode": "multiple",
+      "textStyle": {
+        "color": "#ccd3dc",
+        "fontSize": 12
+      },
+      "top": 2
+    },
+    "series": [
+      {
+        "connectNulls": false,
+        "data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0.25,
+          0.25,
+          0.25,
+          0.25,
+          0.25,
+          0.25,
+          0.5,
+          0.5,
+          1,
+          1.75,
+          2.5,
+          2.5,
+          3.25,
+          3.25,
+          4,
+          4.5,
+          4.5,
+          4.75,
+          5,
+          5,
+          5.25,
+          5.25,
+          5.5,
+          5.5,
+          5.5,
+          5.5,
+          5.5,
+          5.5,
+          5.5,
+          5.5,
+          5.5,
+          5.5,
+          5.5,
+          5.5,
+          5.5,
+          5.5,
+          5,
+          5,
+          4.75,
+          4.5,
+          4.5,
+          4.5,
+          4.5,
+          4.5,
+          4.5,
+          4.5,
+          4.5,
+          4.5,
+          4.25,
+          4,
+          4,
+          3.75,
+          3.75,
+          3.75,
+          3.75,
+          3.75,
+          3.75,
+          3.75,
+          3.75,
+          3.75,
+          4,
+          4,
+          4
+        ],
+        "itemStyle": {
+          "borderColor": "#12151a",
+          "borderWidth": 0,
+          "color": "#a878ad"
+        },
+        "lineStyle": {
+          "color": "#a878ad",
+          "opacity": 1,
+          "width": 1.6
+        },
+        "markLine": {
+          "data": [
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0.25–0.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2018-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0.25–0.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2018-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0.25–0.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2018-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0.25–0.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2018-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0.25–0.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2018-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0.25–0.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2018-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0.25–0.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2018-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 0.5–0.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2018-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0.5–0.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2018-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 0.75–1%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2018-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0.75–1%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2018-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 1–1.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2018-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 1–1.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2018-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 1–1.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2018-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 1–1.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2018-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 1.25–1.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2018-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 1.25–1.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2018-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 1.5–1.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2018-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 1.5–1.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2018-06"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 1.75–2%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2018-07"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 1.75–2%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2018-09"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 2–2.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2018-10"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 2–2.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2018-12"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 2.25–2.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2019-01"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 2.25–2.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2019-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 2.25–2.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2019-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#c9a24a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "缩表放缓至200亿/月",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#c9a24a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2019-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 2.25–2.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2019-06"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 2.25–2.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2019-07"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#4fb58a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "降息 -25bp 2–2.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#4fb58a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2019-08"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#4fb58a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "降息 -25bp 1.75–2%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#4fb58a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2019-10"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#4fb58a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "降息 -25bp 1.5–1.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#4fb58a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2019-11"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 1.5–1.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2020-01"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 1.5–1.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2020-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#4fb58a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "降息 -150bp 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#4fb58a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2020-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2020-05"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2020-07"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2020-08"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2020-10"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2020-12"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2021-01"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2021-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2021-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2021-05"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2021-07"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2021-08"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2021-10"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25% ＋缩表",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2021-12"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#c9a24a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "缩表 ≤700亿/月",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#c9a24a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2021-12"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2022-01"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2022-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 0.25–0.5% ＋缩表",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2022-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#c9a24a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "缩表",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#c9a24a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2022-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +50bp 0.75–1% ＋缩表",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2022-06"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#c9a24a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "缩表 ≤600亿/月",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#c9a24a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2022-06"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +75bp 1.5–1.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2022-07"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +75bp 2.25–2.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2022-08"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +75bp 3–3.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2022-10"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +75bp 3.75–4%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2022-12"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +50bp 4.25–4.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2023-01"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 4.5–4.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2023-03"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 4.75–5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2023-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 5–5.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2023-06"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 5–5.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2023-07"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 5.25–5.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2023-08"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 5.25–5.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2023-10"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 5.25–5.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2023-12"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 5.25–5.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 5.25–5.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 5.25–5.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 5.25–5.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-06"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 5.25–5.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-07"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 5.25–5.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-08"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#4fb58a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "降息 -50bp 4.75–5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#4fb58a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-10"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#4fb58a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "降息 -25bp 4.5–4.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#4fb58a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-12"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#4fb58a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "降息 -25bp 4.25–4.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#4fb58a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2025-01"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 4.25–4.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2025-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 4.25–4.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2025-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 4.25–4.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2025-06"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 4.25–4.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2025-07"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 4.25–4.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2025-08"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#4fb58a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "降息 -25bp 4–4.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#4fb58a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2025-10"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#4fb58a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "降息 -25bp 3.75–4%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#4fb58a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2025-11"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#4fb58a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "降息 -25bp 3.5–3.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#4fb58a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2026-01"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 3.5–3.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2026-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 3.5–3.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2026-04"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 3.5–3.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2026-05"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 3.5–3.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2026-07"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 3.5–3.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2026-08"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 3.75–4%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2026-10"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 3.75–4%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2026-11"
+            }
+          ],
+          "silent": true,
+          "symbol": "none"
+        },
+        "showSymbol": false,
+        "step": "end",
+        "symbol": "circle",
+        "symbolSize": 6,
+        "type": "line",
+        "yAxisIndex": 0,
+        "z": 3
+      },
+      {
+        "connectNulls": false,
+        "data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.3,
+          0.3,
+          0.8,
+          1.55,
+          2.3,
+          2.3,
+          3.05,
+          3.05,
+          3.8,
+          4.3,
+          4.3,
+          4.55,
+          4.8,
+          4.8,
+          5.05,
+          5.05,
+          5.3,
+          5.3,
+          5.3,
+          5.3,
+          5.3,
+          5.3,
+          5.3,
+          5.3,
+          5.3,
+          5.3,
+          5.3,
+          5.3,
+          5.3,
+          5.3,
+          4.8,
+          4.8,
+          4.55,
+          4.25,
+          4.25,
+          4.25,
+          4.25,
+          4.25,
+          4.25,
+          4.25,
+          4.25,
+          4.25,
+          4,
+          3.75,
+          3.75,
+          3.5,
+          3.5,
+          3.5,
+          3.5,
+          3.5,
+          3.5,
+          3.5,
+          3.5,
+          3.5,
+          3.75,
+          3.75,
+          3.75
+        ],
+        "itemStyle": {
+          "borderColor": "#12151a",
+          "borderWidth": 0,
+          "color": "#c9a24a"
+        },
+        "lineStyle": {
+          "color": "#c9a24a",
+          "opacity": 1,
+          "width": 1.6
+        },
+        "showSymbol": false,
+        "step": "end",
+        "symbol": "circle",
+        "symbolSize": 6,
+        "type": "line",
+        "yAxisIndex": 0,
+        "z": 3
+      },
+      {
+        "connectNulls": false,
+        "data": [
+          1.69,
+          1.7,
+          1.91,
+          1.91,
+          1.91,
+          2.18,
+          2.2,
+          2.2,
+          2.4,
+          2.4,
+          2.4,
+          2.43,
+          2.45,
+          2.4,
+          2.4,
+          2.4,
+          2.13,
+          1.9,
+          1.58,
+          1.56,
+          1.55,
+          1.59,
+          1.58,
+          0.08,
+          0.05,
+          0.05,
+          0.08,
+          0.1,
+          0.09,
+          0.09,
+          0.09,
+          0.09,
+          0.09,
+          0.07,
+          0.07,
+          0.06,
+          0.05,
+          0.05,
+          0.08,
+          0.07,
+          0.06,
+          0.06,
+          0.07,
+          0.07,
+          0.07,
+          0.08,
+          0.08,
+          0.33,
+          0.33,
+          0.83,
+          1.58,
+          2.32,
+          2.33,
+          3.08,
+          3.08,
+          3.83,
+          4.33,
+          4.33,
+          4.57,
+          4.83,
+          4.83,
+          5.08,
+          5.08,
+          5.33,
+          5.33,
+          5.33,
+          5.33,
+          5.33,
+          5.33,
+          5.33,
+          5.33,
+          5.33,
+          5.33,
+          5.33,
+          5.33,
+          5.33,
+          5.33,
+          4.83,
+          4.83,
+          4.58,
+          4.33,
+          4.33,
+          4.33,
+          4.33,
+          4.33,
+          4.33,
+          4.33,
+          4.33,
+          4.33,
+          4.09,
+          3.86,
+          3.89,
+          3.64,
+          3.64,
+          3.64,
+          3.64,
+          3.64,
+          3.62,
+          3.63,
+          3.63,
+          3.63,
+          3.88,
+          3.88,
+          3.88
+        ],
+        "itemStyle": {
+          "borderColor": "#12151a",
+          "borderWidth": 0,
+          "color": "#5a95cf"
+        },
+        "lineStyle": {
+          "color": "#5a95cf",
+          "opacity": 1,
+          "width": 1.6
+        },
+        "showSymbol": false,
+        "step": "end",
+        "symbol": "circle",
+        "symbolSize": 6,
+        "type": "line",
+        "yAxisIndex": 0,
+        "z": 3
+      },
+      {
+        "connectNulls": false,
+        "data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.4,
+          0.4,
+          0.9,
+          1.65,
+          2.4,
+          2.4,
+          3.15,
+          3.15,
+          3.9,
+          4.4,
+          4.4,
+          4.65,
+          4.9,
+          4.9,
+          5.15,
+          5.15,
+          5.4,
+          5.4,
+          5.4,
+          5.4,
+          5.4,
+          5.4,
+          5.4,
+          5.4,
+          5.4,
+          5.4,
+          5.4,
+          5.4,
+          5.4,
+          5.4,
+          4.9,
+          4.9,
+          4.65,
+          4.4,
+          4.4,
+          4.4,
+          4.4,
+          4.4,
+          4.4,
+          4.4,
+          4.4,
+          4.4,
+          4.15,
+          3.9,
+          3.9,
+          3.65,
+          3.65,
+          3.65,
+          3.65,
+          3.65,
+          3.65,
+          3.65,
+          3.65,
+          3.65,
+          3.9,
+          3.9,
+          3.9
+        ],
+        "itemStyle": {
+          "borderColor": "#12151a",
+          "borderWidth": 0,
+          "color": "#5aa98c"
+        },
+        "lineStyle": {
+          "color": "#5aa98c",
+          "opacity": 1,
+          "width": 1.6
+        },
+        "showSymbol": false,
+        "step": "end",
+        "symbol": "circle",
+        "symbolSize": 6,
+        "type": "line",
+        "yAxisIndex": 0,
+        "z": 3
+      },
+      {
+        "barWidth": "62%",
+        "data": [
+          1.77,
+          1.81,
+          2.12,
+          1.93,
+          1.97,
+          2.25,
+          2.22,
+          2.28,
+          3,
+          2.58,
+          2.58,
+          2.65,
+          2.76,
+          2.49,
+          2.5,
+          2.55,
+          2.16,
+          2.35,
+          1.76,
+          1.65,
+          1.55,
+          1.6,
+          1.6,
+          0.01,
+          0.04,
+          0.06,
+          0.1,
+          0.1,
+          0.09,
+          0.08,
+          0.09,
+          0.09,
+          0.07,
+          0.06,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.29,
+          0.28,
+          0.79,
+          1.5,
+          2.27,
+          2.29,
+          2.98,
+          3.05,
+          3.82,
+          4.3,
+          4.31,
+          4.55,
+          4.87,
+          4.81,
+          5.08,
+          5.09,
+          5.31,
+          5.31,
+          5.31,
+          5.35,
+          5.33,
+          5.38,
+          5.32,
+          5.32,
+          5.34,
+          5.34,
+          5.34,
+          5.33,
+          5.38,
+          5.32,
+          4.96,
+          4.9,
+          4.59,
+          4.49,
+          4.38,
+          4.39,
+          4.41,
+          4.41,
+          4.35,
+          4.45,
+          4.39,
+          4.34,
+          4.24,
+          4.22,
+          4.12,
+          3.87,
+          3.68,
+          3.68,
+          3.68,
+          3.66,
+          3.63,
+          3.68,
+          3.66,
+          3.68,
+          3.9,
+          3.95,
+          3.91
+        ],
+        "itemStyle": {
+          "color": "#d98a3d"
+        },
+        "type": "bar",
+        "yAxisIndex": 0,
+        "z": 2
+      }
+    ],
+    "tooltip": {
+      "axisPointer": {
+        "label": {
+          "backgroundColor": "#21262e"
+        },
+        "type": "cross"
+      },
+      "backgroundColor": "rgba(25,29,35,0.94)",
+      "borderColor": "#2a3039",
+      "formatter": "[fn]",
+      "hasPolicy": true,
+      "textStyle": {
+        "color": "#f2f4f7",
+        "fontSize": 12
+      },
+      "trigger": "axis"
+    },
+    "xAxis": {
+      "axisLabel": {
+        "color": "#98a3b0"
+      },
+      "axisLine": {
+        "lineStyle": {
+          "color": "#2a3039"
+        }
+      },
+      "data": [
+        "2018-04",
+        "2018-05",
+        "2018-06",
+        "2018-07",
+        "2018-08",
+        "2018-09",
+        "2018-10",
+        "2018-11",
+        "2018-12",
+        "2019-01",
+        "2019-02",
+        "2019-03",
+        "2019-04",
+        "2019-05",
+        "2019-06",
+        "2019-07",
+        "2019-08",
+        "2019-09",
+        "2019-10",
+        "2019-11",
+        "2019-12",
+        "2020-01",
+        "2020-02",
+        "2020-03",
+        "2020-04",
+        "2020-05",
+        "2020-06",
+        "2020-07",
+        "2020-08",
+        "2020-09",
+        "2020-10",
+        "2020-11",
+        "2020-12",
+        "2021-01",
+        "2021-02",
+        "2021-03",
+        "2021-04",
+        "2021-05",
+        "2021-06",
+        "2021-07",
+        "2021-08",
+        "2021-09",
+        "2021-10",
+        "2021-11",
+        "2021-12",
+        "2022-01",
+        "2022-02",
+        "2022-03",
+        "2022-04",
+        "2022-05",
+        "2022-06",
+        "2022-07",
+        "2022-08",
+        "2022-09",
+        "2022-10",
+        "2022-11",
+        "2022-12",
+        "2023-01",
+        "2023-02",
+        "2023-03",
+        "2023-04",
+        "2023-05",
+        "2023-06",
+        "2023-07",
+        "2023-08",
+        "2023-09",
+        "2023-10",
+        "2023-11",
+        "2023-12",
+        "2024-01",
+        "2024-02",
+        "2024-03",
+        "2024-04",
+        "2024-05",
+        "2024-06",
+        "2024-07",
+        "2024-08",
+        "2024-09",
+        "2024-10",
+        "2024-11",
+        "2024-12",
+        "2025-01",
+        "2025-02",
+        "2025-03",
+        "2025-04",
+        "2025-05",
+        "2025-06",
+        "2025-07",
+        "2025-08",
+        "2025-09",
+        "2025-10",
+        "2025-11",
+        "2025-12",
+        "2026-01",
+        "2026-02",
+        "2026-03",
+        "2026-04",
+        "2026-05",
+        "2026-06",
+        "2026-07",
+        "2026-08",
+        "2026-09",
+        "2026-10",
+        "2026-11"
+      ],
+      "type": "category"
+    },
+    "yAxis": [
+      {
+        "axisLabel": {
+          "color": "#98a3b0",
+          "formatter": "[fn]"
+        },
+        "axisLine": {
+          "show": false
+        },
+        "inverse": false,
+        "name": "%",
+        "nameTextStyle": {
+          "color": "#98a3b0",
+          "fontSize": 11
+        },
+        "offset": 0,
+        "position": "left",
+        "scale": true,
+        "splitLine": {
+          "lineStyle": {
+            "color": "rgba(42,48,57,0.6)"
+          }
+        },
+        "type": "value"
+      }
+    ]
+  }
+}

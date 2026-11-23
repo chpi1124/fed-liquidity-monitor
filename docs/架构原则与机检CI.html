@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>架构九原则 · 六边形结构与机检 CI</title>
+<style>
+  :root{
+    --paper:#fbfbfd; --card:#fff; --ink:#1d1d1f; --ink2:#4b4b50; --muted:#75757a;
+    --hair:rgba(0,0,0,.08); --hair2:rgba(0,0,0,.14);
+    --accent:#0a66d6; --ok:#1a7f4b; --warn:#9a6b00; --bad:#b3261e;
+    --t-xl:clamp(28px,4.2vw,40px); --t-lg:21px; --t-md:17px; --t-sm:15px; --t-xs:13px; --t-2xs:11px;
+    --sp1:4px; --sp2:8px; --sp3:12px; --sp4:16px; --sp6:24px; --sp8:32px; --sp12:48px; --sp16:64px; --sp24:96px;
+    --r:14px; --r-lg:20px; --ease:cubic-bezier(.32,.72,0,1);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#0e0e10; --card:#161618; --ink:#f5f5f7; --ink2:#c7c7cc; --muted:#98989f;
+      --hair:rgba(255,255,255,.10); --hair2:rgba(255,255,255,.18); --accent:#6ab3ff; --ok:#57d38f; --warn:#e3b341; --bad:#ff8175; }
+  }
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--paper);color:var(--ink);
+    font:var(--t-md)/1.6 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI","HarmonyOS Sans SC","MiSans","PingFang SC","Microsoft YaHei",sans-serif;letter-spacing:-.005em}
+  .wrap{max-width:880px;margin:0 auto;padding:var(--sp24) var(--sp6)}
+  header{padding-bottom:var(--sp12);border-bottom:1px solid var(--hair)}
+  .eyebrow{font-size:var(--t-xs);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:var(--sp3)}
+  h1{font-size:var(--t-xl);line-height:1.12;letter-spacing:-.022em;font-weight:600}
+  .lede{margin-top:var(--sp4);font-size:var(--t-lg);line-height:1.5;color:var(--ink2);font-weight:400;letter-spacing:-.01em}
+  .meta{margin-top:var(--sp6);display:flex;flex-wrap:wrap;gap:var(--sp2) var(--sp4);font-size:var(--t-xs);color:var(--muted);font-variant-numeric:tabular-nums}
+  h2{font-size:var(--t-lg);letter-spacing:-.015em;font-weight:600;margin:var(--sp16) 0 var(--sp3);padding-top:var(--sp6);border-top:1px solid var(--hair)}
+  h2 .n{color:var(--muted);font-weight:500;margin-right:var(--sp2);font-variant-numeric:tabular-nums}
+  h3{font-size:var(--t-md);font-weight:600;margin:var(--sp8) 0 var(--sp2)}
+  p{margin-bottom:var(--sp3);max-width:74ch}
+  p.dim{color:var(--muted);font-size:var(--t-sm)}
+  ul,ol{margin:0 0 var(--sp4) 1.15em}li{margin-bottom:var(--sp2);max-width:74ch}
+  strong{font-weight:600}
+  code,pre{font-family:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
+  code{font-size:.86em;background:var(--card);border:1px solid var(--hair);border-radius:6px;padding:.1em .36em}
+  pre{font-size:var(--t-xs);line-height:1.65;background:var(--card);border:1px solid var(--hair);border-radius:var(--r);padding:var(--sp4);overflow:auto;margin:var(--sp3) 0 var(--sp4)}
+  pre code{background:none;border:0;padding:0}
+  table{width:100%;border-collapse:collapse;margin:var(--sp4) 0 var(--sp6);font-size:var(--t-sm)}
+  caption{caption-side:top;text-align:left;font-size:var(--t-xs);color:var(--muted);padding-bottom:var(--sp2)}
+  th,td{text-align:left;padding:var(--sp3);border-bottom:1px solid var(--hair);vertical-align:top}
+  th{font-size:var(--t-xs);font-weight:600;color:var(--muted);letter-spacing:.02em}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .card{background:var(--card);border:1px solid var(--hair);border-radius:var(--r-lg);padding:var(--sp6);margin:var(--sp4) 0 var(--sp6)}
+  .grid{display:grid;gap:var(--sp3);grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin:var(--sp4) 0 var(--sp6)}
+  .k{font-size:var(--t-2xs);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .v{font-size:var(--t-lg);font-weight:600;letter-spacing:-.015em;font-variant-numeric:tabular-nums;margin-top:var(--sp1)}
+  .tag{display:inline-block;font-size:var(--t-2xs);letter-spacing:.04em;padding:.24em .6em;border-radius:999px;border:1px solid var(--hair2);color:var(--ink2);white-space:nowrap}
+  .tag.ok{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 40%,transparent)}
+  .tag.no{color:var(--bad);border-color:color-mix(in srgb,var(--bad) 40%,transparent)}
+  .tag.todo{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 40%,transparent)}
+  .rule{border-left:2px solid var(--accent);padding-left:var(--sp4);margin:var(--sp4) 0}
+  .rule .id{display:block;font-size:var(--t-2xs);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:var(--sp1)}
+  .rule.hard{border-left-color:var(--bad)}.rule.hard .id{color:var(--bad)}
+  .rule p{margin:0}
+  footer{margin-top:var(--sp24);padding-top:var(--sp6);border-top:1px solid var(--hair);font-size:var(--t-xs);color:var(--muted)}
+  a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .18s var(--ease)}a:hover{border-bottom-color:currentColor}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+  @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+  @media (max-width:520px){.wrap{padding:var(--sp12) var(--sp4)}body{font-size:var(--t-sm)}}
+</style>
+</head>
+<body><div class="wrap">
+
+<header>
+  <div class="eyebrow">Architecture Doctrine &amp; Mechanized CI · Rev 1 · 2026-11-22</div>
+  <h1>九条原则、六边形结构与机检 CI</h1>
+  <p class="lede">SSOT · 管道优先 · 可扩展 · 数字驱动 · 热插拔 · 零改渲染层 · 零改主程序 · 机制化机检 · 六边形架构。本篇把每条写成<strong>可判定命题</strong>，给出今天违反它的<strong>实测计数</strong>，并指定由哪条门禁永久守住。</p>
+  <div class="meta"><span>承接：架构规范与门禁 · 后端与数据库架构</span><span>门禁总数：11 → 18（G0–G17）</span><span>前提：零依赖，机检只用 Node 自身</span></div>
+</header>
+
+<div class="grid">
+  <div><div class="k">中心 if 链</div><div class="v">17 + 4 + 3</div></div>
+  <div><div class="k">前端结构字面量</div><div class="v">21</div></div>
+  <div><div class="k">令牌外色值（JS）</div><div class="v">16</div></div>
+  <div><div class="k">原则可机检比例</div><div class="v">0 / 9</div></div>
+</div>
+<p class="dim">计数来自本轮扫描：<code>backend/lib/fetchers.js</code> 有 17 处 <code>src.provider ===</code>、<code>summaries.js</code> 4 处 <code>agg ===</code>、<code>chart.js</code> 3 处 <code>render ===</code>；前端 <code>surface/page === "…"</code> 共 21 处（涉及 7 个不同字面量）；前端 JS 里令牌外十六进制色值 16 个；后端另有 6 处 region/surface 字面量。<strong>结论：九条原则今天全部只停留在口头，没有一条被机器守住。</strong></p>
+
+<h2><span class="n">1</span>九条原则的可判定形式</h2>
+<table>
+  <caption>表 1 · 原则 → 命题 → 现状 → 机制 → 门禁</caption>
+  <thead><tr><th style="width:12%">原则</th><th style="width:30%">可判定命题（唯一解释）</th><th style="width:22%">现状实测</th><th style="width:20%">目标机制</th><th>门禁</th></tr></thead>
+  <tbody>
+    <tr><td><strong>SSOT</strong></td><td>每一类事实只有<strong>一个归属模块</strong>；出现第二处定义即为缺陷（包括文案、单位、默认值、阈值、标签）。</td><td>校验机制文案在后端 <code>checkKind</code> 与前端徽标标题各写一遍；<code>region</code> 默认值 <code>"us"</code> 在 6 处重复</td><td>事实登记表 <code>specs/owners.json</code>：key → owner 模块；扫描器找重复实现</td><td><code>G14</code></td></tr>
+    <tr><td><strong>管道优先</strong></td><td>任何数据必须走完 <code>plan→fetch→validate→correct→commit→publish</code> 五态并<strong>各留一条记录</strong>；不存在旁路写入。</td><td>管线已在，但「态」没有各自记录：DB 里无 <code>fetch_run/revision/correction</code> 表（P1.5 才落库）</td><td>管道 = 唯一的写入口；每条态有输入/输出契约与计时</td><td><code>G16</code></td></tr>
+    <tr><td><strong>可扩展</strong></td><td>新增能力靠<strong>增加声明与新适配器</strong>完成，不靠修改既有分派逻辑（开闭原则的可测量形式：中心分派点计数 = 0）。</td><td>新增一个 provider 必须编辑 <code>fetchers.js</code> 的 17 分支链</td><td>注册表：<code>providers/ agg/ renderers/ surfaces/ exporters/</code>，键集与声明集必须相等</td><td><code>G11</code></td></tr>
+    <tr><td><strong>数字驱动</strong></td><td>行为由数据决定：布局密度、轴、色、阈值、滞后、带宽、聚合方式全部来自 <code>specs/</code>、<code>tokens</code> 与指标 JSON；代码里不出现业务字面量。</td><td>前端 JS 16 个硬编码色值、21 个结构字面量、若干 <code>precision</code> 缺省散落</td><td>令牌与契约双源；缺省值集中在 <code>specs/defaults.json</code></td><td><code>G13</code></td></tr>
+    <tr><td><strong>热插拔</strong></td><td>放入一个声明文件即出现在系统里（自动发现已具备），<strong>下线</strong>一个声明文件即消失且不留脏数据。</td><td>指标发现已热插拔 ✓；<code>source/region</code> 新增需改前后端多处白名单</td><td>发现器扫描 <code>indicators|sheets|summaries</code>；能力矩阵扫描 <code>providers/*.js</code> 文件名即键</td><td><code>G17</code></td></tr>
+    <tr><td><strong>零改渲染层</strong></td><td>新增/更换<strong>数据资产</strong>的变更集里，<code>frontend/**</code> 不得出现任何 diff。</td><td>新增一个面板类型（如「汇率板块」）当前必须改 <code>app.js</code>+<code>store.js</code>+<code>PageNav.js</code>+<code>chart.js</code></td><td>surface 注册表 + 声明式布局（<code>surface.json</code> 决定组件族与轴）</td><td><code>G12</code></td></tr>
+    <tr><td><strong>零改主程序</strong></td><td>数据资产类变更集里，<code>backend/server.js</code> 与用例编排文件不得出现 diff。</td><td><code>server.js</code> 内含 <code>"us"</code> 区域判定与表面判定（6 处字面量），新 region 必改</td><td>主程序只做路由 + 入队 + 状态；判定全部下沉到内核与 spec</td><td><code>G12</code></td></tr>
+    <tr><td><strong>机制化机检</strong></td><td>每条原则都有对应<strong>非零退出码</strong>的检查；检查本身被检查（门禁必须能红）。无「人肉纪律」条目。</td><td>门禁脚本尚不存在；仅 <code>negctl.mjs</code> 一份手工对照</td><td><code>tools/gate.mjs</code> + <code>pre-commit</code> + 一条 CI；<code>--selftest</code> 注入缺陷证明会红</td><td><code>G0/G4/G11–G17</code></td></tr>
+    <tr><td><strong>六边形架构</strong></td><td>依赖方向唯一：<strong>易变适配器 → 稳定内核</strong>；内核不得 import 外层，且内核可脱离网络与 UI 独立运行测试。</td><td>内核（<code>integrity.js</code>）目前确实纯净 ✓；但 <code>indicators.js</code> 直接读文件、<code>summaries.js</code> 内嵌文案，边界未声明</td><td>端口清单 + import 图校验；内核目录白名单化</td><td><code>G15</code></td></tr>
+  </tbody>
+</table>
+
+<h2><span class="n">2</span>六边形目标结构</h2>
+<pre><code>                    ┌──────────────── 易变接口（随时增删，需评审但不需改内核）────────────────┐
+                    │  输入适配器                         输出适配器                            │
+                    │  providers/*.js  (CFETS·NYFed·FRED  renderers/*.js  surfaces/*.json       │
+                    │   ·Treasury·Nasdaq·HMRC·Comtrade    exporters/*.json  api routes          │
+                    │   ·WorldBank…)                    charts/*.json  页面清单                │
+                    └───────────────┬──────────────────────────────┬──────────────────────────┘
+                                    │ 实现端口                      │ 读取契约
+                    ┌───────────────▼──────────────────────────────▼──────────────────────────┐
+   稳定内核 ───────►│  contracts（契约模式与校验）   invariants（七类不变量 + plausible）        │
+   （变更需评审）    │  algebra （level/diff/ratio/带宽/恒等式/月均对齐）  aggregate（日周月）    │
+                    │  pipeline（五态状态机 + 记录）   watermark（尾拉区间算法）  format（数字/单位）│
+                    └───────────────▲──────────────────────────────▲──────────────────────────┘
+                                    │ 依赖端口（由外层实现）          │
+                    ┌───────────────┴──────────────────────────────┴──────────────────────────┐
+                    │  storage 适配器（node:sqlite）      clock      cache      transport(HTTP) │
+                    └──────────────────────────────────────────────────────────────────────────┘
+   规则：箭头只能从外层指向内核。内核目录内出现 import ../fetchers|../db|../ui ⇒ G15 直接红。
+</code></pre>
+
+<table>
+  <caption>表 2 · 端口清单（内核声明，外层实现）</caption>
+  <thead><tr><th>端口</th><th>内核期望</th><th>今天的实现</th><th>替换成本</th></tr></thead>
+  <tbody>
+    <tr><td><code>Provider</code></td><td><code>fetch(src, range, mode) → Map&lt;ISO日期, number|结构化&gt;</code> + 能力声明</td><td>fetchers.js 的 17 分支（待拆为 <code>providers/&lt;id&gt;.js</code>）</td><td>一个文件一个源</td></tr>
+    <tr><td><code>Storage</code></td><td><code>readSeries / upsertPoints / appendRevision / commitRun / readWatermark</code></td><td>store.js（JSON）→ db.js（SQLite）</td><td>双写期并存，切换只改注入点</td></tr>
+    <tr><td><code>Clock</code></td><td>提供 <code>today</code>，运行时刻不得参与值计算</td><td>散落的 <code>new Date()</code>（12 处）</td><td>注入后可复现历史某日运行</td></tr>
+    <tr><td><code>Renderer</code></td><td><code>render(ctx) → series option</code>，按 <code>render</code> 键注册</td><td>chart.js 内 3 个 if 分支</td><td>新图型 = 新文件</td></tr>
+    <tr><td><code>Surface</code></td><td>声明式面板：成员、轴分配、布局密度、组件族槽位</td><td><code>app.js</code> 里 <code>surface === "strip"/"gold"</code> 硬编码</td><td>新面板 = 新声明文件</td></tr>
+    <tr><td><code>Notifier</code></td><td>运行结果的落点（日志/状态页/告警）</td><td>仅 <code>console.log</code></td><td>可选扩展</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="n">3</span>管道优先：五态与契约</h2>
+<pre><code>plan      输入：契约 + 水位线 + 能力矩阵     输出：请求计划（区间、模式、分窗参数、预算上限）
+fetch     输入：请求计划                    输出：原始响应 + 调用计数/字节数（审计）
+validate  输入：原始响应 → 归一化 Map        输出：逐点 ok / mismatch / alt + checkErrors
+correct   输入：validate 结果 + 不变量       输出：值（可能改值）+ correction 三件套 + suspect
+commit    输入：correct 结果                输出：单事务写 point/revision/run_stat + 水位线推进
+publish   输入：DB                          输出：API 视图 + 导出快照（只读，不再取数）
+</code></pre>
+<div class="rule hard"><span class="id">P-1 无旁路</span><p>只有 <code>commit</code> 能写主值表；<code>publish</code> 只读。<code>/api/*</code> 与任何脚本直接写库或写文件 ⇒ G16 红。手动回填也必须走五态，只是 <code>mode:"backfill"</code>。</p></div>
+<div class="rule"><span class="id">P-2 每态可观测且预算化</span><p>每态记录耗时、计数、字节与状态；<code>plan</code> 阶段即产出「预算」——若某指标本轮预估请求数超上限，直接拒绝发起并把该指标标 <code>degraded</code>，避免退化成全量重拉（承接表 1 的 49 请求 / 5.2 MB 实测基线）。</p></div>
+<div class="rule"><span class="id">P-3 扩展点即管道接口</span><p>新增校验机制（例如未来的恒等式族）= 在 <code>algebra</code> 注册一种 <code>mode</code>；新增源 = 注册一个 <code>Provider</code>；两者都不得改动状态机本身。</p></div>
+
+<h2><span class="n">4</span>热插拔与零改：判定实验（规范验收法）</h2>
+<div class="card">
+  <p style="margin-top:0"><strong>验收不是读代码，而是做两个实验。</strong>两者都必须在无人工干预下通过：</p>
+  <ol>
+    <li><strong>资产实验</strong>：新增一个指标声明文件（含契约与保障段，取自录制 fixture 的假响应），<strong>不碰任何 <code>backend/server.js</code>、<code>frontend/**</code> 文件</strong>。要求：该指标出现在 API 列表、页面自动多出标签与轴、校验腿与阈值生效、门禁绿。<br><span class="tag no">当前不通过</span>：新增面板类型需改 4 个前端文件（表 1 实测）。</li>
+    <li><strong>拔除实验</strong>：删掉该声明文件。要求：序列从 API/页面消失，历史数据保留但标记 <code>orphan</code>，门禁不因此变红，前端不报错。<br><span class="tag todo">待建</span>：需要 <code>orphan</code> 语义与清理策略（不静默删历史）。</li>
+  </ol>
+  <p class="dim" style="margin-bottom:0">这两个实验由 <code>G12</code> 自动执行（用临时 fixture 在沙箱目录里跑一遍），不是人工检查清单。</p>
+</div>
+
+<h2><span class="n">5</span>机检 CI：门禁 11 → 18</h2>
+<table>
+  <caption>表 3 · 新增门禁 G11–G17（全部机器判定，禁止豁免关键字）</caption>
+  <thead><tr><th style="width:11%">编号</th><th style="width:34%">判据</th><th>执行方式（零依赖）</th></tr></thead>
+  <tbody>
+    <tr><td><strong>G11 中心分派归零</strong></td><td>源码中 <code>src.provider ===</code> / <code>agg ===</code> / <code>render ===</code> / <code>surface ===</code> / <code>page ===</code> 计数 = 0；注册表键集与声明集<strong>双向相等</strong>（既无孤儿实现，也无缺失实现）</td><td>源码扫描 + 目录枚举比对（现状 17+4+3+21 处，须清零）</td></tr>
+    <tr><td><strong>G12 变更面（零改主程序/渲染层）</strong></td><td>标记为 <code>asset</code> 类的变更集只允许触及 <code>indicators/ sheets/ summaries/ specs/ providers/ renderers/</code>；触及 <code>backend/server.js</code>、<code>frontend/**</code> ⇒ 红。并实跑 §4 的资产实验与拔除实验</td><td><code>gate --diff base…HEAD</code> 路径分类 + 沙箱内假响应端到端</td></tr>
+    <tr><td><strong>G13 数字驱动</strong></td><td>前端 JS 与 CSS 中令牌外色值/尺寸字面量 = 0（现状 16 + 86）；所有阈值/带宽/overlap/滞后上限必须引用 spec 且带来源；缺省值集中在 <code>specs/defaults.json</code></td><td>扫描 + 交叉核对（与 <code>G2</code> 阈值溯源联动）</td></tr>
+    <tr><td><strong>G14 SSOT</strong></td><td>事实登记表内每个 key 只有一个 owner；同一片段（校验机制文案、单位、默认 region、轴命名规则）在两个模块出现 ⇒ 红</td><td>字符串指纹去重 + owner 表校验</td></tr>
+    <tr><td><strong>G15 依赖方向</strong></td><td>内核目录（contracts/invariants/algebra/aggregate/pipeline/format）不得 import 外层；外层不得被内核引用；端口实现只经注入点连接</td><td>构建 import 图（解析 <code>import … from</code>）后跑拓扑检查</td></tr>
+    <tr><td><strong>G16 管道完整性</strong></td><td>每个指标每轮运行都有五态记录；无 <code>commit</code> 记录却有点数变化 ⇒ 红；<code>plan</code> 预算超限必须记 <code>degraded</code> 而非静默全拉</td><td>读 <code>fetch_run/run_stat/revision/correction</code> 断言</td></tr>
+    <tr><td><strong>G17 插件即测</strong></td><td>新 provider/指标必须附 <code>fixtures/&lt;id&gt;.json</code>（录制响应）与能力声明；缺任一 ⇒ 红。注册后自动被 G1/G2/G8/G9 覆盖</td><td>目录校验 + 用 fixture 跑一遍管道（不出网）</td></tr>
+  </tbody>
+</table>
+
+<h3>触发机制（不靠自觉）</h3>
+<pre><code>package.json
+  "scripts": { "gate": "node tools/gate.mjs", "gate:diff": "node tools/gate.mjs --diff", "gate:selftest": "node tools/gate.mjs --selftest" }
+
+三层触发：
+  1) 本地 pre-commit 钩子：git config core.hooksPath tools/hooks（钩子脚本本身入库）→ 跑 G0/G11/G13/G14/G15（秒级）
+  2) 提交前完整门禁：npm run gate → G0–G17 全量（含负向对照与沙箱实验，分钟级）
+  3) 每日运行后：更新链结束自动跑 G1/G2/G8/G16（数据类），结果写 fetch_run 并进基线快照
+</code></pre>
+<div class="rule hard"><span class="id">CI-1 门禁必须能红（自证有效）</span><p><code>npm run gate:selftest</code> 在临时副本里注入 8 类缺陷（缺校验腿、阈值无来源、旁路写库、内核 import 外层、前端硬编码色、新增面板改了 app.js、provider 不在能力矩阵、重复文案），要求<strong>每条对应门禁各自报红</strong>，全绿即判「门禁失效」。这一步是整个机制化主张的地基——绿不算证据，红才算。</p></div>
+<div class="rule"><span class="id">CI-2 关闭方式唯一</span><p>失败只能通过<strong>修实现</strong>或<strong>修规范（并同 PR 更新 specs 与本文件）</strong>关闭。禁止调高阈值、加例外清单、注释断言；<code>gate:disable</code> 之类关键字一旦出现即被 G0 判红。</p></div>
+
+<h2><span class="n">6</span>执行计划（并入既有阶段）</h2>
+<table>
+  <thead><tr><th style="width:14%">阶段</th><th style="width:42%">内容</th><th style="width:26%">完成定义</th><th>工作量</th></tr></thead>
+  <tbody>
+    <tr><td>P1 契约先行</td><td><code>specs/</code>：indicator/provider/guarantees/owners/defaults 五份 + <code>gates.md</code> 与本文件条目对齐</td><td>G9/G13/G14 可跑</td><td class="num">1 d</td></tr>
+    <tr><td>P1.5 存储层</td><td>DDL + 影子双写 diff=0</td><td>G10 绿</td><td class="num">1.5 d</td></tr>
+    <tr><td>P2 增量拉取</td><td>水位线尾拉 + upsert + 预算拒绝</td><td>G8 绿；请求数降到基线 1/10 内</td><td class="num">1.5 d</td></tr>
+    <tr><td><strong>P2.5 六边形拆壳</strong><br><span class="tag todo">本篇新增</span></td><td>① <code>fetchers.js</code> 17 分支 → <code>providers/*.js</code> 注册表；② <code>chart.js</code> 3 分支 → <code>renderers/*.js</code>；③ <code>surface/page</code> 21 处 → <code>surfaces/*.json</code> 声明；④ <code>agg</code> 4 分支 → 注册；⑤ Clock 注入替换 12 处 <code>new Date()</code>；⑥ 内核目录白名单化并跑 import 图</td><td>G11/G15/G12 绿；§4 两个实验通过</td><td class="num">2.5 d</td></tr>
+    <tr><td>P3 读路径切换</td><td>API 从 DB 读；JSON 降级为导出物</td><td>G16 绿</td><td class="num">1 d</td></tr>
+    <tr><td>P4 视觉收敛</td><td>令牌重写 + 去发光 + 对比度修正 + 硬编码清零</td><td>G6/G13 绿</td><td class="num">2 d</td></tr>
+    <tr><td>P5 机检上线</td><td>三层触发 + <code>--selftest</code> 八类缺陷注入</td><td>18/18 绿；selftest 8/8 能红</td><td class="num">1 d</td></tr>
+  </tbody>
+</table>
+<p class="dim">拆壳（P2.5）刻意放在增量之后、读切换之前：先把行为稳定住，再做纯结构搬移，两类改动不混在同一提交里——否则一旦变红无法归因。</p>
+
+<h2><span class="n">7</span>风险与自限</h2>
+<table>
+  <thead><tr><th style="width:28%">风险</th><th>处置</th></tr></thead>
+  <tbody>
+    <tr><td>注册表泛滥（把 3 个分支拆成 12 个文件）</td><td>沿用既有 <strong>M-3 新模块准入四条</strong>：消费者只有一个的，保持函数形式，不建注册表。G11 只要求「无中心 if 链」，不要求「一切皆插件」。</td></tr>
+    <tr><td>间接层导致排错变难</td><td>每个注册项必须可追溯：<code>--report</code> 输出「本次用到的 provider/renderer/surface 键 + 对应文件」，运行记录里保留键名。</td></tr>
+    <tr><td>拆壳期间行为漂移</td><td>P2.5 要求<strong>字节级</strong>回归：同一天数据在拆壳前后跑出的 <code>data/export/*.json</code> 必须完全一致，diff≠0 不得合并。</td></tr>
+    <tr><td>门禁过严导致拒绝正当变更</td><td>正当变更走「先改规范」通道（S-2），并在同 PR 更新 <code>specs/gates.md</code> 与本文件；规范变更本身就是被审计的产物，而非绕过。</td></tr>
+    <tr><td>把机检当质量本身</td><td>机检只证明结构合规。数据正确性仍靠 <code>G4</code> 负向对照与端到端实测；「CI 绿」不作为任何一条结论的证据（本项目纪律）。</td></tr>
+  </tbody>
+</table>
+
+<footer>
+  <p><strong>验收口径：</strong>九条原则中任何一条若没有对应门禁与非零退出码，就不算写入规范；任何门禁若无法被 <code>--selftest</code> 证明能红，就不算存在。最终判据只有一句——<strong>新增一个数据资产，<code>git diff --name-only</code> 里不得出现 <code>server.js</code> 与 <code>frontend/</code>。</strong></p>
+  <p style="margin-top:var(--sp4)">本轮实测来源：表 1 与页首计数由 <code>grep</code> 扫描 <code>backend/lib/fetchers.js</code>、<code>backend/lib/summaries.js</code>、<code>frontend/js/*</code> 得到；成本与源能力见 <code>docs/后端与数据库架构规范.html</code> 表 1/2/3（探针脚本 <code>probe-db.mjs</code>、<code>probe-sqlite.mjs</code>）。</p>
+</footer>
+
+</div><section id="rev2" style="margin-top:32px">
+<h2>Rev 2 · 实现校准（2026-11-23）</h2>
+<p>本段是<strong>显式修订</strong>：逐条列出本篇原文与被实现取代的表述，并给出复算命令。未列入本段的规范仍然有效。</p>
+<table><thead><tr><th>原文表述</th><th>现在的实现</th><th>复算方式</th></tr></thead><tbody>
+<tr><td>门禁清单为人工维护</td><td>specs/gates.md 由 tools/publish.mjs 从 runner 派生；改 runner 不重发布 ⇒ G9 红（本轮就抓到过一次）</td><td>node tools/publish.mjs && node tools/gates.mjs --only=G9</td></tr>
+<tr><td>「机制化 CI」仅列举检查点</td><td>落地为三段：正向门禁（26 条）、负向可证红（selftest B 段 8 个破坏用例）、热插拔实证（A 段只加数据即出现在装配结果里，且主程序与渲染核逐字未变）</td><td>node tools/selftest.mjs</td></tr>
+<tr><td>数据契约只有结构层</td><td>补齐语义与保障层：specs/indicator.schema.json（含 integrity.source 逐项溯源）+ 阈值复算 + 校验带松紧上限 + 偏差包络入库</td><td>node tools/gates.mjs --only=G1,G2,G9</td></tr>
+</tbody></table>
+<p>本段由代理在校准轮次写入；数值全部来自当轮实测输出，不是计划值。</p>
+</section>
+
+</body>
+</html>

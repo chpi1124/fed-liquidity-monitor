@@ -1,12 +1,13 @@
 {
   "id": "sofr",
+  "region": "us",
   "order": 11,
   "surface": "strip",
   "name": "SOFR",
   "en": "Secured Overnight Financing Rate",
   "formula": "有担保隔夜融资利率",
   "unit": "%",
-  "hue": "#ff8a2a",
+  "hue": "accent",
   "publication": "T+1",
   "description": "SOFR（有担保隔夜融资利率），纽约联储每日发布；与圣路易斯联储 FRED SOFR 序列双源交叉验证。点击利率卡可查看其历史走势。",
   "operation": "level",
@@ -34,6 +35,30 @@
       0,
       8
     ],
-    "maxAbsJump": 3.5
+    "maxAbsJump": 3.5,
+    "source": {
+      "range": {
+        "statistic": "manual-policy",
+        "window": "2018-04-02 ~ 2026-11-19",
+        "measured": {
+          "min": 0.01,
+          "max": 5.4,
+          "p02": 0.01,
+          "p998": 5.39,
+          "n": 2157
+        },
+        "note": "声明带 [0, 8] 由实测 [0.01, 5.4] 向外取整而得；外扩是有意冗余，越带即报警（门禁复算包含关系）"
+      },
+      "maxAbsJump": {
+        "statistic": "manual-policy",
+        "window": "2018-04-02 ~ 2026-11-19",
+        "measured": {
+          "maxJump": 2.82,
+          "p998Jump": 0.75,
+          "n": 2157
+        },
+        "note": "声明 3.5 高于实测 99.8 分位 0.75：有意留宽的保守带，低于该分位即判太紧"
+      }
+    }
   }
 }

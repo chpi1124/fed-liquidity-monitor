@@ -1,0 +1,65 @@
+[
+  {
+    "slug": "cds-feed",
+    "name": "CDS 单名公开端点",
+    "kind": "占位响应",
+    "why": "端点可访问，但仅返回 15 字节占位（无数据序列），付费终端不在许可范围。",
+    "decision": "汇总页对应行标 status:「no-source」，不计入覆盖率，不以插值或他指数冒充。",
+    "declaredIn": [
+      "summaries/ai-credit-weekly.json"
+    ]
+  },
+  {
+    "slug": "cfets-lpr",
+    "name": "CFETS LPR 历史接口",
+    "kind": "窗口上限",
+    "why": "页面接口 LprHis 为滚动 12 期窗口；导出表 LprHisExcel 有日期但数值列为空。",
+    "decision": "LPR 序列按 12 期上限呈现，发布频率标 M，不伪造更长历史。",
+    "declaredIn": [
+      "indicators/cn-lpr-1y.json",
+      "indicators/cn-lpr-5y.json"
+    ]
+  },
+  {
+    "slug": "nasdaq",
+    "name": "Nasdaq 公开行情留存",
+    "kind": "留存期限",
+    "why": "公开表格仅留存约 10 年，更早区间不可得。",
+    "decision": "GLD 序列 start 设为 2016-11-01 并在描述中写明留存期限，不回补更早数据。",
+    "declaredIn": [
+      "indicators/gold.json"
+    ]
+  },
+  {
+    "slug": "hkex-monthly",
+    "name": "港交所主题指数披露频率",
+    "kind": "频率上限",
+    "why": "仅月度披露，日频不可得；历史端点受 Akamai 保护。",
+    "decision": "对应汇总行标为月度可得，日频列留空不插值。",
+    "declaredIn": [
+      "summaries/ai-credit-weekly.json"
+    ]
+  },
+  {
+    "slug": "uncomtrade",
+    "name": "UN Comtrade 公共预览端点",
+    "kind": "发布延迟",
+    "why": "公共 preview 端点无密钥、按月单查且限流严格；实测最近 3 个月常返回空 data，可比月份通常滞后 10 个月以上（本站用它做 HMRC 净环流的第二申报方核对）。",
+    "decision": "校验腿逐月取数，取不到即跳过并在 validation.checkErrors 留痕；该行本期记为「未获并行确认」，不改称单源、不用主源冒充双源。",
+    "declaredIn": [
+      "indicators/gold-uk-flow.json",
+      "backend/providers/uncomtrade.js"
+    ]
+  },
+  {
+    "slug": "pbc-statement",
+    "name": "人民银行《货币当局资产负债表》第二编码覆盖",
+    "kind": "载体覆盖上限",
+    "why": "官方只对 2021、2023-2026 年提供 xlsx；2015-2020 与 2022 年的另一载体是 OLE2/BIFF 容器 .xls，本站未实现该容器解析（已单列任务，不做插值或挪用）。",
+    "decision": "双编码逐期比对只在官方确实给出两种载体的期次成立（实测 58 期零偏差）；其余 84 期在界面逐点标「无校验源」，validation.checked 如实只计 58，绝不称双源确认。provider 逐年出声，并保留恒等式 总资产 = 总负债（142 期逐期 0 偏差）作为结构性反证。",
+    "declaredIn": [
+      "backend/providers/pbc-statement.js",
+      "indicators/cn-bs-assets.json"
+    ]
+  }
+]

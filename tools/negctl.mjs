@@ -1,5 +1,5 @@
 // 反向对照：故意污染官方响应，证明交叉验证与纠错真的会触发（本脚本只调用 updateIndicator，不写 data/）
-import { loadIndicators, updateIndicator } from "./backend/lib/indicators.js";
+import { loadIndicators, updateIndicator } from "../backend/lib/indicators.js";
 
 const realFetch = globalThis.fetch;
 let tamper = null; // (url, json) => json

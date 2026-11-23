@@ -1,0 +1,22 @@
+{
+  "id": "cfets-rmb",
+  "org": "中国外汇交易中心（全国银行间同业拆借中心）",
+  "cadence": "daily-0915",
+  "incremental": "snapshot-only",
+  "requested": {
+    "src": {
+      "pair": "USD/CNY"
+    },
+    "start": "2026-11-13",
+    "end": "2026-11-23"
+  },
+  "rows": 1,
+  "bytes": 22,
+  "at": "2026-11-23T04:01:55.873Z",
+  "payload": [
+    [
+      "2026-11-23",
+      6.712
+    ]
+  ]
+}

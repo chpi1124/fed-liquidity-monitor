@@ -2,85 +2,16 @@ import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
 import { FRONTEND_DIR } from "./lib/paths.js";
-import { loadIndicators, updateIndicator } from "./lib/indicators.js";
-import { loadSheets, updateSheet } from "./lib/sheets.js";
-import { loadSummaries, updateSummary } from "./lib/summaries.js";
+import { loadIndicators } from "./lib/indicators.js";
+import { loadSheets } from "./lib/sheets.js";
+import { loadSummaries } from "./lib/summaries.js";
 import * as store from "./lib/store.js";
+import { buildPage, loadCharts, loadPresets, loadRegions, pagesOf } from "./lib/panels.js";
 import { aggregate } from "./lib/aggregate.js";
+import { isUpdating, updateAll } from "./lib/pipeline.js";
 import { startScheduler } from "./lib/scheduler.js";
 
 const PORT = Number(process.env.PORT || 3000);
-let updating = false;
-
-async function updateAll(force = false) {
-  if (updating) return "";
-  updating = true;
-  let minLatest = "";
-  try {
-    const pending = loadIndicators();
-    const rerun = [];
-    for (const cfg of pending) {
-      try {
-        let data = await updateIndicator(cfg, { force, prev: store.read(cfg.id) });
-        // 自愈一：参照序列本轮还没入库（冷启动依赖顺序）⇒ 补跑一次，不静默降级。
-        if (data.validation.checkErrors.some((e) => /尚未入库|无重叠日期/.test(e))) {
-          rerun.push(cfg);
-        }
-        // 自愈二：自检 fail ⇒ 绕过缓存向官方源重取一次，区分「源端真异常」与「缓存/半途响应」。
-        if (data.integrity.verdict === "fail") {
-          console.log(`[update] ${cfg.id}: 自检 fail，绕过缓存重取一次`);
-          const retry = await updateIndicator(cfg, { force: true, prev: store.read(cfg.id) });
-          if (retry.integrity.counts.range + retry.integrity.counts.jump + retry.integrity.counts.mismatch <=
-              data.integrity.counts.range + data.integrity.counts.jump + data.integrity.counts.mismatch) data = retry;
-        }
-        store.write(cfg.id, data);
-        const ld = data.points[data.points.length - 1]?.d ?? "";
-        if ((cfg.region || "us") === "us" && ld && (!minLatest || ld < minLatest)) minLatest = ld;
-        const ic = data.integrity;
-        const v = data.validation;
-        const bad = ic.counts.range + ic.counts.jump + ic.counts.cross + ic.counts.mismatch;
-        console.log(
-          `[update] ${cfg.id}: ${data.points.length} days, 交叉验证 ${v.matched}/${v.checked}${v.corrected ? ` 改值${v.corrected}` : ""}${v.mismatched ? ` 不符${v.mismatched}` : ""}${v.checkErrors.length ? ` 校验腿故障${v.checkErrors.length}` : ""}, 自检 ${ic.verdict}${bad ? ` 存疑${bad}` : ""}${ic.counts.stale ? ` 滞后${ic.counts.stale}` : ""}${ic.counts.revised ? ` 修订${ic.counts.revised}` : ""}${ic.counts.coverage ? ` 覆盖${ic.counts.coverage}` : ""}`
-        );
-      } catch (e) {
-        console.error(`[update] ${cfg.id} failed:`, e.message);
-      }
-    }
-    // 依赖补跑：恒等式/带宽校验腿读取的是同批其他指标的入库结果，冷启动时第二轮才能对上。
-    for (const cfg of rerun) {
-      try {
-        const data = await updateIndicator(cfg, { force, prev: store.read(cfg.id) });
-        if (!data.validation.checkErrors.length) store.write(cfg.id, data);
-        const v = data.validation;
-        console.log(`[update] ${cfg.id} 依赖补跑: 交叉验证 ${v.matched}/${v.checked}, 自检 ${data.integrity.verdict}${v.checkErrors.length ? ` 仍有校验腿故障: ${v.checkErrors.join("; ")}` : ""}`);
-      } catch (e) {
-        console.error(`[update] ${cfg.id} 依赖补跑 failed:`, e.message);
-      }
-    }
-    for (const cfg of loadSheets()) {
-      try {
-        const data = await updateSheet(cfg, { force });
-        store.write(`sheet-${cfg.id}`, data);
-        console.log(`[sheet] ${cfg.id}: asOf ${data.asOf}, ${data.history.length} weeks, validation ${data.validation.matched}/${data.validation.checked}`);
-      } catch (e) {
-        console.error(`[sheet] ${cfg.id} failed:`, e.message);
-      }
-    }
-    for (const cfg of loadSummaries()) {
-      try {
-        const data = await updateSummary(cfg, { force });
-        store.write(`summary-${cfg.id}`, data);
-        console.log(`[summary] ${cfg.id}: asOf ${data.asOf}, ${data.rows.length} rows, validation ${data.validation.matched}/${data.validation.checked}`);
-      } catch (e) {
-        console.error(`[summary] ${cfg.id} failed:`, e.message);
-      }
-    }
-  } finally {
-    updating = false;
-  }
-  return minLatest;
-}
-
 const MIME = {
   ".html": "text/html; charset=utf-8",
   ".css": "text/css; charset=utf-8",
@@ -143,6 +74,23 @@ const server = http.createServer(async (req, res) => {
   const p = u.pathname;
   const region = u.searchParams.get("region") || "us";
   try {
+    if (p === "/api/charts" && req.method === "GET") {
+      return json(res, 200, { specs: loadCharts(region), presets: loadPresets(), pages: pagesOf(region), regions: loadRegions() });
+    }
+    const pm = p.match(/^\/api\/page\/([\w-]+)$/);
+    if (pm && req.method === "GET") {
+      const page = buildPage(pm[1], {
+        region,
+        granularity: u.searchParams.get("granularity") || "day",
+        view: u.searchParams.get("view") || undefined,
+        preset: u.searchParams.get("preset") || undefined,
+        primary: u.searchParams.get("primary") || undefined,
+        overlay: u.searchParams.get("overlay") || "",
+        sheet: u.searchParams.get("sheet") || undefined,
+        selected: u.searchParams.get("selected") || "",
+      });
+      return json(res, 200, page);
+    }
     if (p === "/api/indicators" && req.method === "GET") {
       return json(res, 200, loadIndicators(region).map((cfg) => ({ ...cfg, status: summary(cfg) })));
     }
@@ -193,11 +141,13 @@ const server = http.createServer(async (req, res) => {
       return json(res, 200, { id: cfg.id, ...d });
     }
     if (p === "/api/refresh" && req.method === "POST") {
-      await updateAll(true);
+      // 手动更新与每日调度同一条路径：走水位线增量取数。全量重建是运维动作（node tools/run-update.mjs --force），
+      // 不该由一个按钮每次点击就向官方源重拉全部历史。
+      await updateAll(false);
       return json(res, 200, { ok: true });
     }
     if (p === "/api/status" && req.method === "GET") {
-      return json(res, 200, { updating, indicators: loadIndicators().map((c) => ({ id: c.id, status: summary(c) })) });
+      return json(res, 200, { updating: isUpdating(), indicators: loadIndicators().map((c) => ({ id: c.id, status: summary(c) })) });
     }
     if (p.startsWith("/api/")) return json(res, 404, { error: "not found" });
 

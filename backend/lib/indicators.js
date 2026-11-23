@@ -4,6 +4,11 @@ import { INDICATORS_DIR } from "./paths.js";
 import { getSeries } from "./cache.js";
 import { read as readStore } from "./store.js";
 import { checkIntegrity, thresholdsFor, plausible } from "./integrity.js";
+import { drainUsage } from "../providers/_shared.js";
+import { fetchWindow } from "./semantics.js";
+
+// 浮点噪声的唯一清理口径：官方给的是 6 位小数级别的利率，比较与写回都先量化到这里
+const q6 = (x) => (x == null || Number.isNaN(x) ? null : Number(x.toFixed(6)));
 
 export function loadIndicators(region) {
   if (!fs.existsSync(INDICATORS_DIR)) return [];
@@ -25,10 +30,28 @@ export function zoneOf(zones, v) {
 }
 
 export async function updateIndicator(cfg, { force = false, prev = null } = {}) {
-  const start = cfg.start || "2018-04-01";
-  const end = new Date().toISOString().slice(0, 10);
+  // 本轮用量水位：取数前后各读一次，差值就是这次真正花了多少请求与字节（写进 fetch_run）
+  drainUsage();
+  const startedAt = new Date().toISOString();
+  const today = new Date().toISOString().slice(0, 10);
+  const earliest = cfg.start || "2015-01-01";
+  const primaryProvider = (cfg.legs || [])[0]?.primary?.provider || "";
+  const plan = force
+    // 强制重取只是把窗口拉回全历史，修订窗（overlap）仍必须按发布节奏登记：否则水位线会被写成 0 天，
+    // 之后的增量轮次就再也看不到官方修订（G8 判这条为红）
+    ? { ...fetchWindow(cfg, primaryProvider, today, earliest), mode: "full", start: earliest, reason: "强制全量重取（修订窗照常登记）" }
+    : fetchWindow(cfg, primaryProvider, today, earliest);
+  const start = plan.start;
+  const end = plan.end;
   const tol = cfg.tolerance ?? 0.011;
   let checked = 0, matched = 0, mismatched = 0;
+  // 带内偏差的实际包络：校验带的阈值是否定得合理，只能拿它对账（G2 复算的就是这一项）
+  let devLo = null, devHi = null;
+  const noteDev = (x) => {
+    if (x == null || Number.isNaN(x)) return;
+    devLo = devLo === null ? x : Math.min(devLo, x);
+    devHi = devHi === null ? x : Math.max(devHi, x);
+  };
   const checkErrors = [];
   // 校验腿既可以是「另一个官方出版方」(直接取数)，也可以是「另一条官方序列」(provider:"series"，
   // 读取已入库并各自校验过的指标)，后者用于比值/差值带宽型交叉验证。
@@ -46,7 +69,7 @@ export async function updateIndicator(cfg, { force = false, prev = null } = {}) 
     const out = new Map();
     for (const [d, x] of a) {
       const y = b.get(d);
-      if (x != null && y != null) out.set(d, Math.round((x - y) * 1e6) / 1e6);
+      if (x != null && y != null) out.set(d, q6(x - y));
     }
     if (!out.size) throw new Error(`恒等式参照 ${src.id}−${src.minus} 无重叠日期`);
     return out;
@@ -105,6 +128,7 @@ export async function updateIndicator(cfg, { force = false, prev = null } = {}) 
             continue;
           }
           const a = buckets.get(kd) || 0;
+          noteDev(a - (c0 + offset));
           checked++;
           if (Math.abs(a - (c0 + offset)) <= tol) {
             matched++;
@@ -171,12 +195,13 @@ export async function updateIndicator(cfg, { force = false, prev = null } = {}) 
           return;
         }
         checked++;
+        noteDev(s);
         if (L.pass(s)) matched++;
         else {
           mismatched++;
           ok = false;
           // alt 一律换算到主序列口径（乘 check.scale、去 offset），供纠错与并列展示
-          alt = L.mode === "ratio" ? null : Math.round((c0 * (L.cScale ?? 1) + (L.offset ?? 0)) * 1e6) / 1e6;
+          alt = L.mode === "ratio" ? null : q6(c0 * (L.cScale ?? 1) + (L.offset ?? 0));
           altBy = L.src?.id || L.src?.provider || L.src?.series || "check";
         }
       }
@@ -219,13 +244,14 @@ export async function updateIndicator(cfg, { force = false, prev = null } = {}) 
   });
   integrity.counts.corrected = corrected;
   if (corrected) integrity.notes.push(`依校验源改值 ${corrected} 点（逐点留有改前/改后/依据）`);
-  return {
+  const out = {
     updatedAt: new Date().toISOString(),
     points,
     validation: {
       checked,
       matched,
       mismatched,
+      devRange: devLo === null ? null : [q6(devLo), q6(devHi)],
       corrected,
       uncheckedDates,
       totalDates: points.length,
@@ -234,4 +260,23 @@ export async function updateIndicator(cfg, { force = false, prev = null } = {}) 
     },
     integrity,
   };
+  // runMeta 是非枚举属性：JSON 快照里看不到，写库时由 store 取用（避免多一份持久化事实）
+  Object.defineProperty(out, "runMeta", {
+    value: {
+      cfg,
+      plan,
+      usage: drainUsage(),
+      startedAt,
+      stages: {
+        plan: { status: "ok", info: `${plan.mode} ${plan.start}→${plan.end}；${plan.reason}` },
+        fetch: { status: (out.validation.checkErrors || []).length ? "degraded" : "ok", info: `${out.validation.checkErrors.length ? out.validation.checkErrors.join(" ; ").slice(0, 160) : "全部腿取回成功"}` },
+        validate: { status: "ok", info: `交叉验证 ${out.validation.matched}/${out.validation.checked}，偏差包络 ${JSON.stringify(out.validation.devRange)}` },
+        correct: { status: out.validation.corrected ? "ok" : "skipped", info: `依校验源改值 ${out.validation.corrected} 点（逐点留 from/to/by）` },
+        commit: { status: out.integrity.verdict === "fail" ? "degraded" : "ok", info: `自检 ${out.integrity.verdict}` },
+      },
+      status: out.integrity.verdict === "fail" ? "degraded" : "ok",
+    },
+    enumerable: false,
+  });
+  return out;
 }

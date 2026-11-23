@@ -1,0 +1,90 @@
+{
+  "id": "balance-history",
+  "page": "fed-balance",
+  "title": "美联储总资产（H.4.1 周度）",
+  "empty": "等待数据…",
+  "navLabel": "美联储资产负债表",
+  "navSub": "H.4.1 · 总资产与构成",
+  "sheet": "fed-balance",
+  "needs": [
+    "sheet"
+  ],
+  "views": [
+    {
+      "projection": "header",
+      "container": "bh-header"
+    },
+    {
+      "projection": "toolbar",
+      "container": "bh-toolbar",
+      "eras": true
+    },
+    {
+      "projection": "composition",
+      "container": "bh-comp"
+    },
+    {
+      "projection": "panel",
+      "container": "bh-chart",
+      "size": "compact"
+    },
+    {
+      "projection": "tables",
+      "source": "sheet",
+      "container": "bh-tables"
+    },
+    {
+      "projection": "desc",
+      "container": "bh-desc"
+    }
+  ],
+  "axes": {
+    "total": {
+      "unit": " 万亿美元",
+      "side": "left",
+      "label": "万亿美元",
+      "precision": 3,
+      "zeroBased": true,
+      "resolve": "shared"
+    }
+  },
+  "layers": [
+    {
+      "series": "sheet",
+      "recipe": "eraBar",
+      "axis": "total",
+      "rescale": 0.000001,
+      "unit": " 万亿美元",
+      "precision": 3,
+      "name": "总资产",
+      "sourceNote": "FRED WALCL · 与理事会 H.4.1 交叉验证"
+    }
+  ],
+  "eras": {
+    "from": "sheet"
+  },
+  "presets": "long",
+  "annotations": [
+    "eras"
+  ],
+  "derive": [
+    {
+      "name": "wow",
+      "op": "delta",
+      "factor": 10000
+    }
+  ],
+  "tooltip": {
+    "columns": [
+      "value",
+      "wow",
+      "era",
+      "source"
+    ],
+    "wowColumn": "wow"
+  },
+  "limits": {
+    "sharedMax": 1,
+    "totalMax": 1
+  }
+}

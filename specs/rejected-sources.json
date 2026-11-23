@@ -1,0 +1,20 @@
+[
+  {
+    "slug": "lbma-fix",
+    "name": "LBMA 黄金定盘价（ICE 基准管理）",
+    "why": "2025-03 起历史数据转为许可制，且站点受 Cloudflare 反爬保护；在「不绕过 WAF」前提下不可得。",
+    "decision": "改用世界银行 Pink Sheet 官方月度均价（美元/盎司）与 Nasdaq GLD 收盘价作交易所代理，并在署名与 tooltip 直标「非 LBMA 定盘价」。"
+  },
+  {
+    "slug": "fed-wacbs-weekly-proxy",
+    "name": "WACBS（季度资金流向）作周度代理",
+    "why": "季度频率且发布滞后，与周度面板不同频。",
+    "decision": "不进入周度序列；需要时在文档中说明，不用季度数据冒充周度观测。"
+  },
+  {
+    "slug": "hkex-daily-endpoint",
+    "name": "港交所指数日频端点",
+    "why": "Akamai 反爬保护，Node 在不绕过 WAF 前提下不可取。",
+    "decision": "相关汇总行按「不可得」标注，不冒充已取数。"
+  }
+]

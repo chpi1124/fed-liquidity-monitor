@@ -1,0 +1,381 @@
+{
+  "id": "frb-h41-factors",
+  "org": "Board of Governors of the Federal Reserve System",
+  "cadence": "weekly-thu",
+  "incremental": "snapshot-only",
+  "requested": {
+    "src": {},
+    "start": "2026-11-13",
+    "end": "2026-11-23"
+  },
+  "rows": 41,
+  "bytes": 3223,
+  "at": "2026-11-23T04:01:57.594Z",
+  "payload": {
+    "date": "2026-11-18",
+    "prevDate": "2026-11-11",
+    "yearAgoDate": "2025-11-19",
+    "rows": [
+      [
+        "Securities held outright",
+        {
+          "avg": 6472783,
+          "wc": 3620,
+          "yc": 208335,
+          "wed": 6472944
+        }
+      ],
+      [
+        "U.S. Treasury securities",
+        {
+          "avg": 4586939,
+          "wc": 3645,
+          "yc": 394775,
+          "wed": 4587132
+        }
+      ],
+      [
+        "Bills",
+        {
+          "avg": 580660,
+          "wc": 3131,
+          "yc": 385167,
+          "wed": 580660
+        }
+      ],
+      [
+        "Notes and bonds, nominal",
+        {
+          "avg": 3620738,
+          "wc": 0,
+          "yc": 46698,
+          "wed": 3620738
+        }
+      ],
+      [
+        "Notes and bonds, inflation-indexed",
+        {
+          "avg": 277656,
+          "wc": 0,
+          "yc": -32060,
+          "wed": 277656
+        }
+      ],
+      [
+        "Inflation compensation",
+        {
+          "avg": 107886,
+          "wc": 515,
+          "yc": -5028,
+          "wed": 108078
+        }
+      ],
+      [
+        "Federal agency debt securities",
+        {
+          "avg": 2347,
+          "wc": 0,
+          "yc": 0,
+          "wed": 2347
+        }
+      ],
+      [
+        "Mortgage-backed securities",
+        {
+          "avg": 1883497,
+          "wc": -25,
+          "yc": -186441,
+          "wed": 1883465
+        }
+      ],
+      [
+        "Unamortized premiums on securities held outright",
+        {
+          "avg": 206483,
+          "wc": -289,
+          "yc": -21338,
+          "wed": 206371
+        }
+      ],
+      [
+        "Unamortized discounts on securities held outright",
+        {
+          "avg": -26410,
+          "wc": 49,
+          "yc": -3122,
+          "wed": -26371
+        }
+      ],
+      [
+        "Repurchase agreements",
+        {
+          "avg": 16,
+          "wc": 14,
+          "yc": -1348,
+          "wed": 1
+        }
+      ],
+      [
+        "Foreign official",
+        {
+          "avg": 0,
+          "wc": 0,
+          "yc": 0,
+          "wed": 1
+        }
+      ],
+      [
+        "Others",
+        {
+          "avg": 15,
+          "wc": 13,
+          "yc": -1349,
+          "wed": 0
+        }
+      ],
+      [
+        "Loans",
+        {
+          "avg": 9381,
+          "wc": 468,
+          "yc": 3005,
+          "wed": 9071
+        }
+      ],
+      [
+        "Primary credit",
+        {
+          "avg": 9366,
+          "wc": 468,
+          "yc": 3067,
+          "wed": 9055
+        }
+      ],
+      [
+        "Secondary credit",
+        {
+          "avg": 0,
+          "wc": 0,
+          "yc": 0,
+          "wed": 0
+        }
+      ],
+      [
+        "Seasonal credit",
+        {
+          "avg": 8,
+          "wc": 0,
+          "yc": -2,
+          "wed": 8
+        }
+      ],
+      [
+        "Paycheck Protection Program Liquidity Facility",
+        {
+          "avg": 7,
+          "wc": 0,
+          "yc": -59,
+          "wed": 7
+        }
+      ],
+      [
+        "Other credit extensions",
+        {
+          "avg": 0,
+          "wc": 0,
+          "yc": 0,
+          "wed": 0
+        }
+      ],
+      [
+        "Net portfolio holdings of MS Facilities 2020 LLC (Main Street Lending Program)",
+        {
+          "avg": 872,
+          "wc": 0,
+          "yc": -2893,
+          "wed": 871
+        }
+      ],
+      [
+        "Float",
+        {
+          "avg": -216,
+          "wc": 10,
+          "yc": 95,
+          "wed": -114
+        }
+      ],
+      [
+        "Central bank liquidity swaps",
+        {
+          "avg": 146,
+          "wc": -25,
+          "yc": 100,
+          "wed": 146
+        }
+      ],
+      [
+        "Other Federal Reserve assets",
+        {
+          "avg": 42616,
+          "wc": -5639,
+          "yc": 1653,
+          "wed": 32095
+        }
+      ],
+      [
+        "Foreign currency denominated assets",
+        {
+          "avg": 18698,
+          "wc": -220,
+          "yc": -514,
+          "wed": 18655
+        }
+      ],
+      [
+        "Gold stock",
+        {
+          "avg": 11041,
+          "wc": 0,
+          "yc": 0,
+          "wed": 11041
+        }
+      ],
+      [
+        "Special drawing rights certificate account",
+        {
+          "avg": 15200,
+          "wc": 0,
+          "yc": 0,
+          "wed": 15200
+        }
+      ],
+      [
+        "Treasury currency outstanding",
+        {
+          "avg": 53522,
+          "wc": 14,
+          "yc": 728,
+          "wed": 53522
+        }
+      ],
+      [
+        "Total factors supplying reserve funds",
+        {
+          "avg": 6804131,
+          "wc": -1997,
+          "yc": 184700,
+          "wed": 6793431
+        }
+      ],
+      [
+        "Currency in circulation",
+        {
+          "avg": 2496856,
+          "wc": 3491,
+          "yc": 74527,
+          "wed": 2497723
+        }
+      ],
+      [
+        "Reverse repurchase agreements",
+        {
+          "avg": 324423,
+          "wc": -12096,
+          "yc": -6085,
+          "wed": 317043
+        }
+      ],
+      [
+        "Foreign official and international accounts",
+        {
+          "avg": 324124,
+          "wc": -12233,
+          "yc": -4435,
+          "wed": 316712
+        }
+      ],
+      [
+        "Treasury cash holdings",
+        {
+          "avg": 294,
+          "wc": -24,
+          "yc": -41,
+          "wed": 306
+        }
+      ],
+      [
+        "Deposits with F.R. Banks, other than reserve balances",
+        {
+          "avg": 1178583,
+          "wc": -10403,
+          "yc": 11599,
+          "wed": 1151264
+        }
+      ],
+      [
+        "Term deposits held by depository institutions",
+        {
+          "avg": 0,
+          "wc": 0,
+          "yc": 0,
+          "wed": 0
+        }
+      ],
+      [
+        "U.S. Treasury, General Account",
+        {
+          "avg": 916613,
+          "wc": 2243,
+          "yc": -25313,
+          "wed": 892310
+        }
+      ],
+      [
+        "Other",
+        {
+          "avg": 252494,
+          "wc": -12415,
+          "yc": 36874,
+          "wed": 249476
+        }
+      ],
+      [
+        "Treasury contributions to credit facilities",
+        {
+          "avg": 0,
+          "wc": 0,
+          "yc": -2029,
+          "wed": 0
+        }
+      ],
+      [
+        "Other liabilities and capital",
+        {
+          "avg": -175681,
+          "wc": -2019,
+          "yc": 15717,
+          "wed": -174696
+        }
+      ],
+      [
+        "Total factors, other than reserve balances, absorbing reserve funds",
+        {
+          "avg": 3824475,
+          "wc": -21050,
+          "yc": 93687,
+          "wed": 3791641
+        }
+      ],
+      [
+        "Reserve balances with Federal Reserve Banks",
+        {
+          "avg": 2979656,
+          "wc": 19053,
+          "yc": 91013,
+          "wed": 3001790
+        }
+      ]
+    ]
+  }
+}

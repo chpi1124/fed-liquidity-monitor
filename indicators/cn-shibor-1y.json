@@ -7,7 +7,7 @@
   "en": "SHIBOR 1-Year",
   "formula": "1 年 SHIBOR",
   "unit": "%",
-  "hue": "#a78bfa",
+  "hue": "hue-3",
   "publication": "T",
   "description": "SHIBOR 1 年利率，CFETS 官方发布，与 1 年期 LPR、MLF 政策利率共同刻画中长期资金定价。交叉验证：1Y 与 3M 利差带宽 [-0.40, 0.75] 取十年实测 min/max；该带同时约束期限结构不得异常倒挂。",
   "operation": "level",
@@ -29,7 +29,17 @@
         "band": [
           -0.4,
           0.75
-        ]
+        ],
+        "source": {
+          "statistic": "manual-policy",
+          "window": "2024-01-02 ~ 2026-11-23",
+          "measured": {
+            "devLo": -0.012,
+            "devHi": 0.148,
+            "checked": 719
+          },
+          "note": "带 [-0.4, 0.75] 覆盖同窗口实测偏差 [-0.012, 0.148]；门禁每轮复算包含关系与松紧上限（12 倍）"
+        }
       }
     }
   ],
@@ -39,6 +49,30 @@
       1,
       6
     ],
-    "maxAbsJump": 0.6
+    "maxAbsJump": 0.6,
+    "source": {
+      "range": {
+        "statistic": "manual-policy",
+        "window": "2024-01-02 ~ 2026-11-23",
+        "measured": {
+          "min": 1.4367,
+          "max": 2.532,
+          "p02": 1.4369,
+          "p998": 2.509,
+          "n": 719
+        },
+        "note": "声明带 [1, 6] 由实测 [1.4367, 2.532] 向外取整而得；外扩是有意冗余，越带即报警（门禁复算包含关系）"
+      },
+      "maxAbsJump": {
+        "statistic": "manual-policy",
+        "window": "2024-01-02 ~ 2026-11-23",
+        "measured": {
+          "maxJump": 0.05,
+          "p998Jump": 0.033,
+          "n": 719
+        },
+        "note": "声明 0.6 高于实测 99.8 分位 0.033：有意留宽的保守带，低于该分位即判太紧"
+      }
+    }
   }
 }

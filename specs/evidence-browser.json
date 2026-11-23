@@ -1,0 +1,156 @@
+{
+  "how": "Qoder 代理用 browser-use 驱动真实 Chromium 访问 http://127.0.0.1:3000（已用重构后代码重启），逐页/逐市场/逐粒度/叠加/主序列切换实跑，判据读自 ECharts 实例与 DOM。",
+  "at": "2026-11-23T04:27:35.703Z",
+  "viewport": {
+    "width": 690,
+    "height": 780
+  },
+  "cases": [
+    {
+      "page": "监控台 us/day",
+      "canvas": "684x756",
+      "series": 1,
+      "tiles": 5,
+      "ariaLabelChars": 107,
+      "tables": 0
+    },
+    {
+      "page": "美联储资产负债表 us",
+      "canvas": "684x648",
+      "series": 1,
+      "tables": 3,
+      "ariaLabelChars": 110
+    },
+    {
+      "page": "黄金板块 us",
+      "canvas": "684x702",
+      "series": 4,
+      "ariaLabelChars": 275
+    },
+    {
+      "page": "周度汇总 us",
+      "tables": 2,
+      "note": "本页按 spec 不配图（样表复刻页）"
+    },
+    {
+      "page": "监控台 cn/day 与 cn/week",
+      "canvas": "684x756",
+      "tiles": 5,
+      "note": "切市场与切粒度均重画，无控制台报错"
+    },
+    {
+      "page": "监控台 us + 叠加 SRF动用量",
+      "seriesBefore": 1,
+      "seriesAfter": 2,
+      "note": "点叠加按钮后 ECharts option.series 由 1 变 2，同一渲染核，未新增代码"
+    },
+    {
+      "page": "监控台 us/day + 主序列切 SRF动用量",
+      "seriesType": "bar",
+      "note": "量纲=十亿美元 ⇒ semantics 判定 amount ⇒ 柱状（不是折线），无需在页面上硬写图形"
+    },
+    {
+      "page": "三页均验：监控台 / 黄金板块 / 美联储资产负债表",
+      "policyVerticalLines": 91,
+      "seriesTypes": {
+        "监控台": "bar（zoneBar 走廊柱）",
+        "黄金": "line,line,line,bar（含 signedBar 净环流）",
+        "资产负债表": "bar（eraBar 时期柱）"
+      },
+      "labelSamples": [
+        "加息 +25bp 3.75–4%",
+        "按兵不动 维持 3.75–4%"
+      ],
+      "note": "竖向虚线 + 顶部官方标签在所有面板默认存在；类型来自 semantics（量纲×角色×粒度），SRF 动用量为柱状"
+    },
+    {
+      "page": "央行资产负债表 cn/month",
+      "canvas": "631x420",
+      "series": 4,
+      "seriesTypes": "line,line,line,line",
+      "months": 142,
+      "policyVerticalLines": 91,
+      "dashStyle": "dashed",
+      "labelPosition": "insideEndTop",
+      "newestLine": "2026-10-31",
+      "tooltipShowsProvenance": true,
+      "note": "690×780 视口实跑：切市场→切页面后 4 条月度折线出图，91 条美联储政策竖线（虚线＋顶部文字）画在中国图上，tooltip 尾行给出跨市场出处说明；控制台 0 错误。"
+    },
+    {
+      "page": "监控台 us/day 视图切换（走廊横线 / SOFR 柱）",
+      "viewModes": [
+        "走廊横线",
+        "SOFR 柱"
+      ],
+      "corridorMode": {
+        "series": 5,
+        "seriesTypes": "bar + line(step)×4",
+        "yAxes": 2,
+        "policyVerticalLines": 91,
+        "canvas": "1153x756"
+      },
+      "sofrMode": {
+        "series": 2,
+        "seriesTypes": "bar + bar",
+        "yAxes": 2
+      },
+      "note": "690×780 实跑：切换按钮由 spec 的 viewModes 生成；走廊模式为 4 条阶梯线（SRFD/ON RRP/EFFR/IORB，落在 % 轴）叠加梗差走廊柱；点「SOFR 柱」后 ECharts series 由 5 变 2，切换态落到 Segmented；控制台 0 错误。"
+    }
+  ],
+  "consoleErrors": 0,
+  "fixedByThisRun": [
+    "图形在脱离文档的元素上 init 导致画布 0x0（改为入文档后 attach）",
+    "图表高度按容器 id 写死在 layout.css（改为 --chart-h 令牌 + spec 声明 size）",
+    "Toolbar 在无恒等式页面收到 null 抛错，导致同一渲染循环里后面的图与表全部不更新"
+  ],
+  "appleVisualRound": {
+    "at": "2026-11-23T13:20:00+08:00",
+    "how": "Edge headless + CDP，690×780 iframe 内读 computed style / ECharts 实例；重启后的本地服务实跑。",
+    "computed": {
+      "bodyBefore": "none",
+      "tile": { "bg": "rgb(25,29,35)", "color": "rgb(242,244,247)", "radius": "14px", "shadow": "none", "gradient": "none", "font": "-apple-system" },
+      "panel": { "bg": "rgb(25,29,35)", "border": "rgb(42,48,57)", "radius": "20px", "shadow": "none", "gradient": "none" },
+      "activeSegment": { "bg": "rgb(217,138,61)", "color": "rgb(10,12,15)" },
+      "loopingAnimations": 0,
+      "chartSeries": 5
+    },
+    "reflow": { "at690": { "scrollWidth": 690, "clientWidth": 690, "overflow": false }, "at320": { "scrollWidth": 320, "clientWidth": 320, "overflow": false } },
+    "viewToggle": { "corridorWithSofr": 5, "spread": 1, "applyDelayMs": "≈150（setView→loadPage 走网络；判据须等 active 态翻转再读）", "policyLines": 91 },
+    "consoleErrors": 0,
+    "gates": "26/26 GREEN（--net）· selftest 15/15 PASS"
+  },
+  "mutuallyExclusiveViewsRound": {
+    "at": "2026-11-23T13:55:00+08:00",
+    "how": "Edge headless + CDP，1100×820 iframe 内真实 pointer 点击，读 Segmented active 态与 ECharts 实例；默认行为由 G24 快照守住。",
+    "monitor": {
+      "selector": { "type": "single-level two buttons", "options": ["梗差图", "走廊与SOFR"], "note": "走廊与SOFR 同图共存，无二级互斥切换" },
+      "spreadOnly": ["bar:梗差（柱）"],
+      "corridorWithSofr": ["line:SRF 利率", "line:ON RRP", "line:EFFR", "line:IORB 准备金", "bar:SOFR"],
+      "noOverlay": "梗差 与 SOFR 从不同屏出现：梗差图 1 条、走廊与SOFR 5 条（4 线 + SOFR 柱同图）",
+      "cnFallback": "中国市场无四条美联储走廊线，替换型模式回落到基础层，快照 cn.monitor.main-trend.day layers=1（不留空面板）"
+    },
+    "policySwitch": {
+      "scope": "全局（页眉，所有页面可见），一处切换影响所有面板",
+      "on": { "label": "政策事件 开", "ariaChecked": "true", "policyLines": 91, "tooltipPolicy": "显示" },
+      "off": { "label": "政策事件 关", "ariaChecked": "false", "policyLines": 0, "tooltipPolicy": "隐藏" },
+      "controls": ["markLine 竖线", "tooltip 政策列", "逐点政策文字", "来源尾注"]
+    },
+    "goldParams": {
+      "selector": { "top": ["黄金视角"], "sub": ["全景", "实际利率", "伦敦净环流"] },
+      "all": 4,
+      "realRate": 2,
+      "roundTripToAll": 4
+    },
+    "consoleErrors": 0
+  },
+  "coPlotRound": {
+    "at": "2026-11-23T15:45:00+08:00",
+    "how": "用户澄清「走廊与SOFR柱必须在一张图上」：合并为单模式同图共存，取消二级互斥切换。Edge headless + CDP 实测。",
+    "selector": ["梗差图", "走廊与SOFR"],
+    "default": { "series": ["line:SRF 利率", "line:ON RRP", "line:EFFR", "line:IORB 准备金", "bar:SOFR"], "policyLines": 91 },
+    "spread": { "series": ["bar:梗差（柱）"], "policyLines": 91 },
+    "snapshot": { "layers": 5, "types": "line,line,line,line,bar", "policyLines": 91 },
+    "consoleErrors": 0,
+    "gates": "26/26 GREEN（--net）· selftest 15/15 PASS"
+  }
+}

@@ -1,20 +1,22 @@
 import { h } from "../core/dom.js";
 import { fmtTrillion } from "../core/derive.js";
+import { share } from "../core/dataset.js";
+import { css, palette } from "../core/theme.js";
 
-const PALETTE = ["#ff8a2a", "#3aa6ff", "#2fd08c", "#e05fd0", "#ffb224", "#35e0a1", "#8fa3b0"];
-
+// 构成条 = part-to-whole 投影：几何与配色同样来自 dataset/theme，不再自带色表与千分位布局。
 export function CompositionBar({ segments, total }) {
   if (!segments?.length || !total) return h("div");
-  const sum = segments.reduce((s, x) => s + x.value, 0);
+  const theme = palette();
+  const pcts = share(segments.map((s) => s.value));
   let x = 0;
-  const rects = segments.map((sg, i) => {
-    const w = (sg.value / sum) * 1000;
+  const rects = pcts.map((p, i) => {
+    const w = p * 1000;
     const r = h("rect", {
       x: x.toFixed(2),
       y: 0,
-      width: Math.max(w - 1.5, 0.5).toFixed(2),
-      height: 30,
-      fill: PALETTE[i % PALETTE.length],
+      width: (w - 1.5 > 0.5 ? w - 1.5 : 0.5).toFixed(2),
+      height: theme.spark.h,
+      fill: theme.hueScale[i % theme.hueScale.length],
     });
     x += w;
     return r;
@@ -30,8 +32,8 @@ export function CompositionBar({ segments, total }) {
     ),
     h(
       "div",
-      { class: "comp-bar", role: "img", "aria-label": "资产构成堆叠条" },
-      h("svg", { viewBox: "0 0 1000 30", preserveAspectRatio: "none", width: "100%", height: "30" }, rects)
+      { class: "comp-bar", role: "img", "aria-label": `资产构成堆叠条：共 ${segments.length} 段，合计 ${fmtTrillion(total)} 万亿美元` },
+      h("svg", { viewBox: `0 0 1000 ${theme.spark.h}`, preserveAspectRatio: "none", width: "100%", height: theme.spark.h }, rects)
     ),
     h(
       "div",
@@ -39,10 +41,14 @@ export function CompositionBar({ segments, total }) {
       segments.map((sg, i) =>
         h(
           "span",
-          { class: "comp-chip", style: { "--era": PALETTE[i % PALETTE.length] }, title: `${sg.value.toLocaleString("en-US")} 百万美元` },
+          {
+            class: "comp-chip",
+            style: { "--era": css(`hue-${(i % theme.hueScale.length) + 1}`) },
+            title: `${sg.value.toLocaleString("en-US")} 百万美元`,
+          },
           h("i"),
           sg.label,
-          h("b", null, `${((sg.value / total) * 100).toFixed(2)}%`),
+          h("b", null, `${(pcts[i] * 100).toFixed(2)}%`),
           h("em", null, `${fmtTrillion(sg.value)}万亿`)
         )
       )

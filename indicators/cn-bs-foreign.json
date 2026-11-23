@@ -1,0 +1,68 @@
+{
+  "id": "cn-bs-foreign",
+  "region": "cn",
+  "order": 12,
+  "surface": "cn-balance",
+  "name": "国外资产",
+  "en": "Foreign Assets",
+  "formula": "货币当局资产方「国外资产」",
+  "unit": "亿元",
+  "precision": 2,
+  "scale": 1,
+  "freq": "month",
+  "publication": "M",
+  "start": "2015-01-01",
+  "hue": "info",
+  "operation": "level",
+  "tolerance": 0.001,
+  "description": "中国人民银行《货币当局资产负债表》资产方「国外资产」（外汇＋货币黄金＋其他国外资产），单位：亿元人民币。交叉验证：官方 htm 与 xlsx 两种编码各自解析后逐期比对。注意口径：本项是央行口径的国外资产，不等于外汇管理局公布的全口径官方储备。",
+  "validationNote": "双编码比对 58 期；另经「国外资产 = 外汇 + 货币黄金 + 其他国外资产」结构核验（实测最大差 0.01 亿元，为官方两位小数舍入）。",
+  "checkKind": "同机构双编码逐期（官方 htm 对照官方 xlsx）",
+  "legs": [
+    {
+      "key": "enc",
+      "label": "官方 htm ↔ 官方 xlsx（同表两种编码）",
+      "primary": {
+        "provider": "pbc-statement",
+        "item": "国外资产",
+        "fmt": "htm"
+      },
+      "check": {
+        "provider": "pbc-statement",
+        "item": "国外资产",
+        "fmt": "xlsx"
+      }
+    }
+  ],
+  "integrity": {
+    "range": [
+      200000,
+      300000
+    ],
+    "maxAbsJump": 10000,
+    "source": {
+      "range": {
+        "statistic": "manual-policy",
+        "window": "2015-01-31 ~ 2026-10-31",
+        "measured": {
+          "min": 217580.42,
+          "max": 278606.09,
+          "p02": 217580.42,
+          "p998": 278606.09,
+          "n": 142
+        },
+        "note": "声明带 [200000, 300000] 由实测 [217580.42, 278606.09] 向外取整而得；外扩是有意冗余，越带即报警（门禁复算包含关系）"
+      },
+      "maxAbsJump": {
+        "statistic": "manual-policy",
+        "window": "2015-01-31 ~ 2026-10-31",
+        "measured": {
+          "maxJump": 8544.52,
+          "p998Jump": 8544.52,
+          "n": 142
+        },
+        "note": "声明 10000 高于实测 99.8 分位 8544.52：有意留宽的保守带，低于该分位即判太紧"
+      }
+    }
+  }
+}

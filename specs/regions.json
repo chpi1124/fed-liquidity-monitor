@@ -1,0 +1,30 @@
+[
+  {
+    "id": "us",
+    "label": "美国",
+    "title": "美联储理事会 H.4.1 · 纽约联储 Markets API · 圣路易斯联储 FRED · 财政部 TIIS · HMRC/UN Comtrade · Nasdaq",
+    "sources": [
+      "Federal Reserve Board",
+      "Federal Reserve Bank of New York",
+      "FRED (Federal Reserve Bank of St. Louis)",
+      "U.S. Department of the Treasury",
+      "HMRC",
+      "UN Comtrade",
+      "Nasdaq"
+    ],
+    "policy": [
+      "fed-policy"
+    ]
+  },
+  {
+    "id": "cn",
+    "label": "中国",
+    "title": "CFETS 中国外汇交易中心 · 全国银行间同业拆借中心 SHIBOR/LPR · 中国人民银行",
+    "sources": [
+      "中国外汇交易中心（CFETS）",
+      "全国银行间同业拆借中心",
+      "中国人民银行"
+    ],
+    "policy": []
+  }
+]

@@ -3,18 +3,13 @@
   "region": "us",
   "order": 20,
   "surface": "gold",
-  "axis": "left",
-  "axisPos": "left",
-  "axisName": "实际利率 %",
-  "axisSuffix": "%",
-  "render": "line",
   "sourceNote": "财政部 TIIS × FRED 双官方源逐日验证",
   "invert": true,
   "name": "10Y TIPS 实际利率",
   "en": "10-Year TIPS Real Yield",
   "formula": "美国财政部通胀保值证券 10 年期实际收益率",
   "unit": "%",
-  "hue": "#3aa6ff",
+  "hue": "info",
   "publication": "T",
   "precision": 2,
   "operation": "level",
@@ -42,6 +37,32 @@
       -2,
       6
     ],
-    "maxAbsJump": 1
-  }
+    "maxAbsJump": 1,
+    "source": {
+      "range": {
+        "statistic": "manual-policy",
+        "window": "2016-11-01 ~ 2026-11-20",
+        "measured": {
+          "min": -1.19,
+          "max": 2.95,
+          "p02": -1.15,
+          "p998": 2.91,
+          "n": 2513
+        },
+        "note": "声明带 [-2, 6] 由实测 [-1.19, 2.95] 向外取整而得；外扩是有意冗余，越带即报警（门禁复算包含关系）"
+      },
+      "maxAbsJump": {
+        "statistic": "manual-policy",
+        "window": "2016-11-01 ~ 2026-11-20",
+        "measured": {
+          "maxJump": 0.45,
+          "p998Jump": 0.25,
+          "n": 2513
+        },
+        "note": "声明 1 高于实测 99.8 分位 0.25：有意留宽的保守带，低于该分位即判太紧"
+      }
+    }
+  },
+  "recipe": "line",
+  "axisGroup": "real-rate"
 }

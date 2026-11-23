@@ -1,0 +1,68 @@
+{
+  "id": "cn-bs-reserve-money",
+  "region": "cn",
+  "order": 11,
+  "surface": "cn-balance",
+  "name": "储备货币",
+  "en": "Reserve Money",
+  "formula": "货币当局负债方「储备货币」",
+  "unit": "亿元",
+  "precision": 2,
+  "scale": 1,
+  "freq": "month",
+  "publication": "M",
+  "start": "2015-01-01",
+  "hue": "ok",
+  "operation": "level",
+  "tolerance": 0.001,
+  "description": "中国人民银行《货币当局资产负债表》负债方「储备货币」（即基础货币口径），单位：亿元人民币。交叉验证：官方 htm 与 xlsx 两种编码各自解析后逐期比对。",
+  "validationNote": "双编码比对 58 期（2021 与 2023 年起）；其余期次只有一条官方载体。",
+  "checkKind": "同机构双编码逐期（官方 htm 对照官方 xlsx）",
+  "legs": [
+    {
+      "key": "enc",
+      "label": "官方 htm ↔ 官方 xlsx（同表两种编码）",
+      "primary": {
+        "provider": "pbc-statement",
+        "item": "储备货币",
+        "fmt": "htm"
+      },
+      "check": {
+        "provider": "pbc-statement",
+        "item": "储备货币",
+        "fmt": "xlsx"
+      }
+    }
+  ],
+  "integrity": {
+    "range": [
+      250000,
+      450000
+    ],
+    "maxAbsJump": 30000,
+    "source": {
+      "range": {
+        "statistic": "manual-policy",
+        "window": "2015-01-31 ~ 2026-10-31",
+        "measured": {
+          "min": 271610.21,
+          "max": 412998.19,
+          "p02": 271610.21,
+          "p998": 412998.19,
+          "n": 142
+        },
+        "note": "声明带 [250000, 450000] 由实测 [271610.21, 412998.19] 向外取整而得；外扩是有意冗余，越带即报警（门禁复算包含关系）"
+      },
+      "maxAbsJump": {
+        "statistic": "manual-policy",
+        "window": "2015-01-31 ~ 2026-10-31",
+        "measured": {
+          "maxJump": 26150.36,
+          "p998Jump": 26150.36,
+          "n": 142
+        },
+        "note": "声明 30000 高于实测 99.8 分位 26150.36：有意留宽的保守带，低于该分位即判太紧"
+      }
+    }
+  }
+}

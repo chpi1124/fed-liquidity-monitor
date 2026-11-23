@@ -1,7 +1,9 @@
 {
   "id": "sofr-effr",
+  "region": "us",
   "order": 1,
   "name": "梗差",
+  "en": "SOFR − EFFR spread",
   "formula": "SOFR − EFFR",
   "unit": "bp",
   "publication": "T+1",
@@ -41,22 +43,22 @@
       "label": "正常",
       "max": 0,
       "includeMax": false,
-      "color": "#22c55e"
+      "color": "risk-4"
     },
     {
       "label": "心律杂音",
       "max": 7,
-      "color": "#e5e7eb"
+      "color": "risk-2"
     },
     {
       "label": "心绞痛",
       "max": 17,
-      "color": "#eab308"
+      "color": "risk-3"
     },
     {
       "label": "心肌梗塞",
       "max": null,
-      "color": "#ef4444"
+      "color": "risk-1"
     }
   ],
   "checkKind": "官方双源逐点（两腿分别 NY Fed ↔ FRED 确认后再相减）",
@@ -65,6 +67,31 @@
       -100,
       400
     ],
-    "maxAbsJump": 300
-  }
+    "maxAbsJump": 300,
+    "source": {
+      "range": {
+        "statistic": "manual-policy",
+        "window": "2018-04-02 ~ 2026-11-19",
+        "measured": {
+          "min": -15,
+          "max": 295,
+          "p02": -13,
+          "p998": 36,
+          "n": 2157
+        },
+        "note": "声明带 [-100, 400] 由实测 [-15, 295] 向外取整而得；外扩是有意冗余，越带即报警（门禁复算包含关系）"
+      },
+      "maxAbsJump": {
+        "statistic": "manual-policy",
+        "window": "2018-04-02 ~ 2026-11-19",
+        "measured": {
+          "maxJump": 277,
+          "p998Jump": 45,
+          "n": 2157
+        },
+        "note": "声明 300 高于实测 99.8 分位 45：有意留宽的保守带，低于该分位即判太紧"
+      }
+    }
+  },
+  "precision": 0
 }

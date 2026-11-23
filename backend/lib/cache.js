@@ -1,4 +1,5 @@
-import { fetchSeries } from "./fetchers.js";
+// provider 由目录自动发现（backend/providers/registry.js）：接入新官方源不改本文件，也不改主程序
+import { fetchSeries } from "../providers/registry.js";
 
 const TTL = 10 * 60 * 1000;
 const cache = new Map();

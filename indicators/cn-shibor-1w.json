@@ -7,7 +7,7 @@
   "en": "SHIBOR 1-Week",
   "formula": "1 周 SHIBOR",
   "unit": "%",
-  "hue": "#ffb224",
+  "hue": "warn",
   "publication": "T",
   "description": "SHIBOR 1 周利率，CFETS 官方发布，最贴近央行 7 天逆回购政策利率（OMO）的同期限市场利率。交叉验证：1 周报价与 7 天成交定盘为最接近的同口径对手序列，带宽 [-0.55, 0.85] 取十年实测 min/max。",
   "operation": "level",
@@ -29,7 +29,17 @@
         "band": [
           -0.55,
           0.85
-        ]
+        ],
+        "source": {
+          "statistic": "manual-policy",
+          "window": "2024-01-02 ~ 2026-11-23",
+          "measured": {
+            "devLo": -0.298,
+            "devHi": 0.05,
+            "checked": 719
+          },
+          "note": "带 [-0.55, 0.85] 覆盖同窗口实测偏差 [-0.298, 0.05]；门禁每轮复算包含关系与松紧上限（12 倍）"
+        }
       }
     }
   ],
@@ -39,6 +49,30 @@
       0.5,
       5
     ],
-    "maxAbsJump": 1
+    "maxAbsJump": 1,
+    "source": {
+      "range": {
+        "statistic": "manual-policy",
+        "window": "2024-01-02 ~ 2026-11-23",
+        "measured": {
+          "min": 1.299,
+          "max": 2.24,
+          "p02": 1.305,
+          "p998": 2.209,
+          "n": 719
+        },
+        "note": "声明带 [0.5, 5] 由实测 [1.299, 2.24] 向外取整而得；外扩是有意冗余，越带即报警（门禁复算包含关系）"
+      },
+      "maxAbsJump": {
+        "statistic": "manual-policy",
+        "window": "2024-01-02 ~ 2026-11-23",
+        "measured": {
+          "maxJump": 0.528,
+          "p998Jump": 0.367,
+          "n": 719
+        },
+        "note": "声明 1 高于实测 99.8 分位 0.367：有意留宽的保守带，低于该分位即判太紧"
+      }
+    }
   }
 }

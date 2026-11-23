@@ -1,0 +1,368 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "specs/indicator.schema.json",
+  "title": "指标配置契约",
+  "description": "每个 indicators/*.json 必须满足的最小契约：身份可追溯（org/端点写在 provider 里）、校验腿必须存在、阈值必须由 provider 之外的同一套不变量声明。契约由 tools/contract.mjs 在门禁 G9 里逐条验证。",
+  "type": "object",
+  "required": [
+    "id",
+    "region",
+    "name",
+    "en",
+    "unit",
+    "precision",
+    "legs",
+    "checkKind",
+    "integrity"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9.-]*$"
+    },
+    "region": {
+      "type": "string",
+      "enum": [
+        "us",
+        "cn"
+      ]
+    },
+    "order": {
+      "type": "number"
+    },
+    "name": {
+      "type": "string"
+    },
+    "en": {
+      "type": "string"
+    },
+    "formula": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    },
+    "unit": {
+      "type": "string"
+    },
+    "precision": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 6
+    },
+    "scale": {
+      "type": "number"
+    },
+    "tolerance": {
+      "type": "number"
+    },
+    "start": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "freq": {
+      "type": "string",
+      "enum": [
+        "day",
+        "week",
+        "month"
+      ]
+    },
+    "publication": {
+      "type": "string",
+      "enum": [
+        "T",
+        "T+1",
+        "W",
+        "M",
+        "M+1",
+        "M+2"
+      ]
+    },
+    "surface": {
+      "type": "string"
+    },
+    "operation": {
+      "type": "string"
+    },
+    "hue": {
+      "type": "string"
+    },
+    "axisGroup": {
+      "type": "string"
+    },
+    "recipe": {
+      "type": "string"
+    },
+    "posColor": {
+      "type": "string"
+    },
+    "negColor": {
+      "type": "string"
+    },
+    "invert": {
+      "type": "boolean"
+    },
+    "defaultOn": {
+      "type": "boolean"
+    },
+    "singleSource": {
+      "type": "boolean"
+    },
+    "sourceNote": {
+      "type": "string"
+    },
+    "validationNote": {
+      "type": "string"
+    },
+    "checkKind": {
+      "type": "string",
+      "pattern": "^(官方双源|同机构|跨机构|跨市场|结构带宽|报价制|期限结构|恒等式|授权|单源)",
+      "description": "必须以此处登记的一类机制开头（措辞由机制决定，不得把带宽型校验说成第二机构）"
+    },
+    "zones": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/zone"
+      }
+    },
+    "legs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/leg"
+      }
+    },
+    "integrity": {
+      "$ref": "#/definitions/integrity"
+    }
+  },
+  "definitions": {
+    "zone": {
+      "type": "object",
+      "required": [
+        "label",
+        "color"
+      ],
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "max": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "includeMax": {
+          "type": "boolean"
+        },
+        "color": {
+          "type": "string",
+          "description": "必须是 tokens.css 里的令牌名，不允许字面色值"
+        }
+      }
+    },
+    "leg": {
+      "type": "object",
+      "required": [
+        "key",
+        "primary"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "primary": {
+          "$ref": "#/definitions/src"
+        },
+        "check": {
+          "$ref": "#/definitions/src"
+        }
+      }
+    },
+    "src": {
+      "type": "object",
+      "required": [
+        "provider"
+      ],
+      "description": "provider 必须是 backend/providers/ 里已注册的文件名（G9 对照注册表验证）",
+      "properties": {
+        "provider": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$"
+        },
+        "series": {
+          "type": [
+            "string",
+            "array"
+          ]
+        },
+        "id": {
+          "type": "string"
+        },
+        "minus": {
+          "type": "string"
+        },
+        "tenor": {
+          "type": "string"
+        },
+        "sheet": {
+          "type": "string"
+        },
+        "column": {
+          "type": "string"
+        },
+        "commodity": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "measure": {
+          "type": "string"
+        },
+        "symbol": {
+          "type": "string"
+        },
+        "assetclass": {
+          "type": "string"
+        },
+        "reporterCode": {
+          "type": "integer"
+        },
+        "cmdCode": {
+          "type": "string"
+        },
+        "maxMonths": {
+          "type": "integer"
+        },
+        "paceMs": {
+          "type": "integer"
+        },
+        "file": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "diff",
+            "abs",
+            "ratio"
+          ]
+        },
+        "band": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "number"
+          }
+        },
+        "scale": {
+          "type": "number"
+        },
+        "offset": {
+          "type": "number"
+        },
+        "checkOn": {
+          "type": "string"
+        },
+        "align": {
+          "type": "string"
+        },
+        "field": {
+          "type": "string"
+        },
+        "source": {
+          "type": "object"
+        }
+      }
+    },
+    "integrity": {
+      "type": "object",
+      "required": [
+        "range",
+        "source"
+      ],
+      "properties": {
+        "range": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "number"
+          }
+        },
+        "maxAbsJump": {
+          "type": "number"
+        },
+        "maxRelJump": {
+          "type": "number"
+        },
+        "maxLagDays": {
+          "type": "number"
+        },
+        "source": {
+          "type": "object",
+          "required": [
+            "range"
+          ],
+          "description": "逐项溯源：声明了哪个阈值，就必须有同名的一条来源（G2 交叉检查 source 覆盖 integrity 的全部数值字段）",
+          "properties": {
+            "range": {
+              "$ref": "#/definitions/provenance"
+            },
+            "maxAbsJump": {
+              "$ref": "#/definitions/provenance"
+            },
+            "maxRelJump": {
+              "$ref": "#/definitions/provenance"
+            },
+            "maxLagDays": {
+              "$ref": "#/definitions/provenance"
+            }
+          }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "statistic",
+        "window"
+      ],
+      "description": "阈值必须写明统计量与实测窗口；manual-policy 还要写 measured（定标当时的实测值），门禁会复算今日实测是否仍落在带内",
+      "properties": {
+        "statistic": {
+          "type": "string",
+          "enum": [
+            "min,max",
+            "p0.2,p99.8",
+            "max",
+            "p99.8",
+            "manual-policy"
+          ]
+        },
+        "window": {
+          "type": "string"
+        },
+        "measured": {
+          "type": "object"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

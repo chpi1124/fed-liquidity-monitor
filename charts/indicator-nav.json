@@ -1,0 +1,8 @@
+{
+  "id": "indicator-nav",
+  "page": "monitor",
+  "order": 0,
+  "title": "指标列表",
+  "pickFrom": "main-trend",
+  "views": [{ "projection": "nav", "container": "indicator-nav", "slot": "side" }]
+}

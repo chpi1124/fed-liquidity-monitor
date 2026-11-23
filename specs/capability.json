@@ -1,0 +1,238 @@
+{
+  "cds-feed": {
+    "org": "Licensed CDS dissemination (operator-supplied snapshot)",
+    "endpoints": [
+      "file://data/cds/"
+    ],
+    "cadence": "weekly",
+    "note": "",
+    "usedBy": [],
+    "indicatorCount": 0
+  },
+  "cfets-lpr": {
+    "org": "中国外汇交易中心（全国银行间同业拆借中心）",
+    "endpoints": [
+      "https://www.chinamoney.com.cn/ags/ms/cm-u-bk-currency/LprHis"
+    ],
+    "cadence": "monthly-20",
+    "note": "",
+    "usedBy": [
+      "1Y",
+      "5Y"
+    ],
+    "indicatorCount": 2
+  },
+  "cfets-repo": {
+    "org": "中国外汇交易中心（全国银行间同业拆借中心）",
+    "endpoints": [
+      "https://www.chinamoney.com.cn/ags/ms/cm-u-bk-currency/FrrHis"
+    ],
+    "cadence": "daily-1700",
+    "note": "",
+    "usedBy": [
+      "FDR007",
+      "FR007",
+      "FDR001"
+    ],
+    "indicatorCount": 3
+  },
+  "cfets-rmb": {
+    "org": "中国外汇交易中心（全国银行间同业拆借中心）",
+    "endpoints": [
+      "https://www.chinamoney.com.cn/r/cms/www/chinamoney/data/fx/ccpr.json"
+    ],
+    "cadence": "daily-0915",
+    "note": "官方只给最新一日的中间价；本站按日累积，不回补历史（不造数）",
+    "usedBy": [],
+    "indicatorCount": 0
+  },
+  "cfets-shibor": {
+    "org": "中国外汇交易中心（全国银行间同业拆借中心）",
+    "endpoints": [
+      "https://www.chinamoney.com.cn/ags/ms/cm-u-bk-shibor/ShiborHis"
+    ],
+    "cadence": "daily-1100",
+    "note": "官方历史端点单次最多约 250 天，按 180 天分窗合并",
+    "usedBy": [
+      "1W",
+      "1Y",
+      "3M",
+      "ON"
+    ],
+    "indicatorCount": 5
+  },
+  "fed-policy": {
+    "org": "Board of Governors of the Federal Reserve System",
+    "endpoints": [
+      "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+      "https://www.federalreserve.gov/monetarypolicy/fomchistorical2020.htm"
+    ],
+    "cadence": "per-meeting",
+    "note": "事件由声明/公告原文解析得到；缺区间或缺动作即不产出（不猜、不补）",
+    "usedBy": [],
+    "indicatorCount": 0
+  },
+  "frb-h41-factors": {
+    "org": "Board of Governors of the Federal Reserve System",
+    "endpoints": [
+      "https://www.federalreserve.gov/releases/h41/current/h41.htm"
+    ],
+    "cadence": "weekly-thu",
+    "note": "同一份 H.4.1 的「日平均因子表」：准备金余额与各分项的日均值口径",
+    "usedBy": [],
+    "indicatorCount": 0
+  },
+  "frb-h41": {
+    "org": "Board of Governors of the Federal Reserve System",
+    "endpoints": [
+      "https://www.federalreserve.gov/releases/h41/current/h41.htm"
+    ],
+    "cadence": "weekly-thu",
+    "note": "H.4.1 只有 HTML（无 CSV/JSON 端点），周四发布覆盖截至周三的数据",
+    "usedBy": [],
+    "indicatorCount": 0
+  },
+  "fred": {
+    "org": "Federal Reserve Bank of St. Louis (FRED)",
+    "endpoints": [
+      "https://fred.stlouisfed.org/graph/fredgraph.csv"
+    ],
+    "cadence": "daily-varies",
+    "note": "多序列时逐条取回后按日期相加（官方分量合成口径，指标配置里声明 series 数组）",
+    "usedBy": [
+      "DFF",
+      "IORB",
+      "DFEDTARU",
+      "RRPONTSYAWARD",
+      "SOFR",
+      [
+        "RPONTSYD",
+        "RPONAGYD",
+        "RPONMBSD"
+      ],
+      "DFII10"
+    ],
+    "indicatorCount": 8
+  },
+  "hkex-factsheet": {
+    "org": "HKEX (Hong Kong Exchanges and Clearing Limited)",
+    "endpoints": [
+      "https://www.hkex.com.hk/Services/Market-Data-Services/Index-Services/HKEX-Artificial-Intelligence-Index?sc_lang=en"
+    ],
+    "cadence": "monthly",
+    "note": "",
+    "usedBy": [],
+    "indicatorCount": 0
+  },
+  "nasdaq": {
+    "org": "Nasdaq, Inc. (exchange-published market data)",
+    "endpoints": [
+      "https://api.nasdaq.com/api/quote"
+    ],
+    "cadence": "daily-close",
+    "note": "",
+    "usedBy": [
+      "nasdaq"
+    ],
+    "indicatorCount": 1
+  },
+  "nyfed-repo": {
+    "org": "Federal Reserve Bank of New York",
+    "endpoints": [
+      "https://markets.newyorkfed.org/api/rp/results/search.json"
+    ],
+    "cadence": "daily",
+    "note": "同一天多笔操作累加；隔夜笔另记结算日口径，供期限结构校验",
+    "usedBy": [
+      "srf"
+    ],
+    "indicatorCount": 1
+  },
+  "nyfed-rp-rate": {
+    "org": "Federal Reserve Bank of New York",
+    "endpoints": [
+      "https://markets.newyorkfed.org/api/rp/results/search.json"
+    ],
+    "cadence": "daily",
+    "note": "例：2023-07-11 的 stop-out 为 5.30，高于当期管理利率，故 srf 优先取 percentOfferingRate",
+    "usedBy": [
+      "onrrp",
+      "srf"
+    ],
+    "indicatorCount": 2
+  },
+  "nyfed": {
+    "org": "Federal Reserve Bank of New York",
+    "endpoints": [
+      "https://markets.newyorkfed.org/api/rates"
+    ],
+    "cadence": "daily-t1",
+    "note": "取哪一列由指标配置决定（rate / volume / p99），不在代码里分序列写分支",
+    "usedBy": [
+      "effr",
+      "sofr"
+    ],
+    "indicatorCount": 3
+  },
+  "pbc-statement": {
+    "org": "中国人民银行",
+    "endpoints": [
+      "https://www.pbc.gov.cn/diaochatongjisi/116219/index.html",
+      "https://www.pbc.gov.cn/diaochatongjisi/116219/116319/"
+    ],
+    "cadence": "monthly-mid",
+    "note": "",
+    "usedBy": [
+      "pbc-statement"
+    ],
+    "indicatorCount": 4
+  },
+  "treasury-real": {
+    "org": "U.S. Department of the Treasury",
+    "endpoints": [
+      "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv"
+    ],
+    "cadence": "daily-1730",
+    "note": "缺年份文件直接跳过（官方尚未发布即不回补），全部窗口无行才报错",
+    "usedBy": [
+      "10 YR"
+    ],
+    "indicatorCount": 1
+  },
+  "uk-trade": {
+    "org": "HMRC (His Majesty Revenue and Customs)",
+    "endpoints": [
+      "https://api.uktradeinfo.com/OTS"
+    ],
+    "cadence": "monthly",
+    "note": "",
+    "usedBy": [
+      "uk-trade"
+    ],
+    "indicatorCount": 1
+  },
+  "uncomtrade": {
+    "org": "UN Statistics Division (Comtrade)",
+    "endpoints": [
+      "https://comtradeapi.un.org/public/v1/preview/C/M/HS"
+    ],
+    "cadence": "monthly",
+    "note": "",
+    "usedBy": [
+      "uncomtrade"
+    ],
+    "indicatorCount": 1
+  },
+  "worldbank": {
+    "org": "World Bank Commodity Markets",
+    "endpoints": [
+      "https://www.worldbank.org/en/research/commodity-markets"
+    ],
+    "cadence": "monthly",
+    "note": "",
+    "usedBy": [
+      "worldbank"
+    ],
+    "indicatorCount": 1
+  }
+}

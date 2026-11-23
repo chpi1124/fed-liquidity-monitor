@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { SUMMARIES_DIR } from "./paths.js";
 import { getSeries } from "./cache.js";
+import { historyStartOf, providerOf } from "./asset.js";
 import { loadIndicators, zoneOf } from "./indicators.js";
 import { thresholdsFor } from "./integrity.js";
 import * as store from "./store.js";
@@ -40,11 +41,12 @@ function aggregate(entries, agg) {
 
 export async function updateSummary(cfg, { force = false } = {}) {
   const today = new Date().toISOString().slice(0, 10);
-  const anchor = cfg.anchor || "h41";
+  // 锚定源由资产自己声明（providers.board）：不声明就是按日锚定。
+  // 代码里不再默认某家报表 —— 那会让「换一个市场做汇总表」变成改主程序。
   let board = null;
   let asOf;
-  if (anchor === "h41") {
-    board = await getSeries({ provider: "frb-h41" }, "2002-12-18", today, force);
+  if (cfg.providers && cfg.providers.board) {
+    board = await getSeries({ provider: providerOf(cfg, "board") }, historyStartOf(cfg, "锚定报表"), today, force);
     asOf = board.date;
   } else {
     asOf = today;
@@ -67,14 +69,14 @@ export async function updateSummary(cfg, { force = false } = {}) {
 
   const factorsCache = { m: null };
   const getFactors = async () => {
-    if (!factorsCache.m) factorsCache.m = await getSeries({ provider: "frb-h41-factors" }, fetchStart, fetchEnd, force);
+    if (!factorsCache.m) factorsCache.m = await getSeries({ provider: providerOf(cfg, "factors") }, fetchStart, fetchEnd, force);
     return factorsCache.m;
   };
-  const fredCache = new Map();
-  const getFred = async (series) => {
+  const seriesCache = new Map();
+  const getSeriesBy = async (series) => {
     const key = JSON.stringify(series);
-    if (!fredCache.has(key)) fredCache.set(key, await getSeries({ provider: "fred", series }, fetchStart, fetchEnd, force));
-    return fredCache.get(key);
+    if (!seriesCache.has(key)) seriesCache.set(key, await getSeries({ provider: providerOf(cfg, "series"), series }, fetchStart, fetchEnd, force));
+    return seriesCache.get(key);
   };
 
   const rows = [];
@@ -130,7 +132,7 @@ export async function updateSummary(cfg, { force = false } = {}) {
         rows.push(base);
         continue;
       }
-      const checkSrc = row.check ? (typeof row.check === "string" ? { provider: "fred", series: row.check } : row.check) : null;
+      const checkSrc = row.check ? (typeof row.check === "string" ? { provider: providerOf(cfg, "series"), series: row.check } : row.check) : null;
       let check = null;
       if (checkSrc) {
         try { check = await getSeries(checkSrc, fetchStart, fetchEnd, force); }
@@ -172,7 +174,7 @@ export async function updateSummary(cfg, { force = false } = {}) {
     if (row.kind === "board") {
       const r = board.rows.get(row.board);
       if (!r) throw new Error(`summary board row ${row.id}: H.4.1 row not found ${row.board}`);
-      const cm = await getFred(row.check);
+      const cm = await getSeriesBy(row.check);
       const thisRaw = r.v, lastRaw = r.wc == null ? null : r.v - r.wc;
       const ok = worstOk([tally(thisRaw, cm.get(asOf), tol), tally(lastRaw, cm.get(board.prevDate), tol)]);
       finish(thisRaw, lastRaw, ok);
@@ -182,8 +184,8 @@ export async function updateSummary(cfg, { force = false } = {}) {
     if (row.kind === "factors") {
       const factors = await getFactors();
       const r = factors.rows.get(row.factors);
-      if (!r) throw new Error(`summary factors row ${row.id}: H.4.1 factors row not found ${row.factors}`);
-      const cm = await getFred(row.check);
+      if (!r) throw new Error(`summary factors row ${row.id}: 在 ${providerOf(cfg, "factors")} 的因素表里找不到行 ${row.factors}`);
+      const cm = await getSeriesBy(row.check);
       const thisRaw = r.avg, lastRaw = r.wc == null ? null : r.avg - r.wc;
       const ok = worstOk([tally(thisRaw, cm.get(factors.date), tol), tally(lastRaw, cm.get(factors.prevDate), tol)]);
       finish(thisRaw, lastRaw, ok);

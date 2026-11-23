@@ -1,0 +1,65 @@
+{
+  "id": "cn-balance",
+  "page": "cn-balance",
+  "region": "cn",
+  "order": 2,
+  "title": "中国人民银行 · 货币当局资产负债表",
+  "empty": "等待数据…",
+  "navLabel": "央行资产负债表",
+  "navSub": "货币当局 · 月度期末",
+  "pick": {
+    "surface": "cn-balance"
+  },
+  "views": [
+    {
+      "projection": "header",
+      "container": "cb-header"
+    },
+    {
+      "projection": "toolbar",
+      "container": "cb-toolbar",
+      "granularity": true,
+      "toggles": true
+    },
+    {
+      "projection": "panel",
+      "container": "cb-chart",
+      "size": "lg"
+    },
+    {
+      "projection": "desc",
+      "container": "cb-desc"
+    }
+  ],
+  "axes": {
+    "amount": {
+      "unit": "亿元",
+      "side": "left",
+      "label": "亿元人民币（官方原表口径）",
+      "precision": 0,
+      "zeroBased": true,
+      "resolve": "shared"
+    }
+  },
+  "axisBy": [
+    {
+      "when": {
+        "unit": "亿元"
+      },
+      "axis": "amount"
+    }
+  ],
+  "layers": [
+    {
+      "series": "picked",
+      "recipe": "line"
+    }
+  ],
+  "legend": "auto",
+  "presets": "long",
+  "annotations": [],
+  "limits": {
+    "sharedMax": 4,
+    "totalMax": 4
+  }
+}

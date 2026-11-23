@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>架构规范与门禁 · 执行计划 — 鸿学院金融指标监控</title>
+<style>
+  :root{
+    --paper:#fbfbfd; --card:#ffffff; --ink:#1d1d1f; --ink2:#4b4b50; --muted:#75757a;
+    --hair:rgba(0,0,0,.08); --hair2:rgba(0,0,0,.14);
+    --accent:#0a66d6; --ok:#1a7f4b; --warn:#9a6b00; --bad:#b3261e;
+    --t-xl:clamp(28px,4.2vw,40px); --t-lg:21px; --t-md:17px; --t-sm:15px; --t-xs:13px; --t-2xs:11px;
+    --sp1:4px; --sp2:8px; --sp3:12px; --sp4:16px; --sp6:24px; --sp8:32px; --sp12:48px; --sp16:64px; --sp24:96px;
+    --r:14px; --r-sm:10px; --r-lg:20px;
+    --ease:cubic-bezier(.32,.72,0,1);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#0e0e10; --card:#161618; --ink:#f5f5f7; --ink2:#c7c7cc; --muted:#98989f;
+      --hair:rgba(255,255,255,.10); --hair2:rgba(255,255,255,.18); --accent:#6ab3ff; --ok:#57d38f; --warn:#e3b341; --bad:#ff8175; }
+  }
+  *{box-sizing:border-box;margin:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--paper); color:var(--ink);
+    font:var(--t-md)/1.6 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI","HarmonyOS Sans SC","MiSans","PingFang SC","Microsoft YaHei",sans-serif;
+    font-feature-settings:"cv11","ss01"; letter-spacing:-.005em;
+  }
+  .wrap{max-width:820px;margin:0 auto;padding:var(--sp24) var(--sp6) var(--sp24)}
+  header.hero{padding-bottom:var(--sp12);border-bottom:1px solid var(--hair)}
+  .eyebrow{font-size:var(--t-xs);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:var(--sp3)}
+  h1{font-size:var(--t-xl);line-height:1.12;letter-spacing:-.022em;font-weight:600}
+  .lede{margin-top:var(--sp4);font-size:var(--t-lg);line-height:1.5;color:var(--ink2);font-weight:400;letter-spacing:-.01em}
+  .meta{margin-top:var(--sp6);display:flex;flex-wrap:wrap;gap:var(--sp2) var(--sp4);font-size:var(--t-xs);color:var(--muted);font-variant-numeric:tabular-nums}
+  h2{font-size:var(--t-lg);letter-spacing:-.015em;font-weight:600;margin:var(--sp16) 0 var(--sp3);padding-top:var(--sp6);border-top:1px solid var(--hair)}
+  h2 .num{color:var(--muted);font-weight:500;margin-right:var(--sp2);font-variant-numeric:tabular-nums}
+  h3{font-size:var(--t-md);font-weight:600;letter-spacing:-.01em;margin:var(--sp8) 0 var(--sp2)}
+  p{margin-bottom:var(--sp3);max-width:68ch}
+  p.dim{color:var(--muted);font-size:var(--t-sm)}
+  ul,ol{margin:0 0 var(--sp4) 1.1em}
+  li{margin-bottom:var(--sp2);max-width:68ch}
+  strong{font-weight:600}
+  code,kbd{font-family:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;font-size:.88em;font-variant-numeric:tabular-nums}
+  code{background:var(--card);border:1px solid var(--hair);border-radius:6px;padding:.1em .38em}
+  pre{background:var(--card);border:1px solid var(--hair);border-radius:var(--r);padding:var(--sp4);overflow:auto;font-size:var(--t-xs);line-height:1.7;margin-bottom:var(--sp4)}
+  pre code{background:none;border:0;padding:0}
+  table{width:100%;border-collapse:collapse;margin:var(--sp4) 0 var(--sp6);font-size:var(--t-sm)}
+  caption{caption-side:top;text-align:left;font-size:var(--t-xs);color:var(--muted);padding-bottom:var(--sp2)}
+  th,td{text-align:left;padding:var(--sp3) var(--sp3);border-bottom:1px solid var(--hair);vertical-align:top}
+  th{font-size:var(--t-xs);font-weight:600;color:var(--muted);letter-spacing:.02em}
+  td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .card{background:var(--card);border:1px solid var(--hair);border-radius:var(--r-lg);padding:var(--sp6);margin:var(--sp4) 0 var(--sp6)}
+  .grid{display:grid;gap:var(--sp3);grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:var(--sp4) 0 var(--sp6)}
+  .k{font-size:var(--t-2xs);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .v{font-size:var(--t-lg);font-weight:600;letter-spacing:-.015em;font-variant-numeric:tabular-nums;margin-top:var(--sp1)}
+  .tag{display:inline-block;font-size:var(--t-2xs);letter-spacing:.04em;padding:.24em .6em;border-radius:999px;border:1px solid var(--hair2);color:var(--ink2);white-space:nowrap}
+  .tag.ok{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 40%,transparent)}
+  .tag.todo{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 40%,transparent)}
+  .tag.no{color:var(--bad);border-color:color-mix(in srgb,var(--bad) 40%,transparent)}
+  .rule{border-left:2px solid var(--accent);padding-left:var(--sp4);margin:var(--sp4) 0}
+  .rule .id{font-size:var(--t-2xs);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  .warn{border-left-color:var(--bad)} .warn .id{color:var(--bad)}
+  footer{margin-top:var(--sp24);padding-top:var(--sp6);border-top:1px solid var(--hair);font-size:var(--t-xs);color:var(--muted)}
+  a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .18s var(--ease)}
+  a:hover{border-bottom-color:currentColor}
+  ol.src{font-size:var(--t-xs);color:var(--muted);margin-left:1.2em}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+  @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+  @media (max-width:520px){ .wrap{padding:var(--sp12) var(--sp4)} body{font-size:var(--t-sm)} h2{margin-top:var(--sp12)} }
+  @media print{ body{background:#fff} .card,pre{border-color:#ddd} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">Engineering Standards · Rev 1 · 2026-11-22</div>
+  <h1>前后端架构规范与门禁 · 执行计划</h1>
+  <p class="lede">以行业标杆为参照，把本站已生效的宪法条款（官方双源交叉验证、组件族与 SSOT、模块完全解耦、不造数、不绕过 WAF）落成<strong>可判定的规范</strong>与<strong>可执行的门禁</strong>，前端视觉向「极简、克制、高端」收敛。</p>
+  <div class="meta"><span>适用：backend / frontend / indicators / sheets / summaries</span><span>依赖：零（Node 24 + 原生 ES 模块）</span><span>北极星：一个数字，只能有一个来源结论</span></div>
+</header>
+
+<div class="grid">
+  <div><div class="k">指标总数</div><div class="v">19</div></div>
+  <div><div class="k">已有校验腿</div><div class="v">19 / 19</div></div>
+  <div><div class="k">逐点比对样本</div><div class="v">23 988</div></div>
+  <div><div class="k">门禁自动化</div><div class="v">0 / 8</div></div>
+</div>
+<p class="dim">前三项为本次核查实测（<code>GET /api/status</code> 与 <code>data/*.json</code>：19 个指标存储文件的 Σchecked=23 988、Σmatched=23 988、ΣuncheckedDates=136）；最后一项即本计划要补的缺口：规范已存在，但只有 <code>negctl.mjs</code> 一份手工对照，<strong>没有任何一条门禁能在改动后自动阻断回归</strong>。</p>
+
+<h2><span class="num">1</span>行业标杆调研</h2>
+
+<p>调研目标不是找「好看的仪表盘」，而是找<strong>能在权威数据场景长期存活的做法</strong>：谁在解决与我们相同的三个矛盾——精度 vs 噪声、密度 vs 可读、透明 vs 简洁。</p>
+
+<table>
+  <caption>表 1 · 标杆案例与取舍（采纳 / 拒绝 / 已具备）</caption>
+  <thead><tr><th style="width:22%">标杆</th><th style="width:31%">它证明了什么</th><th style="width:33%">本站的取舍</th><th>状态</th></tr></thead>
+  <tbody>
+    <tr><td>Apple HIG · 设计原则（2026-06 重新发布）</td><td>八条原则：Purpose / Agency / Responsibility / Familiarity / Flexibility / Simplicity / Craft / Delight；并明确「Simplicity ≠ minimalism」——每个元素都要挣得它的位置。</td><td>采纳为视觉与交互北极星：Responsibility 对应「数据溯源与滞后透明」，Simplicity 对应「去装饰、一屏一主角」，Craft 对应「令牌与数值排版必须精确」。</td><td><span class="tag todo">待落地</span></td></tr>
+    <tr><td>Bloomberg 终端</td><td>密度是<strong>局部的</strong>而非全局的：同一屏内不同区域密度差异极大；数字用等宽表格字形、单位与数值分离；键盘优先。</td><td>采纳：数值一律 <code>tabular-nums</code>、右对齐、单位后置；卡片级密度分层。<br>拒绝：全站密集表格——本站读者是学习者，不是交易员。</td><td><span class="tag ok">部分已具备</span></td></tr>
+    <tr><td>TradingView</td><td>图表即主角，控件退让为次要层；主题化不牺牲刻度可读性。</td><td>采纳：<strong>一屏一主角</strong>（指标页=图+一行结论），控件降到低对比层。<br>拒绝：可拖拽自由布局（与「完全解耦 + SSOT」相冲）。</td><td><span class="tag todo">待落地</span></td></tr>
+    <tr><td>FRED · 纽约联储 Markets · 央行官网统计</td><td>权威感的来源不是配色，而是<strong>元数据</strong>：单位、频率、发布日期、来源机构、修订说明一目了然。</td><td>已具备且强化：徽标 + tooltip 承载来源、校验方式、发布滞后；本次要求把它变成<strong>契约字段</strong>而非散落文案。</td><td><span class="tag ok">已具备</span></td></tr>
+    <tr><td>W3C DTCG《Design Tokens Format》2025.10</td><td>令牌作为可交换的单一来源格式：原子令牌 + 引用语法，禁止下游手写值。</td><td>采纳其精神：CSS 自定义属性为唯一视觉来源，<strong>禁止任何硬编码色值/尺寸</strong>（门禁 G3 判定）。</td><td><span class="tag todo">待落地</span></td></tr>
+    <tr><td>WCAG 2.2 AA</td><td>可量化：正文对比度 ≥ 4.5:1、大字与非文本 ≥ 3:1、文本放大 200% 不丢内容、320px 宽度单列重排、不得只用颜色传达信息。</td><td>采纳为<strong>硬性门禁</strong>（G4）。特别针对本站：存疑/改值标记当前用颜色区分，必须补第二提示（形状/文字）。</td><td><span class="tag no">未达标</span></td></tr>
+    <tr><td>Google <code>DESIGN.md</code>（面向编码代理的视觉标识规范）</td><td>把「规范」做成可 lint、可 diff、可导出的文件，值与理由同处一地。</td><td>采纳：本文件即规范源；门禁脚本读取同一份判据，避免规范与校验漂移。</td><td><span class="tag todo">待落地</span></td></tr>
+    <tr><td>数据质量工程（声明式期望 + 失败即阻断的范式）</td><td>数据可信度必须来自<strong>断言</strong>，而不是来自「看起来对」。</td><td>已具备且是本项目的核心竞争力：<code>integrity.js</code> 七类不变量 + 负向对照；本次补齐「期望即配置、门禁必跑」。</td><td><span class="tag ok">已具备</span></td></tr>
+  </tbody>
+</table>
+
+<div class="card">
+  <h3 style="margin-top:0">调研得出的三条结论</h3>
+  <ol>
+    <li><strong>权威感来自可核查的元数据，不来自视觉装饰。</strong>所以我们的「高端」路线不是加渐变和发光，而是把来源、带宽、样本量、滞后、修订痕迹做到<strong>每个数字都能被追问</strong>，并把这些字段变成契约。当前 CSS 里的 <code>--glow-accent</code> 与 <code>body::before</code> 的四层渐变网格，属于要移除的一类。</li>
+    <li><strong>精度场景下，密度要分层而不是一刀切。</strong>首屏只给「一个结论 + 一个主图」，密度通过粒度切换（日/周/月）与按需展开获得，而不是同屏堆 18 项。</li>
+    <li><strong>规范若不能自动判定，就等于没有规范。</strong>本次宪法条款几乎全部靠人肉遵守；改一次代码就回归一次（历史上 <code>lang=zh_CN</code> 静默截断、HS 漏码 71082000 两次事故，都是「有约定、无门禁」的直接后果）。因此门禁优先级 <em>高于</em> 视觉重构。</li>
+  </ol>
+</div>
+
+<h2><span class="num">2</span>后端架构规范</h2>
+
+<h3>2.1 分层与依赖方向（单向，禁止反向）</h3>
+<pre><code>官方源 HTTP
+   ↓ fetchers.js        纯取数 + 纯解析（重试/超时/反爬退避；不含业务判断）
+   ↓ cache.js           唯一缓存层（key = JSON.stringify([src,start,end])）
+   ↓ indicators.js / sheets.js / summaries.js   计算 + 交叉验证 + 纠错
+   ↓ integrity.js       通用不变量（被上面三者共同引用，不反向依赖它们）
+   ↓ store.js           原子落盘（data/&lt;id&gt;.json）
+   ↓ server.js          路由 + 聚合 API（不含数据加工逻辑）
+   ↓ core/api.js → core/store.js → ui/* · chart.js   （前端侧唯一通路）</code></pre>
+
+<div class="rule"><span class="id">B-1 插件化</span>
+<p>新增指标<strong>只允许</strong>新增 <code>indicators/*.json</code>；若需要新数据源，只允许在 <code>fetchers.js</code> 增加一个 <code>provider</code> 分支并复用既有 <code>request()</code>。禁止在 <code>server.js</code> 或前端出现任何取数逻辑、禁止硬编码序列 ID 列表（自动发现：按 <code>order</code> 排序读取目录）。</p></div>
+
+<div class="rule"><span class="id">B-2 校验腿四型，必须择一且声明机制</span>
+<p>每个指标必须声明 <code>checkKind</code>（人类可读机制名）与其 <code>legs[].check</code>，且只能落入四类之一：<br>
+① <strong>官方双源逐点</strong>（不同机构，同量纲，<code>mode:"abs"</code>）— 如 NY Fed ↔ FRED、HMRC ↔ UN Comtrade；<br>
+② <strong>同机构不同口径逐点</strong>（同一交易/标的的两种独立聚合）— 如 FDR007 ↔ FR007、Shibor 报价 ↔ 回购成交；<br>
+③ <strong>恒等式</strong>（派生值必须等于已入库分量之差，<code>provider:"series" + minus</code>）；<br>
+④ <strong>关系带宽</strong>（比值/差值带，<code>mode:"ratio"/"diff" + band</code>，可 <code>align:"month-mean"</code> 双向对齐）。<br>
+<strong>禁止</strong>把 ②③④ 在 UI 或文档中表述为「第二机构交叉验证」。</p></div>
+
+<div class="rule"><span class="id">B-3 阈值溯源（硬约束）</span>
+<p>任何 <code>band</code>、<code>range</code>、<code>maxAbsJump</code>、<code>maxRelJump</code>、<code>maxLagDays</code> 都必须带 <code>source</code> 字段：<code>{sample, window, statistic}</code>，例如「2364 个重叠日 · 2016-11→2026-11 · min/max」。<strong>无溯源的阈值一律判失败</strong>。这条直接针对历史事故：拍脑袋的带宽要么误报、要么形同虚设。</p></div>
+
+<div class="rule warn"><span class="id">B-4 三条红线（不可豁免）</span>
+<p><strong>不造数</strong>：缺口只允许留空并说明（源端未发布 / 授权快照缺失）。<br>
+<strong>不静默替换</strong>：改值必须写 <code>corrected:{from,to,by}</code>，且仅在「主源通不过不变量而校验源通得过」时发生。<br>
+<strong>不绕过防护</strong>：遇到 WAF/反爬（LBMA、港交所类端点）一律放弃并透明标注，禁止伪造 UA 轮换、验证码绕过或代理绕路。</p></div>
+
+<div class="rule"><span class="id">B-5 降级语义</span>
+<p>校验腿失败（限流、参照未入库、无重叠日期）<strong>绝不阻塞主源入库</strong>，但必须记入 <code>validation.checkErrors</code> 并在 UI 报「本期未获并行确认」；自检 <code>fail</code> 触发一次绕缓存重取；冷启动依赖未就绪触发一次补跑。源端能力限制（如 LPR 接口恒回 12 期、Excel 数值列为空）写进 <code>description</code> 与 <code>integrity.source</code>，不外推。</p></div>
+
+<div class="rule"><span class="id">B-6 契约稳定</span>
+<p><code>/api/indicators/:id</code> 响应必须含 <code>schemaVersion</code>、<code>id</code>、<code>updatedAt</code>、<code>validation{checked,matched,mismatched,corrected,kind}</code>、<code>integrity{verdict,counts,notes,flagged}</code>、<code>points[]</code>（字段集合固定：<code>date,v|ohlc,ok,suspect,corrected</code>）。字段只增不减；删除字段视为破坏性变更，必须先补前端消费者再删。</p></div>
+
+<h2><span class="num">3</span>前端架构规范</h2>
+
+<h3>3.1 结构与 SSOT</h3>
+<ul>
+  <li><code>core/api.js</code> = 唯一网络出口；<code>core/store.js</code> = 唯一状态与键控差分；<code>core/derive.js</code> = 纯函数派生（无 DOM、无副作用）；<code>chart.js</code> = 唯一 ECharts 触点；<code>app.js</code> = 唯一组合根。</li>
+  <li>一切可复用 UI 必须在 <code>ui/</code> 组件族内并提供导出；页面代码<strong>不得</strong>直接写 <code>innerHTML</code>、不得内联 <code>style.*</code>、不得新增只有单个页面使用的一次性样式类（先去组件族找同类，没有再入族）。</li>
+  <li>数字/单位/日期的格式化<strong>只允许</strong>经 <code>derive.js</code> 的 <code>fmtVal / fmtPoint / seriesLabel</code>；出现第二处格式化实现即为缺陷。</li>
+</ul>
+
+<h3>3.2 视觉规范：极简 · 克制 · 高端</h3>
+<p class="dim">原则：颜色只承担语义，层级由表面色阶 + 留白 + 字重承担；装饰性渐变、发光、彩色描边一律删除。</p>
+
+<table>
+  <caption>表 2 · 量化令牌（由现行 tokens.css 收敛而来，左为现状，右为目标）</caption>
+  <thead><tr><th>维度</th><th>现状</th><th>目标规范</th></tr></thead>
+  <tbody>
+    <tr><td>字族</td><td>Segoe UI + Bahnschrift 展示体（<code>--font-disp</code>）</td><td>正文系统栈（SF Pro Text / Segoe UI Variable / HarmonyOS Sans·MiSans / PingFang SC）；<strong>取消展示字体</strong>，标题靠字重与字距；数值一律 <code>--font-mono</code> + <code>tabular-nums</code></td></tr>
+    <tr><td>字号阶梯</td><td>散落 10–24px 多种值</td><td>仅 6 档：11 / 13 / 15 / 17 / 21 / 28；行高分别 1.4 / 1.5 / 1.55 / 1.5 / 1.35 / 1.2；字距 <code>-.022em</code>（≥21px）· <code>0</code>（≤15px）</td></tr>
+    <tr><td>间距</td><td>随意值 6/10/14px 混用</td><td>4pt 基准栅格：4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 96；卡片内边距 24；区块间距 48；正文最大宽度 68ch</td></tr>
+    <tr><td>层级</td><td><code>--shadow 0 12px 32px</code> + <code>--glow-accent</code> + <code>body::before</code> 四层渐变/网格</td><td>删全部发光与背景渐变；层级 = 三级表面（<code>paper</code> / <code>card</code> / <code>raised</code>）+ 1px hairline（<code>rgba(·,.08/.14)</code>）+ 必要时 <code>0 1px 2px rgba(0,0,0,.04)</code></td></tr>
+    <tr><td>圆角</td><td>8 / 12 / 16</td><td>10 / 14 / 20（连续曲率的 CSS 近似，同层组件必须同值）</td></tr>
+    <tr><td>色彩</td><td>7 个高饱和语义色 + magenta/ecg/murmur 等杂色</td><td>中性色阶为主 + <strong>语义 4 色</strong>（ok/warn/bad/info）各一档并降饱和；强调色仅 1 个（用于当前选中/主 CTA）；序列色降饱和 15–20%，同一图不超过 5 色</td></tr>
+    <tr><td>动效</td><td><code>--dur .45s</code></td><td>180ms（状态）/ 260ms（进出）/ 320ms（页面级）；缓动统一 <code>cubic-bezier(.32,.72,0,1)</code>；<code>prefers-reduced-motion</code> 时全部为 0；禁止循环装饰动画（含 <code>Ecg</code> 的心电底纹应静止或移除）</td></tr>
+    <tr><td>图表</td><td>多网格线、彩色坐标轴名、面积渐变填充</td><td>去网格（仅保留 1 条基线）；轴名用中性色不用序列色；面积填充改用 6–8% 单色；数据墨水比优先</td></tr>
+    <tr><td>文案</td><td>描述长句 + tooltip 混用</td><td>短句（≤16 字）作标签，解释进 tooltip；结论行一句话给出「现在是什么 + 可信度」；数字与单位分离显示</td></tr>
+  </tbody>
+</table>
+
+<div class="rule"><span class="id">F-1 一屏一主角</span>
+<p>指标页：主图 + 一行结论 + 徽标条；汇总页：表格 + 校验徽标；资产表页：结构条 + 明细。任何新增元素必须先回答「它挤掉了什么」。</p></div>
+<div class="rule"><span class="id">F-2 不只是用颜色传达</span>
+<p>存疑点 = 红色描边 <em>且</em> 空心菱形 <em>且</em> tooltip 文字；改值点 = 金色描边 <em>且</em> tooltip 显示「改前→改后·依据」。满足 WCAG 1.4.1 / 1.4.11。</p></div>
+<div class="rule"><span class="id">F-3 可达性</span>
+<p>全部交互可键盘到达，焦点环可见（2px，offset 3px）；正文对比度 ≥ 4.5:1、大字与控件/图形 ≥ 3:1；文本 200% 缩放不丢内容；320px 宽度单列重排无横向滚动。</p></div>
+
+<h2><span class="num">4</span>门禁（Gate）</h2>
+<p class="dim">落地形态：零依赖 <code>tools/gate.mjs</code>，一条命令跑全部；任一失败以非零码退出且<strong>不得加豁免</strong>。<code>package.json</code> 增加 <code>"gate": "node tools/gate.mjs"</code> 与 <code>"gate:strict"</code>。</p>
+
+<table>
+  <caption>表 3 · 门禁矩阵</caption>
+  <thead><tr><th style="width:11%">编号</th><th style="width:30%">判据（必须成立）</th><th style="width:34%">执行方式</th><th>当前</th></tr></thead>
+  <tbody>
+    <tr><td><strong>G0 静态</strong></td><td>后端全部文件可解析；前端全部文件按 ESM 解析；<code>dependencies</code> 必须为空；无 <code>.tmp</code>/调试脚本残留</td><td><code>node --check</code> 遍历 backend；对 frontend 复制为 <code>.mjs</code> 后 <code>node --check</code>；读 package.json 断言零依赖</td><td><span class="tag todo">未自动化</span></td></tr>
+    <tr><td><strong>G1 校验覆盖</strong></td><td>19/19 指标均有 <code>legs[].check</code> 与 <code>checkKind</code>；<code>data/*.json</code> 中 <code>validation.checked &gt; 0</code>；汇总行 <code>validation</code> 继承自指标且不为 0/0（除非该行为透明单源并声明 <code>singleSource:true</code>）</td><td>遍历配置与存储文件断言；输出覆盖率表</td><td><span class="tag todo">未自动化</span></td></tr>
+    <tr><td><strong>G2 阈值溯源</strong></td><td>每个 <code>band/range/maxAbsJump/maxRelJump/maxLagDays</code> 必须带 <code>integrity.source={sample,window,statistic}</code>；<code>statistic ∈ {min,max,p0.2,p99.8,manual-policy}</code>；<code>window</code> 必须是可解析日期区间</td><td>JSON schema 式检查 + 交叉核对：用 <code>data/*.json</code> 现场重算 min/max，与声明值偏差 &gt; 5% 判失败</td><td><span class="tag no">缺失</span></td></tr>
+    <tr><td><strong>G3 红线</strong></td><td>无 <code>filled</code>/<code>interpolated</code> 类字段（不造数）；所有 <code>corrected</code> 点必须齐 <code>{from,to,by}</code>（不留痕的改值判失败）；<code>fetchers.js</code> 中不得出现 UA 轮换/绕验证码逻辑；WAF 端点必须列在 <code>rejectedSources</code> 且无对应 provider 分支</td><td>静态 grep + 存储遍历断言</td><td><span class="tag no">缺失</span></td></tr>
+    <tr><td><strong>G4 纠错有效性<br>（负向对照）</strong></td><td><code>negctl.mjs</code> 三例全部通过：污染利率 ⇒ 改值且留痕；污染价格 ⇒ 存疑但<strong>不</strong>改值；干净数据 ⇒ 零存疑零改值。注入命中数必须 &gt; 0（否则视为在测注入本身）</td><td>子进程运行并断言退出码与摘要字段</td><td><span class="tag ok">已入门禁 G4<br><code>--net</code> 下实跑</span></td></tr>
+    <tr><td><strong>G5 前端结构</strong></td><td>唯一性：<code>fetch(</code> 只出现在 <code>core/api.js</code>；<code>echarts</code> 只出现在 <code>chart.js</code>；格式化函数只在 <code>derive.js</code>；组件引用只经 <code>ui/index.js</code>。CSS 不得出现令牌外的硬编码（<code>#hex</code> / <code>rgba(</code> / 非栅格 <code>px</code>），白名单仅限 hairline 与阴影两处</td><td>AST 级正则统计 + CSS 扫描，报告硬编码计数（目标 0）</td><td><span class="tag no">缺失</span></td></tr>
+    <tr><td><strong>G6 美学与可达</strong></td><td>令牌对比度：正文对 3 级表面 ≥ 4.5:1；语义色/控件 ≥ 3:1；<code>--dur</code> 三档且无 &gt; 400ms；无 <code>glow</code> 令牌；<code>tabular-nums</code> 覆盖所有数值类；320px 与 200% 缩放无横向溢出</td><td>脚本计算 WCAG 相对亮度对比度；浏览器实测 <code>scrollWidth</code> 与字体令牌</td><td><span class="tag no">缺失</span></td></tr>
+    <tr><td><strong>G7 端到端实测</strong></td><td>浏览器实跑：4 个页面徽标文案正确、控制台零错误、标记渲染（存疑/改值边框样式可读回）、真实数据渲染后恢复干净</td><td>已由代理用 browser-use 执行；脚本化判据留清单，人工签字</td><td><span class="tag ok">本轮已跑</span></td></tr>
+  </tbody>
+</table>
+
+<pre><code># 目标用法（全部零依赖）
+node tools/gate.mjs            # G0–G6，任一失败 exit 1
+node tools/gate.mjs --only=G1,G3
+node tools/gate.mjs --report   # 顺带输出覆盖率/硬编码/存疑点计数
+npm run gate                   # CI 与本地提交前同一入口</code></pre>
+
+<p class="dim"><strong>门禁纪律：</strong>失败只能通过「修正实现」或「修正规范（同时改两份）」来关闭。<em>禁止</em>放宽阈值、注释断言、加 <code>// gate:disable</code>。新增豁免关键字本身就必须在 G0 中被判为失败。</p>
+
+<h2><span class="num">5</span>执行计划</h2>
+<p class="dim">串行推进，每阶段一个可回滚提交；P1（门禁）先于 P2（视觉），因为视觉改动数量大，必须先有能兜住回归的网。</p>
+
+<div class="card">
+  <h3 style="margin-top:0">P0 · 基线与冻结 <span class="tag" style="float:right">0.5 天</span></h3>
+  <ul>
+    <li>建立 <code>tools/gate.mjs</code> 骨架与 <code>--report</code>；把本轮实测覆盖率快照写入 <code>docs/baseline.json</code>（19/19 校验腿、Σchecked 23 988、ΣuncheckedDates 136、已知缺口清单）。</li>
+    <li>清理仓库噪声：把 <code>server.log</code> 移出跟踪并加入 <code>.gitignore</code>；已执行：<code>negctl.mjs</code> 与 <code>run-update.mjs</code> 均迁至 <code>tools/</code>（G4 门禁路径同步）；<code>run-update</code> 不再自带一份更新循环，只调用 <code>backend/lib/pipeline.js</code>（默认按水位线增量，<code>--force</code> 才全量重建）。</li>
+  </ul>
+  <p class="dim" style="margin-bottom:0"><strong>完成定义：</strong><code>npm run gate</code> 能跑并如实报红（此时只要求 G0/G4 绿）。</p>
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0">P1 · 门禁补全（最高优先） <span class="tag" style="float:right">1.5 天</span></h3>
+  <ul>
+    <li>G1/G2/G3：为 19 个指标补齐 <code>integrity.source</code>（多数带宽已有实测值，只差把样本量与区间写成字段）；把「无溯源即失败」的断言打开。</li>
+    <li>G5：唯一性检查（api/chart/derive/ui 索引），并把现有硬编码计数打进报告。</li>
+    <li>G4：负向对照并入 gate（含注入命中数断言）。</li>
+  </ul>
+  <p class="dim" style="margin-bottom:0"><strong>完成定义：</strong>G0–G5 全绿；<code>--report</code> 输出与 <code>docs/baseline.json</code> 一致；故意破坏一处（改错一个 band 的 source）能被拦住，随即还原。</p>
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0">P2 · 令牌与视觉收敛 <span class="tag" style="float:right">2 天 · 6 次可回滚提交</span></h3>
+  <ul>
+    <li>P2.1 令牌重写：三级表面 + hairline + 4pt 栅格 + 6 档字号 + 3 档时长；删 <code>--glow-accent</code>、<code>body::before/after</code> 渐变与网格。</li>
+    <li>P2.2 字体：取消展示字体，数值改 <code>tabular-nums</code>；只依赖系统字体（避免第三方字体许可风险）。</li>
+    <li>P2.3 组件族对齐：Badge / RateTile / SeriesToggles / Toolbar / Sidebar 按新令牌重排（结构不变，仅层级与密度）。</li>
+    <li>P2.4 图表去装饰：去网格、中性轴名、单色浅面积、5 色上限。</li>
+    <li>P2.5 密度分层：首屏「一行结论」重写为短句；术语解释归入 tooltip。</li>
+    <li>P2.6 存疑/改值标记补第二提示（形状 + 文字）以满足 1.4.1。</li>
+  </ul>
+  <p class="dim" style="margin-bottom:0"><strong>完成定义：</strong>G6 绿（对比度、缩放、溢出）；浏览器 1280×800 与 375×812 实测截图与 DOM 断言通过；<code>硬编码计数 = 0</code>。</p>
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0">P3 · 契约版本化 <span class="tag" style="float:right">1 天</span></h3>
+  <ul>
+    <li>API 加 <code>schemaVersion</code>，前端按版本兼容读取；字段只增不减成为 G1 的附加断言。</li>
+    <li>汇总行的校验标签由后端 <code>checkKind</code> 生成，删除前端里任何写死的「官方双源」措辞。</li>
+    <li>更新日志规范化为单行结构化字段（id/points/checked/matched/corrected/suspect/verdict），便于脚本消费。</li>
+  </ul>
+  <p class="dim" style="margin-bottom:0"><strong>完成定义：</strong>全站搜索不到与后端重复的数据结论文案；<code>/api/status</code> 一次调用即可产出全部门禁所需指标。</p>
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0">P4 · 度量与遗留 <span class="tag" style="float:right">持续</span></h3>
+  <ul>
+    <li>度量看板（见 §6）进 <code>--report</code>，每次改动留档。</li>
+    <li>遗留项按「诚实标注」维护，不造数填补：PBOC 货币当局资产负债表（任务 #17）、LPR 源端 12 期限制、CDS 授权快照缺失、港交所 AI 指数与 ICE BofA OAS 单源。</li>
+  </ul>
+  <p class="dim" style="margin-bottom:0"><strong>完成定义：</strong>每个未闭合项都能被追问「为什么不可得、试过哪些端点、返回什么」，答案来自实测记录而非推测。</p>
+</div>
+
+<h3>本计划明确不做</h3>
+<ul>
+  <li>不引入任何 npm 依赖（构建、框架、lint、图表库均不引入）——宪法要求零依赖运行，且现状已证明够用。</li>
+  <li>不做自由拖拽布局、主题市场、登录/多用户、SSR。</li>
+  <li>不为「视觉达标」而降低数据密度到不可读：精度场景的小数位与滞后声明优先于美观。</li>
+  <li>不接入需要绕过 WAF 的端点；宁可留透明缺口。</li>
+</ul>
+
+<h2><span class="num">6</span>度量看板</h2>
+<table>
+  <caption>表 4 · 指标定义与当前值</caption>
+  <thead><tr><th>度量</th><th>定义</th><th>当前</th><th>目标</th></tr></thead>
+  <tbody>
+    <tr><td>校验腿覆盖率</td><td>有 <code>legs[].check</code> 的指标数 / 总指标数</td><td class="n">19/19 = 100%</td><td class="n">100%</td></tr>
+    <tr><td>逐点确认率</td><td>Σmatched / Σchecked</td><td class="n">23 988/23 988 = 100%</td><td class="n">100%，任何不符须逐条有解释</td></tr>
+    <tr><td>未获并行确认</td><td>ΣuncheckedDates（校验腿缺席的日期）</td><td class="n">136（月度序列滞后 + GLD 参照缺席 15 日）</td><td class="n">只降不升，且每项有源端解释</td></tr>
+    <tr><td>阈值溯源完整率</td><td>带 <code>source</code> 的阈值 / 全部阈值</td><td class="n">0%（值正确但未成字段）</td><td class="n">100%（G2 阻断）</td></tr>
+    <tr><td>改值留痕完整率</td><td>含 <code>{from,to,by}</code> 的 corrected / corrected 总数</td><td class="n">100%（负向对照已证）</td><td class="n">100%</td></tr>
+    <tr><td>误报数</td><td>干净数据上产生的 suspect/corrected 数</td><td class="n">0</td><td class="n">0（G4 阻断）</td></tr>
+    <tr><td>硬编码视觉值</td><td>CSS 中令牌外 <code>#hex</code>/<code>rgba</code>/非栅格 <code>px</code>（实测脚本扫描 components.css + layout.css）</td><td class="n">hex 5 · rgba 26 · 非栅格 px 86</td><td class="n">hex 0 · rgba ≤ 白名单 · 非栅格 0</td></tr>
+    <tr><td>对比度不达标</td><td>WCAG 1.4.3 / 1.4.11 令牌配对实测（正文 4.5:1，语义色与控件 3:1）</td><td class="n">1 处：--faint 3.92:1（低于 4.5:1）</td><td class="n">0 处（改深该色，或限定其只用于 ≥18px 文本）</td></tr>
+    <tr><td>门禁通过率</td><td>绿门数 / 全部门数（G0–G7 共 8 条，其中自动化 7 条）</td><td class="n">0/8（G5 的两条唯一性判据现状已满足，但未成门禁）</td><td class="n">8/8</td></tr>
+    <tr><td>冷启动自愈</td><td>依赖补跑 / 绕缓存重取的触发与成功率</td><td class="n">机制已在，无历史统计</td><td class="n">每次触发都有日志与结果</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">7</span>风险</h2>
+<table>
+  <thead><tr><th style="width:30%">风险</th><th>影响与对策</th></tr></thead>
+  <tbody>
+    <tr><td>门禁写死当前数值 → 阻碍演进</td><td>门禁只断言<strong>结构与不变量</strong>（有校验腿、有溯源、无造数、留痕完整），不断言具体带宽数值；数值变更通过 <code>source</code> 自证。</td></tr>
+    <tr><td>视觉重构触发大面积回归</td><td>P2 拆 6 次小提交，逐次跑 G5/G6 + 浏览器断言；任何一次红即回滚，不批量混改。</td></tr>
+    <tr><td>极简与精度冲突</td><td>规定优先级：小数位、滞后声明、来源标注 &gt; 留白美感；需要时以 tooltip 收纳解释，而非删除信息。</td></tr>
+    <tr><td>第三方字体/图形许可风险</td><td>仅用系统字体与自绘 SVG；不内嵌需授权的字体或图片资产。</td></tr>
+    <tr><td>源端能力变化（接口静默改参、限流）</td><td>G1/G4 每日跑；参数写法必须来自官方页面脚本实测（<code>lang=CN</code> 教训），不接受猜测 URL。</td></tr>
+  </tbody>
+</table>
+
+<footer>
+  <p><strong>验收口径：</strong>本计划的完成 = <code>npm run gate</code> 8/8 绿 + 4 页面浏览器实测通过 + 表 4 中「阈值溯源」「硬编码视觉值」「对比度不达标」三项达成目标值（现状依次为 0%/117 处/1 处）。任何「看起来更好了」不构成验收。</p>
+  <p style="margin-top:var(--sp4)">参考来源：</p>
+  <ol class="src">
+    <li>Apple Human Interface Guidelines · Design principles（2026-06-08 重新发布八项原则）— developer.apple.com/design/human-interface-guidelines</li>
+    <li>Design Tokens Format Module 2025.10, Design Tokens Community Group (W3C) — designtokens.org/TR/2025.10/format/</li>
+    <li>WCAG 2.2 成功准则（1.4.1 Use of Color、1.4.3 Contrast Minimum 4.5:1/3:1、1.4.4 Resize Text 200%、1.4.10 Reflow 320px、1.4.11 Non-text Contrast 3:1）</li>
+    <li>Google <code>DESIGN.md</code>：面向编码代理的视觉标识规范（YAML 令牌 + 散文理由 + lint/diff/export）</li>
+    <li>关于金融终端 UI 密度的公开讨论（Bloomberg 的「局部密度」、对精度与噪声的取舍）— news.ycombinator.com/item?id=40428386</li>
+    <li>官方数据站的元数据范式：Federal Reserve H.4.1、NY Fed Markets、FRED 序列页；CFETS 中国货币网（发布节奏与滞后说明）</li>
+    <li>本站实测记录：<code>data/*.json</code> 的 <code>validation/integrity</code> 字段、<code>negctl.mjs</code> 反向对照输出、<code>indicators/*.json</code> 的带宽定标样本量</li>
+  </ol>
+</footer>
+
+</div>
+<section id="rev2" style="margin-top:32px">
+<h2>Rev 2 · 实现校准（2026-11-23）</h2>
+<p>本段是<strong>显式修订</strong>：逐条列出本篇原文与被实现取代的表述，并给出复算命令。未列入本段的规范仍然有效。</p>
+<table><thead><tr><th>原文表述</th><th>现在的实现</th><th>复算方式</th></tr></thead><tbody>
+<tr><td>阶段计划 P1–P6</td><td>P1–P6 已落地；新增能力：政策事件（P7 未在原计划内，因需求提出后按同一套机制补齐：provider + 库表 + 五态 + 门禁 G25 + 快照 + 浏览器判据）</td><td>node tools/gates.mjs --net && node tools/selftest.mjs</td></tr>
+<tr><td>「先跑通再补机制」的顺序</td><td>本轮把三条 BLOCKED 转成真判据（G8/G10/G16），并用自己跑出的增量暴露 4 个真缺陷（run_stage 绑定错键、强制重取把 overlap 写成 0、增量窗口截断导出、窗口期 validation 被当全量）——全部已修并复算</td><td>git diff 与 node tools/gates.mjs --only=G8,G10,G16</td></tr>
+</tbody></table>
+<p>本段由代理在校准轮次写入；数值全部来自当轮实测输出，不是计划值。</p>
+</section>
+
+</body>
+</html>

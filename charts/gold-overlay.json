@@ -1,0 +1,161 @@
+{
+  "id": "gold-overlay",
+  "page": "gold",
+  "title": "黄金板块（实际利率 × 金价 × 伦敦净环流）",
+  "empty": "等待数据…",
+  "navLabel": "黄金板块",
+  "navSub": "GOLD · 实际利率 × 金价 × 伦敦净环流",
+  "pick": {
+    "surface": "gold"
+  },
+  "views": [
+    {
+      "projection": "header",
+      "container": "gold-header"
+    },
+    {
+      "projection": "toolbar",
+      "container": "gold-toolbar",
+      "toggles": true
+    },
+    {
+      "projection": "panel",
+      "container": "gold-chart",
+      "size": "mid"
+    },
+    {
+      "projection": "desc",
+      "container": "gold-desc"
+    }
+  ],
+  "axes": {
+    "real-rate": {
+      "unit": "%",
+      "side": "left",
+      "label": "实际利率 %",
+      "inverse": true,
+      "precision": 2,
+      "resolve": "independent"
+    },
+    "flow-tonnes": {
+      "unit": " 吨",
+      "side": "left",
+      "label": "净环流 吨",
+      "precision": 2,
+      "resolve": "independent"
+    },
+    "gold-oz": {
+      "unit": " $/oz",
+      "side": "right",
+      "label": "金价 $/oz",
+      "prefix": "$",
+      "precision": 2,
+      "resolve": "independent"
+    },
+    "gld-share": {
+      "unit": " $/股",
+      "side": "right",
+      "label": "GLD $/股",
+      "prefix": "$",
+      "precision": 2,
+      "resolve": "independent"
+    }
+  },
+  "layers": [
+    {
+      "series": "picked",
+      "styleBy": [
+        {
+          "when": {
+            "freq": "month"
+          },
+          "style": {
+            "showSymbol": true,
+            "symbol": "rect",
+            "symbolSize": 6,
+            "connect": true
+          }
+        },
+        {
+          "when": {
+            "id": "gold"
+          },
+          "style": {
+            "area": 0.1
+          }
+        },
+        {
+          "when": {
+            "id": "gold-uk-flow"
+          },
+          "style": {
+            "barWidth": 4
+          }
+        }
+      ]
+    }
+  ],
+  "presets": "standard",
+  "viewGroups": [
+    {
+      "id": "gold-focus",
+      "label": "黄金视角",
+      "title": "选择黄金板块的观察角度：全景 / 实际利率 / 伦敦净环流",
+      "modes": ["gold-all", "gold-real", "gold-flow"]
+    }
+  ],
+  "viewModes": [
+    {
+      "id": "gold-all",
+      "label": "全景",
+      "title": "实际利率 × 金价 × GLD × 伦敦净环流（默认，与既有装配等价）",
+      "layers": []
+    },
+    {
+      "id": "gold-real",
+      "label": "实际利率",
+      "title": "只看 10Y TIPS 实际利率 × 金价",
+      "replace": true,
+      "layers": [
+        {
+          "indicator": "tips10"
+        },
+        {
+          "indicator": "gold-oz"
+        }
+      ]
+    },
+    {
+      "id": "gold-flow",
+      "label": "伦敦净环流",
+      "title": "只看伦敦黄金净环流 × 金价",
+      "replace": true,
+      "layers": [
+        {
+          "indicator": "gold-uk-flow"
+        },
+        {
+          "indicator": "gold-oz"
+        }
+      ]
+    }
+  ],
+  "defaultView": "gold-all",
+  "annotations": [],
+  "legend": true,
+  "tooltip": {
+    "columns": [
+      "value",
+      "flowDir",
+      "validation",
+      "correction",
+      "suspect",
+      "source"
+    ],
+    "lagNote": true
+  },
+  "limits": {
+    "sharedMax": 3,
+    "totalMax": 5
+  }
+}

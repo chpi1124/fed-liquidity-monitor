@@ -1,5 +1,6 @@
 import { h } from "../core/dom.js";
 import { colorOf, fmtVal } from "../core/derive.js";
+import { css } from "../core/theme.js";
 
 export function Sidebar({ indicators, activeId, onSelect }) {
   return h(
@@ -20,7 +21,7 @@ export function Sidebar({ indicators, activeId, onSelect }) {
           ind.status?.latest ? `${fmtVal(ind.status.latest.v, ind)}${ind.unit}` : "…",
           h("i", {
             class: "ind-btn__dot",
-            style: { background: colorOf(ind.zones, ind.status?.latest?.v, ind.hue) },
+            style: { background: css(colorOf(ind.zones, ind.status?.latest?.v, ind.hue)) },
           })
         )
       )

@@ -1,5 +1,3 @@
-export const DEFAULT_COLOR = "#ff8a2a";
-
 export const fmtVal = (v, cfg) => (v == null ? "—" : Number(v).toFixed(cfg?.precision ?? 2));
 
 export function zoneOf(zones, v) {
@@ -11,8 +9,9 @@ export function zoneOf(zones, v) {
   return zones[zones.length - 1];
 }
 
+// 返回的是 token 名（如 "info"/"risk-1"），由 theme.css()/theme.color() 单一出口解析
 export function colorOf(zones, v, hue) {
-  return zoneOf(zones, v)?.color || hue || DEFAULT_COLOR;
+  return zoneOf(zones, v)?.color || hue || "accent";
 }
 
 export function rangeText(zones, i) {
@@ -22,19 +21,11 @@ export function rangeText(zones, i) {
   return `${zones[i - 1].max}–${z.max}`;
 }
 
-export const PRESETS = [
-  { id: "2W", label: "近两周", days: 14, title: "一键定位最近两周" },
-  { id: "1M", label: "1M", days: 30 },
-  { id: "3M", label: "3M", days: 91 },
-  { id: "6M", label: "6M", days: 182 },
-  { id: "1Y", label: "1Y", days: 365 },
-  { id: "ALL", label: "全部", days: null },
-];
-
-export function zoomWindow(points, preset, presets = PRESETS) {
+// 区间求解的唯一实现：预设表由 charts/presets.json 提供，本函数只按天切。
+export function zoomWindow(points, preset, presets = []) {
   if (!points || !points.length) return { start: 0, end: 0 };
   const p = presets.find((x) => x.id === preset) || presets[presets.length - 1];
-  if (!p.days) return { start: 0, end: points.length - 1 };
+  if (!p || !p.days) return { start: 0, end: points.length - 1 };
   const last = new Date(`${points[points.length - 1].date}T00:00:00Z`);
   const cut = new Date(last);
   cut.setUTCDate(cut.getUTCDate() - p.days);
@@ -44,16 +35,44 @@ export function zoomWindow(points, preset, presets = PRESETS) {
   return { start, end: points.length - 1 };
 }
 
-export const SHEET_PRESETS = [
-  { id: "1Y", label: "1Y", days: 365 },
-  { id: "3Y", label: "3Y", days: 1095 },
-  { id: "5Y", label: "5Y", days: 1825 },
-  { id: "10Y", label: "10Y", days: 3650 },
-  { id: "ALL", label: "全部", days: null, title: "2002 年至今全部周度数据" },
-];
+export function nextBusinessDay(dateStr) {
+  const d = new Date(`${dateStr}T00:00:00Z`);
+  do {
+    d.setUTCDate(d.getUTCDate() + 1);
+  } while (d.getUTCDay() === 0 || d.getUTCDay() === 6);
+  return d.toISOString().slice(0, 10);
+}
+
+export function publicationLine(cfg, latestD) {
+  if (cfg?.publication !== "T+1" || !latestD) return "";
+  const pending = nextBusinessDay(latestD);
+  const pub = nextBusinessDay(pending);
+  return `官方 T+1 发布：${pending} 的利率由纽约联储于 ${pub} 美东上午（约 8–9 点，北京时间 20–22 点）公布，本站届时自动更新；今日数值须待次一工作日官方发布后方可显示。`;
+}
+
+// 校验结论的唯一措辞：任何组件要说「交叉验证」都调用这里，杜绝两处各写一遍
+export function validationNote(x) {
+  return x?.validation?.checked ? `交叉验证 ${x.validation.matched}/${x.validation.checked} 通过` : "本期未获并行确认（单源或未取到校验腿）";
+}
+
+export const fmtPoint = (cfg, v) => {
+  if (v == null) return "—";
+  const pre = cfg?.axisPrefix || "";
+  const unit = cfg?.unit || "";
+  return `${pre}${fmtVal(v, cfg)}${unit === pre ? "" : unit}`;
+};
 
 export const fmtTrillion = (v) => (v == null ? "—" : (v / 1e6).toFixed(3));
 export const fmtYi = (wc) => (wc == null ? "—" : (wc / 100).toFixed(1));
+
+// 导航提示的换算与措辞唯一 owner：后端只回 {kind, value, note}（数据），这里决定怎么说
+export function hintText(h) {
+  if (!h) return "";
+  if (h.kind === "trillion") return `${fmtTrillion(h.value)} 万亿 · ${h.note}`;
+  if (h.kind === "count") return `${h.value} 项 · ${h.note}`;
+  if (h.kind === "date") return `最新 ${h.value}`;
+  throw new Error(`未知导航提示类型：${h.kind}（须在前端补一种说法，不得静默留空）`);
+}
 
 export function eraOf(eras, date) {
   return (eras || []).find((e) => date >= e.from && (e.to == null || date <= e.to)) || null;
@@ -76,38 +95,18 @@ export function deltaInfo(tail, unit) {
   return { bp: Math.round(Math.abs(d) * 100) / 100, dir: d > 0 ? "up" : d < 0 ? "down" : "flat" };
 }
 
-// 序列在图例/开关标签中的名称：由指标配置派生，chart 与组件共用，避免两处硬编码。
-export function seriesLabel(cfg) {
-  const tags = [];
-  if (cfg.invert) tags.push("轴反向");
-  if (cfg.freq === "month") tags.push("月度");
-  if (cfg.render === "bar") tags.push("柱");
-  return cfg.name + (tags.length ? `（${tags.join("·")}）` : "");
-}
-
-// 数值显示的唯一口径：前缀与单位相同时不重复输出（如金价 unit="$" 且 axisPrefix="$"）。
-export function fmtPoint(cfg, v) {
-  if (v == null) return "—";
-  const pre = cfg.axisPrefix || "";
-  const unit = cfg.unit || "";
-  return `${pre}${fmtVal(v, cfg)}${unit === pre ? "" : unit}`;
-}
-
-export function validationNote(x) {
-  return x.validation?.checked ? `交叉验证 ${x.validation.matched}/${x.validation.checked} 通过` : "无并行校验机构";
-}
-
-export function nextBusinessDay(dateStr) {
-  const d = new Date(`${dateStr}T00:00:00Z`);
-  do {
-    d.setUTCDate(d.getUTCDate() + 1);
-  } while (d.getUTCDay() === 0 || d.getUTCDay() === 6);
-  return d.toISOString().slice(0, 10);
-}
-
-export function publicationLine(cfg, latestD) {
-  if (cfg?.publication !== "T+1" || !latestD) return "";
-  const pending = nextBusinessDay(latestD);
-  const pub = nextBusinessDay(pending);
-  return `官方 T+1 发布：${pending} 的利率由纽约联储于 ${pub} 美东上午（约 8–9 点，北京时间 20–22 点）公布，本站届时自动更新；今日数值须待次一工作日官方发布后方可显示。`;
+// 每张图的「可读到文本」摘要：既是 aria-label，也是可抓取的文字结论（不靠看图才能知道）
+export function panelSummary(spec, ds, selected = {}) {
+  const shown = (ds.layers || []).filter((l) => selected[l.id] !== false);
+  const first = ds.x?.values?.[0] || "—";
+  const last = ds.x?.values?.[ds.x?.values?.length - 1] || "—";
+  const brief = shown
+    .map((l) => {
+      const latest = l.latest || {};
+      const v = latest.v ?? latest.c;
+      return `${l.name} ${fmtPoint(l, v)}${latest.date ? `（${latest.date}）` : ""}，${validationNote(l)}`;
+    })
+    .join("；");
+  const hidden = (ds.layers || []).length - shown.length;
+  return `${spec.title || "数据图"}：${brief || "无可显示序列"}；区间 ${first} 至 ${last}，共 ${(ds.x?.values || []).length} 个观测点${hidden ? `，已关闭 ${hidden} 条序列` : ""}。存疑与改值点只标记不删除。`;
 }

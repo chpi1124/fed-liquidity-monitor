@@ -9,10 +9,7 @@ async function req(path, opts) {
   return r.json();
 }
 
-export const getIndicators = (region) => req(`/api/indicators?region=${region}`);
-export const getSeries = (id, g) => req(`/api/indicators/${id}?granularity=${g}`);
-export const getSheets = (region) => req(`/api/sheets?region=${region}`);
-export const getSheet = (id) => req(`/api/sheets/${id}`);
-export const getSummaries = (region) => req(`/api/summaries?region=${region}`);
-export const getSummary = (id) => req(`/api/summaries/${id}`);
+// 前端唯一的出网点：页面与图形一律「一页一次请求」，不再逐指标并发取数。
+export const getCharts = (region) => req(`/api/charts?region=${encodeURIComponent(region)}`);
+export const getPage = (page, params) => req(`/api/page/${encodeURIComponent(page)}?${params}`);
 export const refresh = () => req("/api/refresh", { method: "POST" });

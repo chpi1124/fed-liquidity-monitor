@@ -1,0 +1,20 @@
+{
+  "id": "hkex-factsheet",
+  "org": "HKEX (Hong Kong Exchanges and Clearing Limited)",
+  "cadence": "monthly",
+  "incremental": "snapshot-only",
+  "requested": {
+    "src": {},
+    "start": "2026-11-13",
+    "end": "2026-11-23"
+  },
+  "rows": 1,
+  "bytes": 23,
+  "at": "2026-11-23T04:02:03.099Z",
+  "payload": [
+    [
+      "2026-10-30",
+      5429.8
+    ]
+  ]
+}

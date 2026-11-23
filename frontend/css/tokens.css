@@ -1,30 +1,145 @@
 :root {
-  --bg0: #07090d;
-  --bg1: #0c1117;
-  --surface: #121a23;
-  --surface2: #1a2530;
-  --line: #223140;
-  --line2: #31465c;
-  --ink: #e8eef4;
-  --muted: #8fa3b0;
-  --faint: #5c7181;
-  --accent: #ff8a2a;
-  --accent2: #ff5c2a;
-  --ecg: #35e0a1;
-  --ok: #2fd08c;
-  --warn: #ffb224;
-  --danger: #ff4757;
-  --info: #3aa6ff;
-  --magenta: #e05fd0;
-  --murmur: #dfe9f2;
-  --font-body: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
-  --font-disp: "Bahnschrift", "Avenir Next Condensed", "Arial Narrow", "Segoe UI", sans-serif;
-  --font-mono: "Cascadia Mono", ui-monospace, Consolas, Menlo, monospace;
-  --r-sm: 8px;
-  --r-md: 12px;
-  --r-lg: 16px;
-  --dur: .45s;
-  --ease: cubic-bezier(.22, .9, .28, 1);
-  --shadow: 0 12px 32px rgba(0, 0, 0, .38);
-  --glow-accent: 0 0 18px rgba(255, 138, 42, .25);
+  /* ============================================================
+     色板唯一 owner。其余 CSS 文件不得出现字面色值；半透明一律
+     color-mix(令牌, 百分比, transparent)。
+     美学取向：Apple HIG 的 Simplicity / Craft —— 中性冷灰为底，
+     语义色降饱和各占一档，强调色只有一个（当前选中 / 主 CTA）。
+     层级由表面色阶 + 留白 + 字重承担，不靠渐变与发光。
+     ============================================================ */
+  --shade: #000;
+
+  /* 三级表面：paper / card / raised */
+  --bg0: #0a0c0f;
+  --bg1: #12151a;
+  --surface: #191d23;
+  --surface2: #21262e;
+
+  /* 1px hairline：两层就够（静默 / 强调） */
+  --line: #2a3039;
+  --line2: #3a424d;
+
+  /* 文字色阶：正文 / 次级 / tertiary / 最强 */
+  --ink: #f2f4f7;
+  --ink2: #ccd3dc;
+  --ink-strong: #ffffff;
+  --muted: #98a3b0;
+  --faint: #7c8896;
+  --sheen: var(--ink-strong);
+
+  /* 唯一强调色：克制的琥珀，只用于当前选中与主按钮 */
+  --accent: #d98a3d;
+  --accent2: var(--accent);
+  --on-accent: #0a0c0f;
+
+  /* 语义四色（降饱和；非文本对比度 ≥ 3:1） */
+  --ok: #4fb58a;
+  --warn: #c9a24a;
+  --danger: #d4686e;
+  --info: #5a95cf;
+
+  /* 图形序列色板：指标配置按名引用，渲染层与配置层都不出现字面色值 */
+  --ecg: #5aa98c;
+  --magenta: #a878ad;
+  --murmur: #d6dde5;
+  --hue-1: var(--info);
+  --hue-2: #6aa9cc;
+  --hue-3: #9a8fc4;
+  --hue-4: #b584a8;
+  --hue-5: #c08f93;
+  --hue-6: #7d8b9a;
+  --hue-7: var(--warn);
+  --hue-8: var(--ok);
+  --hue-9: var(--magenta);
+  --hue-10: var(--ecg);
+
+  /* 状态分级带（利率走廊 / 风险区） */
+  --risk-1: #cf6a70;
+  --risk-2: #c8d0d8;
+  --risk-3: #c9a24a;
+  --risk-4: #4fb58a;
+  --flow-in: #cf7a72;
+  --flow-out: #6a9fc9;
+
+  /* 图形标记：存疑（只标记）与已改值（留痕）各一枚 */
+  --mark-suspect: var(--danger);
+  --mark-corrected: #c9a95f;
+  --axis-inactive: #46515d;
+
+  /* 政策事件标注色：与利率走廊色分开，避免一色两义 */
+  --policy-hike: var(--danger);
+  --policy-cut: var(--ok);
+  --policy-hold: var(--faint);
+  --policy-qt: var(--warn);
+  --policy-qe: var(--info);
+
+  /* ------------------------------------------------------------
+     字体：只用系统栈（零第三方许可风险）。取消展示字体 —— 展示体
+     与正文同栈，标题层级靠字重与字距，不靠第二套字体。
+     ------------------------------------------------------------ */
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI Variable", "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --font-disp: var(--font-body);
+  --font-mono: "SF Mono", ui-monospace, "Cascadia Mono", Consolas, Menlo, monospace;
+
+  /* 字号阶梯：仅 6 档（11 / 13 / 15 / 17 / 21 / 28） */
+  --t-11: 11px;
+  --t-13: 13px;
+  --t-15: 15px;
+  --t-17: 17px;
+  --t-21: 21px;
+  --t-28: 28px;
+
+  /* 行高：与字号一一对应 */
+  --lh-11: 1.4;
+  --lh-13: 1.5;
+  --lh-15: 1.55;
+  --lh-17: 1.5;
+  --lh-21: 1.35;
+  --lh-28: 1.2;
+
+  /* 4pt 基准栅格：4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 96 */
+  --sp-4: 4px;
+  --sp-8: 8px;
+  --sp-12: 12px;
+  --sp-16: 16px;
+  --sp-24: 24px;
+  --sp-32: 32px;
+  --sp-48: 48px;
+  --sp-64: 64px;
+  --sp-96: 96px;
+
+  /* 圆角：同层组件必须同值（连续曲率的 CSS 近似） */
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-pill: 999px;
+
+  /* 动效：三档（状态 180ms / 进出 260ms / 页面 320ms），统一缓动 */
+  --dur: .18s;
+  --dur-in: .26s;
+  --dur-page: .32s;
+  --ease: cubic-bezier(.32, .72, 0, 1);
+
+  /* 唯一的阴影：几乎不可见的方向性偏移，不用模糊光晕 */
+  --shadow: 0 1px 2px color-mix(in srgb, var(--shade) 28%, transparent);
+
+  /* ------------------------------------------------------------
+     图形几何（无单位数值，canvas 与 SVG 共用同一把尺子）。
+     以下令牌是渲染核的契约，改动会使视觉回归基线漂移，勿动。
+     ------------------------------------------------------------ */
+  --chart-axis-offset: 52;
+  --chart-grid-left: 56;
+  --chart-grid-right: 20;
+  --chart-grid-top: 30;
+  --chart-grid-bottom: 64;
+  --chart-slider-height: 22;
+  --chart-slider-bottom: 10;
+  --chart-line-width: 1.6;
+  --chart-bar-day: 62;
+  --chart-bar-sheet: 72;
+  --chart-symbol-size: 9;
+  --chart-h: clamp(480px, 68vh, 860px);
+  --chart-h-mid: clamp(440px, 60vh, 780px);
+  --chart-h-compact: clamp(420px, 56vh, 720px);
+  --spark-w: 104;
+  --spark-h: 30;
 }

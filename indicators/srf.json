@@ -1,7 +1,9 @@
 {
   "id": "srf",
+  "region": "us",
   "order": 2,
   "name": "SRF动用量",
+  "en": "Standing Repo Facility acceptance",
   "formula": "常备回购便利每日接受量",
   "unit": "十亿美元",
   "description": "SRF（Standing Repo Facility，常备回购便利）每日早/午操作接受量合计（按操作日，含期限操作），十亿美元。主源：纽约联储回购操作 API；校验源：圣路易斯联储 FRED 之 RPONTSYD+RPONAGYD+RPONMBSD（国债+机构债+MBS）。校验口径：隔夜操作按结算日对齐比较（FRED 以结算日记账且仅覆盖隔夜操作），期限操作不在 FRED 隔夜序列口径内。2021-07-29 设立日起。任何动用均为流动性后备支持被激活的信号。",
@@ -32,12 +34,12 @@
     {
       "label": "未动用",
       "max": 0,
-      "color": "#22c55e"
+      "color": "risk-4"
     },
     {
       "label": "已动用",
       "max": null,
-      "color": "#ef4444"
+      "color": "risk-1"
     }
   ],
   "checkKind": "官方双源逐点（纽约联储竞价结果 ↔ FRED 圣路易斯联储）",
@@ -46,6 +48,30 @@
       0,
       500
     ],
-    "maxAbsJump": 120
+    "maxAbsJump": 120,
+    "source": {
+      "range": {
+        "statistic": "manual-policy",
+        "window": "2021-07-29 ~ 2026-11-20",
+        "measured": {
+          "min": 0,
+          "max": 74.6,
+          "p02": 0,
+          "p998": 26,
+          "n": 1326
+        },
+        "note": "声明带 [0, 500] 由实测 [0, 74.6] 向外取整而得；外扩是有意冗余，越带即报警（门禁复算包含关系）"
+      },
+      "maxAbsJump": {
+        "statistic": "manual-policy",
+        "window": "2021-07-29 ~ 2026-11-20",
+        "measured": {
+          "maxJump": 71.6,
+          "p998Jump": 30.5,
+          "n": 1326
+        },
+        "note": "声明 120 高于实测 99.8 分位 30.5：有意留宽的保守带，低于该分位即判太紧"
+      }
+    }
   }
 }

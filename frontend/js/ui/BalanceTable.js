@@ -1,5 +1,6 @@
 import { h } from "../core/dom.js";
 import { fmtTrillion, fmtYi } from "../core/derive.js";
+import { css } from "../core/theme.js";
 
 function okMark(it) {
   const cls = it.ok === true ? "is-ok" : it.ok === false ? "is-bad" : "is-na";
@@ -23,7 +24,7 @@ function wcCell(wc) {
 export function BalanceTable({ group, asOf, prevDate, yearAgoDate }) {
   return h(
     "section",
-    { class: "panel bal-panel", style: { "--ghue": group.hue || "#ff8a2a" } },
+    { class: "panel bal-panel", style: { "--ghue": css(group.hue || "accent") } },
     h(
       "div",
       { class: "bal-panel__head" },

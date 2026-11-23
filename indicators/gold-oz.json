@@ -3,17 +3,12 @@
   "region": "us",
   "order": 21,
   "surface": "gold",
-  "axis": "oz",
-  "axisPos": "right",
-  "axisName": "金价 $/oz",
-  "axisPrefix": "$",
-  "render": "month-line",
   "freq": "month",
   "name": "金价（美元/盎司）",
   "en": "Gold Price (USD per troy ounce)",
   "formula": "世界银行 Pink Sheet 月度黄金均价（美元/金衡盎司）",
   "unit": " $/oz",
-  "hue": "#ffb224",
+  "hue": "warn",
   "publication": "M+1",
   "precision": 2,
   "operation": "level",
@@ -38,7 +33,17 @@
         "band": [
           10.2682,
           11.1433
-        ]
+        ],
+        "source": {
+          "statistic": "manual-policy",
+          "window": "2016-11-01 ~ 2026-10-01",
+          "measured": {
+            "devLo": 10.477785,
+            "devHi": 10.924707,
+            "checked": 120
+          },
+          "note": "带 [10.2682, 11.1433] 覆盖同窗口实测偏差 [10.477785, 10.924707]；门禁每轮复算包含关系与松紧上限（12 倍）"
+        }
       }
     }
   ],
@@ -49,6 +54,41 @@
       12000
     ],
     "maxRelJump": 0.15,
-    "maxLagDays": 75
-  }
+    "maxLagDays": 75,
+    "source": {
+      "range": {
+        "statistic": "manual-policy",
+        "window": "2016-11-01 ~ 2026-10-01",
+        "measured": {
+          "min": 1157,
+          "max": 5020,
+          "p02": 1157,
+          "p998": 5020,
+          "n": 120
+        },
+        "note": "声明带 [500, 12000] 由实测 [1157, 5020] 向外取整而得；外扩是有意冗余，越带即报警（门禁复算包含关系）"
+      },
+      "maxRelJump": {
+        "statistic": "manual-policy",
+        "window": "2016-11-01 ~ 2026-10-01",
+        "measured": {
+          "p998Rel": 0.106325,
+          "n": 120
+        },
+        "note": "声明 0.15 高于实测 99.8 分位 0.106325：有意留宽的保守带，低于该分位即判太紧"
+      },
+      "maxLagDays": {
+        "statistic": "manual-policy",
+        "window": "2016-11-01 ~ 2026-10-01",
+        "measured": {
+          "publication": "M+1",
+          "lagFloorDays": 45,
+          "lastDate": "2026-10-01"
+        },
+        "note": "官方节奏 M+1 ⇒ 下限 45 天，宽余上限 76 天（一个发布周期）；声明 75 天落在其间，门禁同时复算实测滞后（最新 2026-10-01）"
+      }
+    }
+  },
+  "recipe": "line",
+  "axisGroup": "gold-oz"
 }

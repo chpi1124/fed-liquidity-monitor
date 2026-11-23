@@ -1,0 +1,333 @@
+{
+  "id": "frb-h41",
+  "org": "Board of Governors of the Federal Reserve System",
+  "cadence": "weekly-thu",
+  "incremental": "snapshot-only",
+  "requested": {
+    "src": {},
+    "start": "2026-11-13",
+    "end": "2026-11-23"
+  },
+  "rows": 39,
+  "bytes": 2567,
+  "at": "2026-11-23T04:01:57.748Z",
+  "payload": {
+    "date": "2026-11-18",
+    "prevDate": "2026-11-11",
+    "yearAgoDate": "2025-11-19",
+    "rows": [
+      [
+        "Gold certificate account",
+        {
+          "v": 11037,
+          "wc": 0,
+          "yc": 0
+        }
+      ],
+      [
+        "Special drawing rights certificate account",
+        {
+          "v": 15200,
+          "wc": 0,
+          "yc": 0
+        }
+      ],
+      [
+        "Coin",
+        {
+          "v": 1299,
+          "wc": -3,
+          "yc": -161
+        }
+      ],
+      [
+        "Securities, unamortized premiums and discounts, repurchase agreements, and loans",
+        {
+          "v": 6662016,
+          "wc": 13,
+          "yc": 188245
+        }
+      ],
+      [
+        "Securities held outright",
+        {
+          "v": 6472944,
+          "wc": 468,
+          "yc": 209752
+        }
+      ],
+      [
+        "U.S. Treasury securities",
+        {
+          "v": 4587132,
+          "wc": 525,
+          "yc": 396193
+        }
+      ],
+      [
+        "Bills",
+        {
+          "v": 580660,
+          "wc": 0,
+          "yc": 385167
+        }
+      ],
+      [
+        "Notes and bonds, nominal",
+        {
+          "v": 3620738,
+          "wc": 0,
+          "yc": 48015
+        }
+      ],
+      [
+        "Notes and bonds, inflation-indexed",
+        {
+          "v": 277656,
+          "wc": 0,
+          "yc": -32060
+        }
+      ],
+      [
+        "Inflation compensation",
+        {
+          "v": 108078,
+          "wc": 524,
+          "yc": -4928
+        }
+      ],
+      [
+        "Federal agency debt securities",
+        {
+          "v": 2347,
+          "wc": 0,
+          "yc": 0
+        }
+      ],
+      [
+        "Mortgage-backed securities",
+        {
+          "v": 1883465,
+          "wc": -57,
+          "yc": -186442
+        }
+      ],
+      [
+        "Unamortized premiums on securities held outright",
+        {
+          "v": 206371,
+          "wc": -302,
+          "yc": -21312
+        }
+      ],
+      [
+        "Unamortized discounts on securities held outright",
+        {
+          "v": -26371,
+          "wc": 64,
+          "yc": -3089
+        }
+      ],
+      [
+        "Repurchase agreements",
+        {
+          "v": 1,
+          "wc": -4,
+          "yc": -5
+        }
+      ],
+      [
+        "Loans",
+        {
+          "v": 9071,
+          "wc": -213,
+          "yc": 2899
+        }
+      ],
+      [
+        "Net portfolio holdings of MS Facilities 2020 LLC (Main Street Lending Program)",
+        {
+          "v": 871,
+          "wc": -1,
+          "yc": -2788
+        }
+      ],
+      [
+        "Items in process of collection",
+        {
+          "v": 135,
+          "wc": 74,
+          "yc": 38
+        }
+      ],
+      [
+        "Bank premises",
+        {
+          "v": 703,
+          "wc": 5,
+          "yc": 81
+        }
+      ],
+      [
+        "Central bank liquidity swaps",
+        {
+          "v": 146,
+          "wc": -25,
+          "yc": 99
+        }
+      ],
+      [
+        "Foreign currency denominated assets",
+        {
+          "v": 18655,
+          "wc": -225,
+          "yc": -433
+        }
+      ],
+      [
+        "Other assets",
+        {
+          "v": 31391,
+          "wc": -17252,
+          "yc": 1089
+        }
+      ],
+      [
+        "Total assets",
+        {
+          "v": 6741452,
+          "wc": -17415,
+          "yc": 186169
+        }
+      ],
+      [
+        "Federal Reserve notes, net of F.R. Bank holdings",
+        {
+          "v": 2445802,
+          "wc": 1625,
+          "yc": 75614
+        }
+      ],
+      [
+        "Reverse repurchase agreements",
+        {
+          "v": 317043,
+          "wc": -19210,
+          "yc": -10215
+        }
+      ],
+      [
+        "Deposits",
+        {
+          "v": 4153054,
+          "wc": 2457,
+          "yc": 107029
+        }
+      ],
+      [
+        "Term deposits held by depository institutions",
+        {
+          "v": 0,
+          "wc": 0,
+          "yc": 0
+        }
+      ],
+      [
+        "Other deposits held by depository institutions",
+        {
+          "v": 3001790,
+          "wc": 31813,
+          "yc": 84258
+        }
+      ],
+      [
+        "U.S. Treasury, General Account",
+        {
+          "v": 892310,
+          "wc": -19824,
+          "yc": -8522
+        }
+      ],
+      [
+        "Foreign official",
+        {
+          "v": 9479,
+          "wc": 10,
+          "yc": 43
+        }
+      ],
+      [
+        "Other",
+        {
+          "v": 249476,
+          "wc": -9542,
+          "yc": 31250
+        }
+      ],
+      [
+        "Deferred availability cash items",
+        {
+          "v": 248,
+          "wc": -70,
+          "yc": -189
+        }
+      ],
+      [
+        "Treasury contributions to credit facilities",
+        {
+          "v": 0,
+          "wc": 0,
+          "yc": -2029
+        }
+      ],
+      [
+        "Other liabilities and accrued dividends",
+        {
+          "v": -222604,
+          "wc": -2222,
+          "yc": 13875
+        }
+      ],
+      [
+        "Total liabilities",
+        {
+          "v": 6693544,
+          "wc": -17418,
+          "yc": 184086
+        }
+      ],
+      [
+        "Capital paid in",
+        {
+          "v": 41123,
+          "wc": 3,
+          "yc": 2083
+        }
+      ],
+      [
+        "Surplus",
+        {
+          "v": 6785,
+          "wc": 0,
+          "yc": 0
+        }
+      ],
+      [
+        "Other capital accounts",
+        {
+          "v": 0,
+          "wc": 0,
+          "yc": 0
+        }
+      ],
+      [
+        "Total capital",
+        {
+          "v": 47908,
+          "wc": 3,
+          "yc": 2083
+        }
+      ]
+    ]
+  }
+}

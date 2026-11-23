@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { SHEETS_DIR } from "./paths.js";
 import { getSeries } from "./cache.js";
+import { historyStartOf, providerOf } from "./asset.js";
 
 export function loadSheets(region) {
   if (!fs.existsSync(SHEETS_DIR)) return [];
@@ -15,12 +16,12 @@ export function loadSheets(region) {
 
 export async function updateSheet(cfg, { force = false } = {}) {
   const end = new Date().toISOString().slice(0, 10);
-  const start = cfg.historyStart || "2002-12-18";
+  const start = historyStartOf(cfg, "历史序列");
   const tol = cfg.tolerance ?? 1;
   const idTol = cfg.identityTolerance ?? 2;
   const [board, ...checkMaps] = await Promise.all([
-    getSeries({ provider: "frb-h41" }, start, end, force),
-    ...cfg.checkSeries.map((id) => getSeries({ provider: "fred", series: id }, start, end, force)),
+    getSeries({ provider: providerOf(cfg, "board") }, start, end, force),
+    ...cfg.checkSeries.map((id) => getSeries({ provider: providerOf(cfg, "check"), series: id }, start, end, force)),
   ]);
   const checks = new Map(cfg.checkSeries.map((id, i) => [id, checkMaps[i]]));
   const totalMap = checks.get(cfg.totalSeries);

@@ -1,5 +1,17 @@
-# 第三方付费出版物（鸿学院监测报告 PDF），仅本地留存，不入版本库
-*.pdf
+data/monitor.db
+data/monitor.db-wal
+data/monitor.db-shm
+server-run.log
+update-run.log
+fixtures-run.log
+server.log
 
-# store.js 原子写入的临时文件
-data/*.tmp
+# 本地下载的分析材料与临时文件，不属于源码
+*.pdf
+.tmp*/
+.probe*
+.gf.log
+.gates-*.log
+.st.log
+frontend/__harness.html
+/.workbuddy/

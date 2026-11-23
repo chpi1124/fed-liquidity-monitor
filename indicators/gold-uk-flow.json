@@ -3,19 +3,14 @@
   "region": "us",
   "order": 23,
   "surface": "gold",
-  "axis": "flow",
-  "axisPos": "left",
-  "axisName": "净环流 吨",
-  "render": "bar",
-  "barWidth": 4,
-  "posColor": "#ff6b5b",
-  "negColor": "#4aa3ff",
+  "posColor": "flow-in",
+  "negColor": "flow-out",
   "freq": "month",
   "name": "伦敦黄金净环流",
   "en": "UK Monthly Net Gold Flow",
   "formula": "HMRC HS7108（含货币黄金 71082000）进口 − 出口，申报净重折公吨",
   "unit": " 吨",
-  "hue": "#ff6b5b",
+  "hue": "flow-in",
   "publication": "M+2",
   "precision": 2,
   "operation": "level",
@@ -54,6 +49,42 @@
       1200
     ],
     "maxAbsJump": 700,
-    "maxLagDays": 100
-  }
+    "maxLagDays": 100,
+    "source": {
+      "range": {
+        "statistic": "manual-policy",
+        "window": "2016-11-01 ~ 2026-09-01",
+        "measured": {
+          "min": -159.37,
+          "max": 226.47,
+          "p02": -159.37,
+          "p998": 226.47,
+          "n": 119
+        },
+        "note": "声明带 [-1200, 1200] 由实测 [-159.37, 226.47] 向外取整而得；外扩是有意冗余，越带即报警（门禁复算包含关系）"
+      },
+      "maxAbsJump": {
+        "statistic": "manual-policy",
+        "window": "2016-11-01 ~ 2026-09-01",
+        "measured": {
+          "maxJump": 186.97,
+          "p998Jump": 186.97,
+          "n": 119
+        },
+        "note": "声明 700 高于实测 99.8 分位 186.97：有意留宽的保守带，低于该分位即判太紧"
+      },
+      "maxLagDays": {
+        "statistic": "manual-policy",
+        "window": "2016-11-01 ~ 2026-09-01",
+        "measured": {
+          "publication": "M+2",
+          "lagFloorDays": 75,
+          "lastDate": "2026-09-01"
+        },
+        "note": "官方节奏 M+2 ⇒ 下限 75 天，宽余上限 106 天（一个发布周期）；声明 100 天落在其间，门禁同时复算实测滞后（最新 2026-09-01）"
+      }
+    }
+  },
+  "recipe": "signedBar",
+  "axisGroup": "flow-tonnes"
 }

@@ -1,0 +1,7397 @@
+{
+  "key": "cn.monitor.main-trend.day",
+  "layers": 1,
+  "axes": 1,
+  "grid": {
+    "left": 56,
+    "right": 20,
+    "top": 30,
+    "bottom": 64
+  },
+  "xCount": 719,
+  "policyLines": 91,
+  "window": [
+    [
+      471,
+      718
+    ],
+    [
+      471,
+      718
+    ]
+  ],
+  "option": {
+    "animation": false,
+    "backgroundColor": "transparent",
+    "dataZoom": [
+      {
+        "endValue": 718,
+        "startValue": 471,
+        "type": "inside"
+      },
+      {
+        "backgroundColor": "rgba(25,29,35,0.8)",
+        "borderColor": "#2a3039",
+        "bottom": 10,
+        "dataBackground": {
+          "areaStyle": {
+            "color": "rgba(58,66,77,0.3)"
+          },
+          "lineStyle": {
+            "color": "#3a424d"
+          }
+        },
+        "endValue": 718,
+        "fillerColor": "rgba(217,138,61,0.16)",
+        "handleStyle": {
+          "borderColor": "#d98a3d",
+          "color": "#d98a3d"
+        },
+        "height": 22,
+        "moveHandleStyle": {
+          "color": "#3a424d"
+        },
+        "startValue": 471,
+        "textStyle": {
+          "color": "#98a3b0"
+        },
+        "type": "slider"
+      }
+    ],
+    "grid": {
+      "bottom": 64,
+      "left": 56,
+      "right": 20,
+      "top": 30
+    },
+    "series": [
+      {
+        "barWidth": "62%",
+        "data": [
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 86
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 82
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 81
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 81
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 81
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 81
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 81
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 77
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 72
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 72
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 66
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 57
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 67
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 68
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 64
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 64
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 59
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 56
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 58
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 67
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 78
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 68
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 70
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 65
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 65
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 67
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 62
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 63
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 64
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 48
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 62
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 70
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 64
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 54
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 58
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 47
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 43
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 39
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 49
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 55
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 49
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 46
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 45
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 45
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 45
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 44
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 43
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 44
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 42
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 42
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 40
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 42
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 41
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 40
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 39
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 39
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 38
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 39
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 39
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 42
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 44
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 43
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 45
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 46
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 43
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 42
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 40
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 40
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 38
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 37
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 36
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 34
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 33
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 24
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 25
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 15
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 11
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 19
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 18
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 8
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 22
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 25
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 15
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 20
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 21
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 25
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 25
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 24
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 24
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 20
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 18
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 19
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 19
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 19
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 15
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 11
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 21
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 15
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 29
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 28
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 29
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 27
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 22
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 21
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 15
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 10
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 8
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 5
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -4
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -6
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -4
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -6
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 4
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 3
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 17
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 20
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 20
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 14
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 15
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 27
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 12
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 0
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -2
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -4
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 4
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 25
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 15
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 15
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 12
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 19
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 24
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 8
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 25
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 28
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 22
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 15
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 6
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -12
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -9
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 0
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 9
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 14
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 16
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 13
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 12
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 8
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 4
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -2
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 18
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 33
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 34
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 32
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 33
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 28
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 32
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 27
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 13
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 5
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -10
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 8
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 19
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 24
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 11
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -3
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -8
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 20
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 43
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 50
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 33
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 33
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 22
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 31
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 44
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 53
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 42
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 44
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 39
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 43
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 46
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 39
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 39
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 38
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 35
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 38
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 39
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 44
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 49
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 52
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 52
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 53
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 54
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 55
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 55
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 40
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 42
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 33
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 39
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 40
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 39
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 39
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 38
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 39
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 41
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 40
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 40
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 43
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 47
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 53
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 53
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 41
+          },
+          {
+            "itemStyle": {
+              "color": "#4fb58a"
+            },
+            "value": 46
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 39
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 28
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 28
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 24
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 28
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 22
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 33
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 30
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 29
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 29
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 29
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 29
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 40
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 38
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 33
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 31
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 30
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 32
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 15
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 6
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 21
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 17
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 13
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 10
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 0
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -18
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -31
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -17
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -16
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -17
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -15
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -9
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -9
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -7
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 3
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -1
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -9
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -8
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -10
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -6
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -13
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -20
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -11
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -10
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -15
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -14
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -17
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -14
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -14
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -14
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -7
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -4
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -2
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 2
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 6
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 13
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 28
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 22
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 19
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 19
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 19
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 24
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 19
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 19
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 21
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 22
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 20
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 21
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 21
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 17
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 15
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 19
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 19
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 17
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 8
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 15
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 25
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 3
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 6
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 19
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 18
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 13
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 6
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 13
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 10
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 4
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 5
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 13
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 14
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 18
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 14
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 15
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 21
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -1
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 5
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 8
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 18
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 20
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 25
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 25
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 24
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -1
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 11
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 13
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 13
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 17
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 8
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 14
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 19
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 24
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 24
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 18
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 24
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 24
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 24
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 24
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 27
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 28
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 28
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 27
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 25
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 21
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 25
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 29
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 28
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 27
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 25
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 24
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 22
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 15
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 2
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 9
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 9
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 9
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 19
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 18
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -8
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 4
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 9
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 19
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 25
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 17
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 25
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 24
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 24
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 24
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 25
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 24
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 15
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 11
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 9
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 8
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 8
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 13
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 19
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 24
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 22
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 20
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 13
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 13
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 18
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 19
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 15
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 12
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 4
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 10
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 14
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 15
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 13
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 10
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 27
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 27
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 20
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 27
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 27
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 27
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 27
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 27
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 27
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 28
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 27
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 15
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 13
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 19
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 28
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 28
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 28
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 28
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 27
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 27
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 10
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 17
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 27
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 22
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 6
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 16
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 21
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 27
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 28
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 27
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 28
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 28
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 28
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 28
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 28
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 28
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 28
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 30
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 31
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 32
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 32
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 33
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 33
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 33
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 33
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 33
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 33
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 34
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 34
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 35
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 35
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 27
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 34
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 33
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 33
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 33
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 32
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 32
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 28
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 21
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 21
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 28
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 28
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 28
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 19
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 20
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 18
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 22
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 22
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 27
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 27
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 30
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 31
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 22
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 21
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 21
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 31
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 22
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 20
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 21
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 21
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 25
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 25
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 30
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 29
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 29
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 24
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 18
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 21
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 22
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 22
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 22
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 21
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 21
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 20
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 20
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 20
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 20
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 19
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 19
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 19
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 26
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 25
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 25
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 24
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 24
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 24
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 23
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 22
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 22
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 22
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 21
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 19
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 18
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 18
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 9
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 15
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 14
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 16
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 19
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 19
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 16
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 14
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 14
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 14
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 14
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 14
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 12
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 12
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 8
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 8
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 9
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 9
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 9
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 8
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 9
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 9
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 9
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 9
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 8
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 5
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 2
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 2
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 1
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 2
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 0
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 0
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 1
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 1
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 1
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -2
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 3
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 4
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 8
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 8
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 3
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 3
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 6
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 6
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 6
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 4
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 4
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 4
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 3
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 2
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 5
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 6
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 6
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 5
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 1
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 1
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -1
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 3
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 2
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 2
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 6
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 8
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 5
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 6
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 6
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 5
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 5
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 0
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 1
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -1
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 2
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 6
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 9
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 2
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 6
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 6
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 6
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 3
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 1
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 2
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 0
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -1
+          },
+          {
+            "itemStyle": {
+              "color": "#cf6a70"
+            },
+            "value": -3
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 1
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 8
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 5
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 12
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 14
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 13
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 14
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 16
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 16
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 17
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 17
+          },
+          {
+            "itemStyle": {
+              "color": "#c9a24a"
+            },
+            "value": 16
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 15
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 15
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 14
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 11
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 12
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 12
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 12
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 11
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 12
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 11
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 14
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 14
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 12
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 9
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 8
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 7
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 10
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 10
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 10
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 11
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 14
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 14
+          },
+          {
+            "itemStyle": {
+              "color": "#c8d0d8"
+            },
+            "value": 14
+          }
+        ],
+        "markLine": {
+          "data": [
+            {
+              "label": {
+                "color": "#c8d0d8",
+                "fontSize": 11,
+                "formatter": "平缓 > 0bp",
+                "position": "insideEndTop"
+              },
+              "lineStyle": {
+                "color": "#c8d0d8",
+                "type": "dashed",
+                "width": 1
+              },
+              "yAxis": 0
+            },
+            {
+              "label": {
+                "color": "#c9a24a",
+                "fontSize": 11,
+                "formatter": "正常 > 15bp",
+                "position": "insideEndTop"
+              },
+              "lineStyle": {
+                "color": "#c9a24a",
+                "type": "dashed",
+                "width": 1
+              },
+              "yAxis": 15
+            },
+            {
+              "label": {
+                "color": "#4fb58a",
+                "fontSize": 11,
+                "formatter": "陡峭 > 40bp",
+                "position": "insideEndTop"
+              },
+              "lineStyle": {
+                "color": "#4fb58a",
+                "type": "dashed",
+                "width": 1
+              },
+              "yAxis": 40
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0.25–0.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0.25–0.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0.25–0.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0.25–0.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0.25–0.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0.25–0.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0.25–0.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 0.5–0.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0.5–0.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 0.75–1%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0.75–1%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 1–1.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 1–1.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 1–1.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 1–1.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 1.25–1.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 1.25–1.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 1.5–1.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 1.5–1.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 1.75–2%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 1.75–2%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 2–2.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 2–2.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 2.25–2.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 2.25–2.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 2.25–2.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#c9a24a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "缩表放缓至200亿/月",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#c9a24a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 2.25–2.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 2.25–2.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#4fb58a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "降息 -25bp 2–2.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#4fb58a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#4fb58a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "降息 -25bp 1.75–2%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#4fb58a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#4fb58a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "降息 -25bp 1.5–1.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#4fb58a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 1.5–1.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 1.5–1.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#4fb58a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "降息 -150bp 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#4fb58a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25% ＋缩表",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#c9a24a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "缩表 ≤700亿/月",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#c9a24a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 0–0.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 0.25–0.5% ＋缩表",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#c9a24a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "缩表",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#c9a24a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +50bp 0.75–1% ＋缩表",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#c9a24a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "缩表 ≤600亿/月",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#c9a24a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +75bp 1.5–1.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +75bp 2.25–2.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +75bp 3–3.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +75bp 3.75–4%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +50bp 4.25–4.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 4.5–4.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 4.75–5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 5–5.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 5–5.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 5.25–5.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 5.25–5.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 5.25–5.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 5.25–5.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-02"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 5.25–5.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-01-31"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 5.25–5.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-03-20"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 5.25–5.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-05-06"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 5.25–5.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-06-12"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 5.25–5.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2024-07-31"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#4fb58a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "降息 -50bp 4.75–5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#4fb58a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-09-18"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#4fb58a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "降息 -25bp 4.5–4.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#4fb58a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-11-07"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#4fb58a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "降息 -25bp 4.25–4.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#4fb58a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2024-12-18"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 4.25–4.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2025-02-05"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 4.25–4.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2025-03-19"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 4.25–4.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2025-05-07"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 4.25–4.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2025-06-18"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 4.25–4.5%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2025-07-30"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#4fb58a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "降息 -25bp 4–4.25%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#4fb58a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2025-09-17"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#4fb58a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "降息 -25bp 3.75–4%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#4fb58a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2025-10-29"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#4fb58a",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "降息 -25bp 3.5–3.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#4fb58a",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2025-12-10"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 3.5–3.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2026-01-28"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 3.5–3.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2026-03-18"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 3.5–3.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2026-04-29"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 3.5–3.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2026-06-17"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 3.5–3.75%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2026-07-29"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#d4686e",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 700,
+                "formatter": "加息 +25bp 3.75–4%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#d4686e",
+                "opacity": 0.9,
+                "type": "dashed",
+                "width": 1.4
+              },
+              "xAxis": "2026-09-16"
+            },
+            {
+              "label": {
+                "backgroundColor": "rgba(25,29,35,0.72)",
+                "color": "#7c8896",
+                "distance": 4,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "formatter": "按兵不动 维持 3.75–4%",
+                "padding": [
+                  2,
+                  3
+                ],
+                "position": "insideEndTop",
+                "rotation": 0,
+                "show": true
+              },
+              "lineStyle": {
+                "color": "#7c8896",
+                "opacity": 0.5,
+                "type": "dashed",
+                "width": 1
+              },
+              "xAxis": "2026-10-28"
+            }
+          ],
+          "silent": true,
+          "symbol": "none"
+        },
+        "type": "bar",
+        "yAxisIndex": 0,
+        "z": 2
+      }
+    ],
+    "tooltip": {
+      "axisPointer": {
+        "label": {
+          "backgroundColor": "#21262e"
+        },
+        "type": "cross"
+      },
+      "backgroundColor": "rgba(25,29,35,0.94)",
+      "borderColor": "#2a3039",
+      "formatter": "[fn]",
+      "hasPolicy": true,
+      "textStyle": {
+        "color": "#f2f4f7",
+        "fontSize": 12
+      },
+      "trigger": "axis"
+    },
+    "xAxis": {
+      "axisLabel": {
+        "color": "#98a3b0"
+      },
+      "axisLine": {
+        "lineStyle": {
+          "color": "#2a3039"
+        }
+      },
+      "data": [
+        "2024-01-02",
+        "2024-01-03",
+        "2024-01-04",
+        "2024-01-05",
+        "2024-01-08",
+        "2024-01-09",
+        "2024-01-10",
+        "2024-01-11",
+        "2024-01-12",
+        "2024-01-15",
+        "2024-01-16",
+        "2024-01-17",
+        "2024-01-18",
+        "2024-01-19",
+        "2024-01-22",
+        "2024-01-23",
+        "2024-01-24",
+        "2024-01-25",
+        "2024-01-26",
+        "2024-01-29",
+        "2024-01-30",
+        "2024-01-31",
+        "2024-02-01",
+        "2024-02-02",
+        "2024-02-04",
+        "2024-02-05",
+        "2024-02-06",
+        "2024-02-07",
+        "2024-02-08",
+        "2024-02-09",
+        "2024-02-18",
+        "2024-02-19",
+        "2024-02-20",
+        "2024-02-21",
+        "2024-02-22",
+        "2024-02-23",
+        "2024-02-26",
+        "2024-02-27",
+        "2024-02-28",
+        "2024-02-29",
+        "2024-03-01",
+        "2024-03-04",
+        "2024-03-05",
+        "2024-03-06",
+        "2024-03-07",
+        "2024-03-08",
+        "2024-03-11",
+        "2024-03-12",
+        "2024-03-13",
+        "2024-03-14",
+        "2024-03-15",
+        "2024-03-18",
+        "2024-03-19",
+        "2024-03-20",
+        "2024-03-21",
+        "2024-03-22",
+        "2024-03-25",
+        "2024-03-26",
+        "2024-03-27",
+        "2024-03-28",
+        "2024-03-29",
+        "2024-04-01",
+        "2024-04-02",
+        "2024-04-03",
+        "2024-04-07",
+        "2024-04-08",
+        "2024-04-09",
+        "2024-04-10",
+        "2024-04-11",
+        "2024-04-12",
+        "2024-04-15",
+        "2024-04-16",
+        "2024-04-17",
+        "2024-04-18",
+        "2024-04-19",
+        "2024-04-22",
+        "2024-04-23",
+        "2024-04-24",
+        "2024-04-25",
+        "2024-04-26",
+        "2024-04-28",
+        "2024-04-29",
+        "2024-04-30",
+        "2024-05-06",
+        "2024-05-07",
+        "2024-05-08",
+        "2024-05-09",
+        "2024-05-10",
+        "2024-05-11",
+        "2024-05-13",
+        "2024-05-14",
+        "2024-05-15",
+        "2024-05-16",
+        "2024-05-17",
+        "2024-05-20",
+        "2024-05-21",
+        "2024-05-22",
+        "2024-05-23",
+        "2024-05-24",
+        "2024-05-27",
+        "2024-05-28",
+        "2024-05-29",
+        "2024-05-30",
+        "2024-05-31",
+        "2024-06-03",
+        "2024-06-04",
+        "2024-06-05",
+        "2024-06-06",
+        "2024-06-07",
+        "2024-06-11",
+        "2024-06-12",
+        "2024-06-13",
+        "2024-06-14",
+        "2024-06-17",
+        "2024-06-18",
+        "2024-06-19",
+        "2024-06-20",
+        "2024-06-21",
+        "2024-06-24",
+        "2024-06-25",
+        "2024-06-26",
+        "2024-06-27",
+        "2024-06-28",
+        "2024-07-01",
+        "2024-07-02",
+        "2024-07-03",
+        "2024-07-04",
+        "2024-07-05",
+        "2024-07-08",
+        "2024-07-09",
+        "2024-07-10",
+        "2024-07-11",
+        "2024-07-12",
+        "2024-07-15",
+        "2024-07-16",
+        "2024-07-17",
+        "2024-07-18",
+        "2024-07-19",
+        "2024-07-22",
+        "2024-07-23",
+        "2024-07-24",
+        "2024-07-25",
+        "2024-07-26",
+        "2024-07-29",
+        "2024-07-30",
+        "2024-07-31",
+        "2024-08-01",
+        "2024-08-02",
+        "2024-08-05",
+        "2024-08-06",
+        "2024-08-07",
+        "2024-08-08",
+        "2024-08-09",
+        "2024-08-12",
+        "2024-08-13",
+        "2024-08-14",
+        "2024-08-15",
+        "2024-08-16",
+        "2024-08-19",
+        "2024-08-20",
+        "2024-08-21",
+        "2024-08-22",
+        "2024-08-23",
+        "2024-08-26",
+        "2024-08-27",
+        "2024-08-28",
+        "2024-08-29",
+        "2024-08-30",
+        "2024-09-02",
+        "2024-09-03",
+        "2024-09-04",
+        "2024-09-05",
+        "2024-09-06",
+        "2024-09-09",
+        "2024-09-10",
+        "2024-09-11",
+        "2024-09-12",
+        "2024-09-13",
+        "2024-09-14",
+        "2024-09-18",
+        "2024-09-19",
+        "2024-09-20",
+        "2024-09-23",
+        "2024-09-24",
+        "2024-09-25",
+        "2024-09-26",
+        "2024-09-27",
+        "2024-09-29",
+        "2024-09-30",
+        "2024-10-08",
+        "2024-10-09",
+        "2024-10-10",
+        "2024-10-11",
+        "2024-10-12",
+        "2024-10-14",
+        "2024-10-15",
+        "2024-10-16",
+        "2024-10-17",
+        "2024-10-18",
+        "2024-10-21",
+        "2024-10-22",
+        "2024-10-23",
+        "2024-10-24",
+        "2024-10-25",
+        "2024-10-28",
+        "2024-10-29",
+        "2024-10-30",
+        "2024-10-31",
+        "2024-11-01",
+        "2024-11-04",
+        "2024-11-05",
+        "2024-11-06",
+        "2024-11-07",
+        "2024-11-08",
+        "2024-11-11",
+        "2024-11-12",
+        "2024-11-13",
+        "2024-11-14",
+        "2024-11-15",
+        "2024-11-18",
+        "2024-11-19",
+        "2024-11-20",
+        "2024-11-21",
+        "2024-11-22",
+        "2024-11-25",
+        "2024-11-26",
+        "2024-11-27",
+        "2024-11-28",
+        "2024-11-29",
+        "2024-12-02",
+        "2024-12-03",
+        "2024-12-04",
+        "2024-12-05",
+        "2024-12-06",
+        "2024-12-09",
+        "2024-12-10",
+        "2024-12-11",
+        "2024-12-12",
+        "2024-12-13",
+        "2024-12-16",
+        "2024-12-17",
+        "2024-12-18",
+        "2024-12-19",
+        "2024-12-20",
+        "2024-12-23",
+        "2024-12-24",
+        "2024-12-25",
+        "2024-12-26",
+        "2024-12-27",
+        "2024-12-30",
+        "2024-12-31",
+        "2025-01-02",
+        "2025-01-03",
+        "2025-01-06",
+        "2025-01-07",
+        "2025-01-08",
+        "2025-01-09",
+        "2025-01-10",
+        "2025-01-13",
+        "2025-01-14",
+        "2025-01-15",
+        "2025-01-16",
+        "2025-01-17",
+        "2025-01-20",
+        "2025-01-21",
+        "2025-01-22",
+        "2025-01-23",
+        "2025-01-24",
+        "2025-01-26",
+        "2025-01-27",
+        "2025-02-05",
+        "2025-02-06",
+        "2025-02-07",
+        "2025-02-08",
+        "2025-02-10",
+        "2025-02-11",
+        "2025-02-12",
+        "2025-02-13",
+        "2025-02-14",
+        "2025-02-17",
+        "2025-02-18",
+        "2025-02-19",
+        "2025-02-20",
+        "2025-02-21",
+        "2025-02-24",
+        "2025-02-25",
+        "2025-02-26",
+        "2025-02-27",
+        "2025-02-28",
+        "2025-03-03",
+        "2025-03-04",
+        "2025-03-05",
+        "2025-03-06",
+        "2025-03-07",
+        "2025-03-10",
+        "2025-03-11",
+        "2025-03-12",
+        "2025-03-13",
+        "2025-03-14",
+        "2025-03-17",
+        "2025-03-18",
+        "2025-03-19",
+        "2025-03-20",
+        "2025-03-21",
+        "2025-03-24",
+        "2025-03-25",
+        "2025-03-26",
+        "2025-03-27",
+        "2025-03-28",
+        "2025-03-31",
+        "2025-04-01",
+        "2025-04-02",
+        "2025-04-03",
+        "2025-04-07",
+        "2025-04-08",
+        "2025-04-09",
+        "2025-04-10",
+        "2025-04-11",
+        "2025-04-14",
+        "2025-04-15",
+        "2025-04-16",
+        "2025-04-17",
+        "2025-04-18",
+        "2025-04-21",
+        "2025-04-22",
+        "2025-04-23",
+        "2025-04-24",
+        "2025-04-25",
+        "2025-04-27",
+        "2025-04-28",
+        "2025-04-29",
+        "2025-04-30",
+        "2025-05-06",
+        "2025-05-07",
+        "2025-05-08",
+        "2025-05-09",
+        "2025-05-12",
+        "2025-05-13",
+        "2025-05-14",
+        "2025-05-15",
+        "2025-05-16",
+        "2025-05-19",
+        "2025-05-20",
+        "2025-05-21",
+        "2025-05-22",
+        "2025-05-23",
+        "2025-05-26",
+        "2025-05-27",
+        "2025-05-28",
+        "2025-05-29",
+        "2025-05-30",
+        "2025-06-03",
+        "2025-06-04",
+        "2025-06-05",
+        "2025-06-06",
+        "2025-06-09",
+        "2025-06-10",
+        "2025-06-11",
+        "2025-06-12",
+        "2025-06-13",
+        "2025-06-16",
+        "2025-06-17",
+        "2025-06-18",
+        "2025-06-19",
+        "2025-06-20",
+        "2025-06-23",
+        "2025-06-24",
+        "2025-06-25",
+        "2025-06-26",
+        "2025-06-27",
+        "2025-06-30",
+        "2025-07-01",
+        "2025-07-02",
+        "2025-07-03",
+        "2025-07-04",
+        "2025-07-07",
+        "2025-07-08",
+        "2025-07-09",
+        "2025-07-10",
+        "2025-07-11",
+        "2025-07-14",
+        "2025-07-15",
+        "2025-07-16",
+        "2025-07-17",
+        "2025-07-18",
+        "2025-07-21",
+        "2025-07-22",
+        "2025-07-23",
+        "2025-07-24",
+        "2025-07-25",
+        "2025-07-28",
+        "2025-07-29",
+        "2025-07-30",
+        "2025-07-31",
+        "2025-08-01",
+        "2025-08-04",
+        "2025-08-05",
+        "2025-08-06",
+        "2025-08-07",
+        "2025-08-08",
+        "2025-08-11",
+        "2025-08-12",
+        "2025-08-13",
+        "2025-08-14",
+        "2025-08-15",
+        "2025-08-18",
+        "2025-08-19",
+        "2025-08-20",
+        "2025-08-21",
+        "2025-08-22",
+        "2025-08-25",
+        "2025-08-26",
+        "2025-08-27",
+        "2025-08-28",
+        "2025-08-29",
+        "2025-09-01",
+        "2025-09-02",
+        "2025-09-03",
+        "2025-09-04",
+        "2025-09-05",
+        "2025-09-08",
+        "2025-09-09",
+        "2025-09-10",
+        "2025-09-11",
+        "2025-09-12",
+        "2025-09-15",
+        "2025-09-16",
+        "2025-09-17",
+        "2025-09-18",
+        "2025-09-19",
+        "2025-09-22",
+        "2025-09-23",
+        "2025-09-24",
+        "2025-09-25",
+        "2025-09-26",
+        "2025-09-28",
+        "2025-09-29",
+        "2025-09-30",
+        "2025-10-09",
+        "2025-10-10",
+        "2025-10-11",
+        "2025-10-13",
+        "2025-10-14",
+        "2025-10-15",
+        "2025-10-16",
+        "2025-10-17",
+        "2025-10-20",
+        "2025-10-21",
+        "2025-10-22",
+        "2025-10-23",
+        "2025-10-24",
+        "2025-10-27",
+        "2025-10-28",
+        "2025-10-29",
+        "2025-10-30",
+        "2025-10-31",
+        "2025-11-03",
+        "2025-11-04",
+        "2025-11-05",
+        "2025-11-06",
+        "2025-11-07",
+        "2025-11-10",
+        "2025-11-11",
+        "2025-11-12",
+        "2025-11-13",
+        "2025-11-14",
+        "2025-11-17",
+        "2025-11-18",
+        "2025-11-19",
+        "2025-11-20",
+        "2025-11-21",
+        "2025-11-24",
+        "2025-11-25",
+        "2025-11-26",
+        "2025-11-27",
+        "2025-11-28",
+        "2025-12-01",
+        "2025-12-02",
+        "2025-12-03",
+        "2025-12-04",
+        "2025-12-05",
+        "2025-12-08",
+        "2025-12-09",
+        "2025-12-10",
+        "2025-12-11",
+        "2025-12-12",
+        "2025-12-15",
+        "2025-12-16",
+        "2025-12-17",
+        "2025-12-18",
+        "2025-12-19",
+        "2025-12-22",
+        "2025-12-23",
+        "2025-12-24",
+        "2025-12-25",
+        "2025-12-26",
+        "2025-12-29",
+        "2025-12-30",
+        "2025-12-31",
+        "2026-01-04",
+        "2026-01-05",
+        "2026-01-06",
+        "2026-01-07",
+        "2026-01-08",
+        "2026-01-09",
+        "2026-01-12",
+        "2026-01-13",
+        "2026-01-14",
+        "2026-01-15",
+        "2026-01-16",
+        "2026-01-19",
+        "2026-01-20",
+        "2026-01-21",
+        "2026-01-22",
+        "2026-01-23",
+        "2026-01-26",
+        "2026-01-27",
+        "2026-01-28",
+        "2026-01-29",
+        "2026-01-30",
+        "2026-02-02",
+        "2026-02-03",
+        "2026-02-04",
+        "2026-02-05",
+        "2026-02-06",
+        "2026-02-09",
+        "2026-02-10",
+        "2026-02-11",
+        "2026-02-12",
+        "2026-02-13",
+        "2026-02-14",
+        "2026-02-24",
+        "2026-02-25",
+        "2026-02-26",
+        "2026-02-27",
+        "2026-02-28",
+        "2026-03-02",
+        "2026-03-03",
+        "2026-03-04",
+        "2026-03-05",
+        "2026-03-06",
+        "2026-03-09",
+        "2026-03-10",
+        "2026-03-11",
+        "2026-03-12",
+        "2026-03-13",
+        "2026-03-16",
+        "2026-03-17",
+        "2026-03-18",
+        "2026-03-19",
+        "2026-03-20",
+        "2026-03-23",
+        "2026-03-24",
+        "2026-03-25",
+        "2026-03-26",
+        "2026-03-27",
+        "2026-03-30",
+        "2026-03-31",
+        "2026-04-01",
+        "2026-04-02",
+        "2026-04-03",
+        "2026-04-07",
+        "2026-04-08",
+        "2026-04-09",
+        "2026-04-10",
+        "2026-04-13",
+        "2026-04-14",
+        "2026-04-15",
+        "2026-04-16",
+        "2026-04-17",
+        "2026-04-20",
+        "2026-04-21",
+        "2026-04-22",
+        "2026-04-23",
+        "2026-04-24",
+        "2026-04-27",
+        "2026-04-28",
+        "2026-04-29",
+        "2026-04-30",
+        "2026-05-06",
+        "2026-05-07",
+        "2026-05-08",
+        "2026-05-09",
+        "2026-05-11",
+        "2026-05-12",
+        "2026-05-13",
+        "2026-05-14",
+        "2026-05-15",
+        "2026-05-18",
+        "2026-05-19",
+        "2026-05-20",
+        "2026-05-21",
+        "2026-05-22",
+        "2026-05-25",
+        "2026-05-26",
+        "2026-05-27",
+        "2026-05-28",
+        "2026-05-29",
+        "2026-06-01",
+        "2026-06-02",
+        "2026-06-03",
+        "2026-06-04",
+        "2026-06-05",
+        "2026-06-08",
+        "2026-06-09",
+        "2026-06-10",
+        "2026-06-11",
+        "2026-06-12",
+        "2026-06-15",
+        "2026-06-16",
+        "2026-06-17",
+        "2026-06-18",
+        "2026-06-22",
+        "2026-06-23",
+        "2026-06-24",
+        "2026-06-25",
+        "2026-06-26",
+        "2026-06-29",
+        "2026-06-30",
+        "2026-07-01",
+        "2026-07-02",
+        "2026-07-03",
+        "2026-07-06",
+        "2026-07-07",
+        "2026-07-08",
+        "2026-07-09",
+        "2026-07-10",
+        "2026-07-13",
+        "2026-07-14",
+        "2026-07-15",
+        "2026-07-16",
+        "2026-07-17",
+        "2026-07-20",
+        "2026-07-21",
+        "2026-07-22",
+        "2026-07-23",
+        "2026-07-24",
+        "2026-07-27",
+        "2026-07-28",
+        "2026-07-29",
+        "2026-07-30",
+        "2026-07-31",
+        "2026-08-03",
+        "2026-08-04",
+        "2026-08-05",
+        "2026-08-06",
+        "2026-08-07",
+        "2026-08-10",
+        "2026-08-11",
+        "2026-08-12",
+        "2026-08-13",
+        "2026-08-14",
+        "2026-08-17",
+        "2026-08-18",
+        "2026-08-19",
+        "2026-08-20",
+        "2026-08-21",
+        "2026-08-24",
+        "2026-08-25",
+        "2026-08-26",
+        "2026-08-27",
+        "2026-08-28",
+        "2026-08-31",
+        "2026-09-01",
+        "2026-09-02",
+        "2026-09-03",
+        "2026-09-04",
+        "2026-09-07",
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-10",
+        "2026-09-11",
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-16",
+        "2026-09-17",
+        "2026-09-18",
+        "2026-09-20",
+        "2026-09-21",
+        "2026-09-22",
+        "2026-09-23",
+        "2026-09-24",
+        "2026-09-28",
+        "2026-09-29",
+        "2026-09-30",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-10",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-20",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27",
+        "2026-10-28",
+        "2026-10-29",
+        "2026-10-30",
+        "2026-11-02",
+        "2026-11-03",
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-16",
+        "2026-11-17",
+        "2026-11-18",
+        "2026-11-19",
+        "2026-11-20",
+        "2026-11-23"
+      ],
+      "type": "category"
+    },
+    "yAxis": [
+      {
+        "axisLabel": {
+          "color": "#98a3b0",
+          "formatter": "[fn]"
+        },
+        "axisLine": {
+          "show": false
+        },
+        "inverse": false,
+        "name": "bp",
+        "nameTextStyle": {
+          "color": "#98a3b0",
+          "fontSize": 11
+        },
+        "offset": 0,
+        "position": "right",
+        "scale": true,
+        "splitLine": {
+          "show": false
+        },
+        "type": "value"
+      }
+    ]
+  }
+}

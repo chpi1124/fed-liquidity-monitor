@@ -6,7 +6,7 @@
   "en": "Shanghai Interbank Offered Rate O/N",
   "formula": "隔夜上海银行间同业拆放利率",
   "unit": "%",
-  "hue": "#3aa6ff",
+  "hue": "info",
   "publication": "T",
   "description": "SHIBOR 隔夜利率，全国银行间同业拆借中心 / 中国外汇交易中心（CFETS，央行直属）官方发布，每日 11:00 报价。中国。交叉验证：Shibor 隔夜为报价制、FDR001 为成交制，二者是同一隔夜资金成本的两套独立测度，带宽 [-0.08, 0.25] 取十年实测 min/max（2364 个重叠日）。",
   "operation": "level",
@@ -28,7 +28,17 @@
         "band": [
           -0.08,
           0.25
-        ]
+        ],
+        "source": {
+          "statistic": "manual-policy",
+          "window": "2024-01-02 ~ 2026-11-23",
+          "measured": {
+            "devLo": -0.059,
+            "devHi": 0.026,
+            "checked": 719
+          },
+          "note": "带 [-0.08, 0.25] 覆盖同窗口实测偏差 [-0.059, 0.026]；门禁每轮复算包含关系与松紧上限（12 倍）"
+        }
       }
     }
   ],
@@ -38,6 +48,30 @@
       0.3,
       4
     ],
-    "maxAbsJump": 1
+    "maxAbsJump": 1,
+    "source": {
+      "range": {
+        "statistic": "manual-policy",
+        "window": "2024-01-02 ~ 2026-11-23",
+        "measured": {
+          "min": 1.219,
+          "max": 1.98,
+          "p02": 1.219,
+          "p998": 1.976,
+          "n": 719
+        },
+        "note": "声明带 [0.3, 4] 由实测 [1.219, 1.98] 向外取整而得；外扩是有意冗余，越带即报警（门禁复算包含关系）"
+      },
+      "maxAbsJump": {
+        "statistic": "manual-policy",
+        "window": "2024-01-02 ~ 2026-11-23",
+        "measured": {
+          "maxJump": 0.268,
+          "p998Jump": 0.25,
+          "n": 719
+        },
+        "note": "声明 1 高于实测 99.8 分位 0.25：有意留宽的保守带，低于该分位即判太紧"
+      }
+    }
   }
 }

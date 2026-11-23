@@ -1,12 +1,13 @@
 {
   "id": "effr",
+  "region": "us",
   "order": 12,
   "surface": "strip",
   "name": "EFFR",
   "en": "Effective Federal Funds Rate",
   "formula": "联邦基金有效利率",
   "unit": "%",
-  "hue": "#3aa6ff",
+  "hue": "info",
   "publication": "T+1",
   "description": "EFFR（联邦基金有效利率），纽约联储每日发布；与圣路易斯联储 FRED DFF 序列双源交叉验证。点击利率卡可查看其历史走势。",
   "operation": "level",
@@ -34,6 +35,30 @@
       0,
       8
     ],
-    "maxAbsJump": 1.5
+    "maxAbsJump": 1.5,
+    "source": {
+      "range": {
+        "statistic": "manual-policy",
+        "window": "2018-04-02 ~ 2026-11-19",
+        "measured": {
+          "min": 0.04,
+          "max": 5.33,
+          "p02": 0.05,
+          "p998": 5.33,
+          "n": 2169
+        },
+        "note": "声明带 [0, 8] 由实测 [0.04, 5.33] 向外取整而得；外扩是有意冗余，越带即报警（门禁复算包含关系）"
+      },
+      "maxAbsJump": {
+        "statistic": "manual-policy",
+        "window": "2018-04-02 ~ 2026-11-19",
+        "measured": {
+          "maxJump": 0.85,
+          "p998Jump": 0.75,
+          "n": 2169
+        },
+        "note": "声明 1.5 高于实测 99.8 分位 0.75：有意留宽的保守带，低于该分位即判太紧"
+      }
+    }
   }
 }

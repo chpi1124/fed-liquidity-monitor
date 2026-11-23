@@ -1,0 +1,15 @@
+{
+  "id": "summary-tables",
+  "page": "summary",
+  "title": "周度汇总（官方样表复刻）",
+  "empty": "周度汇总数据加载中…",
+  "navLabel": "周度汇总",
+  "navSub": "WEEKLY DIGEST · 官方样表复刻",
+  "needs": ["summaries"],
+  "views": [
+    { "projection": "header", "container": "sum-header" },
+    { "projection": "toolbar", "container": "sum-toolbar" },
+    { "projection": "tables", "source": "summaries", "container": "sum-tables" },
+    { "projection": "desc", "container": "sum-desc" }
+  ]
+}

@@ -10,78 +10,325 @@
   "historyStart": "2002-12-18",
   "tolerance": 1,
   "identityTolerance": 2,
-  "checkSeries": ["WALCL", "TREAST", "WSHOMCB", "WDTGAL", "WLFN", "WORAL", "WFCDA"],
+  "checkSeries": [
+    "WALCL",
+    "TREAST",
+    "WSHOMCB",
+    "WDTGAL",
+    "WLFN",
+    "WORAL",
+    "WFCDA"
+  ],
   "description": "美联储每周四发布 H.4.1《影响准备金余额的因素与联邦储备银行状况报告》，数据为每周三水平（单位：百万美元，本站换算为万亿美元）。主源：美联储理事会 H.4.1 官方报表；校验源：圣路易斯联储 FRED 同源序列（WALCL/TREAST/WSHOMCB/WDTGAL/WLFN/WORAL/WFCDA），并验证「资产合计 = 负债 + 资本」会计恒等式。规模柱状图为 FRED WALCL 自 2002-12-18 起的周度总资产。",
   "validationNote": "双源校验：理事会 H.4.1 × FRED（最新/上周/去年同期三个周三）+ 会计恒等式",
   "eras": [
-    { "label": "QE1", "from": "2008-12-01", "to": "2010-03-31", "color": "#2fd08c" },
-    { "label": "QE2", "from": "2010-11-01", "to": "2011-06-30", "color": "#35e0a1" },
-    { "label": "QE3", "from": "2012-09-01", "to": "2014-10-31", "color": "#3aa6ff" },
-    { "label": "疫情扩表", "from": "2020-03-01", "to": "2022-04-01", "color": "#ff8a2a" },
-    { "label": "缩表 QT", "from": "2022-06-01", "to": null, "color": "#ff4757" }
+    {
+      "label": "QE1",
+      "from": "2008-12-01",
+      "to": "2010-03-31",
+      "color": "ok"
+    },
+    {
+      "label": "QE2",
+      "from": "2010-11-01",
+      "to": "2011-06-30",
+      "color": "ecg"
+    },
+    {
+      "label": "QE3",
+      "from": "2012-09-01",
+      "to": "2014-10-31",
+      "color": "info"
+    },
+    {
+      "label": "疫情扩表",
+      "from": "2020-03-01",
+      "to": "2022-04-01",
+      "color": "accent"
+    },
+    {
+      "label": "缩表 QT",
+      "from": "2022-06-01",
+      "to": null,
+      "color": "danger"
+    }
   ],
   "groups": [
     {
       "key": "assets",
       "label": "资产端",
       "en": "Assets",
-      "hue": "#ff8a2a",
+      "hue": "accent",
       "items": [
-        { "board": "Gold certificate account", "zh": "黄金证书账户", "en": "Gold certificate account", "leaf": true },
-        { "board": "Special drawing rights certificate account", "zh": "特别提款权证书账户", "en": "SDR certificate account", "leaf": true },
-        { "board": "Coin", "zh": "硬币", "en": "Coin", "leaf": true },
-        { "board": "Securities held outright", "zh": "直接持有证券", "en": "Securities held outright", "subtotal": true },
-        { "board": "U.S. Treasury securities", "zh": "美国国债", "en": "U.S. Treasury securities", "check": "TREAST", "subtotal": true, "depth": 1 },
-        { "board": "Bills", "zh": "短期国库券", "en": "Treasury bills", "leaf": true, "depth": 2 },
-        { "board": "Notes and bonds, nominal", "zh": "名义中长期国债", "en": "Nominal notes and bonds", "leaf": true, "depth": 2 },
-        { "board": "Notes and bonds, inflation-indexed", "zh": "通胀保值国债 TIPS", "en": "Inflation-indexed notes and bonds", "leaf": true, "depth": 2 },
-        { "board": "Inflation compensation", "zh": "通胀补偿调整", "en": "Inflation compensation", "leaf": true, "depth": 2 },
-        { "board": "Federal agency debt securities", "zh": "联邦机构债", "en": "Federal agency debt securities", "leaf": true, "depth": 1 },
-        { "board": "Mortgage-backed securities", "zh": "机构抵押贷款支持证券 MBS", "en": "Mortgage-backed securities", "check": "WSHOMCB", "leaf": true, "depth": 1 },
-        { "board": "Unamortized premiums on securities held outright", "zh": "未摊销证券溢价", "en": "Unamortized premiums", "leaf": true },
-        { "board": "Unamortized discounts on securities held outright", "zh": "未摊销证券折价", "en": "Unamortized discounts", "leaf": true },
-        { "board": "Repurchase agreements", "zh": "回购协议（资产）", "en": "Repurchase agreements", "check": "WORAL", "leaf": true },
-        { "board": "Loans", "zh": "贷款（贴现窗口等）", "en": "Loans", "leaf": true },
-        { "board": "Net portfolio holdings of MS Facilities 2020 LLC (Main Street Lending Program)", "zh": "主街贷款计划净持仓", "en": "MS Facilities 2020 LLC", "leaf": true },
-        { "board": "Items in process of collection", "zh": "托收中款项", "en": "Items in process of collection", "leaf": true },
-        { "board": "Bank premises", "zh": "房产与设备", "en": "Bank premises", "leaf": true },
-        { "board": "Central bank liquidity swaps", "zh": "央行流动性互换", "en": "Central bank liquidity swaps", "leaf": true },
-        { "board": "Foreign currency denominated assets", "zh": "外币计价资产", "en": "Foreign currency denominated assets", "check": "WFCDA", "leaf": true },
-        { "board": "Other assets", "zh": "其他资产（含应计利息）", "en": "Other assets", "leaf": true },
-        { "board": "Total assets", "zh": "资产总计", "en": "Total assets", "check": "WALCL", "total": true }
+        {
+          "board": "Gold certificate account",
+          "zh": "黄金证书账户",
+          "en": "Gold certificate account",
+          "leaf": true
+        },
+        {
+          "board": "Special drawing rights certificate account",
+          "zh": "特别提款权证书账户",
+          "en": "SDR certificate account",
+          "leaf": true
+        },
+        {
+          "board": "Coin",
+          "zh": "硬币",
+          "en": "Coin",
+          "leaf": true
+        },
+        {
+          "board": "Securities held outright",
+          "zh": "直接持有证券",
+          "en": "Securities held outright",
+          "subtotal": true
+        },
+        {
+          "board": "U.S. Treasury securities",
+          "zh": "美国国债",
+          "en": "U.S. Treasury securities",
+          "check": "TREAST",
+          "subtotal": true,
+          "depth": 1
+        },
+        {
+          "board": "Bills",
+          "zh": "短期国库券",
+          "en": "Treasury bills",
+          "leaf": true,
+          "depth": 2
+        },
+        {
+          "board": "Notes and bonds, nominal",
+          "zh": "名义中长期国债",
+          "en": "Nominal notes and bonds",
+          "leaf": true,
+          "depth": 2
+        },
+        {
+          "board": "Notes and bonds, inflation-indexed",
+          "zh": "通胀保值国债 TIPS",
+          "en": "Inflation-indexed notes and bonds",
+          "leaf": true,
+          "depth": 2
+        },
+        {
+          "board": "Inflation compensation",
+          "zh": "通胀补偿调整",
+          "en": "Inflation compensation",
+          "leaf": true,
+          "depth": 2
+        },
+        {
+          "board": "Federal agency debt securities",
+          "zh": "联邦机构债",
+          "en": "Federal agency debt securities",
+          "leaf": true,
+          "depth": 1
+        },
+        {
+          "board": "Mortgage-backed securities",
+          "zh": "机构抵押贷款支持证券 MBS",
+          "en": "Mortgage-backed securities",
+          "check": "WSHOMCB",
+          "leaf": true,
+          "depth": 1
+        },
+        {
+          "board": "Unamortized premiums on securities held outright",
+          "zh": "未摊销证券溢价",
+          "en": "Unamortized premiums",
+          "leaf": true
+        },
+        {
+          "board": "Unamortized discounts on securities held outright",
+          "zh": "未摊销证券折价",
+          "en": "Unamortized discounts",
+          "leaf": true
+        },
+        {
+          "board": "Repurchase agreements",
+          "zh": "回购协议（资产）",
+          "en": "Repurchase agreements",
+          "check": "WORAL",
+          "leaf": true
+        },
+        {
+          "board": "Loans",
+          "zh": "贷款（贴现窗口等）",
+          "en": "Loans",
+          "leaf": true
+        },
+        {
+          "board": "Net portfolio holdings of MS Facilities 2020 LLC (Main Street Lending Program)",
+          "zh": "主街贷款计划净持仓",
+          "en": "MS Facilities 2020 LLC",
+          "leaf": true
+        },
+        {
+          "board": "Items in process of collection",
+          "zh": "托收中款项",
+          "en": "Items in process of collection",
+          "leaf": true
+        },
+        {
+          "board": "Bank premises",
+          "zh": "房产与设备",
+          "en": "Bank premises",
+          "leaf": true
+        },
+        {
+          "board": "Central bank liquidity swaps",
+          "zh": "央行流动性互换",
+          "en": "Central bank liquidity swaps",
+          "leaf": true
+        },
+        {
+          "board": "Foreign currency denominated assets",
+          "zh": "外币计价资产",
+          "en": "Foreign currency denominated assets",
+          "check": "WFCDA",
+          "leaf": true
+        },
+        {
+          "board": "Other assets",
+          "zh": "其他资产（含应计利息）",
+          "en": "Other assets",
+          "leaf": true
+        },
+        {
+          "board": "Total assets",
+          "zh": "资产总计",
+          "en": "Total assets",
+          "check": "WALCL",
+          "total": true
+        }
       ]
     },
     {
       "key": "liabilities",
       "label": "负债端",
       "en": "Liabilities",
-      "hue": "#3aa6ff",
+      "hue": "info",
       "items": [
-        { "board": "Federal Reserve notes, net of F.R. Bank holdings", "zh": "联邦储备券（流通货币净额）", "en": "Federal Reserve notes, net", "check": "WLFN", "leaf": true },
-        { "board": "Reverse repurchase agreements", "zh": "逆回购协议（负债）", "en": "Reverse repurchase agreements", "leaf": true },
-        { "board": "Deposits", "zh": "存款", "en": "Deposits", "subtotal": true },
-        { "board": "Term deposits held by depository institutions", "zh": "存款机构定期存款", "en": "Term deposits", "leaf": true, "depth": 1 },
-        { "board": "Other deposits held by depository institutions", "zh": "存款机构存款（准备金）", "en": "Depository institution deposits", "leaf": true, "depth": 1 },
-        { "board": "U.S. Treasury, General Account", "zh": "财政部一般账户 TGA", "en": "Treasury General Account", "check": "WDTGAL", "leaf": true, "depth": 1 },
-        { "board": "Foreign official", "zh": "外国官方存款", "en": "Foreign official deposits", "leaf": true, "depth": 1 },
-        { "board": "Other", "zh": "其他存款（国际组织等）", "en": "Other deposits", "leaf": true, "depth": 1 },
-        { "board": "Deferred availability cash items", "zh": "递延可用现金款项", "en": "Deferred availability cash items", "leaf": true },
-        { "board": "Treasury contributions to credit facilities", "zh": "财政部信贷工具出资", "en": "Treasury contributions to credit facilities", "leaf": true },
-        { "board": "Other liabilities and accrued dividends", "zh": "其他负债与应计股息", "en": "Other liabilities and accrued dividends", "leaf": true, "note": "含应付财政部利润上缴（负值）" },
-        { "board": "Total liabilities", "zh": "负债总计", "en": "Total liabilities", "total": true }
+        {
+          "board": "Federal Reserve notes, net of F.R. Bank holdings",
+          "zh": "联邦储备券（流通货币净额）",
+          "en": "Federal Reserve notes, net",
+          "check": "WLFN",
+          "leaf": true
+        },
+        {
+          "board": "Reverse repurchase agreements",
+          "zh": "逆回购协议（负债）",
+          "en": "Reverse repurchase agreements",
+          "leaf": true
+        },
+        {
+          "board": "Deposits",
+          "zh": "存款",
+          "en": "Deposits",
+          "subtotal": true
+        },
+        {
+          "board": "Term deposits held by depository institutions",
+          "zh": "存款机构定期存款",
+          "en": "Term deposits",
+          "leaf": true,
+          "depth": 1
+        },
+        {
+          "board": "Other deposits held by depository institutions",
+          "zh": "存款机构存款（准备金）",
+          "en": "Depository institution deposits",
+          "leaf": true,
+          "depth": 1
+        },
+        {
+          "board": "U.S. Treasury, General Account",
+          "zh": "财政部一般账户 TGA",
+          "en": "Treasury General Account",
+          "check": "WDTGAL",
+          "leaf": true,
+          "depth": 1
+        },
+        {
+          "board": "Foreign official",
+          "zh": "外国官方存款",
+          "en": "Foreign official deposits",
+          "leaf": true,
+          "depth": 1
+        },
+        {
+          "board": "Other",
+          "zh": "其他存款（国际组织等）",
+          "en": "Other deposits",
+          "leaf": true,
+          "depth": 1
+        },
+        {
+          "board": "Deferred availability cash items",
+          "zh": "递延可用现金款项",
+          "en": "Deferred availability cash items",
+          "leaf": true
+        },
+        {
+          "board": "Treasury contributions to credit facilities",
+          "zh": "财政部信贷工具出资",
+          "en": "Treasury contributions to credit facilities",
+          "leaf": true
+        },
+        {
+          "board": "Other liabilities and accrued dividends",
+          "zh": "其他负债与应计股息",
+          "en": "Other liabilities and accrued dividends",
+          "leaf": true,
+          "note": "含应付财政部利润上缴（负值）"
+        },
+        {
+          "board": "Total liabilities",
+          "zh": "负债总计",
+          "en": "Total liabilities",
+          "total": true
+        }
       ]
     },
     {
       "key": "capital",
       "label": "资本",
       "en": "Capital accounts",
-      "hue": "#2fd08c",
+      "hue": "ok",
       "items": [
-        { "board": "Capital paid in", "zh": "实缴资本", "en": "Capital paid in", "leaf": true },
-        { "board": "Surplus", "zh": "盈余", "en": "Surplus", "leaf": true },
-        { "board": "Other capital accounts", "zh": "其他资本账户", "en": "Other capital accounts", "leaf": true },
-        { "board": "Total capital", "zh": "资本总计", "en": "Total capital", "total": true }
+        {
+          "board": "Capital paid in",
+          "zh": "实缴资本",
+          "en": "Capital paid in",
+          "leaf": true
+        },
+        {
+          "board": "Surplus",
+          "zh": "盈余",
+          "en": "Surplus",
+          "leaf": true
+        },
+        {
+          "board": "Other capital accounts",
+          "zh": "其他资本账户",
+          "en": "Other capital accounts",
+          "leaf": true
+        },
+        {
+          "board": "Total capital",
+          "zh": "资本总计",
+          "en": "Total capital",
+          "total": true
+        }
       ]
     }
-  ]
+  ],
+  "providers": {
+    "board": "frb-h41",
+    "check": "fred"
+  }
 }

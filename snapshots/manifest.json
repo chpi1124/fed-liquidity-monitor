@@ -1,0 +1,56 @@
+{
+  "expected": 21,
+  "generated": [
+    "us.fed-balance.balance-history.day",
+    "us.fed-balance.balance-history.week",
+    "us.fed-balance.balance-history.month",
+    "us.gold.gold-overlay.day",
+    "us.gold.gold-overlay.week",
+    "us.gold.gold-overlay.month",
+    "us.monitor.main-trend.day",
+    "us.monitor.main-trend.week",
+    "us.monitor.main-trend.month",
+    "cn.cn-balance.cn-balance.day",
+    "cn.cn-balance.cn-balance.week",
+    "cn.cn-balance.cn-balance.month",
+    "cn.monitor.main-trend.day",
+    "cn.monitor.main-trend.week",
+    "cn.monitor.main-trend.month"
+  ],
+  "skipped": [
+    {
+      "key": "cn.fed-balance.balance-history.day",
+      "reason": "spec balance-history 在页面 fed-balance 未派生出 panel 视图（该市场无对应序列）"
+    },
+    {
+      "key": "cn.fed-balance.balance-history.week",
+      "reason": "spec balance-history 在页面 fed-balance 未派生出 panel 视图（该市场无对应序列）"
+    },
+    {
+      "key": "cn.fed-balance.balance-history.month",
+      "reason": "spec balance-history 在页面 fed-balance 未派生出 panel 视图（该市场无对应序列）"
+    },
+    {
+      "key": "cn.gold.gold-overlay.day",
+      "reason": "spec gold-overlay 在页面 gold 未派生出 panel 视图（该市场无对应序列）"
+    },
+    {
+      "key": "cn.gold.gold-overlay.week",
+      "reason": "spec gold-overlay 在页面 gold 未派生出 panel 视图（该市场无对应序列）"
+    },
+    {
+      "key": "cn.gold.gold-overlay.month",
+      "reason": "spec gold-overlay 在页面 gold 未派生出 panel 视图（该市场无对应序列）"
+    }
+  ],
+  "granularities": [
+    "day",
+    "week",
+    "month"
+  ],
+  "fixture": {
+    "blessedAt": "2026-11-23T04:26:12.955Z",
+    "reads": 24
+  },
+  "at": "2026-11-23T07:44:48.421Z"
+}

@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gates:
+    name: 门禁 + 自检（Node ${{ matrix.node }}）
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['22', '24']
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: 静态语法检查（全部 JS/MJS）
+        run: |
+          for f in $(find backend frontend tools -type f \( -name '*.js' -o -name '*.mjs' \) ! -path '*/vendor/*'); do
+            cp "$f" /tmp/check.mjs
+            node --check /tmp/check.mjs || exit 1
+          done
+          echo "OK: 全部源码可解析"
+
+      - name: 全量门禁（含 G4 出网纠错负向对照）
+        run: node tools/gates.mjs --net
+
+      - name: 自检（沙箱热插拔 + 门禁可证红 + fixture 对账）
+        run: node tools/selftest.mjs
+
+      - name: 视觉回归（冻结输入，内容零漂移）
+        run: node tools/snapshot.mjs --check
+
+      - name: 上报门禁摘要
+        if: always()
+        run: node tools/gates.mjs --net --json > gate-report.json || true
+
+      - name: 上传门禁报告
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gate-report-node-${{ matrix.node }}
+          path: gate-report.json
+          if-no-files-found: ignore

@@ -1,35 +1,27 @@
 import { h } from "../core/dom.js";
-import { PRESETS } from "../core/derive.js";
-import { Segmented } from "./Segmented.js";
-import { Button } from "./Button.js";
-import { Legend } from "./Legend.js";
+import { Badge } from "./Badge.js";
+import { css } from "../core/theme.js";
 
-export function Toolbar({ granularity, onGranularity, preset, onPreset, onRefresh, refreshing, zones, unit }) {
+// 工具栏只有一条：把视图声明的控件按顺序排进来，不再每页各造一个 toolbar。
+export function Toolbar({ children = [], identities }) {
+  // 无报表恒等式的页面（监控台/黄金/汇总）identities 为空：空数组也是一种答案，不是缺参数
+  const ids = identities || [];
   return h(
     "div",
     { class: "toolbar" },
-    Segmented({
-      label: "时间粒度",
-      value: granularity,
-      onChange: onGranularity,
-      options: [
-        { value: "day", label: "日" },
-        { value: "week", label: "周" },
-        { value: "month", label: "月" },
-      ],
-    }),
-    Segmented({
-      label: "区间定位",
-      value: preset,
-      onChange: onPreset,
-      options: PRESETS.map((p) => ({ value: p.id, label: p.label, title: p.title })),
-    }),
-    Button({
-      label: refreshing ? "更新中…" : "刷新数据",
-      variant: "solid",
-      onClick: onRefresh,
-      disabled: refreshing,
-    }),
-    Legend({ zones, unit })
+    ...children.filter(Boolean),
+    ids.length
+      ? h(
+          "div",
+          { class: "identity-badges" },
+          ids.map((id) =>
+            Badge({
+              text: `${id.label} ${id.ok ? "✓" : "✗"}（差 ${id.diff >= 0 ? "+" : ""}${id.diff}）`,
+              color: id.ok ? css("ok") : css("danger"),
+              title: `叶子合计 ${id.actual.toLocaleString("en-US")} vs 总资产 ${id.expected.toLocaleString("en-US")} 百万美元`,
+            })
+          )
+        )
+      : null
   );
 }

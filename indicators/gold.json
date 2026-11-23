@@ -3,19 +3,13 @@
   "region": "us",
   "order": 22,
   "surface": "gold",
-  "axis": "right",
-  "axisPos": "right",
-  "axisName": "GLD $/股",
-  "axisPrefix": "$",
-  "render": "line",
-  "area": "rgba(107,139,163,.10)",
   "sourceNote": "GLD 份额价（交易所日内代理，非盎司价）",
   "defaultOn": false,
   "name": "GLD 份额价",
   "en": "SPDR Gold ETF (GLD) Close",
   "formula": "NYSE Arca 实物黄金 ETF GLD 收盘价（美元／股）",
   "unit": " $/股",
-  "hue": "#6b8ba3",
+  "hue": "hue-6",
   "publication": "T",
   "precision": 2,
   "operation": "level",
@@ -39,7 +33,17 @@
         "band": [
           0.0897,
           0.0974
-        ]
+        ],
+        "source": {
+          "statistic": "manual-policy",
+          "window": "2016-11-21 ~ 2026-11-20",
+          "measured": {
+            "devLo": 0.091536,
+            "devHi": 0.09544,
+            "checked": 2514
+          },
+          "note": "带 [0.0897, 0.0974] 覆盖同窗口实测偏差 [0.091536, 0.09544]；门禁每轮复算包含关系与松紧上限（12 倍）"
+        }
       }
     }
   ],
@@ -49,6 +53,31 @@
       50,
       1000
     ],
-    "maxRelJump": 0.15
-  }
+    "maxRelJump": 0.15,
+    "source": {
+      "range": {
+        "statistic": "manual-policy",
+        "window": "2016-11-21 ~ 2026-11-20",
+        "measured": {
+          "min": 107.34,
+          "max": 495.9,
+          "p02": 108.05,
+          "p998": 477.86,
+          "n": 2514
+        },
+        "note": "声明带 [50, 1000] 由实测 [107.34, 495.9] 向外取整而得；外扩是有意冗余，越带即报警（门禁复算包含关系）"
+      },
+      "maxRelJump": {
+        "statistic": "manual-policy",
+        "window": "2016-11-21 ~ 2026-11-20",
+        "measured": {
+          "p998Rel": 0.044612,
+          "n": 2514
+        },
+        "note": "声明 0.15 高于实测 99.8 分位 0.044612：有意留宽的保守带，低于该分位即判太紧"
+      }
+    }
+  },
+  "recipe": "line",
+  "axisGroup": "gld-share"
 }

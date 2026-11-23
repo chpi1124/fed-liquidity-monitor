@@ -1,0 +1,187 @@
+{
+  "id": "main-trend",
+  "page": "monitor",
+  "order": 1,
+  "title": "指标历史（官方序列 · 交叉验证）",
+  "empty": "加载数据中…",
+  "navLabel": "监控台",
+  "navSub": "MONITOR · 利率走廊与政策工具",
+  "pick": {
+    "notSurface": [
+      "strip",
+      "gold",
+      "cn-balance"
+    ]
+  },
+  "views": [
+    {
+      "projection": "header",
+      "container": "header"
+    },
+    {
+      "projection": "tiles",
+      "container": "strip",
+      "pick": {
+        "surface": "strip"
+      },
+      "ariaLabel": "政策利率走廊"
+    },
+    {
+      "projection": "toolbar",
+      "container": "toolbar",
+      "granularity": true,
+      "overlay": true
+    },
+    {
+      "projection": "panel",
+      "container": "chart",
+      "size": "lg"
+    },
+    {
+      "projection": "desc",
+      "container": "desc"
+    }
+  ],
+  "axes": {
+    "rate": {
+      "unit": "%",
+      "side": "left",
+      "resolve": "shared"
+    },
+    "spread": {
+      "unit": "bp",
+      "side": "right",
+      "resolve": "independent",
+      "precision": 0
+    },
+    "amount": {
+      "unit": " 十亿美元",
+      "side": "right",
+      "resolve": "independent",
+      "precision": 3
+    }
+  },
+  "axisBy": [
+    {
+      "when": {
+        "unit": "%"
+      },
+      "axis": "rate"
+    },
+    {
+      "when": {
+        "unit": "bp"
+      },
+      "axis": "spread"
+    },
+    {
+      "when": {
+        "unit": " 十亿美元"
+      },
+      "axis": "amount"
+    }
+  ],
+  "layers": [
+    {
+      "series": "primary"
+    },
+    {
+      "series": "overlay",
+      "style": {
+        "width": 1.2,
+        "opacity": 0.82,
+        "connect": true
+      }
+    }
+  ],
+  "overlay": {
+    "maxShared": 2
+  },
+  "presets": "standard",
+  "defaultPreset": "1Y",
+  "annotations": [
+    "zones"
+  ],
+  "legend": "auto",
+  "tooltip": {
+    "columns": [
+      "value",
+      "ohlc",
+      "zone",
+      "validation",
+      "correction",
+      "suspect"
+    ]
+  },
+  "limits": {
+    "sharedMax": 5,
+    "totalMax": 6
+  },
+  "viewGroups": [
+    {
+      "id": "spread-view",
+      "label": "梗差图",
+      "title": "SOFR−EFFR 梗差单独成图，不与利率水平叠加",
+      "modes": ["spread"]
+    },
+    {
+      "id": "rate-view",
+      "label": "走廊与SOFR",
+      "title": "四条政策利率阶梯线与 SOFR 柱同图对照（同一 % 轴）",
+      "modes": ["corridor"]
+    }
+  ],
+  "viewModes": [
+    {
+      "id": "spread",
+      "label": "梗差",
+      "title": "SOFR−EFFR 梗差（bp）单序列，独立成图",
+      "replace": true,
+      "layer": {
+        "indicator": "sofr-effr",
+        "recipe": "zoneBar"
+      }
+    },
+    {
+      "id": "corridor",
+      "label": "走廊与SOFR",
+      "title": "天花板 SRFD / 地板 ON RRP / 联邦基金 EFFR / 准备金 IORB 四条官方利率阶梯线，与 SOFR 柱同图对照",
+      "replace": true,
+      "layers": [
+        {
+          "indicator": "srfrate",
+          "recipe": "line",
+          "style": {
+            "step": true
+          }
+        },
+        {
+          "indicator": "onrrp",
+          "recipe": "line",
+          "style": {
+            "step": true
+          }
+        },
+        {
+          "indicator": "effr",
+          "recipe": "line",
+          "style": {
+            "step": true
+          }
+        },
+        {
+          "indicator": "iorb",
+          "recipe": "line",
+          "style": {
+            "step": true
+          }
+        },
+        {
+          "indicator": "sofr",
+          "recipe": "bar"
+        }
+      ]
+    }
+  ],
+  "defaultView": "corridor"
+}

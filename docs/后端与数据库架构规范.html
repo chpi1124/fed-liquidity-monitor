@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>后端与数据库架构规范 · 增量拉取 · 模块化 · 规范驱动开发</title>
+<style>
+  :root{
+    --paper:#fbfbfd; --card:#fff; --ink:#1d1d1f; --ink2:#4b4b50; --muted:#75757a;
+    --hair:rgba(0,0,0,.08); --hair2:rgba(0,0,0,.14);
+    --accent:#0a66d6; --ok:#1a7f4b; --warn:#9a6b00; --bad:#b3261e;
+    --t-xl:clamp(28px,4.2vw,40px); --t-lg:21px; --t-md:17px; --t-sm:15px; --t-xs:13px; --t-2xs:11px;
+    --sp1:4px; --sp2:8px; --sp3:12px; --sp4:16px; --sp6:24px; --sp8:32px; --sp12:48px; --sp16:64px; --sp24:96px;
+    --r:14px; --r-lg:20px; --ease:cubic-bezier(.32,.72,0,1);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#0e0e10; --card:#161618; --ink:#f5f5f7; --ink2:#c7c7cc; --muted:#98989f;
+      --hair:rgba(255,255,255,.10); --hair2:rgba(255,255,255,.18); --accent:#6ab3ff; --ok:#57d38f; --warn:#e3b341; --bad:#ff8175; }
+  }
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--paper);color:var(--ink);
+    font:var(--t-md)/1.6 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI","HarmonyOS Sans SC","MiSans","PingFang SC","Microsoft YaHei",sans-serif;
+    letter-spacing:-.005em}
+  .wrap{max-width:860px;margin:0 auto;padding:var(--sp24) var(--sp6)}
+  header{padding-bottom:var(--sp12);border-bottom:1px solid var(--hair)}
+  .eyebrow{font-size:var(--t-xs);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:var(--sp3)}
+  h1{font-size:var(--t-xl);line-height:1.12;letter-spacing:-.022em;font-weight:600}
+  .lede{margin-top:var(--sp4);font-size:var(--t-lg);line-height:1.5;color:var(--ink2);letter-spacing:-.01em;font-weight:400}
+  .meta{margin-top:var(--sp6);display:flex;flex-wrap:wrap;gap:var(--sp2) var(--sp4);font-size:var(--t-xs);color:var(--muted);font-variant-numeric:tabular-nums}
+  h2{font-size:var(--t-lg);letter-spacing:-.015em;font-weight:600;margin:var(--sp16) 0 var(--sp3);padding-top:var(--sp6);border-top:1px solid var(--hair)}
+  h2 .n{color:var(--muted);font-weight:500;margin-right:var(--sp2);font-variant-numeric:tabular-nums}
+  h3{font-size:var(--t-md);font-weight:600;margin:var(--sp8) 0 var(--sp2)}
+  p{margin-bottom:var(--sp3);max-width:72ch}
+  p.dim{color:var(--muted);font-size:var(--t-sm)}
+  ul,ol{margin:0 0 var(--sp4) 1.15em}
+  li{margin-bottom:var(--sp2);max-width:72ch}
+  strong{font-weight:600}
+  code,pre{font-family:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
+  code{font-size:.86em;background:var(--card);border:1px solid var(--hair);border-radius:6px;padding:.1em .36em}
+  pre{font-size:var(--t-xs);line-height:1.65;background:var(--card);border:1px solid var(--hair);border-radius:var(--r);padding:var(--sp4);overflow:auto;margin:var(--sp3) 0 var(--sp4)}
+  pre code{background:none;border:0;padding:0}
+  table{width:100%;border-collapse:collapse;margin:var(--sp4) 0 var(--sp6);font-size:var(--t-sm)}
+  caption{caption-side:top;text-align:left;font-size:var(--t-xs);color:var(--muted);padding-bottom:var(--sp2)}
+  th,td{text-align:left;padding:var(--sp3);border-bottom:1px solid var(--hair);vertical-align:top}
+  th{font-size:var(--t-xs);font-weight:600;color:var(--muted);letter-spacing:.02em}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .card{background:var(--card);border:1px solid var(--hair);border-radius:var(--r-lg);padding:var(--sp6);margin:var(--sp4) 0 var(--sp6)}
+  .grid{display:grid;gap:var(--sp3);grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin:var(--sp4) 0 var(--sp6)}
+  .k{font-size:var(--t-2xs);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .v{font-size:var(--t-lg);font-weight:600;letter-spacing:-.015em;font-variant-numeric:tabular-nums;margin-top:var(--sp1)}
+  .tag{display:inline-block;font-size:var(--t-2xs);letter-spacing:.04em;padding:.24em .6em;border-radius:999px;border:1px solid var(--hair2);color:var(--ink2);white-space:nowrap}
+  .tag.ok{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 40%,transparent)}
+  .tag.no{color:var(--bad);border-color:color-mix(in srgb,var(--bad) 40%,transparent)}
+  .tag.todo{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 40%,transparent)}
+  .rule{border-left:2px solid var(--accent);padding-left:var(--sp4);margin:var(--sp4) 0}
+  .rule .id{display:block;font-size:var(--t-2xs);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:var(--sp1)}
+  .rule.hard{border-left-color:var(--bad)} .rule.hard .id{color:var(--bad)}
+  .rule p{margin:0}
+  footer{margin-top:var(--sp24);padding-top:var(--sp6);border-top:1px solid var(--hair);font-size:var(--t-xs);color:var(--muted)}
+  a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .18s var(--ease)}
+  a:hover{border-bottom-color:currentColor}
+  ol.src{font-size:var(--t-xs);color:var(--muted)}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+  @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+  @media (max-width:520px){.wrap{padding:var(--sp12) var(--sp4)}body{font-size:var(--t-sm)}}
+</style>
+</head>
+<body><div class="wrap">
+
+<header>
+  <div class="eyebrow">Backend &amp; Data Architecture Standards · Rev 1 · 2026-11-22</div>
+  <h1>后端架构、数据库、模块化与规范驱动开发</h1>
+  <p class="lede">本篇解决四件事：日更从「全量重拉」改为<strong>水位线增量</strong>；存储从 JSON 文件升级为<strong>内置 SQLite</strong>；模块以<strong>端口—适配器</strong>固化边界；开发以<strong>规范先行</strong>驱动，并由门禁自动判定。</p>
+  <div class="meta"><span>前提：零依赖运行（无 ORM、无外部数据库服务）</span><span>本机实测：Node v24.15.0 · SQLite 3.51.3</span><span>承接：<code>docs/架构规范与门禁-执行计划.html</code></span></div>
+</header>
+
+<div class="grid">
+  <div><div class="k">日更代价（实测 6 指标）</div><div class="v">49 请求 / 5.2 MB</div></div>
+  <div><div class="k">其中真正新增</div><div class="v">1 个交易日</div></div>
+  <div><div class="k">effr 单指标耗时</div><div class="v">19.9 s</div></div>
+  <div><div class="k">内置 SQLite 可用</div><div class="v">是 · WAL</div></div>
+</div>
+
+<h2><span class="n">1</span>实测基线（规范全部由此派生，不靠假设）</h2>
+
+<table>
+  <caption>表 1 · 现状代价：每次日更都请求 <code>start→today</code> 全区间（脚本包装 fetch 计数）</caption>
+  <thead><tr><th>指标</th><th>HTTP 请求</th><th>搬运字节</th><th>耗时</th><th>点数</th><th>实际新增</th></tr></thead>
+  <tbody>
+    <tr><td>cn-shibor-on</td><td class="num">12</td><td class="num">413 KB</td><td class="num">0.95 s</td><td class="num">718</td><td class="num">≈1 天</td></tr>
+    <tr><td>cn-fdr007</td><td class="num">12</td><td class="num">569 KB</td><td class="num">0.49 s</td><td class="num">718</td><td class="num">≈1 天</td></tr>
+    <tr><td>effr</td><td class="num">2</td><td class="num">1 013 KB</td><td class="num">19.93 s</td><td class="num">2 169</td><td class="num">≈1 天</td></tr>
+    <tr><td>tips10</td><td class="num">12</td><td class="num">196 KB</td><td class="num">15.45 s</td><td class="num">2 513</td><td class="num">≈1 天</td></tr>
+    <tr><td>srf</td><td class="num">9</td><td class="num">2 862 KB</td><td class="num">7.20 s</td><td class="num">1 326</td><td class="num">≈1 天</td></tr>
+    <tr><td>gold</td><td class="num">2</td><td class="num">265 KB</td><td class="num">2.03 s</td><td class="num">2 514</td><td class="num">≈1 天</td></tr>
+  </tbody>
+</table>
+<p class="dim">6 个指标即 49 请求 / 5.2 MB；其余 13 个同量级（<code>gold-uk-flow</code> 单指标此前实测约 55 s，受 UN Comtrade 逐月限速）。结论：日更成本随<strong>历史长度</strong>增长而非随<strong>新增天数</strong>增长——这是必须增量化唯一硬理由，性能本身不是引入数据库的理由。</p>
+
+<table>
+  <caption>表 2 · 各官方源的区间能力矩阵（窄窗 = 最近 10 天实测；决定增量策略归属）</caption>
+  <thead><tr><th>源 / provider</th><th>窄区间实测</th><th>结论</th><th>增量策略</th></tr></thead>
+  <tbody>
+    <tr><td>CFETS <code>FrrHis</code>（FDR/FR 定盘）</td><td class="num">200 · 3.1 KB · 7 行</td><td><span class="tag ok">认区间</span></td><td>tail：[水位−重叠窗, today]</td></tr>
+    <tr><td>CFETS <code>ShiborHis</code></td><td class="num">200 · 3.0 KB · 7 行</td><td><span class="tag ok">认区间</span>（≤250 行/次，须分窗）</td><td>tail + 分窗上限</td></tr>
+    <tr><td>CFETS <code>LprHis</code></td><td class="num">200 · 12 行（与区间无关）</td><td><span class="tag no">滚动窗口</span></td><td><strong>禁止全量覆盖</strong>：只 upsert 新期次，历史靠本地留存</td></tr>
+    <tr><td>NY Fed <code>/api/rates</code></td><td class="num">200 · 6 行</td><td><span class="tag ok">认区间</span></td><td>tail</td></tr>
+    <tr><td>NY Fed <code>/api/rp</code>（回购操作）</td><td class="num">响应截断，本次探测未取得有效 JSON</td><td><span class="tag todo">未定论</span></td><td>沿用现有分窗实现；G8 补测后才能转 tail</td></tr>
+    <tr><td>FRED <code>fredgraph.csv</code></td><td class="num">200 · 7 行（<code>cosd/coed</code>）</td><td><span class="tag ok">认区间</span></td><td>tail（校验腿同样受益）</td></tr>
+    <tr><td>Nasdaq <code>quote/GLD/historical</code></td><td class="num">200 · 7 行</td><td><span class="tag ok">认区间</span></td><td>tail</td></tr>
+    <tr><td>美国财政部实价曲线 XML</td><td class="num">404（本次拼接地址有误）</td><td><span class="tag todo">未定论</span></td><td>现实现按区间分次拉取 12 次；G8 复测确认上限后收窄</td></tr>
+    <tr><td>HMRC <code>api.uktradeinfo.com</code></td><td class="num">404（本次 <code>$apply</code> 字段拼写有误）</td><td><span class="tag todo">未定论</span></td><td>生产实现已验证区间有效；G8 复测确认按月尾拉</td></tr>
+    <tr><td>World Bank Pink Sheet 月报</td><td class="num">200 · 页面可发现 XLSX 链接</td><td><span class="tag no">整文件</span></td><td>whole-file-diff：仍下整文件，但只对<strong>新增/变化的月份</strong> upsert</td></tr>
+    <tr><td>UN Comtrade 公开预览</td><td class="num">逐月一次请求 + 限速</td><td><span class="tag ok">天然增量</span></td><td>只请求新月份；失败月降级为「本期未获并行确认」</td></tr>
+  </tbody>
+</table>
+<p class="dim">三行「未定论」是探测脚本自身的参数问题，不是源端限制——按门禁纪律，<strong>未定论的能力矩阵不允许据此放宽规范</strong>，须在 G8 里复测后才写死策略。</p>
+
+<table>
+  <caption>表 3 · 存储候选实测（同一份 2 514 点的 gold 序列）</caption>
+  <thead><tr><th>候选</th><th>依赖</th><th>实测</th><th>判定</th></tr></thead>
+  <tbody>
+    <tr><td>内置 <code>node:sqlite</code></td><td class="num">0（Node 自带，SQLite 3.51.3）</td><td class="num">WAL 生效；2 514 点 upsert 4.4 ms；重跑两次行数不变（幂等）；范围查询 0.30 ms</td><td><span class="tag ok">采纳</span></td></tr>
+    <tr><td>继续 JSON 文件</td><td class="num">0</td><td class="num">全解析+过滤 1.36 ms；单次全量重写；无历史/无索引/无事务</td><td><span class="tag no">仅作导出快照</span></td></tr>
+    <tr><td>第三方 SQLite 驱动（better-sqlite3 等）</td><td class="num">npm + 原生编译</td><td>未安装（违反零依赖宪法）</td><td><span class="tag no">拒绝</span></td></tr>
+    <tr><td>服务器型数据库（PG/ClickHouse）或 Parquet+DuckDB</td><td class="num">外部服务 / 二进制</td><td>未引入</td><td><span class="tag no">拒绝</span>（数据量与并发都不需要，代价是运维与可移植性）</td></tr>
+  </tbody>
+</table>
+<p class="dim">诚实边界：0.30 ms vs 1.36 ms 的差异在这个量级上<strong>毫无决策意义</strong>。引入数据库的理由是<strong>可查询性与不可篡改性</strong>——见 §4.1 的四个「今天答不出」。</p>
+
+<h2><span class="n">2</span>标杆调研结论</h2>
+<table>
+  <thead><tr><th style="width:26%">来源</th><th style="width:34%">它的做法</th><th>本站采纳 / 拒绝</th></tr></thead>
+  <tbody>
+    <tr><td>增量 ETL 的水位线 + MERGE 范式（数仓与编排平台的通用做法）</td><td>用控制表保存「每类数据的最后游标」，抽取按游标推进；装载用按键 MERGE/upsert 而非盲插，使重跑幂等。</td><td>采纳为 §3.2 的 <code>watermark</code> 表 + <code>ON CONFLICT DO UPDATE</code>；键 = <code>(indicator_id, date)</code>。</td></tr>
+    <tr><td>「全量刷新只在源端仍提供完整历史时才安全」</td><td>若源端只保留滚动窗口，全量重拉+覆盖会<strong>无声丢历史</strong>；应改增量并显式声明保留策略。</td><td>采纳为硬红线 B-7：<code>LprHis</code> 已实证是滚动窗口（恒回 12 期），一律禁止覆盖式写入。这正是本站真实事故的同型风险。</td></tr>
+    <tr><td>幂等要求避免非确定性变换</td><td>业务值不得取自运行时刻（如当前时间戳），否则重跑结果不可比；运行时刻只作元数据。</td><td>采纳：<code>updatedAt</code> 仅元数据；<code>series_point</code> 的行内容只由官方响应决定。</td></tr>
+    <tr><td>晚到数据（迟到修正）</td><td>用重叠窗、CDC 或对账任务消化乱序/晚到，而非假设时间单调。</td><td>采纳：每个发布节奏定义 <code>overlap</code>（修订捕获窗），对账由 §3.3 的「重叠区一致率」保证。</td></tr>
+    <tr><td>时序数据不可变模式（append-only + 时间分区 + 保留策略）</td><td>写多改少、按时间查询、以追加为主，修订以新版本行表达而非原地覆盖。</td><td>部分采纳：主值表 upsert（点值语义）+ 独立 <code>revision</code> 追加表记录每次官方修订；<strong>拒绝</strong>分区与压缩（数据量不需要）。</td></tr>
+    <tr><td>模块化单体 + 端口/适配器（小团队起步推荐）</td><td>1–3 人团队从模块化单体起步；外部系统一律经端口与适配器（反腐层）接入；模块边界由工具强制而非口头约定。</td><td>采纳为 §5：provider/store/clock 皆为端口，解析与 HTTP 皆为适配器；边界由 G5/G9 强制。</td></tr>
+    <tr><td>数据契约（machine-readable，含结构/语义/保障三层）</td><td>契约不是 schema，而是「结构 + 语义 + 保障」的正式协议；字段变更、迟到、缺失都在契约里声明并被 CI 校验，避免下游静默损坏。</td><td>采纳为 §6 的 <code>specs/</code>：现有 <code>indicators/*.json</code> 只覆盖了「结构」，缺「保障」→ 本次补齐 <code>guarantees</code> 段并纳入门禁。</td></tr>
+    <tr><td>规范先行开发流程（Spec → Plan → Tasks → 实现，配套 constitution）</td><td>先写规格与验收，再由规格派生任务与校验；宪法条款作为不可协商约束贯穿。</td><td>采纳为 §6.2 的六步流程，并明确「spec 与代码冲突时 spec 赢，除非显式修订 spec 并写明理由」。</td></tr>
+    <tr><td>嵌入式 SQLite 运维常识（WAL 持久化、三文件、定期 checkpoint）</td><td>WAL 是库头属性而非连接设置；<code>db</code>/<code>-wal</code>/<code>-shm</code> 同生命周期，只拷主文件会丢最近提交；需 checkpoint 防 WAL 膨胀。</td><td>采纳为 §4.4 PRAGMA 与备份纪律（含「备份必须走 <code>VACUUM INTO</code> 而非直接拷贝」）。</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="n">3</span>后端架构规范</h2>
+
+<h3>3.1 进程与请求路径</h3>
+<pre><code>单进程：HTTP 服务 + 每日调度 + 更新链（同一事件循环，无外部服务）
+
+读路径（用户请求，必须无网络取数）：
+  浏览器 → GET /api/…  → 只读 SQLite（+ 内存缓存派生结果） → JSON
+写路径（唯一取数入口）：
+  scheduler/手动 → updateAll(mode) → plan → fetch → validate → correct → commit → publish
+</code></pre>
+<div class="rule"><span class="id">B-1 读写分离到进程内两条链</span><p>请求处理函数<strong>禁止</strong>触发任何官方源取数；<code>POST /api/refresh</code> 改为<strong>入队并立即返回 run id</strong>，进度经 <code>/api/status</code> 轮询（今天是同步阻塞跑完才返回，19 指标一轮要数分钟，这正是被请求路径拖累的根因）。</p></div>
+<div class="rule"><span class="id">B-2 唯一取数通道</span><p>只有 <code>fetchers.js</code> 的适配器可以出网；重试（3 次、递增退避）、超时（60 s）、限速（Comtrade <code>paceMs</code>）都在适配器层，业务层不得出现 <code>fetch</code>。</p></div>
+
+<h3>3.2 增量拉取规范（本篇新增的核心）</h3>
+<div class="rule"><span class="id">B-3 水位线定义（每指标两把游标）</span>
+<p><code>last_observed</code> = 官方已发布的最后一个观测日（本地已存点的最大值）；<code>last_fetched_to</code> = 已请求过的右界。<br>
+日更请求区间：<code>[max(start, last_observed − overlap), today]</code>，<code>overlap</code> 由发布节奏决定（下表），<strong>不是浪费，而是修订捕获窗</strong>。</p></div>
+
+<table>
+  <caption>表 4 · overlap（修订/晚到捕获窗）由发布节奏定标</caption>
+  <thead><tr><th>publication</th><th>典型源</th><th>overlap</th><th>理由</th></tr></thead>
+  <tbody>
+    <tr><td>T（当日发布）</td><td>CFETS Shibor / FDR、财政部曲线</td><td class="num">10 天</td><td>覆盖节假日与短假回填</td></tr>
+    <tr><td>T+1</td><td>NY Fed SOFR / EFFR</td><td class="num">14 天</td><td>美东工作日错位 + 偶发修订</td></tr>
+    <tr><td>W</td><td>H.4.1、周度均值</td><td class="num">28 天</td><td>H.4.1 明确会做周度修订</td></tr>
+    <tr><td>M+1</td><td>World Bank 月报</td><td class="num">70 天</td><td>整文件下载，diff 上月+上上月</td></tr>
+    <tr><td>M+2</td><td>HMRC 月度环流</td><td class="num">100 天</td><td>官方滞后约 2 个多月 + 修订</td></tr>
+    <tr><td>滚动窗口源（LprHis）</td><td>CFETS LPR</td><td class="num">全窗 12 期</td><td>源端只给 12 期 ⇒ 每次全取，但<strong>只 upsert 不覆盖</strong></td></tr>
+  </tbody>
+</table>
+
+<div class="rule hard"><span class="id">B-7 禁止覆盖式全量写（红线）</span><p>任何非 <code>mode:"backfill"</code> 的写入都<strong>不得</strong>减少既有日期的点数。理由不是理论：本次实测确认 <code>LprHis</code> 无视区间恒回 12 行，历史上 <code>lang=zh_CN</code> 也只会回一页——覆盖式写入会把这些源<strong>静默清零</strong>。回填必须显式声明，且完成后校验「点数不减少 + 老值一致率 ≥ 99%」。</p></div>
+<div class="rule"><span class="id">B-8 upsert 键固定为业务键</span><p><code>(indicator_id, date)</code> 为唯一键；重跑同区间必须得到同一目标状态。时间戳类字段（<code>updatedAt</code>、<code>run_id</code>）只进元数据表，绝不参与值计算。</p></div>
+<div class="rule"><span class="id">B-9 分窗上限由 spec 声明</span><p>ShiborHis ≤250 行/次、Nasdaq 单请求跨度上限、Comtrade 逐月等，都写进 <code>specs/providers.json</code>，适配器读取它分窗；代码里不允许再出现「猜出来的 STEP」。本次 <code>lang=CN</code> 事故正是参数不匹配的代价。</p></div>
+
+<h3>3.3 晚到、修订与对账</h3>
+<ul>
+  <li><strong>修订留痕</strong>：重叠区里 <code>old ≠ new</code> 一律追加 <code>revision(indicator_id, date, old_v, new_v, run_id)</code>，主值表更新为新值；今天这条信息只存活一次内存对比（<code>prevMap</code>），落库后即丢——这是「答不出」的第一项。</li>
+  <li><strong>一致率对账</strong>：每次运行报告重叠区「与本地已存值一致的比例」；&lt; 99% 触发 <code>verdict=warn</code>，防止官方口径悄悄变了而我们无感。</li>
+  <li><strong>缺口</strong>：区间内官方未发布的日期保持缺位，写入 <code>gap</code> 标记与解释（源端滞后 vs 本地失败），绝不填充。</li>
+</ul>
+
+<h3>3.4 失败与降级语义（分层，不得混淆）</h3>
+<table>
+  <thead><tr><th>层</th><th>处理</th><th>对用户可见结果</th></tr></thead>
+  <tbody>
+    <tr><td>网络失败</td><td>适配器重试 3 次退避；仍失败 ⇒ run 标 <code>failed</code>，<strong>保留旧数据不动</strong></td><td>「更新失败，展示截至 X 的旧数据」</td></tr>
+    <tr><td>解析失败</td><td>抛错 ⇒ run failed；禁止吞异常返回空 Map（空集会被误当成「官方无数据」）</td><td>同上 + 日志留原始片段指针</td></tr>
+    <tr><td>校验腿缺席</td><td>降级为「本期未获并行确认」，主源照常入库</td><td>徽标注明未确认，不用主源冒充双源</td></tr>
+    <tr><td>不变量违例</td><td>标记 <code>suspect</code>，隔离出统计；有确认值才改值并留三件套</td><td>红边空心点 + tooltip 依据</td></tr>
+    <tr><td>存储失败</td><td>事务回滚，run failed</td><td>不出现半更新状态</td></tr>
+  </tbody>
+</table>
+
+<h3>3.5 并发与调度</h3>
+<ul>
+  <li>同一时刻仅一条更新链；指标间<strong>串行</strong>（对官方源友好，也符合既有指令）。</li>
+  <li>每日一次全指标尾拉 + 每 60 s 心跳检查（源端异常提前告警）。</li>
+  <li>单指标失败不中断整链（现有行为保留），但链尾必须汇总为一条可查询的运行结果。</li>
+</ul>
+
+<h2><span class="n">4</span>数据库架构规范</h2>
+
+<h3>4.1 为什么需要数据库（四个「今天答不出」）</h3>
+<ol>
+  <li>「gold-uk-flow 过去 90 天里哪天交叉验证没过？」——无运行历史表，答不出。</li>
+  <li>「SOFR 在 11 月被官方修订过几次、改了多少？」——<code>prevMap</code> 对比只活一次，落库即丢。</li>
+  <li>「哪些阈值是实测得来、哪些是拍的？」——49 个阈值目前<strong>没有</strong>溯源字段。</li>
+  <li>「把 19 个指标的存疑点合并成一张待办清单」——只能全量解析 19 个 JSON 再遍历。</li>
+</ol>
+<p class="dim">读性能不是理由（表 3 已诚实标注）。理由只有：历史可追溯、跨序列查询、事务原子性、约束防脏数据。</p>
+
+<h3>4.2 库与文件布局</h3>
+<pre><code>data/monitor.db          权威存储（唯一真相）
+data/migrations/NNNN_*.sql   版本化 DDL，只增不改
+data/export/&lt;id&gt;.json     由 DB 派生的只读快照（保留可移植性与前端降级）
+</code></pre>
+<p class="dim">JSON 从「权威」降级为「导出物」：任何前端或脚本仍能拿到文件，但它不再是写入目标，也不参与校验。</p>
+
+<h3>4.3 DDL（规范即文件，门禁据此校验一致性）</h3>
+<pre><code>-- 元信息
+meta(key TEXT PRIMARY KEY, value TEXT)                     -- schema_version / created_at
+
+-- 源与能力矩阵（表 2 落库，禁止代码里猜）
+source(id TEXT PRIMARY KEY, org TEXT, base_url TEXT,
+       incremental TEXT CHECK(incremental IN ('range','rolling-window','whole-file-diff','per-period','unverified')),
+       max_rows_per_call INTEGER, max_span_days INTEGER,
+       revision_days INTEGER, lag_days INTEGER, note TEXT)
+
+-- 契约（indicators/*.json 的入库镜像，含保障段）
+indicator(id TEXT PRIMARY KEY, region TEXT, surface TEXT, ord INTEGER,
+          unit TEXT, freq TEXT, publication TEXT, precision INTEGER,
+          scale REAL, operation TEXT, start_date TEXT, source_id TEXT REFERENCES source(id),
+          check_kind TEXT, spec_json TEXT NOT NULL)
+
+-- 校验腿（把「用什么机制校验」变成可查询的表，而不是埋在配置里）
+check_leg(indicator_id TEXT REFERENCES indicator(id), leg_key TEXT,
+          mechanism TEXT, mode TEXT, tol REAL, band_lo REAL, band_hi REAL,
+          align TEXT, ref_indicator TEXT, ref_minus TEXT,
+          PRIMARY KEY(indicator_id, leg_key))
+
+-- 阈值溯源（G2 的落地形态）
+threshold(indicator_id TEXT REFERENCES indicator(id), kind TEXT,
+          value TEXT, sample INTEGER, window TEXT, statistic TEXT,
+          note TEXT, PRIMARY KEY(indicator_id, kind))
+
+-- 主值表（点值语义，按业务键 upsert）
+series_point(indicator_id TEXT REFERENCES indicator(id), d TEXT, v REAL,
+             ok INTEGER,          -- 1 通过 / 0 不符 / NULL 无校验源
+             suspect TEXT,        -- range|jump|gap|cross|mismatch|stale|NULL
+             PRIMARY KEY(indicator_id, d))
+CREATE INDEX point_by_date ON series_point(d, indicator_id);
+
+-- 官方修订追加表（不可变历史）
+revision(indicator_id TEXT, d TEXT, old_v REAL, new_v REAL,
+         run_id INTEGER, detected_at TEXT, PRIMARY KEY(indicator_id, d, run_id))
+
+-- 纠错留痕（三件套必须成表，不能只埋在 JSON 里）
+correction(indicator_id TEXT, d TEXT, from_v REAL, to_v REAL, by TEXT,
+            run_id INTEGER, PRIMARY KEY(indicator_id, d, run_id))
+
+-- 运行历史（回答「哪天失败过」）
+fetch_run(id INTEGER PRIMARY KEY, indicator_id TEXT, mode TEXT,
+          range_start TEXT, range_end TEXT, started_at TEXT, finished_at TEXT,
+          http_calls INTEGER, bytes INTEGER, added INTEGER, revised INTEGER,
+          status TEXT CHECK(status IN ('ok','failed','degraded')), error TEXT)
+
+-- 校验与自检统计（每次运行一行，可跨指标聚合）
+run_stat(run_id INTEGER, indicator_id TEXT, checked INTEGER, matched INTEGER,
+         mismatched INTEGER, corrected INTEGER, unchecked INTEGER,
+         verdict TEXT, flags_json TEXT, PRIMARY KEY(run_id, indicator_id))
+
+-- 水位线
+watermark(indicator_id TEXT PRIMARY KEY, last_observed TEXT, last_fetched_to TEXT,
+          overlap_days INTEGER, updated_at TEXT)
+</code></pre>
+
+<h3>4.4 写入与运维纪律</h3>
+<div class="rule"><span class="id">D-1 PRAGMA 固定三项</span><p><code>journal_mode=WAL</code>（库头属性，建库时设一次）、<code>synchronous=NORMAL</code>、<code>busy_timeout=5000</code>。启动时<strong>读回</strong> <code>PRAGMA journal_mode</code> 断言等于 <code>wal</code>，不等则拒绝启动——因为设置失败是静默的。</p></div>
+<div class="rule"><span class="id">D-2 事务边界 = 单指标单事务</span><p>一个指标的一轮更新（point upsert + revision + correction + run 记录）在<strong>一个事务</strong>内完成；链中途崩溃不得留下半更新状态。实测 2 514 点 upsert 4.4 ms，事务粒度不会成为瓶颈。</p></div>
+<div class="rule"><span class="id">D-3 checkpoint 与备份</span><p>更新链结束时执行 <code>wal_checkpoint(TRUNCATE)</code>，防 WAL 无限增长；备份用 <code>VACUUM INTO</code> 产出一致性单文件，<strong>禁止</strong>直接拷贝 <code>monitor.db</code>（会丢最近的 WAL 提交，且把 <code>-wal/-shm</code> 留在原地会造成损坏）。</p></div>
+<div class="rule"><span class="id">D-4 迁移只向前</span><p><code>schema_version</code> 不匹配 ⇒ 拒绝启动并提示所需迁移；迁移文件不可修改已发布版本；加列用默认值、不删列、不改类型（要改就建新表 + 视图兼容）。</p></div>
+<div class="rule"><span class="id">D-5 约束优先于代码校验</span><p>能用 <code>CHECK</code>/<code>NOT NULL</code>/<code>FOREIGN KEY</code>/<code>PRIMARY KEY</code> 表达的约束必须落在 DDL 里（如 <code>incremental</code> 枚举、<code>status</code> 枚举），使脏数据<strong>写不进去</strong>，而不是「写进去再靠门禁发现」。</p></div>
+
+<h3>4.6 明确不做</h3>
+<ul><li>不引入 ORM / 查询构造器 / 迁移框架（零依赖宪法；手写 DDL 与 prepared statement 已够）。</li><li>不做分库分表、时间分区、列式压缩（点数级别：当前全库 ~30 000 行）。</li><li>不引入外部数据库服务，不做主从/复制。</li><li>不把 DB 当缓存层——缓存仍在内存（<code>cache.js</code>，TTL 10 分钟），职责不同。</li></ul>
+
+<h2><span class="n">5</span>模块化规范（端口—适配器）</h2>
+<table>
+  <caption>表 5 · 模块清单：职责 / 导出面 / 允许依赖 / 禁止</caption>
+  <thead><tr><th>模块</th><th>职责</th><th>导出面（唯一入口）</th><th>允许依赖</th><th>禁止</th></tr></thead>
+  <tbody>
+    <tr><td><code>lib/fetchers.js</code></td><td>provider 适配器：HTTP + 解析（PDF/XLSX/XML/OData）</td><td><code>fetchSeries(src,start,end,mode)</code></td><td>无业务层</td><td>不得含阈值判断、不得写库</td></tr>
+    <tr><td><code>lib/cache.js</code></td><td>响应缓存端口</td><td><code>getSeries(src,start,end,force)</code></td><td>fetchers</td><td>不得跨请求共享可变对象引用</td></tr>
+    <tr><td><code>lib/integrity.js</code></td><td>领域内核：不变量与阈值推导（纯函数）</td><td><code>thresholdsFor / checkIntegrity / plausible</code></td><td>无</td><td>不得取数、不得读库、不得有副作用</td></tr>
+    <tr><td><code>lib/indicators.js</code></td><td>用例编排：plan→fetch→validate→correct</td><td><code>loadIndicators / updateIndicator</code></td><td>cache, integrity, specs, db-port</td><td>不得直接 <code>fs</code> 读写 data/</td></tr>
+    <tr><td><code>lib/db.js</code>（新增）</td><td>存储适配器（node:sqlite）</td><td><code>open/readSeries/upsertPoints/commitRun/readWatermark/writeWatermark</code></td><td>migrations</td><td>不得含业务判定（谁是可疑点由内核决定）</td></tr>
+    <tr><td><code>lib/specs.js</code>（新增）</td><td>契约加载与校验（结构+语义+保障）</td><td><code>loadSpec / validateSpec / overlapFor</code></td><td>无</td><td>不得被 fetchers 依赖</td></tr>
+    <tr><td><code>lib/sheets.js · summaries.js</code></td><td>报表/汇总用例（复用同一校验内核）</td><td><code>load*/update*</code></td><td>cache, integrity, specs, db-port</td><td>不得自写第二套校验</td></tr>
+    <tr><td><code>server.js</code></td><td>路由 + 运行链编排（组合根）</td><td>HTTP 接口</td><td>上述用例</td><td>不得出现数据加工、阈值、单位换算</td></tr>
+    <tr><td><code>tools/gate.mjs</code>（新增）</td><td>观测面：读 specs + DB，跑 G0–G10</td><td>CLI</td><td>specs, db, integrity</td><td>不得被生产代码 import</td></tr>
+  </tbody>
+</table>
+
+<div class="rule"><span class="id">M-1 依赖方向单向</span><p>领域内核（integrity/specs）不依赖任何外层；外层依赖内核。任何反向 import（如 integrity 里出现 cache）判为架构违规。</p></div>
+<div class="rule"><span class="id">M-2 反腐层（ACL）</span><p>每个官方源的「怪异」只允许存在于它的适配器内：参数怪癖（<code>lang=CN</code>）、分页假象、日期格式（<code>201611M</code>）、单位（£/kg/吨）、限速。适配器<strong>出口统一</strong>为 <code>Map&lt;ISO日期, number|结构化对象&gt;</code>；内核不得出现源名分支。</p></div>
+<div class="rule"><span class="id">M-3 新模块准入四条（缺一不得合并）</span><p>① 有 spec 文件；② 有导出面（禁止散落深路径 import）；③ 有对应门禁断言；④ 有「谁依赖它」的一句话说明——若消费者只有一个，优先做成函数而非模块（零冗余宪法）。</p></div>
+
+<h2><span class="n">6</span>规范驱动开发（Spec-First）</h2>
+
+<h3>6.1 契约目录</h3>
+<pre><code>specs/
+  indicator.schema.json     指标契约的元规范（结构 + 必填 + 枚举）
+  provider.schema.json      源能力矩阵（incremental / max_span_days / revision_days）
+  guarantees.schema.json    保障段：minPoints、overlap、lag、必须存在的校验机制
+  contracts/api.md          对外 API 契约（schemaVersion、字段只增不减）
+  gates.md                  G0–G10 判据（与 tools/gate.mjs 同源，改一处必须改两处并互校）
+</code></pre>
+<div class="rule"><span class="id">S-1 契约三层齐备</span><p>每个指标文件必须同时有：<strong>结构</strong>（字段/类型/枚举）、<strong>语义</strong>（单位、频率、时间基准、空值含义）、<strong>保障</strong>（<code>guarantees</code>：minPoints、overlap 天数、lag 上限、校验机制类型、阈值溯源）。缺「保障」段的配置，门禁直接判失败——今天 <code>indicators/*.json</code> 19 份全部缺此段。</p></div>
+
+<h3>6.2 流程（顺序不可颠倒）</h3>
+<ol>
+  <li><strong>Spec</strong>：写/改 <code>specs/</code> 与对应 <code>indicators/*.json</code> 的保障段。</li>
+  <li><strong>Plan</strong>：受影响模块与迁移；写出验收证据形式（哪条命令、哪个断言）。</li>
+  <li><strong>Gate 先红</strong>：先让门禁在旧实现上失败（证明门禁有效，而非事后凑数）。</li>
+  <li><strong>实现</strong>：最小改动使其变绿；禁止顺手重构。</li>
+  <li><strong>实测</strong>：负向对照 + 端到端跑一遍 + 浏览器验证（不可用「CI 绿」替代）。</li>
+  <li><strong>基线归档</strong>：更新 <code>docs/baseline.json</code>（覆盖率、请求数、字节数、存疑数、误报数）。</li>
+</ol>
+<div class="rule"><span class="id">S-2 冲突裁决</span><p>代码与 spec 不一致时，<strong>spec 赢</strong>；若认定 spec 本身错，必须先在 spec 里改并写明理由，再改代码。禁止「先改代码，spec 以后补」。</p></div>
+
+<h3>6.3 示例链路：接入 PBOC 货币当局资产负债表（遗留任务 #17）</h3>
+<ol>
+  <li>先探源：记录每个候选端点的状态码/字节数/是否 WAF 拦截，写入 <code>specs/provider.schema.json</code> 的 <code>probed</code> 字段（未探明的源不得进入实现）。</li>
+  <li>写契约：<code>indicator.cn-mfs.json</code> + 保障段（频率 M、发布滞后 M+1、minPoints、校验机制=①官方双源或声明单源）。</li>
+  <li>写能力：<code>source.pboc.incremental="range"</code> 或 <code>"whole-file-diff"</code>，由第 1 步实测决定。</li>
+  <li>让门禁先红：G1（无校验腿）、G9（provider 不在能力矩阵）、G2（阈值无溯源）三条必须报错。</li>
+  <li>实现适配器 + 解析；出口归一化 <code>Map</code>。</li>
+  <li>负向对照：污染一个资产项 ⇒ 必须 <code>suspect</code>；合计恒等式不成立 ⇒ 必须 <code>fail</code>。</li>
+  <li>端到端实测：API 字段齐、页面徽标正确、请求数与字节数进入基线。</li>
+  <li>归档：若某项数据确实不可得（如 WAF 拦截），落 <code>gap</code> 与解释，不造数、不静默替换。</li>
+</ol>
+
+<h2><span class="n">7</span>门禁增补（在原 G0–G7 之上）</h2>
+<table>
+  <thead><tr><th style="width:12%">编号</th><th style="width:38%">判据</th><th>执行方式</th></tr></thead>
+  <tbody>
+    <tr><td><strong>G8 增量正确性</strong></td><td>非回填运行<strong>不得</strong>减少任何指标的点数；请求区间必须等于 <code>[last_observed−overlap, today]</code>（误差 ±1 天）；重叠区与本地已存值一致率 ≥ 99%；同区间重跑两次结果字节一致（幂等）；日更全站 HTTP 请求数 ≤ 40、字节 ≤ 1.5 MB（以基线首测值收紧）</td><td>包 fetch 计数器 + DB 断言；对表 2 中三行「未定论」源在实现前先补测</td></tr>
+    <tr><td><strong>G9 契约一致</strong></td><td>19 份指标全部通过 <code>indicator.schema.json</code>（含 <code>guarantees</code> 必填）；<code>fetchers.js</code> 里出现的每个 provider 名都必须在能力矩阵中有声明；<code>specs/gates.md</code> 与 <code>gate.mjs</code> 的门禁条目一一对应</td><td>自研 JSON Schema 子集校验器（零依赖）+ 源码 provider 分支枚举</td></tr>
+    <tr><td><strong>G10 存储可信</strong></td><td><code>PRAGMA journal_mode = wal</code> 断言通过；<code>schema_version</code> 与迁移文件最大序号一致；外键违例数 = 0；<code>correction</code> 行数 = 主值表 <code>corrected</code> 计数（留痕不得只存在一处）；<code>revision</code> 不可被 UPDATE（触发器只读）</td><td>启动自检 + 门禁脚本</td></tr>
+  </tbody>
+</table>
+<p class="dim">门禁总数由 8 增至 <strong>11</strong>（G0–G10），前文 <code>docs/架构规范与门禁-执行计划.html</code> 的矩阵与验收口径同步更新。</p>
+
+<h2><span class="n">8</span>执行计划修订</h2>
+<table>
+  <caption>表 6 · 阶段顺序（串行，每阶段一个可回滚提交）</caption>
+  <thead><tr><th style="width:13%">阶段</th><th style="width:45%">内容</th><th style="width:24%">完成定义</th><th>工作量</th></tr></thead>
+  <tbody>
+    <tr><td>P0 基线</td><td>门禁骨架 + 现状快照落库（请求数/字节/覆盖率/缺口清单）</td><td>能跑并如实报红；G0/G4 绿</td><td class="num">0.5 d</td></tr>
+    <tr><td>P1 契约先行</td><td>建 <code>specs/</code>；19 份指标补 <code>guarantees</code>；49 个阈值补 <code>source</code>；能力矩阵落库（先补测表 2 三行未定论）</td><td>G9 绿</td><td class="num">1 d</td></td></tr>
+    <tr><td><strong>P1.5 存储层</strong></td><td><code>lib/db.js</code> + DDL 迁移；JSON→DB <strong>影子双写</strong>，逐字段 diff 必须完全一致（差异全部列明并解释）</td><td>连续 3 次日更 diff=0；G10 绿</td><td class="num">1.5 d</td></tr>
+    <tr><td><strong>P2 增量拉取</strong></td><td>水位线 + overlap 尾拉 + upsert；回填改显式模式；<code>/api/refresh</code> 入队化</td><td>G8 绿；日更请求数与字节降到基线的 1/10 以内</td><td class="num">1.5 d</td></tr>
+    <tr><td>P3 读路径切换</td><td>API 从 DB 读（聚合下推 SQL）；JSON 降级为导出快照</td><td>全站 API 契约测试通过；页面浏览器实测无回归</td><td class="num">1 d</td></tr>
+    <tr><td>P4 视觉收敛</td><td>原计划的令牌/去发光/字号栅格/对比度（含 <code>--faint</code> 3.92:1 修正）</td><td>G6 绿；硬编码计数 0</td><td class="num">2 d</td></tr>
+    <tr><td>P5 遗留</td><td>PBOC 资产负债表按 §6.3 走完整链路</td><td>8 步全过，缺口有解释</td><td class="num">1–2 d</td></tr>
+  </tbody>
+</table>
+<p class="dim">顺序要点：<strong>先契约（P1）→ 再存储（P1.5）→ 再增量（P2）</strong>。反过来的话，增量策略会被迫写死在代码里，能力矩阵继续靠口头约定——那正是历史上两次静默截断事故的成因。</p>
+
+<h2><span class="n">9</span>风险与未决</h2>
+<table>
+  <thead><tr><th style="width:30%">风险</th><th>对策</th></tr></thead>
+  <tbody>
+    <tr><td>官方源限流或改版（今日三行「未定论」即此类）</td><td>能力矩阵由实测驱动；<code>incremental:"unverified"</code> 的源<strong>不允许</strong>走尾拉，先走全窗安全路径，实测通过后再切换。</td></tr>
+    <tr><td>overlap 设小了漏掉修订、设大了退化成全量</td><td>overlap 进 spec（不是常量），并由 G8 的「一致率 ≥99% + 请求数上限」双向夹住。</td></tr>
+    <tr><td>SQLite 单写者并发</td><td>写路径本就单链串行；读走 WAL 并发；<code>busy_timeout</code> 兜底。若未来引入多进程，先解决写者数而非换库。</td></tr>
+    <tr><td>迁移期数据不一致</td><td>影子双写 + 逐字段 diff 门禁，diff≠0 不得切换读路径；JSON 快照保留一个版本周期作回滚点。</td></tr>
+    <tr><td>规范文件与门禁脚本漂移</td><td>G9 断言两者条目一一对应；改门禁必须同 PR 改 <code>specs/gates.md</code>。</td></tr>
+  </tbody>
+</table>
+
+<footer>
+  <p><strong>验收口径：</strong>本篇规范的「已落地」判定只看三件事——<code>npm run gate</code> 11/11 绿；一次真实日更的请求数与字节数进入新基线（相对表 1 至少降一个数量级）；负向对照与影子双写 diff=0 的证据留档。任何「架构看起来更清晰了」不构成验收。</p>
+  <p style="margin-top:var(--sp4)">参考做法（结论均为本文作者据公开资料归纳，未复制原文）：</p>
+  <ol class="src">
+    <li>增量装载与幂等：水位线游标表 + 按业务键 MERGE/upsert、重跑安全、避免非确定性变换 —— Databricks 处理保证与 SQL ETL 实践、GCP 幂等管道实践、Oracle/BigQuery MERGE 增量模式（见搜索结果索引）</li>
+    <li>全量刷新的安全前提：仅当源端仍提供完整历史时才可覆盖，滚动窗口源必须改增量 —— Databricks 处理保证页</li>
+    <li>晚到数据与对账：重叠窗 / CDC / 数据质量校验兜住乱序 —— Airbyte 全量 vs 增量对比</li>
+    <li>时序数据设计：append-only、时间分区、不可变模式、保留策略 —— QuestDB 不可变数据模式；腾讯云与火山引擎的金融行情存储实践（本站按数据量取舍，只采用「修订以追加表达」）</li>
+    <li>架构形态：小团队从模块化单体起步；端口—适配器 + 反腐层隔离外部系统；边界需工具强制 —— 架构选型综述与 modular monolith / hexagonal 相关实践</li>
+    <li>嵌入式 SQLite 运维：WAL 为库头属性、<code>db/-wal/-shm</code> 同生命周期、定期 checkpoint、勿直接拷贝主文件 —— SQLite 生产运维与 better-sqlite3 调优指南</li>
+    <li>数据契约三层（结构/语义/保障）与 spec-first 流程 —— 数据契约规范与 ODCS、契约驱动流水线实践、spec-kit 工作流</li>
+    <li>本站实测：表 1/2/3 全部来自 <code>probe-db.mjs</code> 与 <code>probe-sqlite.mjs</code> 本轮输出（Node v24.15.0，SQLite 3.51.3，WAL）</li>
+  </ol>
+</footer>
+
+</div><section id="rev2" style="margin-top:32px">
+<h2>Rev 2 · 实现校准（2026-11-23）</h2>
+<p>本段是<strong>显式修订</strong>：逐条列出本篇原文与被实现取代的表述，并给出复算命令。未列入本段的规范仍然有效。</p>
+<table><thead><tr><th>原文表述</th><th>现在的实现</th><th>复算方式</th></tr></thead><tbody>
+<tr><td>§1 现状：每次日更都取 start→today 全区间（49 请求 / 5.2 MB）</td><td>已按水位线增量：6 指标一轮 13 请求 / 约 1.2 MB；区间 = last_observed − overlap ⇒ today；overlap 按发布节奏推导（T+1→7 天、M→62 天）</td><td>node tools/thresholds.mjs 与库内 fetch_run：SELECT mode,http_calls,bytes FROM fetch_run ORDER BY id DESC LIMIT 12</td></tr>
+<tr><td>§4 DDL 与运维纪律（当时仅有设计）</td><td>backend/lib/db.js 落地：series_point / revision / correction / fetch_run / run_stage / run_stat / watermark / series_head / policy_event / artifact，WAL 读回断言、schema_version 只向前、单指标单事务、VACUUM INTO 备份</td><td>node tools/gates.mjs --only=G8,G10,G16</td></tr>
+<tr><td>读路径「只读 SQLite（+ 内存缓存派生结果）」</td><td>已生效：backend/lib/store.js 的 read 只认库；data/*.json 降级为 commit 之后的导出快照，且导出一律从库回读（增量窗口不得截断历史）</td><td>node tools/gates.mjs --only=G10（库与导出逐值比对）</td></tr>
+<tr><td>表 2 三行「未定论」（nyfed-repo / treasury-real / uk-trade）</td><td>未定论者按纪律保持 windowed 并在 provider 里写 windowNote；已实测者标 tail / monthly-step / whole-file / rolling-guard / snapshot-only</td><td>node tools/publish.mjs 后看 specs/capability.json 的 incremental 字段</td></tr>
+<tr><td>§3.2 provider 若仍在 fetchers.js 内以 if 链分派</td><td>fetchers.js 已删除；18 个 provider 由 backend/providers/registry.js 目录自动发现，未声明 incremental/org/endpoints/cadence 或 id 与文件名不符即拒绝启动</td><td>node tools/gates.mjs --only=G11,G17</td></tr>
+<tr><td>B-1 请求处理函数禁止触发官方取数</td><td>server 的读路径只调 panels/policy 的库读；写路径集中在 updateAll（含政策事件刷新，失败保留库内既有事件）</td><td>node tools/gates.mjs --only=G5,G22 与人工核对 server.js 路由</td></tr>
+</tbody></table>
+<p>本段由代理在校准轮次写入；数值全部来自当轮实测输出，不是计划值。</p>
+</section>
+
+</body>
+</html>

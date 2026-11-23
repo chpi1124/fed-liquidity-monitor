@@ -4,10 +4,17 @@
 
 const DAY = 86400000;
 
+// 官方发布节奏 ⇒ 允许的滞后天数（唯一表）。tools/thresholds.mjs 复算 maxLagDays 时用同一张表，
+// 不在两处各写一遍，避免「定标工具与运行期判据不一致」。
+export const PUBLICATION_LAG = { T: 7, "T+1": 9, W: 14, "M+1": 45, "M+2": 75, M: 45 };
+// 一个发布周期的天数：滞后上限只允许「官方节奏 + 一个周期」的宽余，再宽就等于不检
+export const PUBLICATION_PERIOD = { T: 1, "T+1": 1, W: 7, M: 31, "M+1": 31, "M+2": 31 };
+
 // 按单位与频率推导默认阈值；指标 JSON 里的 integrity 字段可逐项覆盖。
 export function thresholdsFor(cfg) {
   const unit = (cfg.unit || "").trim();
-  const freq = cfg.freq || (cfg.surface === "gold" && unit.includes("吨") ? "month" : "day");
+  // 频率是指标自己的声明（月频源必须写 freq）；这里不再按 surface 猜，猜出来的频率会选错跳变阈值
+  const freq = cfg.freq || "day";
   const steps = { day: 1, week: 7, month: 31 }[freq] || 1;
   let t;
   if (unit === "%") t = { abs: true, range: [-10, 40], maxAbsJump: 5 * Math.max(1, steps / 30), maxRelJump: null };
@@ -15,7 +22,7 @@ export function thresholdsFor(cfg) {
   else if (unit.includes("oz") || unit.includes("股")) t = { abs: false, range: [0, 200000], maxAbsJump: null, maxRelJump: 0.3 * Math.max(1, steps / 30) };
   else if (unit.includes("吨")) t = { abs: true, range: [-4000, 4000], maxAbsJump: 1800 * Math.max(1, steps / 30), maxRelJump: null };
   else t = { abs: true, range: [0, 20000], maxAbsJump: 8000 * Math.max(1, steps / 30), maxRelJump: null };
-  const lag = { T: 7, "T+1": 9, W: 14, "M+1": 45, "M+2": 75, M: 45 }[cfg.publication] || 30;
+  const lag = PUBLICATION_LAG[cfg.publication] ?? 30;
   return { ...t, maxLagDays: lag, maxGapDays: Math.max(45, steps * 8), minPoints: 10 };
 }
 
@@ -112,9 +119,13 @@ export function checkIntegrity({ cfg, points, checkMap, refMap, prevMap, alignMa
     const lag = Math.round((today - new Date(`${last.d}T00:00:00Z`)) / DAY);
     if (lag > th.maxLagDays) push(last, "stale", `最新点滞后 ${lag} 天，超过该发布节奏的 ${th.maxLagDays} 天上限`);
   }
-  if (points.length < th.minPoints) {
+  // 样本量下限判的是「这条序列库里一共多少点」，不是本轮窗口：增量轮次每轮只有几天，
+  // 按窗口判定会让每个健康序列天天误报 coverage，真告警就淹在噪声里。
+  const seen = new Set(points.map((p) => p.d));
+  if (prevMap) for (const k of prevMap.keys()) seen.add(k);
+  if (seen.size < th.minPoints) {
     counts.coverage++;
-    flagged.push({ d: last?.d ?? null, v: null, code: "coverage", detail: `仅 ${points.length} 个点，少于 ${th.minPoints}` });
+    flagged.push({ d: last?.d ?? null, v: null, code: "coverage", detail: `库内共 ${seen.size} 个点（本轮窗口 ${points.length}），少于 ${th.minPoints}` });
   }
 
   const basis = alignMap || points.map((p) => ({ d: p.d, v: p.v }));

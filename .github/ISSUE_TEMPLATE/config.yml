@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 架构与门禁规范
+    url: https://github.com/chpi1124/fed-liquidity-monitor/blob/main/docs/架构规范与门禁-执行计划.html
+    about: 提交前先读执行计划与门禁登记表 specs/gates.md

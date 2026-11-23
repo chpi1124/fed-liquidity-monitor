@@ -1,12 +1,13 @@
 {
   "id": "srfrate",
+  "region": "us",
   "order": 14,
   "surface": "strip",
   "name": "SRF 利率",
   "en": "Standing Repo Facility Offering Rate",
   "formula": "常备回购便利利率",
   "unit": "%",
-  "hue": "#e05fd0",
+  "hue": "magenta",
   "role": "走廊上限",
   "description": "SRF（常备回购便利）每日操作提供利率（offering rate / 最低投标利率，不含竞价 stop-out），纽约联储回购操作 API。校验：与 FRED 联邦基金目标上限 DFEDTARU 一致性（SRF 利率设于目标上限，2021-07-29 以来恒等）。利率走廊上限。点击利率卡可查看其历史走势。",
   "validationNote": "校验口径：FRED 目标上限（SRF 设于上限）",
@@ -36,6 +37,30 @@
       0,
       8
     ],
-    "maxAbsJump": 1.5
+    "maxAbsJump": 1.5,
+    "source": {
+      "range": {
+        "statistic": "manual-policy",
+        "window": "2021-09-20 ~ 2026-11-20",
+        "measured": {
+          "min": 0.25,
+          "max": 5.5,
+          "p02": 0.25,
+          "p998": 5.5,
+          "n": 1290
+        },
+        "note": "声明带 [0, 8] 由实测 [0.25, 5.5] 向外取整而得；外扩是有意冗余，越带即报警（门禁复算包含关系）"
+      },
+      "maxAbsJump": {
+        "statistic": "manual-policy",
+        "window": "2021-09-20 ~ 2026-11-20",
+        "measured": {
+          "maxJump": 0.75,
+          "p998Jump": 0.75,
+          "n": 1290
+        },
+        "note": "声明 1.5 高于实测 99.8 分位 0.75：有意留宽的保守带，低于该分位即判太紧"
+      }
+    }
   }
 }

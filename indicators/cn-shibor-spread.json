@@ -6,7 +6,7 @@
   "en": "SHIBOR 3M − O/N Term Spread",
   "formula": "= SHIBOR 3M − SHIBOR O/N（bp）",
   "unit": "bp",
-  "hue": "#ff8a2a",
+  "hue": "accent",
   "publication": "T",
   "description": "中国银行间资金面与收益率曲线形态观察。主源：全国银行间同业拆借中心 / 中国外汇交易中心（CFETS，中国人民银行直属）官方发布的 SHIBOR（上海银行间同业拆放利率）3 个月与隔夜期限。期限利差=3M−O/N（bp）。交叉验证为恒等式：本行由 3M 与 O/N 两腿现算，再与两条各自已校验入库的官方序列逐点相减比对（本行按整数 bp 四舍五入、参照值不舍入，故容差取略大于最大舍入差 0.5 的 0.51bp。任何期限错配、列错位、日期错并或缩放写错都会立刻在逐点比对中暴露，属可自动改值的数值级校验。",
   "operation": "diff",
@@ -44,22 +44,22 @@
       "label": "倒挂",
       "max": 0,
       "includeMax": false,
-      "color": "#ef4444"
+      "color": "risk-1"
     },
     {
       "label": "平缓",
       "max": 15,
-      "color": "#e5e7eb"
+      "color": "risk-2"
     },
     {
       "label": "正常",
       "max": 40,
-      "color": "#eab308"
+      "color": "risk-3"
     },
     {
       "label": "陡峭",
       "max": null,
-      "color": "#22c55e"
+      "color": "risk-4"
     }
   ],
   "tolerance": 0.51,
@@ -69,6 +69,30 @@
       -300,
       600
     ],
-    "maxAbsJump": 120
+    "maxAbsJump": 120,
+    "source": {
+      "range": {
+        "statistic": "manual-policy",
+        "window": "2024-01-02 ~ 2026-11-23",
+        "measured": {
+          "min": -31,
+          "max": 86,
+          "p02": -20,
+          "p998": 82,
+          "n": 719
+        },
+        "note": "声明带 [-300, 600] 由实测 [-31, 86] 向外取整而得；外扩是有意冗余，越带即报警（门禁复算包含关系）"
+      },
+      "maxAbsJump": {
+        "statistic": "manual-policy",
+        "window": "2024-01-02 ~ 2026-11-23",
+        "measured": {
+          "maxJump": 26,
+          "p998Jump": 25,
+          "n": 719
+        },
+        "note": "声明 120 高于实测 99.8 分位 25：有意留宽的保守带，低于该分位即判太紧"
+      }
+    }
   }
 }

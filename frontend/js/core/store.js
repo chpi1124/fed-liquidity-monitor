@@ -1,33 +1,26 @@
 import * as api from "./api.js";
-import { seriesLabel } from "./derive.js";
+import { layerLabel } from "./recipe-meta.js";
 
 const state = {
   region: "us",
-  indicators: [],
-  activeId: null,
+  page: "monitor",
   granularity: "day",
-  preset: "1Y",
-  series: null,
+  view: null,
+  // 全局政策事件开关：一处切换，所有面板的竖线与 tooltip 政策文字同步显隐。
+  // 默认开——与既有行为等价，视觉回归基线不漂移。
+  policyOn: true,
+  preset: null,
+  primary: null,
+  sheet: null,
+  overlay: "",
+  selected: {},
+  charts: { specs: [], presets: {}, pages: [] },
+  payload: null,
   loading: false,
   error: null,
   refreshing: false,
   ready: false,
-  page: "monitor",
-  sheets: [],
-  sheetId: null,
-  sheet: null,
-  sheetLoading: false,
-  sheetError: null,
-  sheetPreset: "ALL",
-  summaries: [],
-  summaryData: {},
-  summaryLoading: false,
-  summaryError: null,
-  gold: null,
-  goldOn: {},
-  goldLoading: false,
-  goldError: null,
-  goldPreset: "ALL",
+  stamp: 0,
 };
 
 const subs = new Set();
@@ -37,6 +30,7 @@ export function subscribe(fn) {
   return () => subs.delete(fn);
 }
 function emit() {
+  state.stamp++;
   for (const fn of subs) fn(state);
 }
 export function set(patch) {
@@ -44,204 +38,131 @@ export function set(patch) {
   emit();
 }
 
-export async function loadSeries() {
-  const id = state.activeId;
-  const g = state.granularity;
-  if (!id) return;
+// 序列标签只在进入状态时生成一次：图例、开关、tooltip 读同一份 label
+function decorate(payload) {
+  for (const v of payload.views || []) for (const l of v.ds?.layers || []) l.label = layerLabel(l);
+  return payload;
+}
+
+const notReady = (payload) =>
+  (payload.views || []).some((v) => v.ds?.error && /未入库|未就绪|not ready/.test(v.ds.error));
+
+function query() {
+  const q = new URLSearchParams({ region: state.region, granularity: state.granularity });
+  if (state.view) q.set("view", state.view);
+  if (state.overlay) q.set("overlay", state.overlay);
+  if (state.primary) q.set("primary", state.primary);
+  if (state.sheet) q.set("sheet", state.sheet);
+  return q.toString();
+}
+
+export async function loadPage(retry = 0) {
   set({ loading: true, error: null });
   try {
-    const s = await api.getSeries(id, g);
-    if (state.activeId !== id || state.granularity !== g) return;
-    set({ series: s, loading: false });
+    const payload = decorate(await api.getPage(state.page, query()));
+    if (notReady(payload) && retry < 20) {
+      await new Promise((r) => setTimeout(r, 2000));
+      return loadPage(retry + 1);
+    }
+    const preset = state.preset ?? (payload.views.find((v) => v.projection === "panel")?.ds?.defaultPreset || null);
+    set({ payload, loading: false, ready: true, preset });
+    return payload;
   } catch (e) {
-    if (state.activeId !== id || state.granularity !== g) return;
+    if (retry < 20) {
+      await new Promise((r) => setTimeout(r, 2000));
+      return loadPage(retry + 1);
+    }
     set({ loading: false, error: e.message });
+    return null;
   }
-}
-
-export async function loadSheet() {
-  const id = state.sheetId;
-  if (!id) return;
-  set({ sheetLoading: true, sheetError: null });
-  for (let i = 0; i < 60; i++) {
-    try {
-      const d = await api.getSheet(id);
-      if (state.sheetId !== id) return;
-      set({ sheet: d, sheetLoading: false });
-      return;
-    } catch (e) {
-      if (state.sheetId !== id) return;
-      if (i === 59) {
-        set({ sheetLoading: false, sheetError: e.message });
-        return;
-      }
-      await new Promise((r) => setTimeout(r, 2000));
-    }
-  }
-}
-
-export async function loadSummaryPage() {
-  const ids = state.summaries.map((s) => s.id);
-  if (!ids.length) return;
-  set({ summaryLoading: true, summaryError: null });
-  for (let i = 0; i < 60; i++) {
-    if (state.page !== "summary") return;
-    try {
-      const arr = await Promise.all(ids.map((id) => api.getSummary(id)));
-      if (state.page !== "summary") return;
-      const map = {};
-      for (const d of arr) map[d.id] = d;
-      set({ summaryData: map, summaryLoading: false });
-      return;
-    } catch (e) {
-      if (state.page !== "summary") return;
-      if (i === 59) {
-        set({ summaryLoading: false, summaryError: e.message });
-        return;
-      }
-      await new Promise((r) => setTimeout(r, 2000));
-    }
-  }
-}
-
-function pickDefault(inds) {
-  return (inds.find((x) => x.surface !== "strip" && x.surface !== "gold") || inds.find((x) => x.surface !== "gold") || inds[0] || {}).id || null;
-}
-
-async function fetchLists(region) {
-  const [indicators, sheets, summaries] = await Promise.all([
-    api.getIndicators(region),
-    api.getSheets(region).catch(() => []),
-    api.getSummaries(region).catch(() => []),
-  ]);
-  return { indicators, sheets, summaries };
-}
-
-export async function loadGold() {
-  const goldInds = state.indicators.filter((i) => i.surface === "gold");
-  if (!goldInds.length) return;
-  set({ goldLoading: true, goldError: null });
-  try {
-    const res = await Promise.allSettled(goldInds.map((cfg) => api.getSeries(cfg.id, "day").then((s) => ({ cfg, ...s }))));
-    const settled = res.map((r, i) => (r.status === "fulfilled" ? r.value : { cfg: goldInds[i], points: [], error: r.reason?.message || String(r.reason) }));
-    if (settled.every((s) => s.error)) throw new Error(settled.map((s) => s.error).join("；"));
-    if (!Object.keys(state.goldOn).length) {
-      const sel = {};
-      for (const s of settled) if (s.cfg.defaultOn === false) sel[seriesLabel(s.cfg)] = false;
-      set({ goldOn: sel });
-    }
-    set({ gold: { series: settled }, goldLoading: false });
-  } catch (e) {
-    set({ goldLoading: false, goldError: e.message });
-  }
-}
-
-export function setGoldSelection(sel) {
-  set({ goldOn: { ...sel } });
-}
-
-export function toggleGoldSeries(label) {
-  set({ goldOn: { ...state.goldOn, [label]: state.goldOn[label] === false } });
 }
 
 export async function init() {
-  for (let i = 0; i < 30; i++) {
-    try {
-      const { indicators, sheets, summaries } = await fetchLists(state.region);
-      if (indicators.length) {
-        set({ indicators, sheets, summaries, ready: true, activeId: state.activeId || pickDefault(indicators) });
-        await loadSeries();
-        return;
-      }
-    } catch {}
-    await new Promise((r) => setTimeout(r, 2000));
+  await loadCharts();
+  await loadPage();
+}
+
+async function loadCharts() {
+  try {
+    set({ charts: await api.getCharts(state.region) });
+  } catch (e) {
+    set({ error: e.message });
   }
-  set({ error: "后端未就绪，请稍后刷新" });
 }
 
 export async function setRegion(region) {
-  if (region === state.region || !region) return;
-  set({
-    region, indicators: [], sheets: [], summaries: [], activeId: null, series: null,
-    sheet: null, sheetId: null, summaryData: {}, page: "monitor", error: null,
-    gold: null, goldOn: {},
-  });
-  for (let i = 0; i < 30; i++) {
-    if (state.region !== region) return;
-    try {
-      const { indicators, sheets, summaries } = await fetchLists(region);
-      if (state.region !== region) return;
-      if (indicators.length) {
-        set({ indicators, sheets, summaries, activeId: pickDefault(indicators) });
-        await loadSeries();
-        return;
-      }
-    } catch {}
-    await new Promise((r) => setTimeout(r, 2000));
-  }
-  if (state.region === region) set({ error: "该区数据未就绪，请稍后重试" });
-}
-
-export function select(id) {
-  if (id === state.activeId) return;
-  set({ activeId: id, series: null });
-  loadSeries();
+  if (!region || region === state.region) return;
+  set({ region, primary: null, overlay: "", preset: null, sheet: null, selected: {}, payload: null, error: null });
+  await loadCharts();
+  await loadPage();
 }
 
 export function setPage(page) {
-  if (page === state.page) return;
-  if (page === "monitor") {
-    set({ page });
-    return;
-  }
-  if (page === "summary") {
-    set({ page, summaryData: {}, summaryError: null });
-    loadSummaryPage();
-    return;
-  }
-  if (page === "gold") {
-    set({ page, gold: null, goldError: null });
-    loadGold();
-    return;
-  }
-  set({ page, sheetId: page, sheet: null });
-  loadSheet();
+  if (!page || page === state.page) return;
+  // 页间不共享区间预设：切页回到该页 spec 声明的默认区间
+  set({ page, preset: null, payload: null, selected: {} });
+  loadPage();
+}
+
+export function selectPrimary(id) {
+  if (!id || id === state.primary) return;
+  set({ primary: id });
+  loadPage();
 }
 
 export function setGranularity(g) {
-  if (g === state.granularity) return;
-  set({ granularity: g, series: null });
-  loadSeries();
+  if (!["day", "week", "month"].includes(g) || g === state.granularity) return;
+  set({ granularity: g });
+  loadPage();
+}
+
+// 视图切换（如「梗差」页的走廊横线 / SOFR 柱）：模式由 spec 声明，切换只是换一套装配参数
+export function setView(v) {
+  if (!v || v === state.view) return;
+  set({ view: v });
+  loadPage();
+}
+
+// 区间与图层开关是纯视图状态：不惊动后端，也不重画数据管道
+// 政策事件显隐是纯视图状态：不惊动后端，也不重取数据。
+// 各面板在 option 装配时读这一个开关，一处切换、全站生效。
+export function setPolicyOn(on) {
+  const v = !!on;
+  if (v === state.policyOn) return;
+  set({ policyOn: v });
 }
 
 export function setPreset(p) {
-  if (p === state.preset) return;
+  if (!p || p === state.preset) return;
   set({ preset: p });
 }
 
-export function setSheetPreset(p) {
-  if (p === state.sheetPreset) return;
-  set({ sheetPreset: p });
+export function setSelected(specId, selected) {
+  set({ selected: { ...state.selected, [specId]: { ...selected } } });
 }
 
-export function setGoldPreset(p) {
-  if (p === state.goldPreset) return;
-  set({ goldPreset: p });
+export function toggleLayer(specId, id) {
+  const cur = state.selected[specId] || {};
+  set({ selected: { ...state.selected, [specId]: { ...cur, [id]: cur[id] === false } } });
+}
+
+export function toggleOverlay(id) {
+  const list = state.overlay ? state.overlay.split(",").filter(Boolean) : [];
+  const next = list.includes(id) ? list.filter((x) => x !== id) : [...list, id];
+  const panel = (state.payload?.views || []).find((v) => v.projection === "panel");
+  const max = panel?.ds?.limits?.totalMax ?? 5;
+  if (next.length + 1 > max) return;
+  set({ overlay: next.join(",") });
+  loadPage();
 }
 
 export async function refresh() {
   if (state.refreshing) return;
   set({ refreshing: true });
-  const region = state.region;
   try {
     await api.refresh();
-    const { indicators, sheets, summaries } = await fetchLists(region);
-    if (state.region !== region) return set({ refreshing: false });
-    set({ indicators, sheets, summaries, activeId: state.activeId || pickDefault(indicators) });
-    await loadSeries();
-    if (state.page === "summary") await loadSummaryPage();
-    else if (state.page === "gold") await loadGold();
-    else if (state.page !== "monitor") await loadSheet();
+    await loadCharts();
+    await loadPage();
   } catch (e) {
     set({ error: e.message });
   }
@@ -249,14 +170,12 @@ export async function refresh() {
 }
 
 export async function silentReload() {
-  const region = state.region;
   try {
-    const { indicators, sheets, summaries } = await fetchLists(region);
-    if (state.region !== region) return;
-    set({ indicators, sheets, summaries, activeId: state.activeId || pickDefault(indicators) });
-    await loadSeries();
-    if (state.page === "summary") await loadSummaryPage();
-    else if (state.page === "gold") await loadGold();
-    else if (state.page !== "monitor") await loadSheet();
+    await loadCharts();
+    await loadPage();
   } catch {}
+}
+
+export function panelViews(s = state) {
+  return (s.payload?.views || []).filter((v) => v.projection === "panel");
 }

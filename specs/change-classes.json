@@ -1,0 +1,81 @@
+{
+  "note": "变更面清单：每一类新增/修改应只落在数据与资产层。一旦某类变更被证明必须改主程序，G12 直接红。实证由 tools/selftest.mjs 在沙箱根（HONG_ROOT）里真跑。",
+  "classes": [
+    {
+      "class": "新增官方源 provider",
+      "touch": [
+        "backend/providers/<id>.js",
+        "fixtures/<id>.*"
+      ],
+      "forbiddenTouch": [
+        "backend/lib/cache.js",
+        "backend/providers/registry.js",
+        "backend/server.js"
+      ],
+      "example": "backend/providers/uncomtrade.js",
+      "proof": "selftest:provider-add"
+    },
+    {
+      "class": "新增指标",
+      "touch": [
+        "indicators/<id>.json"
+      ],
+      "forbiddenTouch": [
+        "backend/server.js",
+        "frontend/js/app.js",
+        "frontend/js/core/store.js"
+      ],
+      "example": "indicators/cn-fdr007.json",
+      "proof": "selftest:indicator-add"
+    },
+    {
+      "class": "新增页面/图",
+      "touch": [
+        "charts/<spec>.json"
+      ],
+      "forbiddenTouch": [
+        "frontend/js/app.js",
+        "frontend/js/core/chart-panel.js",
+        "frontend/js/core/chart-types.js"
+      ],
+      "example": "charts/gold-overlay.json",
+      "proof": "selftest:page-add"
+    },
+    {
+      "class": "新增图形语义（配方）",
+      "touch": [
+        "frontend/js/core/chart-types.js"
+      ],
+      "forbiddenTouch": [
+        "frontend/js/app.js",
+        "backend/server.js"
+      ],
+      "example": "RECIPES.candlestick",
+      "proof": "gate:G20"
+    },
+    {
+      "class": "改配色/几何",
+      "touch": [
+        "frontend/css/tokens.css"
+      ],
+      "forbiddenTouch": [
+        "frontend/js/core/chart-option.js",
+        "frontend/js/core/chart-types.js"
+      ],
+      "example": "--hue-6",
+      "proof": "gate:G5"
+    },
+    {
+      "class": "改阈值口径",
+      "touch": [
+        "indicators/<id>.json:integrity.source",
+        "tools/thresholds.mjs"
+      ],
+      "forbiddenTouch": [
+        "backend/lib/integrity.js"
+      ],
+      "example": "effr.integrity.source.range",
+      "proof": "gate:G2"
+    }
+  ]
+}

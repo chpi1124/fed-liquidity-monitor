@@ -1,47 +1,7 @@
 import { h } from "../core/dom.js";
 import { fmtVal } from "../core/derive.js";
 import { Badge } from "./Badge.js";
-import { Button } from "./Button.js";
-import { Ecg } from "./Ecg.js";
-
-export function SummaryHeader({ asOf, validation, integrity, updatedAt, refreshing, onRefresh, error }) {
-  return h(
-    "header",
-    { class: "top" },
-    h(
-      "div",
-      { class: "top__title" },
-      h("h1", null, "周度汇总"),
-      h("span", { class: "top__formula" }, "= 美联储周度汇总 · AI 信用观察（官方双源交叉验证）")
-    ),
-    Ecg(),
-    h(
-      "div",
-      { class: "top__status" },
-      Badge({ text: asOf ? `数据截至 ${asOf}` : "…", color: "var(--info)", title: "H.4.1 最新周三锚点" }),
-      Badge({
-        text: validation ? `交叉验证 ${validation.matched}/${validation.checked}${validation.mismatched ? ` · ${validation.mismatched} 不一致` : ""}` : "…",
-        color: validation?.mismatched ? "var(--danger)" : validation?.checked ? "var(--ok)" : "var(--faint)",
-        title: "两表合计逐点比对；单源/无公开源行透明标注不计入",
-      }),
-      Badge({
-        text: integrity
-          ? integrity.verdict === "ok"
-            ? `行级自检通过 ${integrity.selfChecked}/${integrity.rows}${integrity.unthresholded ? ` · 金额行 ${integrity.unthresholded} 走双源` : ""}`
-            : `行级自检存疑 ${integrity.bad.length} 行`
-          : "自检 …",
-        color: integrity?.verdict === "fail" ? "var(--danger)" : integrity ? "var(--ok)" : "var(--faint)",
-        title:
-          "利率型行（%、bp）的本期值要过与指标同一套不变量（合理区间、单周跳变，阈值由十年实测分布定标）；" +
-          "金额型行的量级取决于单位与财政收支节奏，未经逐行定标不套通用带，其正确性由 H.4.1 ↔ FRED 双源逐点比对负责。" +
-          "存疑只标记说明，不删行、不改值。" +
-          (integrity?.bad?.length ? `\n\n${integrity.bad.map((b) => `${b.zh}：${b.codes.join("；")}`).join("\n")}` : ""),
-      }),
-      Badge({ text: error ? error : updatedAt ? `更新 ${new Date(updatedAt).toLocaleString("zh-CN")}` : "…" }),
-      Button({ label: refreshing ? "更新中…" : "刷新数据", variant: "solid", onClick: onRefresh, disabled: refreshing })
-    )
-  );
-}
+import { css } from "../core/theme.js";
 
 function okMark(row) {
   const cls = row.ok === true ? "is-ok" : row.ok === false ? "is-bad" : "is-na";
@@ -81,17 +41,15 @@ function numCell(row, key, isThis) {
   return h("td", { class: "bal-num sum-v" + (isThis && row.highlight ? " is-hl" : ""), title: row.sourceLabel }, kids);
 }
 
+// 状态与走廊色都走 token；「无权威公开源」这类行必须看得见，不藏进脚注
 function zoneCell(row) {
   if (row.status === "no-source")
-    return h("td", { class: "sum-zone" }, Badge({ text: "无权威公开源", color: "var(--faint)", title: `${row.note}\n证据：\n${(row.evidence || []).join("\n")}` }));
+    return h("td", { class: "sum-zone" }, Badge({ text: "无权威公开源", color: css("faint"), title: `${row.note}\n证据：\n${(row.evidence || []).join("\n")}` }));
   if (row.status === "pending-source")
-    return h("td", { class: "sum-zone" }, Badge({ text: "官方源待接入", color: "var(--info)", title: `${row.note}\n官方源：\n${(row.evidence || []).join("\n")}` }));
-  if (row.status === "monthly-only")
-    return h("td", { class: "sum-zone" }, Badge({ text: "官方月度", color: "var(--info)", title: row.note }));
-  if (row.status === "single-source")
-    return h("td", { class: "sum-zone" }, Badge({ text: "单源代理", color: "var(--warn)", title: row.note }));
-  if (row.zone)
-    return h("td", { class: "sum-zone" }, Badge({ text: row.zone.label, color: row.zone.color, title: row.note }));
+    return h("td", { class: "sum-zone" }, Badge({ text: "官方源待接入", color: css("info"), title: `${row.note}\n官方源：\n${(row.evidence || []).join("\n")}` }));
+  if (row.status === "monthly-only") return h("td", { class: "sum-zone" }, Badge({ text: "官方月度", color: css("info"), title: row.note }));
+  if (row.status === "single-source") return h("td", { class: "sum-zone" }, Badge({ text: "单源代理", color: css("warn"), title: row.note }));
+  if (row.zone) return h("td", { class: "sum-zone" }, Badge({ text: row.zone.label, color: css(row.zone.color), title: row.note }));
   return h("td", { class: "sum-zone sum-na" }, "—");
 }
 
@@ -109,11 +67,11 @@ export function SummaryTable({ data }) {
     h(
       "div",
       { class: "sum-meta" },
-      Badge({ text: `本周 ${data.thisWeek.start} ~ ${data.thisWeek.end}`, color: "var(--info)", title: "截至 asOf 的 7 天窗口" }),
+      Badge({ text: `本周 ${data.thisWeek.start} ~ ${data.thisWeek.end}`, color: css("info"), title: "截至 asOf 的 7 天窗口" }),
       Badge({ text: `上周 ${data.lastWeek.start} ~ ${data.lastWeek.end}` }),
       Badge({
         text: `交叉验证 ${data.validation.matched}/${data.validation.checked}${data.validation.mismatched ? ` · ${data.validation.mismatched} 不一致` : ""}`,
-        color: data.validation.mismatched ? "var(--danger)" : data.validation.checked ? "var(--ok)" : "var(--faint)",
+        color: data.validation.mismatched ? css("danger") : data.validation.checked ? css("ok") : css("faint"),
         title: "主源与校验源逐点比对；0/0 表示本表均为单源或无公开源行（透明标注）",
       })
     ),

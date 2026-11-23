@@ -1,5 +1,6 @@
 import { h } from "../core/dom.js";
-import { deltaInfo, fmtVal } from "../core/derive.js";
+import { deltaInfo, fmtVal, validationNote } from "../core/derive.js";
+import { css } from "../core/theme.js";
 import { Sparkline } from "./Sparkline.js";
 
 export function RateTile({ cfg, status, active, onClick, index }) {
@@ -7,16 +8,15 @@ export function RateTile({ cfg, status, active, onClick, index }) {
   const tail = status?.tail || [];
   const d = deltaInfo(tail, cfg.unit);
   const ok = latest?.ok;
-  const dotColor = ok === true ? "var(--ok)" : ok === false ? "var(--danger)" : "var(--muted)";
-  const hue = cfg.hue || "#ff8a2a";
-  const v = status?.validation;
+  const dotColor = css(ok === true ? "ok" : ok === false ? "danger" : "muted");
+  const hue = cfg.hue || "accent";
   return h(
     "button",
     {
       class: "tile" + (active ? " is-active" : ""),
-      style: { "--hue": hue, "animation-delay": `${index * 70}ms` },
+      style: { "--hue": css(hue), "animation-delay": `${index * 70}ms` },
       onclick: onClick,
-      title: `${cfg.name} · 交叉验证 ${v ? `${v.matched}/${v.checked}` : "…"}${cfg.validationNote ? " · " + cfg.validationNote : ""} · 点击查看历史`,
+      title: `${cfg.name} · ${validationNote(status)}${cfg.validationNote ? " · " + cfg.validationNote : ""} · 点击查看历史`,
     },
     h(
       "span",
@@ -38,7 +38,7 @@ export function RateTile({ cfg, status, active, onClick, index }) {
           )
         : null
     ),
-    Sparkline({ values: tail.map((p) => p.v), color: hue }),
+    Sparkline({ values: tail.map((p) => p.v), color: css(hue) }),
     h("span", { class: "tile__en" }, cfg.en || "")
   );
 }

@@ -1,0 +1,30 @@
+{
+  "id": "worldbank",
+  "org": "World Bank Commodity Markets",
+  "cadence": "monthly",
+  "incremental": "whole-file",
+  "requested": {
+    "src": {
+      "column": "Gold"
+    },
+    "start": "2026-07-26",
+    "end": "2026-09-24"
+  },
+  "rows": 3,
+  "bytes": 61,
+  "at": "2026-11-23T04:02:20.137Z",
+  "payload": [
+    [
+      "2026-07-01",
+      4073
+    ],
+    [
+      "2026-08-01",
+      4411
+    ],
+    [
+      "2026-09-01",
+      4319
+    ]
+  ]
+}

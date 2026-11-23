@@ -1,0 +1,118 @@
+{
+  "at": "2026-11-23T04:02:20.156Z",
+  "results": [
+    {
+      "id": "cds-feed",
+      "ok": false,
+      "error": "cds-feed: no entitled snapshot at data/cds/absent-by-design"
+    },
+    {
+      "id": "cfets-lpr",
+      "ok": true,
+      "rows": 12,
+      "ms": 202
+    },
+    {
+      "id": "cfets-repo",
+      "ok": true,
+      "rows": 7,
+      "ms": 121
+    },
+    {
+      "id": "cfets-rmb",
+      "ok": true,
+      "rows": 1,
+      "ms": 26
+    },
+    {
+      "id": "cfets-shibor",
+      "ok": true,
+      "rows": 7,
+      "ms": 57
+    },
+    {
+      "id": "fed-policy",
+      "ok": true,
+      "rows": 1,
+      "ms": 1255
+    },
+    {
+      "id": "frb-h41",
+      "ok": true,
+      "rows": 39,
+      "ms": 154
+    },
+    {
+      "id": "frb-h41-factors",
+      "ok": true,
+      "rows": 41,
+      "ms": 408
+    },
+    {
+      "id": "fred",
+      "ok": true,
+      "rows": 1249,
+      "ms": 950
+    },
+    {
+      "id": "hkex-factsheet",
+      "ok": true,
+      "rows": 1,
+      "ms": 4401
+    },
+    {
+      "id": "nasdaq",
+      "ok": true,
+      "rows": 8,
+      "ms": 863
+    },
+    {
+      "id": "nyfed",
+      "ok": true,
+      "rows": 5,
+      "ms": 278
+    },
+    {
+      "id": "nyfed-repo",
+      "ok": true,
+      "rows": 19,
+      "ms": 1375
+    },
+    {
+      "id": "nyfed-rp-rate",
+      "ok": true,
+      "rows": 19,
+      "ms": 167
+    },
+    {
+      "id": "pbc-statement",
+      "ok": true,
+      "rows": 10,
+      "ms": 117
+    },
+    {
+      "id": "treasury-real",
+      "ok": true,
+      "rows": 27,
+      "ms": 1197
+    },
+    {
+      "id": "uk-trade",
+      "ok": true,
+      "rows": 3,
+      "ms": 1316
+    },
+    {
+      "id": "uncomtrade",
+      "ok": true,
+      "rows": 1,
+      "ms": 10779
+    },
+    {
+      "id": "worldbank",
+      "ok": true,
+      "rows": 3,
+      "ms": 940
+    }
+  ]
+}

@@ -1,38 +1,23 @@
 import { h } from "../core/dom.js";
-import { fmtTrillion } from "../core/derive.js";
+import { hintText } from "../core/derive.js";
 
-export function PageNav({ sheets, summaries = [], gold = false, page, onPage }) {
-  const sumReady = summaries.length && summaries.every((s) => s.status?.ready);
-  const sumRows = summaries.reduce((n, s) => n + (s.status?.rowCount ?? 0), 0);
+// 页面导航完全由 charts/*.json 派生：新增一页只写 spec，这里不需要改。
+export function PageNav({ pages = [], active, onPage }) {
   return h(
     "nav",
     { class: "page-nav", "aria-label": "页面切换" },
-    h(
-      "button",
-      { class: "page-btn" + (page === "monitor" ? " is-active" : ""), onclick: () => onPage("monitor") },
-      h("span", { class: "page-btn__name" }, "指标监控"),
-      h("span", { class: "page-btn__sub" }, "LIQUIDITY RATES")
-    ),
-    h(
-      "button",
-      { class: "page-btn" + (page === "summary" ? " is-active" : ""), onclick: () => onPage("summary") },
-      h("span", { class: "page-btn__name" }, "周度汇总"),
-      h("span", { class: "page-btn__sub" }, sumReady ? `${sumRows} 项 · WEEKLY DIGEST` : "WEEKLY DIGEST · 加载中")
-    ),
-    gold
-      ? h(
-          "button",
-          { class: "page-btn" + (page === "gold" ? " is-active" : ""), onclick: () => onPage("gold") },
-          h("span", { class: "page-btn__name" }, "黄金 · 实际利率"),
-          h("span", { class: "page-btn__sub" }, "REAL YIELD vs GOLD")
-        )
-      : null,
-    sheets.map((s) =>
+    pages.map((p) =>
       h(
         "button",
-        { class: "page-btn" + (page === s.id ? " is-active" : ""), onclick: () => onPage(s.id) },
-        h("span", { class: "page-btn__name" }, s.name),
-        h("span", { class: "page-btn__sub" }, s.status?.ready ? `${fmtTrillion(s.status.total)} 万亿` : "H.4.1 · 加载中")
+        {
+          class: "page-btn" + (p.id === active ? " is-active" : ""),
+          type: "button",
+          "aria-current": p.id === active ? "page" : null,
+          onclick: () => onPage(p.id),
+          title: p.updatedAt ? `最近入库 ${new Date(p.updatedAt).toLocaleString("zh-CN")}` : "等待入库",
+        },
+        h("span", { class: "page-btn__name" }, p.label),
+        h("span", { class: "page-btn__sub" }, `${hintText(p.hint) || "加载中"}${p.sub ? " · " + p.sub : ""}`)
       )
     )
   );

@@ -7,7 +7,7 @@
   "en": "SHIBOR 3-Month",
   "formula": "3 个月 SHIBOR",
   "unit": "%",
-  "hue": "#2fd08c",
+  "hue": "ok",
   "publication": "T",
   "description": "SHIBOR 3 个月利率，CFETS 官方发布，信用与同业负债成本的中间指针。交叉验证：3M 与 O/N 利差带宽 [-0.75, 2.45] 取十年实测 min/max（2508 日）；利差不可能长期为负且不会超过该幅度，越界即说明某一期限取数异常。",
   "operation": "level",
@@ -29,7 +29,17 @@
         "band": [
           -0.75,
           2.45
-        ]
+        ],
+        "source": {
+          "statistic": "manual-policy",
+          "window": "2024-01-02 ~ 2026-11-23",
+          "measured": {
+            "devLo": -0.307,
+            "devHi": 0.864,
+            "checked": 719
+          },
+          "note": "带 [-0.75, 2.45] 覆盖同窗口实测偏差 [-0.307, 0.864]；门禁每轮复算包含关系与松紧上限（12 倍）"
+        }
       }
     }
   ],
@@ -39,6 +49,30 @@
       1,
       6
     ],
-    "maxAbsJump": 0.6
+    "maxAbsJump": 0.6,
+    "source": {
+      "range": {
+        "statistic": "manual-policy",
+        "window": "2024-01-02 ~ 2026-11-23",
+        "measured": {
+          "min": 1.398,
+          "max": 2.45,
+          "p02": 1.398,
+          "p998": 2.423,
+          "n": 719
+        },
+        "note": "声明带 [1, 6] 由实测 [1.398, 2.45] 向外取整而得；外扩是有意冗余，越带即报警（门禁复算包含关系）"
+      },
+      "maxAbsJump": {
+        "statistic": "manual-policy",
+        "window": "2024-01-02 ~ 2026-11-23",
+        "measured": {
+          "maxJump": 0.047,
+          "p998Jump": 0.0375,
+          "n": 719
+        },
+        "note": "声明 0.6 高于实测 99.8 分位 0.0375：有意留宽的保守带，低于该分位即判太紧"
+      }
+    }
   }
 }

@@ -1,0 +1,30 @@
+{
+  "id": "uk-trade",
+  "org": "HMRC (His Majesty Revenue and Customs)",
+  "cadence": "monthly",
+  "incremental": "monthly-step",
+  "requested": {
+    "src": {
+      "measure": "net"
+    },
+    "start": "2026-07-26",
+    "end": "2026-09-24"
+  },
+  "rows": 3,
+  "bytes": 69,
+  "at": "2026-11-23T04:02:08.418Z",
+  "payload": [
+    [
+      "2026-07-01",
+      71.066
+    ],
+    [
+      "2026-08-01",
+      139.368
+    ],
+    [
+      "2026-09-01",
+      173.665
+    ]
+  ]
+}

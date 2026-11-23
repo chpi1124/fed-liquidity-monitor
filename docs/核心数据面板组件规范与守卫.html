@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>核心数据面板 · ChartPanel 单一组件规范与机检守卫</title>
+<style>
+  :root{
+    --paper:#fbfbfd; --card:#fff; --ink:#1d1d1f; --ink2:#4b4b50; --muted:#75757a;
+    --hair:rgba(0,0,0,.08); --hair2:rgba(0,0,0,.14);
+    --accent:#0a66d6; --ok:#1a7f4b; --warn:#9a6b00; --bad:#b3261e;
+    --t-xl:clamp(28px,4.2vw,40px); --t-lg:21px; --t-md:17px; --t-sm:15px; --t-xs:13px; --t-2xs:11px;
+    --sp1:4px; --sp2:8px; --sp3:12px; --sp4:16px; --sp6:24px; --sp8:32px; --sp12:48px; --sp16:64px; --sp24:96px;
+    --r:14px; --r-lg:20px; --ease:cubic-bezier(.32,.72,0,1);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#0e0e10; --card:#161618; --ink:#f5f5f7; --ink2:#c7c7cc; --muted:#98989f;
+      --hair:rgba(255,255,255,.10); --hair2:rgba(255,255,255,.18); --accent:#6ab3ff; --ok:#57d38f; --warn:#e3b341; --bad:#ff8175; }
+  }
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--paper);color:var(--ink);
+    font:var(--t-md)/1.6 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI","HarmonyOS Sans SC","MiSans","PingFang SC","Microsoft YaHei",sans-serif;letter-spacing:-.005em}
+  .wrap{max-width:880px;margin:0 auto;padding:var(--sp24) var(--sp6)}
+  header{padding-bottom:var(--sp12);border-bottom:1px solid var(--hair)}
+  .eyebrow{font-size:var(--t-xs);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:var(--sp3)}
+  h1{font-size:var(--t-xl);line-height:1.12;letter-spacing:-.022em;font-weight:600}
+  .lede{margin-top:var(--sp4);font-size:var(--t-lg);line-height:1.5;color:var(--ink2);font-weight:400;letter-spacing:-.01em}
+  .meta{margin-top:var(--sp6);display:flex;flex-wrap:wrap;gap:var(--sp2) var(--sp4);font-size:var(--t-xs);color:var(--muted);font-variant-numeric:tabular-nums}
+  h2{font-size:var(--t-lg);letter-spacing:-.015em;font-weight:600;margin:var(--sp16) 0 var(--sp3);padding-top:var(--sp6);border-top:1px solid var(--hair)}
+  h2 .n{color:var(--muted);font-weight:500;margin-right:var(--sp2);font-variant-numeric:tabular-nums}
+  h3{font-size:var(--t-md);font-weight:600;margin:var(--sp8) 0 var(--sp2)}
+  p{margin-bottom:var(--sp3);max-width:74ch}
+  p.dim{color:var(--muted);font-size:var(--t-sm)}
+  ul,ol{margin:0 0 var(--sp4) 1.15em}li{margin-bottom:var(--sp2);max-width:74ch}
+  strong{font-weight:600}
+  code,pre{font-family:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
+  code{font-size:.86em;background:var(--card);border:1px solid var(--hair);border-radius:6px;padding:.1em .36em}
+  pre{font-size:var(--t-xs);line-height:1.65;background:var(--card);border:1px solid var(--hair);border-radius:var(--r);padding:var(--sp4);overflow:auto;margin:var(--sp3) 0 var(--sp4)}
+  pre code{background:none;border:0;padding:0}
+  table{width:100%;border-collapse:collapse;margin:var(--sp4) 0 var(--sp6);font-size:var(--t-sm)}
+  caption{caption-side:top;text-align:left;font-size:var(--t-xs);color:var(--muted);padding-bottom:var(--sp2)}
+  th,td{text-align:left;padding:var(--sp3);border-bottom:1px solid var(--hair);vertical-align:top}
+  th{font-size:var(--t-xs);font-weight:600;color:var(--muted);letter-spacing:.02em}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .card{background:var(--card);border:1px solid var(--hair);border-radius:var(--r-lg);padding:var(--sp6);margin:var(--sp4) 0 var(--sp6)}
+  .grid{display:grid;gap:var(--sp3);grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin:var(--sp4) 0 var(--sp6)}
+  .k{font-size:var(--t-2xs);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .v{font-size:var(--t-lg);font-weight:600;letter-spacing:-.015em;font-variant-numeric:tabular-nums;margin-top:var(--sp1)}
+  .tag{display:inline-block;font-size:var(--t-2xs);letter-spacing:.04em;padding:.24em .6em;border-radius:999px;border:1px solid var(--hair2);color:var(--ink2);white-space:nowrap}
+  .tag.ok{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 40%,transparent)}
+  .tag.no{color:var(--bad);border-color:color-mix(in srgb,var(--bad) 40%,transparent)}
+  .tag.todo{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 40%,transparent)}
+  .rule{border-left:2px solid var(--accent);padding-left:var(--sp4);margin:var(--sp4) 0}
+  .rule .id{display:block;font-size:var(--t-2xs);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:var(--sp1)}
+  .rule.hard{border-left-color:var(--bad)}.rule.hard .id{color:var(--bad)}
+  .rule p{margin:0}
+  footer{margin-top:var(--sp24);padding-top:var(--sp6);border-top:1px solid var(--hair);font-size:var(--t-xs);color:var(--muted)}
+  a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .18s var(--ease)}a:hover{border-bottom-color:currentColor}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+  @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+  @media (max-width:520px){.wrap{padding:var(--sp12) var(--sp4)}body{font-size:var(--t-sm)}}
+</style>
+</head>
+<body><div class="wrap">
+
+<header>
+  <div class="eyebrow">Core Data Panel · One Chart Component, Many Parameters · Rev 1 · 2026-11-22</div>
+  <h1>核心数据面板：单一 SSOT 图形组件与多参数叠加</h1>
+  <p class="lede">折线、柱、面积、堆叠、K 线、带内区间——所有图形必须由<strong>同一个组件族</strong>渲染，任意指标可叠加在同一张图上；<strong>严禁重复造轮子</strong>。本篇给出：今天重复轮子的<strong>逐行实测清单</strong>、业界经典金融数据页的<strong>叠加模型调研</strong>、<code>ChartPanel</code> 的组件契约与声明式 spec、后端 dataset 契约，以及新增的 7 条门禁 <strong>G18–G24</strong>。</p>
+  <div class="meta"><span>承接：架构规范与门禁 · 后端与数据库架构 · 架构九原则与机检 CI</span><span>门禁总数：18 → 25（G0–G24）</span><span>图形层实例：3 → 1 目标</span><span>状态：规范与设计，代码未动</span></div>
+</header>
+
+<h2><span class="n">1</span>实测：重复轮子清单（不是印象，是行号）</h2>
+<p>全站图形代码集中在 <code>frontend/js/chart.js</code>（450 行）与三个手写 SVG 组件。下表每一行都可由文末的<strong>取数命令</strong>复现，行号取自当前工作区文件。</p>
+
+<table>
+  <caption>表 1 · 图形层重复实现（file:line 为当前实测位置）</caption>
+  <thead><tr><th>重复的轮子</th><th>实例数</th><th>位置</th><th>重复内容</th><th>判定</th></tr></thead>
+  <tbody>
+    <tr><td>ECharts 实例</td><td class="num">3</td><td>chart.js:21 / :26 / :31</td><td><code>inst</code>、<code>sheetInst</code>、<code>goldInst</code> 各自 init、各自 setOption、各自 resize</td><td><span class="tag no">违规</span></td></tr>
+    <tr><td>渲染器函数</td><td class="num">3</td><td>:62 <code>render</code> / :181 <code>renderSheet</code> / :271 <code>renderGold</code></td><td>三份完整的 option 装配流程，各 60–120 行，结构同构（tooltip→xAxis→yAxis→dataZoom→series）</td><td><span class="tag no">违规</span></td></tr>
+    <tr><td>tooltip formatter</td><td class="num">3</td><td>:90 / :202 / :372</td><td>三个闭包各自拼接"日期 + 值 + 校验结论 + 存疑说明"，字段口径靠人工保持一致</td><td><span class="tag no">违规</span></td></tr>
+    <tr><td>区间应用器</td><td class="num">3</td><td>:158 / :257 / :441</td><td>三段完全同形的 <code>dataZoom:[{startValue,endValue},{…}]</code>（:161-166、:261-266、:444-449）共 12 行重复</td><td><span class="tag no">违规</span></td></tr>
+    <tr><td>slider 样式块</td><td class="num">2</td><td>:138-150 内联 vs :169-179 <code>ZOOM_STYLE</code></td><td>同一份 9 个样式字段（height/bottom/borderColor/backgroundColor/fillerColor/handleStyle/moveHandleStyle/textStyle/dataBackground）写了两遍，内联版仅再加 <code>type/startValue/endValue</code>；两份键集对样式字段完全重合</td><td><span class="tag no">违规</span></td></tr>
+    <tr><td><code>setOption</code> 调用点</td><td class="num">6</td><td>:108 / :161 / :213 / :261 / :398 / :444</td><td>「全量重画」与「只改区间」两种语义分散在 6 处，没有统一的 update 入口</td><td><span class="tag no">违规</span></td></tr>
+    <tr><td>Y 轴构造写法</td><td class="num">3</td><td>:127 / :232 / :306</td><td>单轴 <code>scale:true</code>、单轴 <code>min:0</code>＋硬编码轴名"万亿美元"、多轴 map（<code>offset: idx * 52</code> 魔法数）</td><td><span class="tag no">违规</span></td></tr>
+    <tr><td>图形类型分派</td><td class="num">2 套</td><td>:66 <code>isDay ? bar : candlestick</code>；:336/:350/:362 <code>if render==="bar" / "month-line" / else line</code></td><td>类型由 if-else 解释（series 类型字面量共 6 处：bar 3、candlestick 1、line 2），新增一种图形必须改渲染层 ⇒ 直接违反「零改渲染层」</td><td><span class="tag no">违规</span></td></tr>
+    <tr><td>渲染层内联算数</td><td class="num">14 处</td><td>如 :184 <code>p.v / 1e6</code>、:208 <code>(pt.v-pts[i-1].v) * 1e4</code>、:275-279 日期并集 <code>cats</code>、:284-295 二分找最近观测月、:330 逐类目取值、:123/:228/:425 x 轴类目映射</td><td>单位换算、环比、对齐、缺值填充全在渲染层，后端 <code>aggregate.js</code> 的同名口径无法被复用；其中 5 处可被整形算子正则捕获（<code>/ 1e6</code> ×1、<code>findIndex</code> ×2、<code>* 1e4</code> ×1、<code>.sort()</code> ×1）</td><td><span class="tag no">违规</span></td></tr>
+    <tr><td>模块级可变状态</td><td class="num">5</td><td>:3 <code>inst</code>、:4 <code>sheetInst</code>、:5 <code>goldInst</code>、:7 <code>resizeBound</code>、:269 <code>goldCats</code></td><td>图元自己记住选中态与类目轴，与 <code>core/store.js</code> 的双向泄漏（legend 事件 :437 直接回写）</td><td><span class="tag no">违规</span></td></tr>
+    <tr><td>手写 SVG 数据图形</td><td class="num">2</td><td>Sparkline.js:5-11（自带 min/max/span 缩放）；CompositionBar.js:4（自带 7 色 PALETTE）、:10-20（自带千分位布局）</td><td>与 ECharts 各算各的坐标映射、各定各的配色表</td><td><span class="tag todo">部分可豁免</span></td></tr>
+    <tr><td>颜色字面量</td><td class="num">50</td><td>chart.js 41 处（12 个不同值）、CompositionBar 7、RateTile 1、derive 1</td><td><code>tokens.css</code> 已定义 28 个 token，图形层 50 处绕开 token 直接写 hex；另有 51 处 hex 写死在 <code>indicators/*.json</code> 等配置里</td><td><span class="tag no">违规</span></td></tr>
+    <tr><td>多参数叠加能力</td><td class="num">1 / 3 页</td><td>:431 <code>series.map(buildSeries)</code>（仅 <code>renderGold</code>）；:152 与 :244 均硬编码 <code>series:[单个]</code></td><td>主指标页与资产负债表页<strong>在结构上只能画一条序列</strong>，「叠加」不是全站一等能力</td><td><span class="tag no">违规</span></td></tr>
+    <tr><td>存疑/改值标记</td><td class="num">2 / 4 形态</td><td>已画：日柱 :75-76、叠加线/柱 :332-339；未画：周/月 K 线 :82-88、资产负债表柱 :248</td><td>同一份纠错留痕在不同图形形态上表现不一致，K 线页看不到存疑</td><td><span class="tag no">违规</span></td></tr>
+    <tr><td>叠加数据的取数方式</td><td class="num">N 请求</td><td>store.js:125 <code>Promise.allSettled(goldInds.map(cfg =&gt; api.getSeries(...)))</code></td><td>前端逐指标发 N 次请求再手工拼装，没有「一张图一次请求」的面板级契约</td><td><span class="tag no">违规</span></td></tr>
+  </tbody>
+</table>
+
+<div class="card">
+  <h3 style="margin-top:0">这套重复的真实成本</h3>
+  <table style="margin-bottom:0">
+    <thead><tr><th>要做的事</th><th>今天必须改的位置</th><th>改完后的风险</th></tr></thead>
+    <tbody>
+      <tr><td>新增一种图形（如"面积＋阈值带"）</td><td>chart.js 分派分支 :336-369 ＋ 可能再加一个 <code>renderXxx</code> ＋ spec 字段 ＋ 对应 tooltip</td><td>违反「零改渲染层」，且第 4 个轮子成型</td></tr>
+      <tr><td>把某页从 1 条序列变成 3 条叠加</td><td>该页需照搬 <code>renderGold</code> 的多轴逻辑（:297-326，实测 30 行）乃至整个函数（:271-435，实测 165 行）</td><td>重复再翻倍：两套多轴实现，且各自记住自己的类目轴</td></tr>
+      <tr><td>统一深色主题的图形配色</td><td>50 处 hex ＋ 51 处 JSON hex，共 101 个改动点</td><td>漏改即出现"半亮半暗"的图；token 化收益 = 1 个改动点</td></tr>
+      <tr><td>修一处 tooltip 单位口径</td><td>3 个 formatter 各改一遍并人工比对</td><td>本轮会话中已发生过同类口径漂移（金价单位、黄金环流漏码）</td></tr>
+    </tbody>
+  </table>
+  <p class="dim" style="margin:var(--sp3) 0 0">上表最后两行的"已发生"是可追溯的：金价单位错误与伦敦黄金环流漏码，本质都是「同一口径在多处各自实现」的产物——修一处、漏一处。</p>
+</div>
+
+<h3>取数命令（任何人可复现表 1）</h3>
+<pre><code>grep -rn "echarts.init" frontend/js --include=*.js                  # 3
+grep -c "setOption" frontend/js/chart.js                             # 6
+grep -c "formatter: fmt" frontend/js/chart.js                        # 3
+grep -c "startValue" frontend/js/chart.js                            # 12（6 组 dataZoom × 2，其中 3 组来自同形的区间应用器）
+grep -o 'type: "bar"\|type: "candlestick"\|type: "line"' frontend/js/chart.js | sort | uniq -c   # bar 3 / candlestick 1 / line 2
+grep -n "^let " frontend/js/chart.js                                 # 5：inst / sheetInst / goldInst / resizeBound / goldCats
+sed -n '169,179p' frontend/js/chart.js | grep -c ':'                  # ZOOM_STYLE 字段数 = 9
+sed -n '138,150p' frontend/js/chart.js | grep -c ':'                   # 内联版 = 12（9 个样式字段 + type/startValue/endValue）
+grep -o '#[0-9a-fA-F]\{3,8\}' frontend/js/chart.js | wc -l           # 41（12 个不同值）
+grep -o '#[0-9a-fA-F]\{3,8\}' frontend/js/chart.js frontend/js/ui/CompositionBar.js \
+     frontend/js/ui/RateTile.js frontend/js/core/derive.js | wc -l    # 50（图形层合计）
+grep -o '#[0-9a-fA-F]\{6\}' indicators/*.json sheets/*.json summaries/*.json | wc -l   # 51（配置层合计）</code></pre>
+
+<h2><span class="n">2</span>调研：经典金融数据页怎么把"多参数"叠到一张图上</h2>
+<p>结论先行：业界成熟做法高度一致——<strong>一个图表容器 + 一份数据集契约 + 一组"层(layer)"声明 + 一张类型注册表</strong>；轴、区间、图例是这份声明的属性，而不是各自实现的分支。本项目当前是<strong>三个容器 + 三份内联算数 + 三套交互</strong>。</p>
+
+<table>
+  <caption>表 2 · 标杆案例与可迁移机制</caption>
+  <thead><tr><th>案例</th><th>它的叠加模型</th><th>可迁移到本项目的机制</th><th>落到哪条规则</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><a href="https://fred.stlouisfed.org/graph/?g=1nT2N">FRED Graph</a>（圣路易斯联储官方）<br><span class="dim">复合图与右轴调整</span></td>
+      <td>一条 Line 上可 <em>Add data</em> 追加多个序列，并可写自定义公式 <code>(a-b)/c</code> 合成新序列；FORMAT 面板只改「左轴/右轴、线宽、颜色」三个属性，不换组件；底部滑块拖任意区间，MAX 全量。</td>
+      <td>叠加不是"另一种图"，而是同一组件的<strong>属性变化</strong>；合成序列（本站的 Shibor 利差、SOFR−EFFR）应与原始序列同构，都由后端产出并带校验标记。</td>
+      <td>C-2 spec 声明<br>C-6 叠加为一等能力<br>B-2 合成序列走同一管线</td>
+    </tr>
+    <tr>
+      <td><a href="https://m.blog.csdn.net/sprite/article/details/161851899">TradingView Charting Library</a> / <a href="https://m.blog.csdn.net/gitblog_00711/article/details/148393762">Lightweight Charts 多窗格</a></td>
+      <td>库被拆成 <code>core</code>（渲染引擎）/<code>widget</code>（容器）/<code>datafeeds</code>（数据桥接端口）/<code>studies</code>（指标库）四个逻辑模块；一个图表实例承载多个 study，pane 由 API 增删；渲染层完全不知道数据从哪来。</td>
+      <td>与本站九原则的六边形一致：<strong>ChartPanel 只认 dataset 契约，不认 fetcher</strong>；"叠加一个指标"= 注册一个 study 式的层，而不是新增一个 renderer。</td>
+      <td>C-1 单实例<br>C-4 dataset 契约<br>C-8 交互单一引擎</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/vega/vega-lite/blob/main/site/docs/spec.md">Vega-Lite layer + resolve</a></td>
+      <td><code>layer: [ {mark:"bar",…}, {mark:"line",…} ]</code>；layer 默认 <strong>shared</strong> scale/axis/legend（域取并集），可用 <code>resolve</code> 显式改为 independent。</td>
+      <td>把"轴共不共用、图例合不合并"从渲染器里的 <code>idx*52</code> 魔法数升级为<strong>显式声明字段</strong>，布局由解析结果派生。</td>
+      <td>C-5 轴解析<br>C-3 配方表</td>
+    </tr>
+    <tr>
+      <td><a href="https://docs.aws.amazon.com/zh_cn/grafana/latest/userguide/v12-time-series-axis.html">Grafana 轴选项</a>、<a href="https://learn.microsoft.com/zh-cn/power-bi/visuals/power-bi-line-chart">Power BI 折线图</a></td>
+      <td>Grafana 用「字段覆盖（field overrides）」按需追加第 N 根 Y 轴；Power BI 区分<strong>静态系列</strong>（多个度量放同一轴，直接比较）与<strong>动态系列</strong>（图例字段驱动行数）。</td>
+      <td>区分两种意图：<em>同轴比较</em>（真比较）与<em>异轴共图</em>（看相关性）——异轴时必须显式声明，禁止默认共享比例尺造成"看着像但不同尺度"的误读。</td>
+      <td>C-5 shared/independent 显式化<br>C-9 token 化布局常量</td>
+    </tr>
+    <tr>
+      <td><a href="https://learn.microsoft.com/ja-jp/sql/reporting-services/report-design/multiple-series-on-a-chart-report-builder-and-ssrs">SSRS 多系列规则</a>、<a href="https://www.expressanalytics.com/blog/data-visualization-best-practices-guide">折线图系列数上限</a></td>
+      <td>官方建议：单位不同 → 次轴；<strong>3 条以上量级差异大的序列 → 另开图表区域</strong>；折线图一般不超过 3–5 条线。</td>
+      <td>叠加要有<strong>上限与降级</strong>：超过阈值时组件拒绝渲染并提示拆分面板，而不是把 8 条线挤成一团——这正是"极简高端"的纪律来源。</td>
+      <td>C-6 叠加上限<br>F-视觉克制</td>
+    </tr>
+    <tr>
+      <td><a href="https://www.datawrapper.de/charts">Datawrapper 图形库</a>、<a href="https://www.adobe.com/uk/express/learn/blog/best-charts-to-compare-data">Adobe 对比图形选择</a>、<a href="http://www.ithingsboard.com/docs/trendz/visualizations-line/">ThingsBoard 混合图</a></td>
+      <td>图形按<strong>问题类型</strong>成目录（趋势/对比/构成/分布/相关），混合图 = 共享横轴、各组件独立纵轴，且官方明确"用不同基础类型（柱＋线）来降低双轴混淆"。</td>
+      <td>本站 19 个指标的真实问题类型只有 4 类：<em>水平</em>（利率/金价）、<em>流量</em>（净环流，正负）、<em>差值</em>（利差、SOFR−EFFR）、<em>构成</em>（资产占比）——外加一个"行内微型投影"。4 类问题 ⇒ 只需<strong>一张 ≤6 键的配方注册表</strong>（同一问题类型允许线/柱两种投影），绝不该长出 3 个渲染器。</td>
+      <td>C-3 配方表（问题类型 → 图）</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/userFRM/egui-charts/blob/main/README.md">egui-charts 工作区</a>、<a href="https://github.com/SaViGnAnO/trading-vue3-js">trading-vue-js</a></td>
+      <td>布局器可<strong>同步多图的 symbol/区间/十字准线/时间范围</strong>；trading-vue 的口号式约定是「one overlay === one component」。</td>
+      <td>跨图联动（资产负债表柱 ↔ 周度汇总表）应由面板注册表统一广播，而非每图各自监听；每个可叠加单元都是<strong>一个声明项</strong>，不是一个文件。</td>
+      <td>C-7 store 单向数据流<br>C-8 交互单一引擎</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="dim">注：术语"图形分类法（visual vocabulary）"在编辑类站点（FT、Datawrapper、Adobe）中含义一致——先定问题类型再选图形。本表只引用本次实际检索到的公开页面，未复现取源的条目不列为依据。</p>
+
+<h2><span class="n">3</span>组件规范：ChartPanel（SSOT）</h2>
+<p>以下 10 条为图形层宪法。每条给出<strong>可判定命题</strong>与<strong>今天状态</strong>，判定手段在第 5 节写成门禁。</p>
+
+<div class="rule hard"><span class="id">C-1 · 单实例单出口（hard）</span>
+<p>全站只允许一个模块持有 ECharts 出口；实例由注册表按容器 id 管理，禁止模块级 <code>let xxxInst</code>。API 面固定为 6 个方法，渲染入口只有 <code>update</code>。</p>
+<pre><code>// frontend/js/core/chart-panel.js —— 全站唯一 ECharts 出口
+mount(id, el)          // 注册容器；同 id 重复 mount 复用实例（幂等）
+update(id, spec, ds)   // 唯一渲染入口：声明(spec) × 数据(dataset) → option
+setWindow(id, win)     // 唯一区间入口（preset / 拖拽 / 联动 共用）
+setSelected(id, sel)   // 唯一图层开关入口（图例 ⇄ store 的正门）
+dispose(id)            // 释放实例并从注册表摘除
+instances()            // 自省：供 G18 断言「实例数 == 容器数」</code></pre>
+<p><span class="tag no">今天：红</span>　3 个实例、3 个渲染入口、6 个 <code>setOption</code> 调用点、5 处模块级可变状态。</p></div>
+
+<div class="rule"><span class="id">C-2 · 声明式 spec，渲染层零业务分支</span>
+<p>每个图形页一张 <code>charts/&lt;id&gt;.json</code>，渲染层只解释 spec。<em>新增一页 = 新增一个 JSON 文件</em>，不改 <code>app.js</code>、不改 <code>chart-panel.js</code>（热插拔验收实验）。</p>
+<pre><code>{
+  "id": "cn-rate-overlay",
+  "surface": "main",
+  "title": "中国政策利率与市场利率",
+  "x": { "key": "date" },
+  "axes": {
+    "rate":     { "unit": "%", "side": "left",  "resolve": "shared" },
+    "spread":   { "unit": "bp", "side": "right", "resolve": "independent" }
+  },
+  "layers": [
+    { "series": "cn-fdr007",    "recipe": "line",  "axis": "rate",   "z": 3 },
+    { "series": "cn-shibor-on", "recipe": "line",  "axis": "rate",   "z": 2, "style": { "width": 1.2, "opacity": .75 } },
+    { "series": "cn-shibor-spread", "recipe": "signedBar", "axis": "spread", "z": 1 }
+  ],
+  "annotations": ["zones", "eras", "integrityBands"],
+  "presets": ["2W", "1M", "3M", "6M", "1Y", "ALL"],
+  "tooltip": { "columns": ["value", "zone", "validation", "correction", "suspect"] }
+}</code></pre>
+<p><span class="tag no">今天：红</span>　无 <code>charts/</code> 目录；类型词汇散落在 <code>indicators/*.json</code>（<code>render</code> 出现 4 次、3 种取值：bar / line / month-line；<code>axis</code> 4 种取值：left / right / flow / oz；另有 <code>axisPos/axisName/axisPrefix/axisSuffix/invert/area/posColor/negColor/barWidth/sourceNote/freq</code>），无 schema、无注册表，15 个指标依赖隐式默认分支。</p></div>
+
+<div class="rule"><span class="id">C-3 · 图形配方表（问题类型 → 图，唯一枚举）</span>
+<p>配方由"要回答什么问题"派生，注册表键集 = 全站合法图形集。任何 spec 使用表外配方即判失败；新增配方 = 加一个纯函数 + 加一条枚举，禁止 <code>if (cfg.render === …)</code>。</p>
+<table>
+  <thead><tr><th>问题类型</th><th>配方</th><th>本站对应指标</th><th>今天由谁画</th></tr></thead>
+  <tbody>
+    <tr><td>水平随时间（level）</td><td><code>line</code> / <code>area</code></td><td>FDR007、SHIBOR、EFFR、SOFR、金价、实际利率</td><td>:362 默认分支（隐式）</td></tr>
+    <tr><td>有正负的流量（flow）</td><td><code>signedBar</code></td><td>伦敦黄金净环流（净流入/净流出）</td><td>:336 <code>render==="bar"</code></td></tr>
+    <tr><td>两序列差值（spread）</td><td><code>band</code> ＋ <code>line</code></td><td>梗差 SOFR−EFFR（sofr-effr.json）、中国期限利差 SHIBOR 3M−O/N（cn-shibor-spread.json）</td><td>无（现用两条线示意，差值带缺失）</td></tr>
+    <tr><td>构成（part-to-whole）</td><td><code>stackedBar</code> / <code>shareBar</code></td><td>资产负债表资产构成、证券 vs 其他净资产</td><td>CompositionBar.js 手写 SVG</td></tr>
+    <tr><td>区间分布（range）</td><td><code>candlestick</code></td><td>周/月视图的开高低收</td><td>:82 独立分支</td></tr>
+    <tr><td>行内微型趋势（inline）</td><td><code>spark</code></td><td>利率条 10 个 tile（app.js:25 渲染 strip 指标）</td><td>Sparkline.js 手写 SVG</td></tr>
+  </tbody>
+</table>
+<p><span class="tag todo">今天：部分</span>　6 类需求由 4 处分派（:66 一处三元 ＋ <code>buildSeries</code> 内 :336/:350/:362 三个分支，合计 6 个 series 类型字面量）与 2 个手写 SVG 组件承担；<code>band</code>（差值带）尚无实现，而它恰是交叉验证带（<code>integrity.thresholds</code>）天然的可视化载体。</p></div>
+
+<div class="rule hard"><span class="id">C-4 · dataset 契约：渲染层不算数（hard）</span>
+<p>单位换算、环比、月度对齐、日期并集、OHLC 聚合、缺值填充一律在 <code>core/dataset.js</code>（纯函数）或后端 <code>aggregate.js</code> 完成。渲染层拿到的必须是「已对齐、已定标、可直接编码」的列。</p>
+<pre><code>{
+  "x":      { "key": "date", "values": ["2026-01-05", …] },
+  "series": [ {
+      "id": "cn-fdr007", "label": "DR007", "unit": "%", "precision": 2,
+      "axis": "rate", "values": [1.4520, …],           // null = 官方未发布，不插值、不造数
+      "flags":  [ { "ok": true, "suspect": null, "corrected": null }, … ],
+      "meta":   { "source": "CFETS", "checkKind": "same-institution-different-sample",
+                  "singleSource": false, "publication": "T+1", "freq": "day" }
+  } ],
+  "annotations": { "zones": […], "eras": […], "bands": […], "thresholds": […] }
+}</code></pre>
+<p><span class="tag no">今天：红</span>　渲染层内联算数 14 处：<code>p.v / 1e6</code>（:184）、周环比 <code>* 1e4</code>（:208）、日期并集 <code>cats</code>（:278）、二分找最近观测月（:284-295）、按月落柱与连线两种缺值语义（:330/:391）。</p></div>
+
+<div class="rule"><span class="id">C-5 · 轴解析唯一化</span>
+<p><code>resolveAxes(layers, spec.axes)</code> 是唯一决定「几根轴、哪一侧、偏移多少、网格留白多少、哪根轴画 splitLine」的函数；<code>shared</code>（同尺度真比较）与 <code>independent</code>（异尺度看相关）必须显式声明。布局常量（当前 <code>offset: idx * 52</code>、<code>grid.left = 58 + 52 * n</code>）进 token。</p>
+<p><span class="tag no">今天：红</span>　3 种 Y 轴写法（:127 / :232 / :306）、3 处 grid 定义（:112 / :217 静态，仅 :411 按轴数派生）、1 个魔法数 52、1 处硬编码轴名"万亿美元"（:235）。</p></div>
+
+<div class="rule"><span class="id">C-6 · 多参数叠加是一等能力，且有上限与降级</span>
+<p>任意指标可与任意指标叠加，同轴或异轴由 spec 声明；叠加集合属于 store 状态（与粒度、区间并列持久），不属于某个渲染器的参数。规则：<strong>同轴 ≤3 条（真比较）、异轴合计 ≤5 条</strong>；超限组件拒绝渲染并给出拆分建议（依 SSRS/业界 3–5 条线准则）。合成序列（差值、比值）由后端产出，带 <code>checkKind</code>，绝不在前端临时算。</p>
+<p><span class="tag no">今天：红</span>　仅 <code>renderGold</code> 支持多序列；:152 与 :244 结构上写死单序列。叠加页取数靠 store.js:125 前端并发 N 次 <code>getSeries</code> 手工拼装。</p></div>
+
+<div class="rule"><span class="id">C-7 · store 是唯一状态源（单向数据流）</span>
+<p>图例点击 / 区间拖拽等 ECharts 事件 → store action → <code>update</code> 重渲染。渲染层不得记住任何业务状态：无模块级变量、无 <code>goldCats</code> 式缓存、无 <code>onGoldLegend</code> 式专用回调。跨图联动（同一时间窗广播到多图）由面板注册表承担。</p>
+<p><span class="tag no">今天：红</span>　5 处模块级可变状态；<code>onGoldLegend</code>（:437）为单页定制回调。</p></div>
+
+<div class="rule"><span class="id">C-8 · 交互与文案单一引擎</span>
+<p>一份 <code>buildWindow()</code>、一份 slider 样式、一份 <code>buildTooltip(spec)</code> 工厂。tooltip 文案由 spec 的 <code>columns[]</code> 从 SSOT 派生——校验结论、改值留痕、存疑说明、发布滞后四段口径全站唯一，措辞不得在两个 formatter 里各写一遍。</p>
+<p><span class="tag no">今天：红</span>　3 个 formatter 闭包、3 段区间应用代码、2 份 slider 样式。</p></div>
+
+<div class="rule"><span class="id">C-9 · 视觉只出自 token</span>
+<p>图形层零 hex：序列色取 <code>--hue-1…n</code> 或指标配置里的 <strong>token 名</strong>（而非 hex）；标记色取 <code>--danger</code>（存疑）与 <code>--warn</code>（已改值）；文本/轴线/网格取 <code>--ink/--line/--muted</code>。对比度守 WCAG 2.2 AA（正文 4.5:1、图形元素 3:1）。</p>
+<p><span class="tag no">今天：红</span>　JS 图形层 50 处 hex、配置文件 51 处 hex，而 <code>tokens.css</code> 仅 28 个 token 且无 <code>--hue-*</code> 序列；已知遗留 <code>--faint</code> 对比度 3.92:1 未达正文 AA。</p></div>
+
+<div class="rule"><span class="id">C-10 · 可读、可键盘、可降级</span>
+<p>每个 canvas 容器 <code>role="img"</code> ＋ <code>aria-label</code>（含最新值、单位、区间、交叉验证与自检结论）；页面上保留一条<strong>文本摘要</strong>（图说了什么，残障与纯文本抓取同样获得）；区间与图层开关由 DOM 控件驱动，不依赖 canvas 命中；ECharts 未就绪或无数据时渲染 <code>EmptyState</code> 而非空图。</p>
+<p><span class="tag todo">今天：部分</span>　仅 CompositionBar 有 <code>aria-label</code>；三个 ECharts 容器无可读摘要。</p></div>
+
+<h2><span class="n">4</span>后端契约：喂给组件的字段（一次请求一张图）</h2>
+<p>叠加要求"一张图一次取数"。新增 <code>GET /api/panel/:specId?granularity=&amp;preset=</code>，由后端按 spec 的 <code>layers[]</code> 组装 dataset（复用既有 <code>indicators.js</code> → <code>aggregate.js</code> → <code>store.js</code> 三段，不新增计算路径），前端不再 <code>Promise.allSettled</code> 拼装。</p>
+
+<table>
+  <caption>表 3 · dataset 字段与来源（现状盘点）</caption>
+  <thead><tr><th>字段</th><th>产出位置</th><th>组件用途</th><th>现状</th></tr></thead>
+  <tbody>
+    <tr><td><code>values[]</code>（日 v / 周月 OHLC）</td><td>aggregate.js</td><td>所有配方</td><td><span class="tag ok">已有</span></td></tr>
+    <tr><td><code>flags[].ok / suspect / corrected{from,to,by}</code></td><td>indicators.js 校验与纠错段、aggregate.js 逐桶留痕</td><td>C-3 标记层、C-8 tooltip「改前→改后 · 依据」</td><td><span class="tag ok">已有</span>（K 线与资产负债表柱未消费）</td></tr>
+    <tr><td><code>meta.checkKind</code>（官方双源 / 同机构异样本 / 恒等式 / 关系带 / 单源）</td><td>indicators/*.json ＋ validation.kind</td><td>措辞分级：绝不把②③④说成"第二家机构确认"</td><td><span class="tag ok">已有</span></td></tr>
+    <tr><td><code>validation{checked,matched,mismatched,corrected}</code></td><td>indicators.js</td><td>页眉徽章、tooltip 结论</td><td><span class="tag ok">已有</span></td></tr>
+    <tr><td><code>integrity.thresholds / counts / flagged</code></td><td>integrity.js</td><td>阈值线、<strong>带内区间 <code>band</code> 配方</strong>、存疑角标</td><td><span class="tag todo">已有数据、图形未用带</span></td></tr>
+    <tr><td><code>unit / precision / axis / freq / publication</code></td><td>indicators/*.json</td><td>轴分组、格式、滞后说明</td><td><span class="tag todo">需收敛为 <code>axes{}</code> 声明</span></td></tr>
+    <tr><td><code>meta.singleSource</code></td><td>校验腿缺失时的显式降级</td><td>图上直标「本期未获并行确认」</td><td><span class="tag ok">语义已有</span>（不得用主源数值冒充双源）</td></tr>
+  </tbody>
+</table>
+
+<div class="rule hard"><span class="id">数据红线（不因图形重构而松动）</span>
+<p>① 缺官方观测一律 <code>null</code>，折线不跨缺值造假（<code>connectNulls</code> 仅用于月频序列的观测连线，且 tooltip 必须写明"折线为观测月之间的连线"）；② 存疑点保留原值、只标记、排除出聚合，不删不改；③ 改值必须同时给出 <code>{from,to,by}</code> 且图上可见；④ 单源序列必须在 dataset 里带 <code>singleSource:true</code>，渲染层据此显示，不允许"看起来像交叉验证过"。</p></div>
+
+<h2><span class="n">5</span>机检守卫：G18–G24</h2>
+<p>延续「原则必须写成可判定命题，命题必须有门禁，门禁必须能证明自己是红的」（CI-1）。零依赖实现：只用 Node 自身（<code>fs</code> / <code>path</code> / 正则 / <code>JSON</code>），不引入 AST 库、不引入 npm 包。门禁总数 18 → <strong>25</strong>。</p>
+
+<table>
+  <caption>表 4 · 新增门禁（图形层）</caption>
+  <thead><tr><th>门禁</th><th>断言</th><th>实现手段（零依赖）</th><th>今天</th><th>红了怎么修</th></tr></thead>
+  <tbody>
+    <tr><td><strong>G18</strong> 单实例守卫<br><span class="dim">C-1</span></td><td><code>echarts.init</code> 命中数 == 1 且位于 <code>core/chart-panel.js</code>；<code>setOption</code> 只出现在该文件；<code>instances()</code> 长度 == 已挂载容器数</td><td>全量 <code>.js</code> 扫描 ＋ 文件白名单（白名单只含 1 个文件，且只能缩不能扩）</td><td><span class="tag no">红（3 处 init、6 处 setOption）</span></td><td>合并为 ChartPanel；删除 <code>mount*</code>/<code>render*</code> 重复出口</td></tr>
+    <tr><td><strong>G19</strong> 重复指纹守卫<br><span class="dim">严禁重复造轮子</span></td><td>图形层任意两个函数/对象字面量的<strong>结构骨架</strong>不得相同；键集完全相同且取值相同度 ≥0.8 的两个样式对象判重</td><td>去字符串、去数字、去标识符后的 token 序列骨架 ＋ Jaccard 相似度（阈值先紧：完全同构即红）</td><td><span class="tag no">红（slider 9 个样式字段两份；区间应用 3 份同形）</span></td><td>抽公共常量/纯函数，或按 spec 参数化</td></tr>
+    <tr><td><strong>G20</strong> 注册表键集一致<br><span class="dim">C-2/C-3</span></td><td>所有 <code>charts/*.json</code> 的 <code>layers[].recipe</code>、<code>axes[].resolve</code>、<code>tooltip.columns</code> ⊆ 注册表键集；且注册表无未被使用键（零死代码）</td><td>读目录 → 收集字面量 → 双向集合比较；<strong>目录不存在即红（fail-closed）</strong></td><td><span class="tag no">红（无 charts/）</span></td><td>补 spec 文件或补配方，禁止加 <code>if</code> 分支绕过</td></tr>
+    <tr><td><strong>G21</strong> 渲染层零算数·零 hex<br><span class="dim">C-4/C-9</span></td><td><code>chart-panel.js</code>、<code>chart-types.js</code> 中 hex 命中 == 0；<code>/ 1e6</code>、<code>Math.min(</code>、<code>findIndex</code>、<code>sort()</code> 等整形算子命中 == 0；全图形层 hex 计数<strong>棘轮只降不升</strong></td><td>正则扫描 ＋ <code>baselines.json</code> 记录当前上界（基线只能变小，出现"加豁免换绿"判红）</td><td><span class="tag no">红（50 ＋ 51 处 hex、14 处内联算数）</span></td><td>换算进 dataset 纯函数；颜色改 token 引用</td></tr>
+    <tr><td><strong>G22</strong> 页面即数据<br><span class="dim">零改主程序</span></td><td>新增一页所需改动：渲染层 0 行、<code>app.js</code> 0 行；<code>app.js</code> 中不得出现字面量图表 id 清单（必须来自 <code>/api/indicators</code> 与 <code>charts/</code> 目录）</td><td>结构断言：扫描 <code>app.js</code> 中的图表 id 字面量；并跑「新增一个 <code>charts/probe.json</code> 后主程序未变而图出现」的<strong>实证实验</strong></td><td><span class="tag no">红</span></td><td>把页面清单交给发现机制，删除硬编码分支</td></tr>
+    <tr><td><strong>G23</strong> 单一文案与区间引擎<br><span class="dim">C-8</span></td><td><code>formatter:</code> 定义数 == 1；<code>startValue</code> 构造点 ≤ 2（同一函数的 inside＋slider 各一）；slider 样式对象数 == 1；模块级 <code>let</code> 可变状态数 == 0</td><td>源码计数 ＋ 函数归属判断</td><td><span class="tag no">红（3 / 12 / 2 / 5）</span></td><td>合并 formatter 工厂与 <code>buildWindow()</code>；状态迁到 store</td></tr>
+    <tr><td><strong>G24</strong> 视觉回归基线<br><span class="dim">防"改一处坏三图"</span></td><td>每张 spec 产出的 option JSON 与 <code>snapshots/&lt;specId&gt;.json</code> 逐字段相等；几何派生值（轴数、grid 边距、offset）单独断言；基线变更须显式提交</td><td>无头调用 <code>buildOption()</code> 纯函数（不依赖浏览器），差异列表进报告；<strong>无基线视为红</strong></td><td><span class="tag no">红（尚无基线）</span></td><td>先固化现状快照，再在重构中逐步更新</td></tr>
+  </tbody>
+</table>
+
+<div class="card">
+  <h3 style="margin-top:0">门禁必须能自证是红的（CI-1 延伸）</h3>
+  <p>本轮会话已用负控证明"校验与自检"类守卫真的会咬人；图形层守卫同样须配<strong>负控用例</strong>，否则等于没有：</p>
+  <ul>
+    <li><strong>G18</strong>：临时插入一处假 <code>echarts.init</code> → 必须红；移除后必须绿。</li>
+    <li><strong>G19</strong>：复制一个渲染函数并改名 → 必须红（改名不构成去重）。这条是"严禁重复造轮子"的可执行定义。</li>
+    <li><strong>G20</strong>：spec 里写一个注册表外配方 → 必须红；注册表里留一个无人使用的配方 → 也必须红。</li>
+    <li><strong>G21</strong>：把基线数字改大以让旧代码通过 → 必须红（棘轮只降不升）。</li>
+    <li><strong>G24</strong>：改动一个轴边距常量 → 必须红且报告指出差异字段。</li>
+  </ul>
+  <p class="dim">诚实声明：G0–G17 与本篇 G18–G24 目前<strong>都没有可执行 runner</strong>（当前可自动执行的门禁数 = 0）。本篇是规范与门禁设计，不是绿灯证明。这与前三篇是同一个欠口，须在 P5/P6 一并补齐。</p>
+</div>
+
+<h2><span class="n">6</span>迁移计划 P6（五步，每步可独立回滚）</h2>
+<table>
+  <thead><tr><th>步</th><th>动作</th><th>新增/删除文件</th><th>可验证的完成定义</th><th>门禁变化</th><th>回滚</th></tr></thead>
+  <tbody>
+    <tr><td>S1</td><td>抽 <code>core/dataset.js</code>：把渲染层 14 处内联算数迁为纯函数，三个渲染器改为读 dataset；<strong>行为零变化</strong></td><td>＋dataset.js、＋dataset.test.mjs</td><td>3 个 ECharts 容器（主趋势 / 资产负债表柱 / 黄金叠加）的 option 快照与迁移前逐字段相等；单测覆盖单位换算/环比/日期并集/OHLC</td><td>G21 算数项 → 0</td><td>单步 revert</td></tr>
+    <tr><td>S2</td><td>合并 tooltip 为一个工厂（spec 驱动 <code>columns</code>）；合并 slider 样式与区间应用为一个 <code>buildWindow()</code></td><td>无新文件</td><td><code>formatter:</code> 计数 1、slider 样式对象 1；页面文案 6 条断言全过（含改值留痕、发布滞后措辞）</td><td>G23 前 3 项 → 绿</td><td>单步 revert</td></tr>
+    <tr><td>S3</td><td>合并为单一 <code>ChartPanel</code>（mount/update/setWindow/setSelected/dispose/instances）；删除 <code>renderSheet</code>/<code>renderGold</code> 与模块级状态</td><td>＋chart-panel.js、＋chart-types.js、−重复导出</td><td><code>echarts.init</code> 1 处、<code>setOption</code> 2 处（update / setWindow）、模块级 <code>let</code> 0 处；3 图逐一核页（快照 + 浏览器实测），并回归 K 线形态是否按 C-3 补上存疑/改值标记</td><td>G18、G19、G23 → 绿</td><td>单步 revert（保留旧导出到 S3 结束）</td></tr>
+    <tr><td>S4</td><td>打开多参数叠加：<code>charts/*.json</code> 落地 ＋ <code>GET /api/panel/:specId</code> ＋ 同轴/异轴解析 ＋ 上限降级；主指标页支持叠加</td><td>＋charts/ 目录、＋server 面板路由</td><td>热插拔实证：仅新增一个 JSON 文件即出现新图，主程序与渲染层 0 改动；FDR007＋SHIBOR＋利差三序列同图渲染正确且措辞分级正确</td><td>G20、G22 → 绿</td><td>spec 与路由独立提交，可分别 revert</td></tr>
+    <tr><td>S5</td><td>视觉收敛：图形层与配置的 hex 全部改 token 引用（新增 <code>--hue-1…n</code>）；CompositionBar/Sparkline 改为 <code>shareBar</code>/<code>spark</code> 配方共用 dataset；补 <code>aria-label</code> 与文本摘要；固化 G24 快照</td><td>＋snapshots/、＋tokens 扩展</td><td>hex 计数 50 → 0（JS 图形层）且 51 → 0（指标/报表/汇总配置层，改为 token 名引用）；对比度全过 AA；每张图 1 条可读摘要；快照基线存在且首次全绿</td><td>G21 hex 项、G24 → 绿</td><td>token 与快照分两个提交</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="n">7</span>度量表：今天 vs 目标</h2>
+<div class="grid">
+  <div><div class="k">echarts 实例</div><div class="v">3 → 1</div></div>
+  <div><div class="k">渲染器</div><div class="v">3 → 0（1 组件）</div></div>
+  <div><div class="k">tooltip formatter</div><div class="v">3 → 1</div></div>
+  <div><div class="k">setOption 调用点</div><div class="v">6 → 2</div></div>
+  <div><div class="k">slider 样式块</div><div class="v">2 → 1</div></div>
+  <div><div class="k">模块级可变状态</div><div class="v">5 → 0</div></div>
+  <div><div class="k">渲染层内联算数</div><div class="v">14 → 0</div></div>
+  <div><div class="k">图形层 hex</div><div class="v">50 → 0</div></div>
+  <div><div class="k">配置层 hex</div><div class="v">51 → 0</div></div>
+  <div><div class="k">支持叠加的图形页</div><div class="v">1 / 3 → 全部</div></div>
+  <div><div class="k">图形分派</div><div class="v">6 处字面量 → 6 配方</div></div>
+  <div><div class="k">门禁</div><div class="v">18 → 25</div></div>
+</div>
+<p class="dim">全部"今天"列取自本会话实测命令（第 1 节），非估算。"目标"列为可判定值，G18–G24 逐条对应。</p>
+
+<h2><span class="n">8</span>风险、边界与自我限制</h2>
+<h3>8.1 「不要重复造轮子」不等于「所有图形挤进一个 canvas」</h3>
+<p>利率条有 10 个 tile（<code>surface:"strip"</code>，app.js:25），每个 tile 一条最多 30 点的微型折线（数据来自 server.js:109 <code>slice(-30)</code>）；若每个 tile 都开一个 ECharts 实例，内存与首屏成本明显上升（本站首屏要求快且零依赖）。判定标准不是"用了几种技术"，而是<strong>同一把尺子是否只有一把</strong>：折线缩放几何、单位格式、配色来源必须与主图共用同一函数与同一 token；<em>渲染后端</em>可以是 canvas 也可以是 SVG。因此 <code>spark</code> 与 <code>shareBar</code> 保留轻量 SVG 路径，但其几何与配色由 <code>dataset.js</code> 与 token 供给——从"重复轮子"降级为"同一契约的第二种投影"。<code>Ecg.js</code> 是纯装饰波形（不承载数据），豁免但须在文件头注明"非数据图形"，否则被 G19 捕获时无法自证清白。</p>
+<h3>8.2 统一不得损害图形语义</h3>
+<p>周/月视图的 OHLC 必须由 <code>candlestick</code> 配方表达；若为了"都用 line"把它拆成开高低收四条线，会丢掉实体/影线的语义，属于错误收敛。<code>signedBar</code> 的正负分色与零线是流量类指标的核心可读性，不能被通用样式表抹平。</p>
+<h3>8.3 快照式视觉回归是必要非充分</h3>
+<p>G24 锁的是 <code>buildOption()</code> 产出的结构与几何派生值（可无头运行、可 diff），不锁像素。像素级验证需浏览器截图，而本项目历史实测中截图通道不可用（当时的替代是画布像素读取与 iframe 注入测视口）。因此 S3/S5 仍须<strong>真机看页</strong>，并在报告里如实写"快照通过 ≠ 视觉无差异"。</p>
+<h3>8.4 门禁的失效模式</h3>
+<ul>
+  <li><strong>G19 结构哈希误报</strong>：语义不同而骨架相似的代码会被判重。处置：阈值从最严格起步（完全同构才红），出现误报时<strong>细化判定</strong>而不是关闭门禁或加豁免清单。</li>
+  <li><strong>白名单腐蚀</strong>：任何"仅这一次"的文件白名单都会变成常驻后门。处置：白名单条目必须带工单号与到期条件，且长度只能减少。</li>
+  <li><strong>基线放宽换绿</strong>：G21 的棘轮基线一旦允许调大即失效。处置：CI 断言"基线值 ≤ 上一次提交值"。</li>
+  <li><strong>runner 缺位</strong>：25 条门禁今天全部是纸面命题。这是全站最大欠口，优先级高于本篇任何重构。</li>
+</ul>
+<h3>8.5 本篇未做的事</h3>
+<p>未改一行代码；未建 <code>charts/</code> 目录；未写 gate runner；文档 <code>docs/</code> 仍未纳入 git 跟踪（<code>git ls-files docs | wc -l</code> = 0，仓库当前只有初始提交 <code>8211ab7</code>）。另：根目录尚余 <code>probe-db.mjs</code> / <code>probe-sqlite.mjs</code> / <code>probe-out.txt</code> 三个未跟踪的探针文件（前三篇文档的证据来源），应移入 <code>tools/</code> 或删除。前几篇遗留的 49 处阈值缺来源标注（<code>integrity.source</code>）与本议题无关但同样未闭合。</p>
+
+<footer>
+  <p>依据：本会话对 <code>frontend/js/chart.js</code>（450 行）、<code>ui/Sparkline.js</code>、<code>ui/CompositionBar.js</code>、<code>ui/Ecg.js</code>、<code>ui/RateTile.js</code>、<code>core/derive.js</code>、<code>core/store.js</code>、<code>app.js</code> 与 19 份指标配置的逐行读取与正则实测；行业依据见第 2 节引用。</p>
+  <p>外部来源（实际检索到的公开页面）：FRED 复合图与右轴、TradingView 库模块划分与多窗格 API、Vega-Lite layer/resolve、Grafana 多 Y 轴与字段覆盖、Power BI 静态/动态系列、SSRS 多系列与图表区域准则、ThingsBoard 混合图双轴准则、Datawrapper 图形目录、Adobe 对比图形选择指南、折线图系列数上限实践、egui-charts 多图联动、trading-vue「one overlay = one component」。</p>
+  <p style="margin-top:var(--sp3)">门禁编号延续既有体系：G0–G7（前端与门禁）· G8–G10（后端与数据库）· G11–G17（九原则与机检 CI）· <strong>G18–G24（核心数据面板）</strong>，合计 25 条。四份文档各自内嵌样式块——实测其中三份 <code>:root</code> 块逐字相同（md5 前 8 位 <code>7d9675cc</code>），第一篇为 <code>a116ca48</code>（早期版本）。文档是<strong>可单文件携带的交付件</strong>，与代码层 SSOT 约束不同域，不构成"重复轮子"违例；但"三份相同、一份漂移"本身是该记的账，若文档长期演进应抽公共样式。在此记录以免误判，也避免下一次审计时被当成已收敛。</p>
+</footer>
+
+</div><section id="rev2" style="margin-top:32px">
+<h2>Rev 2 · 实现校准（2026-11-23）</h2>
+<p>本段是<strong>显式修订</strong>：逐条列出本篇原文与被实现取代的表述，并给出复算命令。未列入本段的规范仍然有效。</p>
+<table><thead><tr><th>原文表述</th><th>现在的实现</th><th>复算方式</th></tr></thead><tbody>
+<tr><td>门禁 18 条 → 计划扩到 25 条（G18–G24）</td><td>现有 26 条：新增 G25（政策事件单一出处 + 官方证据 + 全站必画），G8/G10/G16 从 BLOCKED 变成对库的真判据</td><td>node tools/gates.mjs --net</td></tr>
+<tr><td>C-6 图形语义由数据决定（原文仅提 rescale/轴）</td><td>backend/lib/semantics.js 单点决定 kindOf(unit) → rate/price/amount/flow，并按（种类 × 层角色 × 粒度）给配方；spec 与指标可显式覆盖，覆盖即优先</td><td>node tools/selftest.mjs 的 A3 用例（新页面不写 recipe，装配结果仍得 zoneBar）</td></tr>
+<tr><td>「Srf 等金额型序列以折线叠加」的旧观感</td><td>金额存量一律柱状：SRF 动用量在主图与叠加层都是 bar；流量（吨）为 signedBar</td><td>浏览器实测 option.series[].type（见 specs/evidence-browser.json）</td></tr>
+<tr><td>§5 各门禁为文字描述（不可执行）</td><td>全部可执行：gates.mjs + contract.mjs（JSON Schema 子集校验器）+ thresholds.mjs（阈值复算）+ publish.mjs（规范投影）+ selftest.mjs（热插拔实证与可证红）；G12 会真的执行 selftest</td><td>node tools/gates.mjs（G12 内含 selftest）</td></tr>
+<tr><td>快照按 spec 文件名比对（错误判据）</td><td>snapshot.mjs 由 regions × spec(有 panel 视图) × 粒度派生 18 组，12 份出图 + 6 份跳过并记录原因；G24 直接跑 --check 做内容比对</td><td>node tools/snapshot.mjs --check</td></tr>
+</tbody></table>
+<p>本段由代理在校准轮次写入；数值全部来自当轮实测输出，不是计划值。</p>
+</section>
+
+</body>
+</html>
