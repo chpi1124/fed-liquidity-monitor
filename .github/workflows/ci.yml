@@ -37,10 +37,21 @@ jobs:
           done
           echo "OK: 全部源码可解析"
 
-      # SQLite 与五态记录不入库（data/monitor.db* 在 .gitignore），CI 须从官方源重建。
+      # SQLite 与五态记录不入库（data/monitor.db* 在 .gitignore）。缓存跨 run 复用库：
+      # 命中后增量更新只取尾部（分钟级），未命中则按各序列 start 全量拉（首次约 40 分钟）。
+      # 注意两个 matrix job 会各自存一份缓存，最后写入者获胜——库内容等价，无碍。
+      - name: 恢复数据库缓存
+        uses: actions/cache@v4
+        with:
+          path: data/monitor.db
+          key: fed-db-v1-${{ github.run_id }}
+          restore-keys: |
+            fed-db-v1-
+
       # 管道 owner 只有 backend/lib/pipeline.js，这里只调 CLI 入口，不复制一份更新循环。
-      - name: 全量重建数据（水位线/五态/政策事件/报表）
-        run: node tools/run-update.mjs --force
+      # 增量模式：空库按 start 全量、有水位线按尾部；瞬时取数失败由管道自愈三补跑。
+      - name: 更新数据（增量/冷启动全量）
+        run: node tools/run-update.mjs
 
       # 快照绑的是冻结输入（fixtures + 本地离线数据），但 policyLines 等元数据取自当前库；
       # CI 重建后须确认视觉基线仍一致；如官方当日新发数据导致漂移，应先查数据源，不直接 --write。

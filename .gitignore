@@ -17,3 +17,4 @@ frontend/__harness.html
 /.workbuddy/
 .ci-*.log
 .tmp-*.mjs
+.tmp-gh-token

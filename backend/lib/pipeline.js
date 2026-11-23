@@ -22,6 +22,7 @@ export async function updateAll(force = false, { only } = {}) {
   try {
     const pending = loadIndicators().filter((cfg) => pick(cfg.id));
     const rerun = [];
+    const failedOnce = [];
     for (const cfg of pending) {
       try {
         let data = await updateIndicator(cfg, { force, prev: store.read(cfg.id) });
@@ -47,6 +48,9 @@ export async function updateAll(force = false, { only } = {}) {
         );
       } catch (e) {
         console.error(`[update] ${cfg.id} failed:`, e.message);
+        // 自愈三：瞬时取数异常（源端限流/机房 IP 被限/网络抖动）⇒ 本轮末尾再补跑一次。
+        // 不带 force：水位线仍在，只重取缺失窗口，不会反复全量拉。
+        failedOnce.push(cfg);
       }
     }
     // 依赖补跑：恒等式/带宽校验腿读取的是同批其他指标的入库结果，冷启动时第二轮才能对上。
@@ -58,6 +62,17 @@ export async function updateAll(force = false, { only } = {}) {
         console.log(`[update] ${cfg.id} 依赖补跑: 交叉验证 ${v.matched}/${v.checked}, 自检 ${data.integrity.verdict}${v.checkErrors.length ? ` 仍有校验腿故障: ${v.checkErrors.join("; ")}` : ""}`);
       } catch (e) {
         console.error(`[update] ${cfg.id} 依赖补跑 failed:`, e.message);
+      }
+    }
+    // 失败补跑：整轮跑完再给失败者一次机会（距离首次失败已有几分钟，瞬时限流多半已解除）
+    for (const cfg of failedOnce) {
+      try {
+        const data = await updateIndicator(cfg, { force: false, prev: store.read(cfg.id) });
+        store.write(cfg.id, data);
+        const v = data.validation;
+        console.log(`[update] ${cfg.id} 失败补跑: ${data.points.length} days, 交叉验证 ${v.matched}/${v.checked}, 自检 ${data.integrity.verdict}`);
+      } catch (e) {
+        console.error(`[update] ${cfg.id} 失败补跑 failed:`, e.message);
       }
     }
     // 政策事件按 regions.json 登记的源逐市场刷新（没登记源的市场不会被打扰，也不会静默产出空事件）
