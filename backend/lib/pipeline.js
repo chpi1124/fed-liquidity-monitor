@@ -5,6 +5,52 @@ import * as policy from "./policy.js";
 import { loadSheets, updateSheet } from "./sheets.js";
 import { loadSummaries, updateSummary } from "./summaries.js";
 import * as store from "./store.js";
+import { fetchWindow } from "./semantics.js";
+import { drainUsage } from "../providers/_shared.js";
+import fs from "node:fs";
+import path from "node:path";
+import { DATA_DIR } from "./paths.js";
+
+// 自愈四（显式回放）：实取失败但存在已提交的官方导出（本管线此前从官方源实取的产物）⇒
+// 回放入库，而不是静默缺数。这不是造数：数据本身来自真实官方取数，且「非本轮实取」
+// 会如实写进五态（fetch=degraded + 出处文件与 updatedAt），下一轮水位线恢复后增量追平。
+function replayFromExport(cfg, err) {
+  const file = path.join(DATA_DIR, `${cfg.id}.json`);
+  if (!fs.existsSync(file)) return null;
+  let exported;
+  try {
+    exported = JSON.parse(fs.readFileSync(file, "utf8"));
+  } catch {
+    return null;
+  }
+  if (!exported?.points?.length) return null;
+  const provider = cfg.legs?.[0]?.primary?.provider || "";
+  const today = new Date().toISOString().slice(0, 10);
+  const plan = {
+    ...fetchWindow(cfg, provider, today, cfg.start || "2015-01-01"),
+    mode: "export-replay",
+    reason: `实取失败（${String(err.message).slice(0, 70)}）⇒ 回放已入库导出 data/${cfg.id}.json；下一轮恢复后按水位线增量追平`,
+  };
+  const out = { ...exported, updatedAt: exported.updatedAt || new Date().toISOString() };
+  Object.defineProperty(out, "runMeta", {
+    value: {
+      cfg,
+      plan,
+      usage: drainUsage(),
+      startedAt: new Date().toISOString(),
+      stages: {
+        plan: { status: "ok", info: `${plan.mode} ${plan.start}→${plan.end}；${plan.reason}` },
+        fetch: { status: "degraded", info: `本轮官方源实取失败；回放已提交导出 data/${cfg.id}.json（updatedAt ${exported.updatedAt}），非本轮实取` },
+        validate: { status: "skipped", info: "回放沿用导出时的校验结论，本轮未重新校验" },
+        correct: { status: "skipped", info: "回放未做新纠错" },
+        commit: { status: "ok", info: `自检沿用导出结论 ${out.integrity?.verdict || "unknown"}` },
+      },
+      status: "degraded",
+    },
+    enumerable: false,
+  });
+  return out;
+}
 
 let updating = false;
 
@@ -48,9 +94,13 @@ export async function updateAll(force = false, { only } = {}) {
         );
       } catch (e) {
         console.error(`[update] ${cfg.id} failed:`, e.message);
-        // 自愈三：瞬时取数异常（源端限流/机房 IP 被限/网络抖动）⇒ 本轮末尾再补跑一次。
-        // 不带 force：水位线仍在，只重取缺失窗口，不会反复全量拉。
-        failedOnce.push(cfg);
+        const replayed = replayFromExport(cfg, e);
+        if (replayed) {
+          store.write(cfg.id, replayed);
+          console.log(`[update] ${cfg.id} 导出回放: ${replayed.points.length} days（出处 data/${cfg.id}.json，本轮官方源实取失败，五态已标 degraded）`);
+        } else {
+          failedOnce.push(cfg);
+        }
       }
     }
     // 依赖补跑：恒等式/带宽校验腿读取的是同批其他指标的入库结果，冷启动时第二轮才能对上。
