@@ -59,6 +59,13 @@
       "side": "right",
       "resolve": "independent",
       "precision": 3
+    },
+    "share": {
+      "unit": "%",
+      "side": "right",
+      "label": "准备金/银行资产 %",
+      "resolve": "independent",
+      "precision": 1
     }
   },
   "axisBy": [

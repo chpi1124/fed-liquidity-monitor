@@ -167,7 +167,9 @@ export async function updateIndicator(cfg, { force = false, prev = null } = {}) 
     const entries = legs.map((L) => L.primary.get(d));
     const vals = entries.map((e) => (e == null ? null : typeof e === "object" ? e.v : e));
     if (vals.some((v) => v == null || Number.isNaN(v))) continue;
-    const raw = cfg.operation === "diff" ? vals[0] - vals[1] : vals[0];
+    // 运算只认两种：diff（差值恒等式）与 ratio（比值恒等式）。分母为 0/NaN 时派生值
+    // 会落入完整性层判为越带存疑，不会被静默写库。
+    const raw = cfg.operation === "diff" ? vals[0] - vals[1] : cfg.operation === "ratio" ? vals[0] / vals[1] : vals[0];
     const f = 10 ** (cfg.precision ?? 2);
     const v = Math.round(raw * (cfg.scale ?? 1) * f) / f;
     let ok = true, hasCheck = true, alt = null, altBy = null;

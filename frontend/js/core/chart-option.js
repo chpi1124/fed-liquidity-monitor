@@ -218,7 +218,10 @@ export function buildOption({ spec, ds, preset, selected = {}, theme, policyOn =
   const series = shown.map((layer) => {
     const s = RECIPES[layer.recipe]({ layer, theme, axisIndex: axes.axisIndexOf(layer.axis), style: layer.style || {}, spec, ds, cats });
     if (layer.id === anchorId) {
-      const lines = [...(ann.includes("zones") ? zoneRules(layer)?.data || [] : []), ...(policyOn ? policyMarkLines(ds, cats, theme) : [])];
+      // spec.referenceLines：声明式参考横线（如派生指标的区间中枢），与阈值线/政策线共用
+      // 同一个 markLine 构造点与同一根 hLine 形状 —— 不新增第二处实现。
+      const refs = (spec.referenceLines || []).map((r) => hLine(r.value, { text: r.label, color: color(r.color || "muted") }));
+      const lines = [...(ann.includes("zones") ? zoneRules(layer)?.data || [] : []), ...refs, ...(policyOn ? policyMarkLines(ds, cats, theme) : [])];
       if (lines.length) s.markLine = { silent: true, symbol: "none", data: lines };
     }
     if (ann.includes("eras")) s.markArea = eraAreas(ds.eras, cats) || s.markArea;

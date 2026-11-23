@@ -1,0 +1,61 @@
+{
+  "id": "reserve-share",
+  "page": "fed-balance",
+  "title": "准备金 / 商业银行总资产（银行体系充足度）",
+  "empty": "等待数据…",
+  "navLabel": "准备金充足度",
+  "navSub": "RESERVES · 纽联储 11%–14% 充足带",
+  "pick": {
+    "id": "us-reserve-share"
+  },
+  "views": [
+    {
+      "projection": "toolbar",
+      "container": "rs-toolbar"
+    },
+    {
+      "projection": "panel",
+      "container": "rs-chart",
+      "size": "compact"
+    },
+    {
+      "projection": "desc",
+      "container": "rs-desc"
+    }
+  ],
+  "axes": {
+    "share": {
+      "unit": "%",
+      "side": "left",
+      "label": "准备金/银行资产 %",
+      "precision": 1,
+      "resolve": "shared"
+    }
+  },
+  "layers": [
+    {
+      "series": "primary",
+      "recipe": "line"
+    }
+  ],
+  "annotations": [
+    "zones"
+  ],
+  "referenceLines": [
+    {
+      "value": 12.5,
+      "label": "充足中枢 12.5%（11–14 中点 · 本站标注）",
+      "color": "muted"
+    }
+  ],
+  "legend": "auto",
+  "tooltip": {
+    "columns": [
+      "value",
+      "zone",
+      "validation"
+    ]
+  },
+  "presets": "standard",
+  "defaultPreset": "ALL"
+}

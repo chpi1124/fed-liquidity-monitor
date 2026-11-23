@@ -1,5 +1,5 @@
 {
-  "expected": 21,
+  "expected": 27,
   "generated": [
     "us.fed-balance.balance-history.day",
     "us.fed-balance.balance-history.week",
@@ -10,6 +10,9 @@
     "us.monitor.main-trend.day",
     "us.monitor.main-trend.week",
     "us.monitor.main-trend.month",
+    "us.fed-balance.reserve-share.day",
+    "us.fed-balance.reserve-share.week",
+    "us.fed-balance.reserve-share.month",
     "cn.cn-balance.cn-balance.day",
     "cn.cn-balance.cn-balance.week",
     "cn.cn-balance.cn-balance.month",
@@ -41,6 +44,18 @@
     {
       "key": "cn.gold.gold-overlay.month",
       "reason": "spec gold-overlay 在页面 gold 未派生出 panel 视图（该市场无对应序列）"
+    },
+    {
+      "key": "cn.fed-balance.reserve-share.day",
+      "reason": "spec reserve-share 在页面 fed-balance 未派生出 panel 视图（该市场无对应序列）"
+    },
+    {
+      "key": "cn.fed-balance.reserve-share.week",
+      "reason": "spec reserve-share 在页面 fed-balance 未派生出 panel 视图（该市场无对应序列）"
+    },
+    {
+      "key": "cn.fed-balance.reserve-share.month",
+      "reason": "spec reserve-share 在页面 fed-balance 未派生出 panel 视图（该市场无对应序列）"
     }
   ],
   "granularities": [
@@ -49,9 +64,9 @@
     "month"
   ],
   "fixture": {
-    "blessedAt": "2026-11-23T08:12:21.317Z",
-    "reads": 24,
+    "blessedAt": "2026-11-23T08:37:08.532Z",
+    "reads": 25,
     "policy": 91
   },
-  "at": "2026-11-23T08:12:42.065Z"
+  "at": "2026-11-23T08:41:15.222Z"
 }

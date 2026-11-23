@@ -110,9 +110,12 @@
         "RPONAGYD",
         "RPONMBSD"
       ],
-      "DFII10"
+      "DFII10",
+      "WRESBAL",
+      "TLAACBW027NBOG",
+      "TLAACBW027SBOG"
     ],
-    "indicatorCount": 8
+    "indicatorCount": 9
   },
   "hkex-factsheet": {
     "org": "HKEX (Hong Kong Exchanges and Clearing Limited)",

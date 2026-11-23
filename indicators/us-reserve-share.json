@@ -1,0 +1,105 @@
+{
+  "id": "us-reserve-share",
+  "region": "us",
+  "name": "准备金/银行资产",
+  "en": "Reserve Balances / Commercial Bank Total Assets",
+  "formula": "= WRESBAL ÷ TLAACBW027NBOG × 0.1（百万美元 ÷ 十亿美元 ×100%）",
+  "unit": "%",
+  "hue": "info",
+  "surface": "reserve",
+  "axisGroup": "share",
+  "operation": "ratio",
+  "scale": 0.1,
+  "precision": 2,
+  "start": "2002-12-18",
+  "publication": "W",
+  "order": 60,
+  "description": "银行体系准备金充足度：存款机构在美联储的准备金余额（H.4.1 周均值，百万美元）除以美国商业银行总资产（H.8 周度，十亿美元），以百分比呈现。两条腿均为理事会官方序列（经 FRED 分发），同节奏周三截止、逐日对齐后相除，派生即恒等式。阈值口径来自纽约联储定量研究（2010 年以来经验）：该比值低于 11% 时货币市场利差对准备金变动的敏感系数显著为负（准备金短缺，回购利率对冲击极度敏感），高于 14% 时敏感系数显著为零（准备金过剩），11%–14% 视为充足区间；Waller 2023 年以准备金/GDP 口径给出 11%–12% 的合意下限，两套口径数值接近但分母不同。注意：这是一条派生比值，不是任何机构单独发布的官方序列；2019-09（回购危机）实测 7.99%、2021 峰值约 16.2%、当前 11.3% 附近，即『充足带下沿』——参照 Goldman 2026-11 报告，同一 11%–12% 区间内历史上既出现过 IORB+13bp 的紧、也出现过 IORB−9bp 的松，11% 是脆弱性显著上升的区间而非硬开关。",
+  "checkKind": "同机构双口径比值带（H.8 银行总资产 季调 SA ÷ 非季调 NSA 逐点比值）＋分子分母官方同源恒等式",
+  "legs": [
+    {
+      "key": "wres",
+      "label": "准备金余额",
+      "primary": {
+        "provider": "fred",
+        "series": "WRESBAL"
+      }
+    },
+    {
+      "key": "assets",
+      "label": "商业银行总资产",
+      "primary": {
+        "provider": "fred",
+        "series": "TLAACBW027NBOG"
+      },
+      "check": {
+        "provider": "fred",
+        "series": "TLAACBW027SBOG",
+        "mode": "ratio",
+        "band": [
+          0.9884,
+          1.0108
+        ],
+        "source": {
+          "statistic": "manual-policy",
+          "window": "2002-12-18 ~ 2026-11-11",
+          "measured": {
+            "devLo": 0.988409,
+            "devHi": 1.010744,
+            "n": 1248
+          },
+          "note": "带 [0.9884, 1.0108] 覆盖同窗口 NSA/SA 逐点比值实测 [0.988409, 1.010744]（±1.1%）；门禁每轮复算包含关系与松紧上限（12 倍）"
+        }
+      }
+    }
+  ],
+  "zones": [
+    {
+      "label": "短缺",
+      "max": 11,
+      "includeMax": false,
+      "color": "risk-1"
+    },
+    {
+      "label": "充足",
+      "max": 14,
+      "color": "risk-4"
+    },
+    {
+      "label": "过剩",
+      "max": null,
+      "color": "risk-3"
+    }
+  ],
+  "integrity": {
+    "range": [
+      0,
+      30
+    ],
+    "maxAbsJump": 3,
+    "source": {
+      "range": {
+        "statistic": "manual-policy",
+        "window": "2002-12-18 ~ 2026-11-11",
+        "measured": {
+          "min": 0.03,
+          "max": 19.31,
+          "p02": 0.07,
+          "p998": 19.02,
+          "n": 1248
+        },
+        "note": "声明带 [0, 30] 由实测 [0.03, 19.31] 向外取整而得（2002–2008 稀缺准备金时期贴近 0 属真实历史，不是缺数）；越带即报警（门禁复算包含关系）"
+      },
+      "maxAbsJump": {
+        "statistic": "manual-policy",
+        "window": "2002-12-18 ~ 2026-11-11",
+        "measured": {
+          "maxJump": 2.38,
+          "p998Jump": 1.84,
+          "n": 1247
+        },
+        "note": "声明 3 高于实测 99.8 分位 1.84（最大单周跳变 2.38 发生在 2014-12-17 缩表初期）；低于该分位即判太紧"
+      }
+    }
+  }
+}
