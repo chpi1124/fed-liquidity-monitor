@@ -1,5 +1,26 @@
 [
   {
+    "slug": "thetrading",
+    "name": "ICE BofA MOVE 指数转载源（TheTrading.tools）",
+    "kind": "非官方转载源",
+    "why": "ICE 官方数据 API 需商业许可；Yahoo/WSJ/Investing/Cboe 等公开分发渠道实测全部反爬拦截（403/401，2026-11-24）。TheTrading.tools 公开 CSV 是唯一可编程获得的日频全史（2002-11 起 5941 观测）。",
+    "decision": "MOVE 序列如实标注「非官方转载」，最新值与公开行情页抽样互证（2026-11-20 = 106.31 与 Investing.com 一致）；页面标「未获并行确认」，不冒充 ICE 一手源；ICE 开放公开 API 后立即换源重验。",
+    "declaredIn": [
+      "indicators/us-move.json",
+      "backend/providers/thetrading.js"
+    ]
+  },
+  {
+    "slug": "us-vix-single-source",
+    "name": "VIX 单源（FRED 官方授权分发）",
+    "kind": "单源无并行确认",
+    "why": "Cboe 官网直连被 Cloudflare 拦截；第三方转载渠道无 VIX 全史序列。可编程可达的官方授权渠道只有 FRED（VIXCLS）一家。",
+    "decision": "VIX 序列如实标「单源，未获并行确认」，validation.checked 记 0，不冒充双源。",
+    "declaredIn": [
+      "indicators/us-vix.json"
+    ]
+  },
+  {
     "slug": "cds-feed",
     "name": "CDS 单名公开端点",
     "kind": "占位响应",

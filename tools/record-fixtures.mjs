@@ -32,6 +32,7 @@ const PLAN = {
   fred: { src: { series: "WALCL" }, win: [day(40), TODAY] },
   "treasury-real": { src: { tenor: "10 YR" }, win: [day(40), TODAY] },
   nasdaq: { src: { symbol: "GLD" }, win: [day(12), TODAY] },
+  thetrading: { src: { file: "move-index", valueCol: "move_value" }, win: [day(12), TODAY] },
   "uk-trade": { src: { measure: "net" }, win: [day(120), day(60)] },
   worldbank: { src: { column: "Gold" }, win: [day(120), day(60)] },
   uncomtrade: { src: { maxMonths: 1, paceMs: 0 }, win: [day(450), day(300)] },

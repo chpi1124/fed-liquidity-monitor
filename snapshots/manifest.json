@@ -1,5 +1,5 @@
 {
-  "expected": 27,
+  "expected": 39,
   "generated": [
     "us.fed-balance.balance-history.day",
     "us.fed-balance.balance-history.week",
@@ -10,9 +10,15 @@
     "us.monitor.main-trend.day",
     "us.monitor.main-trend.week",
     "us.monitor.main-trend.month",
+    "us.volatility.move-trend.day",
+    "us.volatility.move-trend.week",
+    "us.volatility.move-trend.month",
     "us.fed-balance.reserve-share.day",
     "us.fed-balance.reserve-share.week",
     "us.fed-balance.reserve-share.month",
+    "us.volatility.vix-trend.day",
+    "us.volatility.vix-trend.week",
+    "us.volatility.vix-trend.month",
     "cn.cn-balance.cn-balance.day",
     "cn.cn-balance.cn-balance.week",
     "cn.cn-balance.cn-balance.month",
@@ -46,6 +52,18 @@
       "reason": "spec gold-overlay 在页面 gold 未派生出 panel 视图（该市场无对应序列）"
     },
     {
+      "key": "cn.volatility.move-trend.day",
+      "reason": "spec move-trend 在页面 volatility 未派生出 panel 视图（该市场无对应序列）"
+    },
+    {
+      "key": "cn.volatility.move-trend.week",
+      "reason": "spec move-trend 在页面 volatility 未派生出 panel 视图（该市场无对应序列）"
+    },
+    {
+      "key": "cn.volatility.move-trend.month",
+      "reason": "spec move-trend 在页面 volatility 未派生出 panel 视图（该市场无对应序列）"
+    },
+    {
       "key": "cn.fed-balance.reserve-share.day",
       "reason": "spec reserve-share 在页面 fed-balance 未派生出 panel 视图（该市场无对应序列）"
     },
@@ -56,6 +74,18 @@
     {
       "key": "cn.fed-balance.reserve-share.month",
       "reason": "spec reserve-share 在页面 fed-balance 未派生出 panel 视图（该市场无对应序列）"
+    },
+    {
+      "key": "cn.volatility.vix-trend.day",
+      "reason": "spec vix-trend 在页面 volatility 未派生出 panel 视图（该市场无对应序列）"
+    },
+    {
+      "key": "cn.volatility.vix-trend.week",
+      "reason": "spec vix-trend 在页面 volatility 未派生出 panel 视图（该市场无对应序列）"
+    },
+    {
+      "key": "cn.volatility.vix-trend.month",
+      "reason": "spec vix-trend 在页面 volatility 未派生出 panel 视图（该市场无对应序列）"
     }
   ],
   "granularities": [
@@ -64,9 +94,9 @@
     "month"
   ],
   "fixture": {
-    "blessedAt": "2026-11-23T08:37:08.532Z",
-    "reads": 25,
+    "blessedAt": "2026-11-24T04:22:12.674Z",
+    "reads": 27,
     "policy": 91
   },
-  "at": "2026-11-24T03:22:52.225Z"
+  "at": "2026-11-24T15:05:04.890Z"
 }

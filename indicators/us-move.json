@@ -1,0 +1,82 @@
+{
+  "id": "us-move",
+  "region": "us",
+  "name": "美债波动率 MOVE 指数",
+  "en": "ICE BofA US Bond Market Option Volatility Estimate (MOVE)",
+  "formula": "美国利率掉期期权隐含波动率篮子指数（1年期期权加权），日收盘",
+  "unit": "",
+  "hue": "magenta",
+  "surface": "volatility",
+  "axisGroup": "vol",
+  "operation": "level",
+  "scale": 1,
+  "precision": 2,
+  "start": "2002-11-12",
+  "publication": "T",
+  "order": 81,
+  "defaultOn": true,
+  "description": "ICE BofA 美债波动率指数（MOVE）：衡量美国利率市场（掉期期权）隐含波动率的篮子指数，是美债市场恐慌程度的度量，与美股 VIX 构成「波动率先后苏醒」的观察对（宋鸿兵：先 VIX 后 MOVE 是恐慌从股市向债市扩散，反向则是债市向股市传导；MOVE 飙升同时压低美债价格，流动性螺旋的核心环节）。数据说明（如实标注）：ICE 官方数据 API 需商业许可，Yahoo/WSJ/Investing/Cboe 等公开分发渠道实测全部反爬拦截（403/401，2026-11-24），本站采用公开转载源 TheTrading.tools 的 ICE BofA 全史 CSV（2002-11 起，5941 观测），并在降级源清单登记；最新值与公开行情页抽样互证（2026-11-20 = 106.31 一致）。校验腿是「与同页 VIX 的比值宽带护栏」（防解析/口径错误），不是独立双源确认——页面如实标注单源转载属性；若 ICE 日后开放公开 API 立即换源重验。",
+  "checkKind": "结构带宽：跨指标 MOVE ÷ VIX 宽带护栏（防口径与解析错误；数据本身仍是单源转载，非独立双源确认）",
+  "legs": [
+    {
+      "key": "move",
+      "label": "MOVE 收盘",
+      "unit": "",
+      "primary": {
+        "provider": "thetrading",
+        "file": "move-index",
+        "valueCol": "move_value"
+      },
+      "check": {
+        "provider": "series",
+        "id": "us-vix",
+        "mode": "ratio",
+        "band": [
+          1,
+          11.5
+        ],
+        "source": {
+          "statistic": "manual-policy",
+          "window": "2002-11-12 ~ 2026-11-20",
+          "measured": {
+            "devLo": 1.187,
+            "devHi": 10.029,
+            "checked": 5941
+          },
+          "note": "带 [1, 11.5] 覆盖同窗口实测 MOVE/VIX 比值 [1.187, 10.029]；宽带护栏仅防解析/口径错误（如单位错位、列取错），不是独立双源确认；us-vix 未入库或取数失败时本腿如实记故障"
+        }
+      }
+    }
+  ],
+  "integrity": {
+    "range": [
+      30,
+      300
+    ],
+    "maxAbsJump": 45,
+    "source": {
+      "range": {
+        "statistic": "manual-policy",
+        "window": "2002-11-12 ~ 2026-11-20",
+        "measured": {
+          "min": 36.62,
+          "max": 264.6,
+          "p02": 46.06,
+          "p998": 220.5,
+          "n": 5941
+        },
+        "note": "声明带 [30, 300] 由实测 [36.62, 264.6] 向外取整而得（2008-10 危机峰 264.6 为真实历史）；越带即报警（门禁复算包含关系）"
+      },
+      "maxAbsJump": {
+        "statistic": "manual-policy",
+        "window": "2002-11-12 ~ 2026-11-20",
+        "measured": {
+          "maxJump": 39.98,
+          "p998Jump": 24.9,
+          "n": 5940
+        },
+        "note": "声明 45 高于实测最大单日跳变 39.98（2008-03 贝尔斯登周）；低于实测最大值即判太紧"
+      }
+    }
+  }
+}

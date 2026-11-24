@@ -1,0 +1,78 @@
+{
+  "id": "vix-trend",
+  "page": "volatility",
+  "order": 30,
+  "title": "美股 VIX 恐慌指数（CBOE · FRED 分发）",
+  "empty": "等待数据…",
+  "navLabel": "波动率",
+  "navSub": "VIX · MOVE 恐慌双仪表",
+  "pick": {
+    "id": "us-vix"
+  },
+  "views": [
+    {
+      "projection": "toolbar",
+      "container": "vx-toolbar"
+    },
+    {
+      "projection": "panel",
+      "container": "vx-chart",
+      "size": "compact"
+    },
+    {
+      "projection": "desc",
+      "container": "vx-desc"
+    }
+  ],
+  "axes": {
+    "vol": {
+      "unit": "",
+      "side": "left",
+      "precision": 1,
+      "resolve": "shared"
+    }
+  },
+  "layers": [
+    {
+      "series": "primary",
+      "recipe": "line"
+    }
+  ],
+  "annotations": [],
+  "referenceLines": [
+    {
+      "value": 20,
+      "label": "恐慌分界线 20（鸿学院口径）",
+      "color": "ok"
+    },
+    {
+      "value": 30,
+      "label": "惊慌 30",
+      "color": "warn"
+    },
+    {
+      "value": 40,
+      "label": "惊恐 40",
+      "color": "risk-1"
+    },
+    {
+      "value": 50,
+      "label": "惊骇 50",
+      "color": "magenta"
+    },
+    {
+      "value": 60,
+      "label": "惊厥 60",
+      "color": "danger"
+    }
+  ],
+  "legend": "auto",
+  "tooltip": {
+    "columns": [
+      "value",
+      "validation"
+    ]
+  },
+  "presets": "standard",
+  "defaultPreset": "ALL"
+}

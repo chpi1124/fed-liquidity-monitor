@@ -1,0 +1,77 @@
+{
+  "id": "us-vix",
+  "region": "us",
+  "name": "美股 VIX 恐慌指数",
+  "en": "CBOE Volatility Index (VIX Close)",
+  "formula": "标准普尔 500 指数期权隐含波动率指数（30 天期），日收盘",
+  "unit": "",
+  "hue": "risk-1",
+  "surface": "volatility",
+  "axisGroup": "vol",
+  "operation": "level",
+  "scale": 1,
+  "precision": 2,
+  "start": "1990-01-02",
+  "publication": "T",
+  "order": 80,
+  "description": "CBOE 波动率指数（VIX）：标准普尔 500 指数期权的 30 天隐含波动率，市场对美股未来一个月波动幅度的定价，被称作「恐慌指数」。数据经圣路易斯联储 FRED 分发（序列 VIXCLS，Cboe 官方授权），日频收盘，1990 年起全史。恐慌分层阈值沿用鸿学院《美元环流》口径：20 以下为常态、20 为恐慌分界线，30 惊慌、40 惊恐、50 惊骇、60 惊厥——历史极值对照：2008-10 危机峰 80.86、2020-03-16 新冠熔断周 82.69（收盘口径史上最高）、2024-08-05 套息平仓 65.73。注意：本序列为单源（可编程的公开分发渠道中 FRED 是唯一可达的官方授权源，Cboe 官网直连被 Cloudflare 拦截、第三方转载无 VIX 序列），页面如实标「取数一致性已核、数据本身为 Cboe 单源」，不冒充独立双源。同一图谱页并列美债波动率 MOVE 指数，观察「波动率先后苏醒」的传导次序（宋鸿兵：先美股 VIX、后美债 MOVE，或反向，是识别恐慌扩散方向的关键）。",
+  "checkKind": "授权双端点一致性校验（FRED graph vs ALFRED vintage 复取，验证取数与解析；数据本身仍是 Cboe 单源，非独立双源）",
+  "legs": [
+    {
+      "key": "vix",
+      "label": "VIX 收盘",
+      "unit": "",
+      "primary": {
+        "provider": "fred",
+        "series": "VIXCLS"
+      },
+      "check": {
+        "provider": "fred",
+        "series": "VIXCLS",
+        "alfred": true,
+        "mode": "abs",
+        "tolerance": 0.011,
+        "source": {
+          "statistic": "manual-policy",
+          "window": "1990-01-02 ~ 2026-11-20",
+          "measured": {
+            "maxDev": 0,
+            "n": 9322
+          },
+          "note": "ALFRED 与 FRED 的当前 vintage 理论同值；偏差非 0 即说明解析或传输出错。这是取数正确性校验，不是独立双源确认"
+        }
+      }
+    }
+  ],
+  "integrity": {
+    "range": [
+      0,
+      100
+    ],
+    "maxAbsJump": 30,
+    "source": {
+      "range": {
+        "statistic": "manual-policy",
+        "window": "1990-01-02 ~ 2026-11-20",
+        "measured": {
+          "min": 9.14,
+          "max": 82.69,
+          "p02": 10.65,
+          "p998": 67.64,
+          "n": 9322
+        },
+        "note": "声明带 [0, 100] 由实测 [9.14, 82.69] 向外取整而得；越带即报警（门禁复算包含关系）"
+      },
+      "maxAbsJump": {
+        "statistic": "manual-policy",
+        "window": "1990-01-02 ~ 2026-11-20",
+        "measured": {
+          "maxJump": 24.86,
+          "p998Jump": 12.52,
+          "n": 9321
+        },
+        "note": "声明 30 高于实测最大单日跳变 24.86（2020-03 危机周）；低于实测最大值即判太紧"
+      }
+    }
+  }
+}

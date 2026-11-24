@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-23T04:02:20.156Z",
+  "at": "2026-11-24T04:22:02.287Z",
   "results": [
     {
       "id": "cds-feed",
@@ -89,6 +89,12 @@
       "ok": true,
       "rows": 10,
       "ms": 117
+    },
+    {
+      "id": "thetrading",
+      "ok": true,
+      "rows": 5941,
+      "ms": 5720
     },
     {
       "id": "treasury-real",

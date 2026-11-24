@@ -1,0 +1,45 @@
+{
+  "id": "move-trend",
+  "page": "volatility",
+  "order": 31,
+  "title": "美债波动率 MOVE 指数（ICE BofA · 公开转载源）",
+  "empty": "等待数据…",
+  "pick": {
+    "id": "us-move"
+  },
+  "views": [
+    {
+      "projection": "panel",
+      "container": "mv-chart",
+      "size": "compact"
+    },
+    {
+      "projection": "desc",
+      "container": "mv-desc"
+    }
+  ],
+  "axes": {
+    "vol": {
+      "unit": "",
+      "side": "left",
+      "precision": 1,
+      "resolve": "shared"
+    }
+  },
+  "layers": [
+    {
+      "series": "primary",
+      "recipe": "line"
+    }
+  ],
+  "annotations": [],
+  "legend": "auto",
+  "tooltip": {
+    "columns": [
+      "value",
+      "validation"
+    ]
+  },
+  "presets": "standard",
+  "defaultPreset": "ALL"
+}

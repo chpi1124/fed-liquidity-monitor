@@ -95,10 +95,11 @@
   "fred": {
     "org": "Federal Reserve Bank of St. Louis (FRED)",
     "endpoints": [
-      "https://fred.stlouisfed.org/graph/fredgraph.csv"
+      "https://fred.stlouisfed.org/graph/fredgraph.csv",
+      "https://alfred.stlouisfed.org/graph/alfredgraph.csv"
     ],
     "cadence": "daily-varies",
-    "note": "多序列时逐条取回后按日期相加（官方分量合成口径，指标配置里声明 series 数组）",
+    "note": "多序列时逐条取回后按日期相加（官方分量合成口径，指标配置里声明 series 数组）；src.alfred 走 ALFRED vintage 端点",
     "usedBy": [
       "DFF",
       "IORB",
@@ -113,9 +114,10 @@
       "DFII10",
       "WRESBAL",
       "TLAACBW027NBOG",
-      "TLAACBW027SBOG"
+      "TLAACBW027SBOG",
+      "VIXCLS"
     ],
-    "indicatorCount": 9
+    "indicatorCount": 10
   },
   "hkex-factsheet": {
     "org": "HKEX (Hong Kong Exchanges and Clearing Limited)",
@@ -189,6 +191,18 @@
       "pbc-statement"
     ],
     "indicatorCount": 4
+  },
+  "thetrading": {
+    "org": "TheTrading.tools (redistribution of ICE BofA index closes)",
+    "endpoints": [
+      "https://www.thetrading.tools/data/indicators/"
+    ],
+    "cadence": "daily-close",
+    "note": "非官方转载源：ICE 官方需许可；值与公开行情页抽样互证后使用，绝不冒充 ICE 一手源",
+    "usedBy": [
+      "move-index"
+    ],
+    "indicatorCount": 1
   },
   "treasury-real": {
     "org": "U.S. Department of the Treasury",
