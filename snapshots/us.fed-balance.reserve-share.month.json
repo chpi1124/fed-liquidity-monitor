@@ -30,30 +30,30 @@
         "type": "inside"
       },
       {
-        "backgroundColor": "rgba(25,29,35,0.8)",
-        "borderColor": "#2a3039",
+        "backgroundColor": "rgba(255,255,255,0.8)",
+        "borderColor": "#d2d2d7",
         "bottom": 10,
         "dataBackground": {
           "areaStyle": {
-            "color": "rgba(58,66,77,0.3)"
+            "color": "rgba(174,174,178,0.3)"
           },
           "lineStyle": {
-            "color": "#3a424d"
+            "color": "#aeaeb2"
           }
         },
         "endValue": 287,
-        "fillerColor": "rgba(217,138,61,0.16)",
+        "fillerColor": "rgba(0,113,227,0.16)",
         "handleStyle": {
-          "borderColor": "#d98a3d",
-          "color": "#d98a3d"
+          "borderColor": "#0071e3",
+          "color": "#0071e3"
         },
         "height": 22,
         "moveHandleStyle": {
-          "color": "#3a424d"
+          "color": "#aeaeb2"
         },
         "startValue": 0,
         "textStyle": {
-          "color": "#98a3b0"
+          "color": "#6e6e73"
         },
         "type": "slider"
       }
@@ -358,12 +358,12 @@
           11.33
         ],
         "itemStyle": {
-          "borderColor": "#12151a",
+          "borderColor": "#ffffff",
           "borderWidth": 0,
-          "color": "#5a95cf"
+          "color": "#0066cc"
         },
         "lineStyle": {
-          "color": "#5a95cf",
+          "color": "#0066cc",
           "opacity": 1,
           "width": 1.6
         },
@@ -371,13 +371,13 @@
           "data": [
             {
               "label": {
-                "color": "#4fb58a",
+                "color": "#1d9e63",
                 "fontSize": 11,
                 "formatter": "充足 > 11%",
                 "position": "insideEndTop"
               },
               "lineStyle": {
-                "color": "#4fb58a",
+                "color": "#1d9e63",
                 "type": "dashed",
                 "width": 1
               },
@@ -385,13 +385,13 @@
             },
             {
               "label": {
-                "color": "#c9a24a",
+                "color": "#b9791f",
                 "fontSize": 11,
                 "formatter": "过剩 > 14%",
                 "position": "insideEndTop"
               },
               "lineStyle": {
-                "color": "#c9a24a",
+                "color": "#b9791f",
                 "type": "dashed",
                 "width": 1
               },
@@ -399,13 +399,13 @@
             },
             {
               "label": {
-                "color": "#98a3b0",
+                "color": "#6e6e73",
                 "fontSize": 11,
                 "formatter": "充足中枢 12.5%（11–14 中点 · 本站标注）",
                 "position": "insideEndTop"
               },
               "lineStyle": {
-                "color": "#98a3b0",
+                "color": "#6e6e73",
                 "type": "dashed",
                 "width": 1
               },
@@ -413,8 +413,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -428,7 +428,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -437,8 +437,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -452,7 +452,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -461,8 +461,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -476,7 +476,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -485,8 +485,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -500,7 +500,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -509,8 +509,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -524,7 +524,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -533,8 +533,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -548,7 +548,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -557,8 +557,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -572,7 +572,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -581,8 +581,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#d4686e",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#d0342c",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -596,7 +596,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#d4686e",
+                "color": "#d0342c",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -605,8 +605,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -620,7 +620,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -629,8 +629,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#d4686e",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#d0342c",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -644,7 +644,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#d4686e",
+                "color": "#d0342c",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -653,8 +653,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -668,7 +668,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -677,8 +677,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#d4686e",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#d0342c",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -692,7 +692,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#d4686e",
+                "color": "#d0342c",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -701,8 +701,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -716,7 +716,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -725,8 +725,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -740,7 +740,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -749,8 +749,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -764,7 +764,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -773,8 +773,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#d4686e",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#d0342c",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -788,7 +788,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#d4686e",
+                "color": "#d0342c",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -797,8 +797,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -812,7 +812,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -821,8 +821,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#d4686e",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#d0342c",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -836,7 +836,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#d4686e",
+                "color": "#d0342c",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -845,8 +845,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -860,7 +860,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -869,8 +869,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#d4686e",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#d0342c",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -884,7 +884,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#d4686e",
+                "color": "#d0342c",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -893,8 +893,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -908,7 +908,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -917,8 +917,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#d4686e",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#d0342c",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -932,7 +932,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#d4686e",
+                "color": "#d0342c",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -941,8 +941,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -956,7 +956,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -965,8 +965,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#d4686e",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#d0342c",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -980,7 +980,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#d4686e",
+                "color": "#d0342c",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -989,8 +989,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -1004,7 +1004,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -1013,8 +1013,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -1028,7 +1028,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -1037,8 +1037,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#c9a24a",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#b9791f",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -1052,7 +1052,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#c9a24a",
+                "color": "#b9791f",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -1061,8 +1061,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -1076,7 +1076,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -1085,8 +1085,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -1100,7 +1100,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -1109,8 +1109,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#4fb58a",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#1d9e63",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -1124,7 +1124,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#4fb58a",
+                "color": "#1d9e63",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -1133,8 +1133,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#4fb58a",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#1d9e63",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -1148,7 +1148,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#4fb58a",
+                "color": "#1d9e63",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -1157,8 +1157,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#4fb58a",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#1d9e63",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -1172,7 +1172,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#4fb58a",
+                "color": "#1d9e63",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -1181,8 +1181,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -1196,7 +1196,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -1205,8 +1205,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -1220,7 +1220,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -1229,8 +1229,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#4fb58a",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#1d9e63",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -1244,7 +1244,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#4fb58a",
+                "color": "#1d9e63",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -1253,8 +1253,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -1268,7 +1268,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -1277,8 +1277,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -1292,7 +1292,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -1301,8 +1301,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -1316,7 +1316,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -1325,8 +1325,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -1340,7 +1340,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -1349,8 +1349,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -1364,7 +1364,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -1373,8 +1373,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -1388,7 +1388,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -1397,8 +1397,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -1412,7 +1412,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -1421,8 +1421,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -1436,7 +1436,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -1445,8 +1445,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -1460,7 +1460,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -1469,8 +1469,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -1484,7 +1484,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -1493,8 +1493,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -1508,7 +1508,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -1517,8 +1517,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -1532,7 +1532,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -1541,8 +1541,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -1556,7 +1556,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -1565,8 +1565,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#c9a24a",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#b9791f",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -1580,7 +1580,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#c9a24a",
+                "color": "#b9791f",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -1589,8 +1589,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -1604,7 +1604,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -1613,8 +1613,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -1628,7 +1628,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -1637,8 +1637,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#d4686e",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#d0342c",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -1652,7 +1652,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#d4686e",
+                "color": "#d0342c",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -1661,8 +1661,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#c9a24a",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#b9791f",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -1676,7 +1676,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#c9a24a",
+                "color": "#b9791f",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -1685,8 +1685,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#d4686e",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#d0342c",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -1700,7 +1700,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#d4686e",
+                "color": "#d0342c",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -1709,8 +1709,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#c9a24a",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#b9791f",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -1724,7 +1724,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#c9a24a",
+                "color": "#b9791f",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -1733,8 +1733,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#d4686e",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#d0342c",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -1748,7 +1748,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#d4686e",
+                "color": "#d0342c",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -1757,8 +1757,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#d4686e",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#d0342c",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -1772,7 +1772,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#d4686e",
+                "color": "#d0342c",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -1781,8 +1781,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#d4686e",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#d0342c",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -1796,7 +1796,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#d4686e",
+                "color": "#d0342c",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -1805,8 +1805,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#d4686e",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#d0342c",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -1820,7 +1820,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#d4686e",
+                "color": "#d0342c",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -1829,8 +1829,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#d4686e",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#d0342c",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -1844,7 +1844,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#d4686e",
+                "color": "#d0342c",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -1853,8 +1853,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#d4686e",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#d0342c",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -1868,7 +1868,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#d4686e",
+                "color": "#d0342c",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -1877,8 +1877,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#d4686e",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#d0342c",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -1892,7 +1892,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#d4686e",
+                "color": "#d0342c",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -1901,8 +1901,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#d4686e",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#d0342c",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -1916,7 +1916,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#d4686e",
+                "color": "#d0342c",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -1925,8 +1925,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -1940,7 +1940,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -1949,8 +1949,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#d4686e",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#d0342c",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -1964,7 +1964,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#d4686e",
+                "color": "#d0342c",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -1973,8 +1973,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -1988,7 +1988,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -1997,8 +1997,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -2012,7 +2012,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -2021,8 +2021,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -2036,7 +2036,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -2045,8 +2045,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -2060,7 +2060,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -2069,8 +2069,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -2084,7 +2084,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -2093,8 +2093,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -2108,7 +2108,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -2117,8 +2117,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -2132,7 +2132,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -2141,8 +2141,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -2156,7 +2156,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -2165,8 +2165,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#4fb58a",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#1d9e63",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -2180,7 +2180,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#4fb58a",
+                "color": "#1d9e63",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -2189,8 +2189,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#4fb58a",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#1d9e63",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -2204,7 +2204,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#4fb58a",
+                "color": "#1d9e63",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -2213,8 +2213,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#4fb58a",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#1d9e63",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -2228,7 +2228,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#4fb58a",
+                "color": "#1d9e63",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -2237,8 +2237,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -2252,7 +2252,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -2261,8 +2261,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -2276,7 +2276,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -2285,8 +2285,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -2300,7 +2300,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -2309,8 +2309,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -2324,7 +2324,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -2333,8 +2333,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -2348,7 +2348,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -2357,8 +2357,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#4fb58a",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#1d9e63",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -2372,7 +2372,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#4fb58a",
+                "color": "#1d9e63",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -2381,8 +2381,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#4fb58a",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#1d9e63",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -2396,7 +2396,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#4fb58a",
+                "color": "#1d9e63",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -2405,8 +2405,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#4fb58a",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#1d9e63",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -2420,7 +2420,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#4fb58a",
+                "color": "#1d9e63",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -2429,8 +2429,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -2444,7 +2444,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -2453,8 +2453,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -2468,7 +2468,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -2477,8 +2477,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -2492,7 +2492,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -2501,8 +2501,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -2516,7 +2516,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -2525,8 +2525,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -2540,7 +2540,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -2549,8 +2549,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#d4686e",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#d0342c",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 700,
@@ -2564,7 +2564,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#d4686e",
+                "color": "#d0342c",
                 "opacity": 0.9,
                 "type": "dashed",
                 "width": 1.4
@@ -2573,8 +2573,8 @@
             },
             {
               "label": {
-                "backgroundColor": "rgba(25,29,35,0.72)",
-                "color": "#7c8896",
+                "backgroundColor": "rgba(255,255,255,0.72)",
+                "color": "#6e6e73",
                 "distance": 4,
                 "fontSize": 10,
                 "fontWeight": 400,
@@ -2588,7 +2588,7 @@
                 "show": true
               },
               "lineStyle": {
-                "color": "#7c8896",
+                "color": "#6e6e73",
                 "opacity": 0.5,
                 "type": "dashed",
                 "width": 1
@@ -2610,27 +2610,27 @@
     "tooltip": {
       "axisPointer": {
         "label": {
-          "backgroundColor": "#21262e"
+          "backgroundColor": "#f5f5f7"
         },
         "type": "cross"
       },
-      "backgroundColor": "rgba(25,29,35,0.94)",
-      "borderColor": "#2a3039",
+      "backgroundColor": "rgba(255,255,255,0.94)",
+      "borderColor": "#d2d2d7",
       "formatter": "[fn]",
       "hasPolicy": true,
       "textStyle": {
-        "color": "#f2f4f7",
+        "color": "#1d1d1f",
         "fontSize": 12
       },
       "trigger": "axis"
     },
     "xAxis": {
       "axisLabel": {
-        "color": "#98a3b0"
+        "color": "#6e6e73"
       },
       "axisLine": {
         "lineStyle": {
-          "color": "#2a3039"
+          "color": "#d2d2d7"
         }
       },
       "data": [
@@ -2928,7 +2928,7 @@
     "yAxis": [
       {
         "axisLabel": {
-          "color": "#98a3b0",
+          "color": "#6e6e73",
           "formatter": "[fn]"
         },
         "axisLine": {
@@ -2937,7 +2937,7 @@
         "inverse": false,
         "name": "准备金/银行资产 %",
         "nameTextStyle": {
-          "color": "#98a3b0",
+          "color": "#6e6e73",
           "fontSize": 11
         },
         "offset": 0,
@@ -2945,7 +2945,7 @@
         "scale": true,
         "splitLine": {
           "lineStyle": {
-            "color": "rgba(42,48,57,0.6)"
+            "color": "rgba(210,210,215,0.6)"
           }
         },
         "type": "value"
