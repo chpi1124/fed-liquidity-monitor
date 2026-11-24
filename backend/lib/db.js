@@ -11,7 +11,7 @@ import { DatabaseSync } from "node:sqlite";
 import { DATA_DIR } from "./paths.js";
 
 const DB_FILE = path.join(DATA_DIR, "monitor.db");
-export const SCHEMA_VERSION = 1;
+export const SCHEMA_VERSION = 2;
 export const STAGES = ["plan", "fetch", "validate", "correct", "commit"];
 export const RUN_STATUSES = ["ok", "degraded", "failed"];
 export const STAGE_STATUSES = ["ok", "skipped", "degraded", "failed"];
@@ -100,7 +100,8 @@ CREATE TABLE IF NOT EXISTS series_head (
   updated_at TEXT NOT NULL,
   points INTEGER NOT NULL,
   validation_json TEXT NOT NULL,
-  integrity_json TEXT NOT NULL
+  integrity_json TEXT NOT NULL,
+  legs_json TEXT
 );
 
 -- 政策事件（加息/降息/按由不动/缩表/扩表）：一行一次官方动作，URL 即证据，NOT NULL 使无据事件写不进来
@@ -163,7 +164,18 @@ function open() {
       throw e;
     }
   } else if (Number(row.value) !== SCHEMA_VERSION) {
-    throw new Error(`D-4 违例：库内 schema_version=${row.value}，代码要求 ${SCHEMA_VERSION}；迁移只向前，请补迁移脚本而不是放宽断言`);
+    const v = Number(row.value);
+    if (v > SCHEMA_VERSION) throw new Error(`D-4 违例：库内 schema_version=${v}，代码要求 ${SCHEMA_VERSION}；库比代码新属异常环境，拒绝启动`);
+    // 迁移只向前：v1→v2 = series_head 增加 legs_json（派生比值指标的分子/分母腿实数快照）
+    handle.exec("BEGIN");
+    try {
+      if (v < 2) handle.exec("ALTER TABLE series_head ADD COLUMN legs_json TEXT;");
+      handle.prepare("UPDATE meta SET value = ? WHERE key = 'schema_version'").run(String(SCHEMA_VERSION));
+      handle.exec("COMMIT");
+    } catch (e) {
+      handle.exec("ROLLBACK");
+      throw e;
+    }
   }
   return handle;
 }
@@ -304,8 +316,8 @@ export function commitRun({ cfg, data, plan, usage, stages, startedAt, status, e
       },
     };
     h.prepare(
-      "INSERT OR REPLACE INTO series_head(indicator_id, updated_at, points, validation_json, integrity_json) VALUES(?,?,?,?,?)"
-    ).run(cfg.id, data.updatedAt, lifetime.n, JSON.stringify(validation), JSON.stringify(data.integrity || {}));
+      "INSERT OR REPLACE INTO series_head(indicator_id, updated_at, points, validation_json, integrity_json, legs_json) VALUES(?,?,?,?,?,?)"
+    ).run(cfg.id, data.updatedAt, lifetime.n, JSON.stringify(validation), JSON.stringify(data.integrity || {}), data.legs ? JSON.stringify(data.legs) : null);
 
     h.prepare(
       "INSERT INTO run_stat(run_id, indicator_id, checked, matched, mismatched, corrected, unchecked, verdict, flags_json) VALUES(?,?,?,?,?,?,?,?,?)"
@@ -362,6 +374,7 @@ export function readSeries(id) {
   return {
     updatedAt: head.updated_at,
     points,
+    ...(head.legs_json ? { legs: JSON.parse(head.legs_json) } : {}),
     validation: JSON.parse(head.validation_json),
     pointsTotal: head.points,
     integrity: JSON.parse(head.integrity_json),

@@ -117,6 +117,7 @@ function layerFromIndicator(cfg, granularity, read = store.read) {
     invert: !!cfg.invert,
     freq: cfg.freq || "day",
     updatedAt: d.updatedAt,
+    legs: d.legs || null,
     latest: rows[rows.length - 1] || null,
     values: rows.map((p) => (isDay ? p.v : p.c)),
     ohlc: isDay ? null : rows.map((p) => [p.o, p.c, p.l, p.h]),
@@ -442,6 +443,7 @@ export function buildPanel(specId, params, specsArg, read = store.read) {
       meta: b.layer.meta,
       validation: b.layer.validation,
       integrity: b.layer.integrity,
+      legs: b.layer.legs ?? null,
       updatedAt: b.layer.updatedAt,
       latest: b.layer.latest,
     };

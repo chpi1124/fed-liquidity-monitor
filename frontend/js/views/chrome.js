@@ -1,7 +1,7 @@
 import { h, mount } from "../core/dom.js";
 import * as ui from "../ui/index.js";
 import * as store from "../core/store.js";
-import { fmtPoint, publicationLine, validationNote, zoneOf } from "../core/derive.js";
+import { fmtPoint, fmtLeg, publicationLine, validationNote, zoneOf } from "../core/derive.js";
 
 function panelOf(s) {
   return (s.payload?.views || []).find((v) => v.projection === "panel");
@@ -184,7 +184,12 @@ export function descText(s) {
   const sheet = sheetOf(s);
   const sheetNote = sheet ? ` 本期为 ${sheet.asOf}（周三）水平，环比对照 ${sheet.prevDate}，同比对照 ${sheet.yearAgoDate}；H.4.1 每周四发布。` : "";
   const overlays = (ds.layers || []).length > 1 ? ` 当前叠加 ${ds.layers.length} 条序列（同轴 ${ds.limits?.sharedMax || 0} 条内为直接比较，异轴只用于看相关性）。` : "";
-  return [brief ? `${brief}。` : "", anchor?.meta?.description || "", pub, sheetNote, lag, overlays, (ds.layers || []).map((l) => l.meta?.description).filter(Boolean).join(" ")].filter(Boolean).join(" ");
+  // 分子/分母腿实数（后端快照，前端只展示不重算）：让「比值是多少」背后「分子分母各是多少」同屏可查
+  const legsLine = (ds.layers || [])
+    .filter((l) => l.legs?.length)
+    .map((l) => `${l.legs.map((L) => `${L.label}（${L.series}）${fmtLeg(L.latest, L.unit)}，截至 ${L.asOf}`).join("；")}`)
+    .join("　·　");
+  return [legsLine ? `${legsLine}。` : "", brief ? `${brief}。` : "", anchor?.meta?.description || "", pub, sheetNote, lag, overlays, (ds.layers || []).map((l) => l.meta?.description).filter(Boolean).join(" ")].filter(Boolean).join(" ");
 }
 
 export const descView = {

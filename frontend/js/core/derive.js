@@ -65,6 +65,15 @@ export const fmtPoint = (cfg, v) => {
 export const fmtTrillion = (v) => (v == null ? "—" : (v / 1e6).toFixed(3));
 export const fmtYi = (wc) => (wc == null ? "—" : (wc / 100).toFixed(1));
 
+// 派生比值指标分子/分母腿的实数展示：单位→万亿换算与 fmtTrillion 同一把尺子（本文件是换算唯一 owner）。
+// 未声明单位或未知单位时只报原值，绝不猜口径。
+export function fmtLeg(v, unit) {
+  if (v == null) return "—";
+  const div = unit === "百万美元" ? 1e6 : unit === "十亿美元" ? 1e3 : null;
+  const num = new Intl.NumberFormat("en-US", { maximumFractionDigits: 1 }).format(v);
+  return div ? `${num} ${unit}（${(v / div).toFixed(3)} 万亿）` : `${num} ${unit ?? ""}`.trimEnd();
+}
+
 // 导航提示的换算与措辞唯一 owner：后端只回 {kind, value, note}（数据），这里决定怎么说
 export function hintText(h) {
   if (!h) return "";

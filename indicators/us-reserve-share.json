@@ -20,6 +20,7 @@
     {
       "key": "wres",
       "label": "准备金余额",
+      "unit": "百万美元",
       "primary": {
         "provider": "fred",
         "series": "WRESBAL"
@@ -28,6 +29,7 @@
     {
       "key": "assets",
       "label": "商业银行总资产",
+      "unit": "十亿美元",
       "primary": {
         "provider": "fred",
         "series": "TLAACBW027NBOG"

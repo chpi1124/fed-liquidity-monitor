@@ -246,9 +246,27 @@ export async function updateIndicator(cfg, { force = false, prev = null } = {}) 
   });
   integrity.counts.corrected = corrected;
   if (corrected) integrity.notes.push(`依校验源改值 ${corrected} 点（逐点留有改前/改后/依据）`);
+  // 分子/分母腿最新实数快照：展示层只读这份快照，不自行重算（派生口径唯一 owner 是本函数）。
+  // 结构化腿（对象值，如回购分桶）没有单一实数，如实跳过。
+  const legsMeta = (cfg.legs || [])
+    .map((leg, i) => {
+      const src = legs[i]?.primary;
+      if (!src?.size) return null;
+      let asOf = null, latest = null;
+      for (const [d, x] of src) {
+        if (typeof x === "number" && !Number.isNaN(x)) {
+          asOf = d;
+          latest = x;
+        }
+      }
+      if (asOf == null) return null;
+      return { key: leg.key, label: leg.label, series: leg.primary.series || leg.primary.id || null, unit: leg.unit || null, latest, asOf };
+    })
+    .filter(Boolean);
   const out = {
     updatedAt: new Date().toISOString(),
     points,
+    ...(legsMeta.length ? { legs: legsMeta } : {}),
     validation: {
       checked,
       matched,
