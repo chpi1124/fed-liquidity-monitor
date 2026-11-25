@@ -112,6 +112,10 @@
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
 }
+/* 日期参数栏：每个图表面板左上方一份，全部复用同一组件与同一份样式。
+   两段控件间距与面板内边距都走 4pt 栅格令牌，不在此写死数值。 */
+.date-range { display: flex; gap: var(--sp-12); align-items: center; flex-wrap: wrap; padding: var(--sp-12) var(--sp-12) 0; }
+.date-range:empty { display: none; }
 
 .empty { display: flex; gap: var(--sp-12); align-items: center; color: var(--muted); font: var(--t-13) var(--font-body); }
 .empty__pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }

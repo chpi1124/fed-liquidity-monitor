@@ -1,7 +1,7 @@
-import { h } from "../core/dom.js";
+import { h, mount } from "../core/dom.js";
 import * as panels from "../core/chart-panel.js";
 import * as store from "../core/store.js";
-import { EmptyState } from "../ui/index.js";
+import { EmptyState, DateRange } from "../ui/index.js";
 
 // 图例事件 → store：渲染层不认识选中状态，只把「哪条被关掉」交回唯一状态源
 function relayLegend(container) {
@@ -29,13 +29,27 @@ export const panelView = {
   },
 
   build(view) {
+    // 日期参数槽在每个图表面板左上方：同一组件、同一全局状态，所有面板复用（SSOT）
+    const dates = h("div", { class: "date-range" });
     const chart = h("div", { class: `chart${view.size ? ` chart--${view.size}` : ""}`, id: view.container });
     const empty = h("div", { class: "chart-empty", hidden: true });
-    return { root: h("section", { class: "panel chart-panel" }, chart, empty), chart, empty, keys: {}, attached: false };
+    return { root: h("section", { class: "panel chart-panel" }, dates, chart, empty), dates, chart, empty, keys: {}, attached: false };
   },
 
   update(built, view, s) {
     const ds = view.ds;
+    // 日期控件只认全局状态 + 该面板下发的选项，不含页面判断；空态也照常显示控件
+    mount(
+      built.dates,
+      DateRange({
+        granularity: s.granularity,
+        granularities: store.granularitiesOf(),
+        preset: s.preset,
+        presets: ds?.presets || [],
+        onGranularity: store.setGranularity,
+        onPreset: store.setPreset,
+      })
+    );
     if (!ds || ds.error || !ds.layers?.some((l) => l.values?.length || l.ohlc?.length)) {
       built.chart.hidden = true;
       built.empty.hidden = false;

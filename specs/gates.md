@@ -34,3 +34,4 @@
 | G26 | 区间参数单一 owner（presets.json） | 见 tools/gates.mjs 对应实现 |
 | G27 | 图幅样式单一 owner（tokens.css） | 见 tools/gates.mjs 对应实现 |
 | G28 | 滚动容器锁定视口（全屏裁切同类根治） | 见 tools/gates.mjs 对应实现 |
+| G29 | 日期参数单一 owner（每面板左上角） | 见 tools/gates.mjs 对应实现 |

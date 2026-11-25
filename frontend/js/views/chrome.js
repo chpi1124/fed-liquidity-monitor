@@ -86,16 +86,8 @@ export const toolbarView = {
     const p = panelOf(s);
     const ds = p?.ds;
     const kids = [];
-    if (view.granularity) {
-      kids.push(
-        ui.Segmented({
-          label: "时间粒度",
-          value: s.granularity,
-          onChange: store.setGranularity,
-          options: (store.granularitiesOf() || []).map((g) => ({ value: g.id, label: g.label })),
-        })
-      );
-    }
+    // 日期参数（粒度 + 区间）已收敛到每个图表面板左上方的 DateRange 组件，
+    // toolbar 不再重复渲染 —— 单一 owner，避免两处控件状态不同步。
     if (ds?.viewGroups?.length) {
       // 两级互斥视图：顶层选组，组内再选看法。组由 spec 声明，这里只按契约渲染，不认具体页面。
       const active = ds.viewGroups.find((g) => (g.modes || []).includes(ds.view)) || ds.viewGroups[0];
@@ -132,16 +124,6 @@ export const toolbarView = {
           value: ds.view,
           onChange: store.setView,
           options: ds.viewModes.map((m) => ({ value: m.id, label: m.label, title: m.title })),
-        })
-      );
-    }
-    if (ds?.presets?.length) {
-      kids.push(
-        ui.Segmented({
-          label: "区间定位",
-          value: s.preset,
-          onChange: store.setPreset,
-          options: ds.presets.map((x) => ({ value: x.id, label: x.label, title: x.title })),
         })
       );
     }

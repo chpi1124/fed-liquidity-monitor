@@ -1048,6 +1048,30 @@ gate("G28", "滚动容器锁定视口（全屏裁切同类根治）", () => {
   };
 });
 
+// 日期参数（粒度 + 区间）单一 owner：组件唯一、每个面板都有槽、toolbar 不得重复渲染。
+gate("G29", "日期参数单一 owner（每面板左上角）", () => {
+  const fails = [];
+  const cmp = read("frontend/js/ui/DateRange.js") || "";
+  const idx = read("frontend/js/ui/index.js") || "";
+  const panel = read("frontend/js/views/panel.js") || "";
+  const chrome = read("frontend/js/views/chrome.js") || "";
+  const css = read("frontend/css/components.css") || "";
+  if (!/\bexport\s+function\s+DateRange\b/.test(cmp)) fails.push("DateRange 组件不存在");
+  if (!/export\s*\{\s*DateRange\s*\}/.test(idx)) fails.push("ui/index.js 未导出 DateRange");
+  // 槽必须在 build 里创建、update 里用同一组件填充
+  if (!/class:\s*["']date-range["']/.test(panel)) fails.push("panelView.build 缺 date-range 槽");
+  if (!/DateRange\(\{/.test(panel)) fails.push("panelView.update 未使用 DateRange 组件");
+  // toolbar 不得再自己渲染这两组控件（重复 owner）
+  if (/label:\s*["']时间粒度["']/.test(chrome)) fails.push("toolbar 仍重复渲染时间粒度");
+  if (/label:\s*["']区间定位["']/.test(chrome)) fails.push("toolbar 仍重复渲染区间定位");
+  // 样式必须只有一处定义
+  if (!/^\.date-range\s*\{/m.test(css)) fails.push("components.css 缺 .date-range 样式");
+  return {
+    ok: !fails.length,
+    detail: fails.join("; ") || "DateRange 组件唯一；每个面板左上角复用；toolbar 无重复控件",
+  };
+});
+
 // ---------- 执行 ----------
 const results = [];
 for (const g of gates) {

@@ -1,5 +1,6 @@
 export { Button } from "./Button.js";
 export { Segmented } from "./Segmented.js";
+export { DateRange } from "./DateRange.js";
 export { Badge } from "./Badge.js";
 export { Sparkline } from "./Sparkline.js";
 export { RateTile } from "./RateTile.js";
