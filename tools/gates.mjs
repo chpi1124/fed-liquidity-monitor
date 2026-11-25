@@ -550,7 +550,9 @@ const FONT = new Set([11, 13, 15, 17, 21, 28, 40]);
 const RADIUS = new Set([4, 6, 8, 12, 16, 20, 999]);
 function offGridPx(cssText) {
   const out = [];
-  for (const m of cssText.matchAll(/([a-z-]+)\s*:\s*([^;{}]+)/g)) {
+  // 媒体查询断点是响应式条件，不是组件样式尺寸；不应计入栅格棘轮。
+  const body = cssText.replace(/@media[^{]+\{/g, (s) => " ".repeat(s.length));
+  for (const m of body.matchAll(/([a-z-]+)\s*:\s*([^;{}]+)/g)) {
     const [, prop, val] = m;
     if (/var\(--(sp|r|t)[\w-]*\)/.test(val)) continue;
     if (!/^(font-size|padding|padding-\w+|margin|margin-\w+|gap|width|height|min-width|max-width|min-height|border-radius|left|right|top|bottom|inset-inline-\w+)$/.test(prop)) continue;
@@ -935,6 +937,87 @@ gate("G7", "端到端实测（浏览器判据）", () => {
   if (!overlay || overlay.seriesAfter <= overlay.seriesBefore) fails.push("没有「多参数叠加」的实测证据（series 数须因叠加而增加）");
   if (ageDays > 3) fails.push("判据已过期 " + ageDays.toFixed(1) + " 天（>3 天须重跑）");
   return { ok: !fails.length, detail: fails.join("; ") || (ev.cases || []).length + " 个用例实跑出图（" + painted + " 张画布有尺寸），叠加后 series 由 " + overlay.seriesBefore + " 增至 " + overlay.seriesAfter + "，控制台 0 错误；判据 " + ageDays.toFixed(2) + " 天前" };
+});
+
+gate("G26", "区间参数单一 owner（presets.json）", () => {
+  const fails = [];
+  // 预设 id / 天数 / 粒度枚举只允许在 charts/presets.json 声明；JS 里出现即为第二份副本
+  const PATTERNS = [
+    [/\b(?:2W|1M|3M|6M|1Y|3Y|5Y|10Y|ALL)\b/, "预设 id 字面量"],
+    [/\bdays\s*:\s*\d+/, "区间天数定义"],
+    [/\[\s*["']day["']\s*,\s*["']week["']\s*,\s*["']month["']\s*\]/, "粒度枚举副本"],
+  ];
+  // provider 里的 "1Y"（LPR 期限）、"100"（CDS 票息）等是业务参数，不是区间预设；
+  // 区间语义只存在于装配层（backend/lib、frontend/js/core、frontend/js/views、frontend/js/ui）。
+  const scope = JS_SRC().filter((f) => /^backend\/lib\//.test(f) || /^backend\/server\.js$/.test(f) || /^frontend\/js\//.test(f));
+  for (const f of scope) {
+    const src = read(f);
+    if (!src) continue;
+    // 去掉注释与字符串后检查？注释里出现不算产物；这里只查代码行（去行注释）
+    const code = src.split("\n").filter((ln) => !/^\s*(\/\/|\*|\/\*)/.test(ln)).join("\n");
+    for (const [re, label] of PATTERNS) if (re.test(code)) fails.push(`${f} 出现${label}`);
+  }
+  // owner 自身：id 唯一 + 每个条目必须有 days（ALL 允许 null）
+  const presets = JSON.parse(read("charts/presets.json"));
+  for (const key of ["standard", "long"]) {
+    const ids = (presets[key] || []).map((p) => p.id);
+    if (new Set(ids).size !== ids.length) fails.push(`presets.json ${key} 存在重复 id`);
+  }
+  if (!presets.defaults?.preset || !presets.defaults?.granularity) fails.push("presets.json 缺 defaults.preset/granularity 唯一默认声明");
+  if (!(presets.granularities || []).length) fails.push("presets.json 缺 granularities 注册表");
+  // 装配点必须复用唯一判定函数
+  if (/\]\s*\.includes\(params\.granularity\)/.test(read("backend/lib/panels.js") || "")) fails.push("panels.js 仍有本地粒度白名单副本");
+  if (/spec\.defaultPreset\s*\|\|\s*["']/.test(read("backend/lib/panels.js") || "")) fails.push("panels.js 仍有本地 defaultPreset 回退副本");
+  return {
+    ok: !fails.length,
+    detail: fails.join("; ") || "区间 id/天数/粒度枚举只在 charts/presets.json 声明；前后端共用 defaultPresetOf/normalizeGranularity；owner 内 id 唯一",
+  };
+});
+
+gate("G27", "图幅样式单一 owner（tokens.css）", () => {
+  const fails = [];
+  const tokens = read("frontend/css/tokens.css") || "";
+  const layout = read("frontend/css/layout.css") || "";
+  // 图幅高度令牌只在 tokens.css 定义；layout.css 只能消费 var()，不得再赋值
+  for (const t of ["chart-h", "chart-h-mid", "chart-h-compact"]) {
+    const defs = (tokens.match(new RegExp(`--${t}\\s*:`, "g")) || []).length;
+    if (defs < 1) fails.push(`tokens.css 缺 --${t} 定义`);
+    // layout.css 里 `--chart-h: var(--chart-h-compact)` 是 size 类的转发映射，不是第二份样式事实；
+    // 只有赋予具体尺寸值（px/clamp/dvh）才算重复 owner。逐声明解析，避免子串误命中。
+    const decls = [...layout.matchAll(new RegExp(`--${t}\\s*:\\s*([^;]+);`, "g"))].map((m) => m[1].trim());
+    if (decls.some((v) => !/^var\(/.test(v))) fails.push(`layout.css 重复定义 --${t} 的具体值（应只在 tokens.css 声明）`);
+  }
+  // 渲染核不得出现裸样式数字（须走 theme 令牌）
+  for (const f of ["frontend/js/core/chart-option.js", "frontend/js/core/chart-types.js"]) {
+    const src = read(f) || "";
+    for (const [re, label] of [
+      [/fontSize\s*:\s*\d/, "fontSize 字面量"],
+      [/itemGap\s*:\s*\d/, "itemGap 字面量"],
+      [/borderWidth\s*:\s*1\.6/, "描边宽度字面量"],
+      [/barWidth\s*:\s*\d/, "柱宽字面量"],
+      [/barMinHeight\s*:\s*\d/, "柱高下限字面量"],
+    ]) if (re.test(src)) fails.push(`${f} 仍有${label}`);
+  }
+  // spec 的 $token 引用必须都能在 tokens.css 找到定义
+  for (const f of walk("charts", /\.json$/)) {
+    const src = read(f) || "";
+    for (const m of src.matchAll(/\$([a-z][\w-]*)/g)) {
+      if (!new RegExp(`--${m[1]}\\s*:`).test(tokens)) fails.push(`${f} 引用不存在的令牌 --${m[1]}`);
+    }
+    // size 枚举只能是 CSS 已实现的 class
+    for (const m of src.matchAll(/"size"\s*:\s*"([^"]+)"/g)) {
+      if (!new RegExp(`\\.chart--${m[1]}\\b`).test(layout)) fails.push(`${f} 的 size "${m[1]}" 无对应 CSS class`);
+    }
+  }
+  // theme.js 消费的 chart 令牌都必须存在
+  const theme = read("frontend/js/core/theme.js") || "";
+  for (const m of theme.matchAll(/num\("([\w-]+)"\)/g)) {
+    if (!new RegExp(`--${m[1]}\\s*:`).test(tokens)) fails.push(`theme.js 读取的 --${m[1]} 未在 tokens.css 定义`);
+  }
+  return {
+    ok: !fails.length,
+    detail: fails.join("; ") || "图幅高度/字号/线宽/柱宽只在 tokens.css 声明；渲染核零裸样式字面量；spec 的 $token 与 size 均可解析",
+  };
 });
 
 // ---------- 执行 ----------

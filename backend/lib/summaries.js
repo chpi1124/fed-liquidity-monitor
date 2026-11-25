@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { SUMMARIES_DIR } from "./paths.js";
 import { getSeries } from "./cache.js";
+import { strategyOf } from "../providers/registry.js";
 import { historyStartOf, providerOf } from "./asset.js";
 import { loadIndicators, zoneOf } from "./indicators.js";
 import { thresholdsFor } from "./integrity.js";
@@ -164,7 +165,19 @@ export async function updateSummary(cfg, { force = false } = {}) {
         }
         return out.sort((a, b) => (a.d < b.d ? -1 : 1));
       };
-      const te = entriesFor(thisWeek), le = entriesFor(lastWeek);
+      // 快照型源（如 ICE 官方清算结算价）只返回最近清算日单点，没有可与锚定报表对齐的历史窗口；
+      // 若硬套锚定报表的周窗口，快照日必落在窗口外变成空值。按自身最新观测日锚定本周，
+      // 上周留空不伪造历史 —— 这是所有 snapshot-only 源的通用路径，不是为某一行打补丁。
+      let te, le;
+      if (strategyOf(row.primary.provider)?.strategy === "snapshot-only") {
+        const dates = [...primary.keys()].sort();
+        const latest = dates.at(-1);
+        te = latest ? entriesFor({ start: latest, end: latest }) : [];
+        le = [];
+      } else {
+        te = entriesFor(thisWeek);
+        le = entriesFor(lastWeek);
+      }
       finish(aggregate(te, row.agg), aggregate(le, row.agg), worstOk(te.map((e) => e.ok)));
       if (row.proxy) base.status = "single-source";
       if (row.aggExtra === "min") base.extra = { min: round(aggregate(te, "min") * scale, precision), minLast: round(aggregate(le, "min") * scale, precision) };

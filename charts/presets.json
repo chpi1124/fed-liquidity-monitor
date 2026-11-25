@@ -1,4 +1,13 @@
 {
+  "granularities": [
+    { "id": "day", "label": "日" },
+    { "id": "week", "label": "周" },
+    { "id": "month", "label": "月" }
+  ],
+  "defaults": {
+    "granularity": "day",
+    "preset": "ALL"
+  },
   "standard": [
     { "id": "2W", "label": "近两周", "days": 14, "title": "一键定位最近两周" },
     { "id": "1M", "label": "1M", "days": 30 },
@@ -8,10 +17,10 @@
     { "id": "ALL", "label": "全部", "days": null }
   ],
   "long": [
-    { "id": "1Y", "label": "1Y", "days": 365 },
+    { "id": "1Y" },
     { "id": "3Y", "label": "3Y", "days": 1095 },
     { "id": "5Y", "label": "5Y", "days": 1825 },
     { "id": "10Y", "label": "10Y", "days": 3650 },
-    { "id": "ALL", "label": "全部", "days": null, "title": "2002 年至今全部周度数据" }
+    { "id": "ALL", "title": "2002 年至今全部周度数据" }
   ]
 }

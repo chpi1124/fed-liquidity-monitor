@@ -91,7 +91,7 @@
     {
       "series": "overlay",
       "style": {
-        "width": 1.2,
+        "width": "$chart-line-width-strong",
         "opacity": 0.82,
         "connect": true
       }

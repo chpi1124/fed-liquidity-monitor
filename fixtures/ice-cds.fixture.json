@@ -1,0 +1,23 @@
+{
+  "id": "ice-cds",
+  "org": "ICE Clear Credit (official public 5Y single-name CDS settlement prices)",
+  "cadence": "daily-close",
+  "incremental": "snapshot-only",
+  "requested": {
+    "src": {
+      "code": "ALPHINC",
+      "coupon": "100"
+    },
+    "start": "2026-11-15",
+    "end": "2026-11-25"
+  },
+  "rows": 1,
+  "bytes": 25,
+  "at": "2026-11-25T09:50:01.430Z",
+  "payload": [
+    [
+      "2026-11-24",
+      100.2222
+    ]
+  ]
+}

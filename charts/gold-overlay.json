@@ -72,7 +72,7 @@
           "style": {
             "showSymbol": true,
             "symbol": "rect",
-            "symbolSize": 6,
+            "symbolSize": "$chart-symbol-size-small",
             "connect": true
           }
         },
@@ -89,7 +89,7 @@
             "id": "gold-uk-flow"
           },
           "style": {
-            "barWidth": 4
+            "barWidth": "$chart-bar-width-thin"
           }
         }
       ]

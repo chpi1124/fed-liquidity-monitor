@@ -48,7 +48,36 @@ export function loadRegions() {
 export function loadPresets() {
   const fp = path.join(CHARTS_DIR, "presets.json");
   if (!fs.existsSync(fp)) throw new Error("charts/presets.json 缺失：区间预设必须集中声明，不得散写在前端");
-  return JSON.parse(fs.readFileSync(fp, "utf8"));
+  const raw = JSON.parse(fs.readFileSync(fp, "utf8"));
+  // 继承：long 里只给 id 的条目从 standard 取回 label/days，同一预设的事实只有一个 owner。
+  const byId = new Map((raw.standard || []).map((p) => [p.id, p]));
+  const resolve = (list) => (list || []).map((p) => {
+    const base = byId.get(p.id) || {};
+    return { ...base, ...p };
+  });
+  const presets = { ...raw, standard: resolve(raw.standard), long: resolve(raw.long) };
+  // 校验 id 全局唯一且 days 有值（ALL 允许 null = 全部）
+  for (const key of ["standard", "long"]) {
+    const seen = new Set();
+    for (const p of presets[key]) {
+      if (seen.has(p.id)) throw new Error(`presets.json ${key} 存在重复 id ${p.id}`);
+      seen.add(p.id);
+      if (p.days === undefined) throw new Error(`presets.json ${key}/${p.id} 缺 days，且无 standard 同名项可继承`);
+    }
+  }
+  return presets;
+}
+
+// 唯一的默认区间判定：spec 声明优先，否则取 presets.json 的 defaults.preset。
+// 不再在装配点各写一份 "ALL" 或「取数组最后一个」的本地回退。
+export function defaultPresetOf(spec, presets = loadPresets()) {
+  return spec?.defaultPreset || presets.defaults?.preset;
+}
+
+// 唯一的时间粒度判定：白名单与默认值都由 presets.json 的 granularities/defaults 提供。
+export function normalizeGranularity(value, presets = loadPresets()) {
+  const ids = (presets.granularities || []).map((g) => g.id);
+  return ids.includes(value) ? value : presets.defaults?.granularity;
 }
 
 // pick 谓词只认数据字段，且只有一种语法：
@@ -282,7 +311,7 @@ export function buildPage(pageId, params, read = store.read) {
   return {
     page: pageId,
     region,
-    granularity: params.granularity || "day",
+    granularity: normalizeGranularity(params.granularity),
     needs: [...needs],
     presets: loadPresets(),
     views,
@@ -317,7 +346,8 @@ export function buildPanel(specId, params, specsArg, read = store.read) {
   const spec = (specsArg || loadCharts(params.region || "us")).find((s) => s.id === specId);
   if (!spec) throw new Error(`unknown chart spec: ${specId}`);
   const region = params.region || "us";
-  const granularity = ["day", "week", "month"].includes(params.granularity) ? params.granularity : "day";
+  const presets = loadPresets();
+  const granularity = normalizeGranularity(params.granularity, presets);
   const indicators = loadIndicators(region);
   const sheets = loadSheets(region);
 
@@ -335,8 +365,8 @@ export function buildPanel(specId, params, specsArg, read = store.read) {
         error: `该市场（${region}）下本页面无可用序列`,
         layers: [],
         x: { key: "date", values: [] },
-        presets: loadPresets()[spec.presets] || [],
-        defaultPreset: spec.defaultPreset || "ALL",
+        presets: presets[spec.presets] || [],
+        defaultPreset: defaultPresetOf(spec, presets),
         axes: spec.axes || {},
         annotations: spec.annotations || [],
         ...chartPolicy(region),
@@ -421,8 +451,8 @@ export function buildPanel(specId, params, specsArg, read = store.read) {
       annotations: spec.annotations || [],
       eras: erasOf(spec, params, sheets),
       ...chartPolicy(region),
-      presets: loadPresets()[spec.presets] || [],
-      defaultPreset: spec.defaultPreset || "ALL",
+      presets: presets[spec.presets] || [],
+      defaultPreset: defaultPresetOf(spec, presets),
       overflow: [],
       limits: spec.limits || {},
     };
@@ -489,8 +519,8 @@ export function buildPanel(specId, params, specsArg, read = store.read) {
     axisBy: spec.axisBy,
     limits: { ...limits, shared },
     overflow,
-    presets: loadPresets()[spec.presets] || [],
-    defaultPreset: spec.defaultPreset || (loadPresets()[spec.presets] || []).slice(-1)[0]?.id || "ALL",
+    presets: presets[spec.presets] || [],
+    defaultPreset: defaultPresetOf(spec, presets),
     primary: primaryId,
     // 显式 primary 时视图未生效，回传 null 让工具栏不高亮误导性的看法
     view: viewActive ? view : null,

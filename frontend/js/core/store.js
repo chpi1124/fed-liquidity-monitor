@@ -114,10 +114,14 @@ export function selectPrimary(id) {
 }
 
 export function setGranularity(g) {
-  if (!["day", "week", "month"].includes(g) || g === state.granularity) return;
+  // 白名单来自 charts/presets.json（经 /api/charts 下发），前端不再自带一份枚举副本
+  const ids = (state.charts.presets?.granularities || []).map((x) => x.id);
+  if (!ids.includes(g) || g === state.granularity) return;
   set({ granularity: g });
   loadPage();
 }
+
+export const granularitiesOf = () => state.charts.presets?.granularities || [];
 
 // 视图切换（如「梗差」页的走廊横线 / SOFR 柱）：模式由 spec 声明，切换只是换一套装配参数
 export function setView(v) {

@@ -92,11 +92,7 @@ export const toolbarView = {
           label: "时间粒度",
           value: s.granularity,
           onChange: store.setGranularity,
-          options: [
-            { value: "day", label: "日" },
-            { value: "week", label: "周" },
-            { value: "month", label: "月" },
-          ],
+          options: (store.granularitiesOf() || []).map((g) => ({ value: g.id, label: g.label })),
         })
       );
     }

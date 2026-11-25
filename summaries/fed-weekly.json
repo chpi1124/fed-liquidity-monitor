@@ -223,6 +223,28 @@
       "sourceLabel": "纽约联储回购操作",
       "checkLabel": "FRED RPONTSYD+AGY+MBS（已校验存储）",
       "note": "常备回购便利本周接受量合计。任何动用均为流动性后备支持被激活的信号。"
+    },
+    {
+      "id": "oracle-cds",
+      "kind": "series",
+      "agg": "max",
+      "primary": {
+        "provider": "ice-cds",
+        "code": "ORCLE",
+        "coupon": "100"
+      },
+      "unit": "点",
+      "precision": 4,
+      "zh": "甲骨文 CDS（最高）",
+      "en": "Oracle Corp 5Y CDS EOD settlement price",
+      "sourceLabel": "ICE Clear Credit 官方 EOD 结算价（points upfront）",
+      "checkLabel": "无第二独立源（ICE 官方清算结算价本身即结算基准）",
+      "note": "ICE Clear Credit 官方公开 5Y 单名 CDS 每日结算价，USD / SNRFOR / 100 票息基准合约；单位为 points upfront（每 100 面值点数），不是 bp、不折算利差。ICE 使用条款限制再分发，本站仅本地展示原始点位。",
+      "evidence": [
+        "https://www.ice.com/api/cds-settlement-prices/icc-single-names",
+        "https://www.ice.com/cds-settlement-prices/icc/single-name-instruments",
+        "https://www.ice.com/publicdocs/Markit_ICE_Settlement_Pricing_Terms_of_Use.pdf"
+      ]
     }
   ],
   "providers": {

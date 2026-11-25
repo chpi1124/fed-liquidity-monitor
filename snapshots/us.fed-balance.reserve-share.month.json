@@ -2601,7 +2601,7 @@
         },
         "showSymbol": false,
         "symbol": "circle",
-        "symbolSize": 6,
+        "symbolSize": 9,
         "type": "line",
         "yAxisIndex": 0,
         "z": 3

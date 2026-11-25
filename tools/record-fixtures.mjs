@@ -35,6 +35,7 @@ const PLAN = {
   "uk-trade": { src: { measure: "net" }, win: [day(120), day(60)] },
   worldbank: { src: { column: "Gold" }, win: [day(120), day(60)] },
   uncomtrade: { src: { maxMonths: 1, paceMs: 0 }, win: [day(450), day(300)] },
+  "ice-cds": { src: { code: "ALPHINC", coupon: "100" }, win: [day(10), TODAY] },
   "fed-policy": { src: {}, win: ["2024-09-01", "2024-09-30"] },
   "pbc-statement": { src: { item: "总资产", fmt: "htm" }, win: ["2026-01-01", TODAY] },
 };

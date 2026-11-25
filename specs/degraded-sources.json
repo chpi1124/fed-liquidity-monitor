@@ -11,6 +11,18 @@
     ]
   },
   {
+    "slug": "ice-cds-single-source",
+    "name": "5Y 单名 CDS 结算价（ICE Clear Credit 官方端点）",
+    "kind": "单源无并行确认",
+    "why": "ICE Clear Credit 官网免费公开端点 icc-single-names 提供 5Y 单名 CDS 的 EOD settlement prices（points upfront），由清算会员报价经 ICE 类拍卖价格发现生成、经首席风险官复核并用于每日盯市，本身即权威结算基准。但端点只返回最近清算日快照（实测每合约仅当日一点），无法形成长历史；第二独立源（S&P/Markit、Bloomberg CDSW、LSEG）均为许可数据，本环境不可得。",
+    "decision": "Alphabet / Amazon / Meta / Microsoft / Oracle 五行 + 美联储周报 Oracle 行全部恢复，直连 ICE 官方端点取 USD/SNRFOR/100 票息 5Y 基准合约原始点位，单位 points upfront 不折算 bp；不接新闻转述、不用聚合 OAS 冒充单名 CDS、不造数。如实标注「单源，官方结算价即基准，未获第二独立源确认」，快照只覆盖最近清算日，不伪造历史高点。",
+    "declaredIn": [
+      "summaries/ai-credit-weekly.json",
+      "summaries/fed-weekly.json",
+      "backend/providers/ice-cds.js"
+    ]
+  },
+  {
     "slug": "us-vix-single-source",
     "name": "VIX 单源（FRED 官方授权分发）",
     "kind": "单源无并行确认",

@@ -109,6 +109,17 @@
     ],
     "indicatorCount": 10
   },
+  "ice-cds": {
+    "org": "ICE Clear Credit (official public 5Y single-name CDS settlement prices)",
+    "endpoints": [
+      "https://www.ice.com/api/cds-settlement-prices/icc-single-names",
+      "https://www.ice.com/cds-settlement-prices/icc/single-name-instruments"
+    ],
+    "cadence": "daily-close",
+    "note": "",
+    "usedBy": [],
+    "indicatorCount": 0
+  },
   "nasdaq": {
     "org": "Nasdaq, Inc. (exchange-published market data)",
     "endpoints": [

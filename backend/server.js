@@ -6,7 +6,7 @@ import { loadIndicators } from "./lib/indicators.js";
 import { loadSheets } from "./lib/sheets.js";
 import { loadSummaries } from "./lib/summaries.js";
 import * as store from "./lib/store.js";
-import { buildPage, loadCharts, loadPresets, loadRegions, pagesOf } from "./lib/panels.js";
+import { buildPage, loadCharts, loadPresets, loadRegions, pagesOf, normalizeGranularity } from "./lib/panels.js";
 import { aggregate } from "./lib/aggregate.js";
 import { isUpdating, updateAll } from "./lib/pipeline.js";
 import { startScheduler } from "./lib/scheduler.js";
@@ -100,8 +100,7 @@ const server = http.createServer(async (req, res) => {
       if (!cfg) return json(res, 404, { error: "unknown indicator" });
       const d = store.read(cfg.id);
       if (!d) return json(res, 503, { error: "data not ready, retry shortly" });
-      const gParam = u.searchParams.get("granularity");
-      const g = ["day", "week", "month"].includes(gParam) ? gParam : "day";
+      const g = normalizeGranularity(u.searchParams.get("granularity"));
       let points = d.points;
       const start = u.searchParams.get("start");
       const end = u.searchParams.get("end");

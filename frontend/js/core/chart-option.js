@@ -2,7 +2,7 @@
 // 本文件不出现字面色值、不做单位换算/对齐运算（theme 与后端 panels 各为其唯一 owner），
 // 并且是全站唯一的 tooltip 文案工厂与 dataZoom 构造点。
 import { eraOf, fmtVal, zoneOf, zoomWindow } from "./derive.js";
-import { alpha, color } from "./theme.js";
+import { alpha, color, resolveStyle } from "./theme.js";
 import { delta, lastOnOrBefore, nearCategory, visibleLayers } from "./dataset.js";
 import { RECIPES } from "./chart-types.js";
 import { RECIPE_META } from "./recipe-meta.js";
@@ -24,7 +24,7 @@ export function resolveAxes(ds, shown, theme) {
     return {
       type: "value",
       name: a.label || "",
-      nameTextStyle: { color: color(a.hue || "muted"), fontSize: 11 },
+      nameTextStyle: { color: color(a.hue || "muted"), fontSize: theme.font.axisName },
       inverse: !!a.inverse,
       scale: a.zeroBased !== true,
       min: a.zeroBased === true ? 0 : undefined,
@@ -67,10 +67,10 @@ function policyMarkLines(ds, cats, theme) {
           rotation: 0,
           distance: 4,
           color: c,
-          fontSize: 10,
+          fontSize: theme.font.label,
           fontWeight: e.action === "hold" ? 400 : 700,
           backgroundColor: alpha("surface", 0.72),
-          padding: [2, 3],
+          padding: theme.markPadding,
       },
     };
   });
@@ -78,19 +78,19 @@ function policyMarkLines(ds, cats, theme) {
 
 // 水平参考线的唯一形状（阈值线 / 走廊线共用）：{ yAxis, lineStyle, label } 只在这里定义一次。
 // 两份逐键相同的对象字面量会被 G19 判成重复实现 —— 那正是「改了一处、另一处忘了」的来源。
-function hLine(yAxis, { text, color, position = "insideEndTop", yAxisIndex }) {
+function hLine(yAxis, { text, color, position = "insideEndTop", yAxisIndex }, theme) {
   return {
     yAxis,
     ...(yAxisIndex ? { yAxisIndex } : {}),
-    lineStyle: { color, type: "dashed", width: 1 },
-    label: { formatter: text, position, color, fontSize: 11 },
+    lineStyle: { color, type: "dashed", width: theme.hairline },
+    label: { formatter: text, position, color, fontSize: theme.font.axisName },
   };
 }
 
 // 走廊四条线（天花板/地板/联邦基金/准备金）由 spec 的模式追加为 step 序列画在 % 轴上，
 // 不再用无限横线：四条利率随 FOMC 决议变化，「今天水平的横线铺满十年」本身就是错的。
 
-function zoneRules(layer) {
+function zoneRules(layer, theme) {
   const zones = layer.meta?.zones;
   if (!zones) return undefined;
   return {
@@ -100,17 +100,17 @@ function zoneRules(layer) {
       .filter((z) => z.max != null)
       .map((z) => {
         const above = zoneOf(zones, z.max + 0.001);
-        return hLine(z.max, { text: `${above.label} > ${z.max}${layer.unit || ""}`, color: color(above.color) });
+        return hLine(z.max, { text: `${above.label} > ${z.max}${layer.unit || ""}`, color: color(above.color) }, theme);
       }),
   };
 }
 
-function eraAreas(eras, cats) {
+function eraAreas(eras, cats, theme) {
   if (!eras?.length || !cats.length) return undefined;
   const last = cats[cats.length - 1];
   return {
     silent: true,
-    label: { show: true, position: "insideTop", fontSize: 10, fontWeight: 700 },
+    label: { show: true, position: "insideTop", fontSize: theme.font.label, fontWeight: 700 },
     data: eras.map((e) => [
       { name: e.label, xAxis: nearCategory(cats, e.from), itemStyle: { color: alpha(e.color, 0.08) }, label: { color: color(e.color) } },
       { xAxis: e.to ? nearCategory(cats, e.to) : last },
@@ -158,7 +158,7 @@ export const TOOLTIP_COLUMNS = {
   policy: (r) => (r.policyEvents || []).map((e) => `<br/>政策事件：${e.label}`).join(""),
 };
 
-function buildTooltip(spec, ctx) {
+function buildTooltip(spec, ctx, theme) {
   const declared = spec.tooltip?.columns || ["value", "validation"];
   const columns = (ctx.hasPolicy ? [...declared, "policy"] : declared).filter((c, i, a) => a.indexOf(c) === i);
   const unknown = columns.filter((c) => !TOOLTIP_COLUMNS[c]);
@@ -167,9 +167,9 @@ function buildTooltip(spec, ctx) {
     hasPolicy: ctx.hasPolicy,
     trigger: "axis",
     axisPointer: { type: "cross", label: { backgroundColor: color("surface2") } },
-    backgroundColor: alpha("surface", 0.94),
+    backgroundColor: alpha("surface", theme.tooltipOpacity),
     borderColor: color("line"),
-    textStyle: { color: color("ink"), fontSize: 12 },
+    textStyle: { color: color("ink"), fontSize: theme.font.tooltipFont },
     formatter: (params) => {
       const rows = ctx.read(params);
       if (!rows.length) return `${ctx.dateAt(params)}<br/>无可显示序列（点击上方标签开启）`;
@@ -216,15 +216,15 @@ export function buildOption({ spec, ds, preset, selected = {}, theme, policyOn =
 
   const ctx = tooltipContext({ spec, ds, shown, cats, derived, policyOn });
   const series = shown.map((layer) => {
-    const s = RECIPES[layer.recipe]({ layer, theme, axisIndex: axes.axisIndexOf(layer.axis), style: layer.style || {}, spec, ds, cats });
+    const s = RECIPES[layer.recipe]({ layer, theme, axisIndex: axes.axisIndexOf(layer.axis), style: resolveStyle(layer.style), spec, ds, cats });
     if (layer.id === anchorId) {
       // spec.referenceLines：声明式参考横线（如派生指标的区间中枢），与阈值线/政策线共用
       // 同一个 markLine 构造点与同一根 hLine 形状 —— 不新增第二处实现。
-      const refs = (spec.referenceLines || []).map((r) => hLine(r.value, { text: r.label, color: color(r.color || "muted") }));
-      const lines = [...(ann.includes("zones") ? zoneRules(layer)?.data || [] : []), ...refs, ...(policyOn ? policyMarkLines(ds, cats, theme) : [])];
+      const refs = (spec.referenceLines || []).map((r) => hLine(r.value, { text: r.label, color: color(r.color || "muted") }, theme));
+      const lines = [...(ann.includes("zones") ? zoneRules(layer, theme)?.data || [] : []), ...refs, ...(policyOn ? policyMarkLines(ds, cats, theme) : [])];
       if (lines.length) s.markLine = { silent: true, symbol: "none", data: lines };
     }
-    if (ann.includes("eras")) s.markArea = eraAreas(ds.eras, cats) || s.markArea;
+    if (ann.includes("eras")) s.markArea = eraAreas(ds.eras, cats, theme) || s.markArea;
     if (layer.id === anchorId && ann.includes("integrityBands")) s.markArea = thresholdBand(layer) || s.markArea;
     return s;
   });
@@ -233,7 +233,7 @@ export function buildOption({ spec, ds, preset, selected = {}, theme, policyOn =
     backgroundColor: "transparent",
     animation: false,
     grid: axes.grid,
-    tooltip: buildTooltip(spec, ctx),
+    tooltip: buildTooltip(spec, ctx, theme),
     xAxis: {
       type: "category",
       data: cats,
@@ -250,8 +250,8 @@ export function buildOption({ spec, ds, preset, selected = {}, theme, policyOn =
       selected: Object.fromEntries(ds.layers.map((l) => [l.label, selected[l.id] !== false])),
       selectedMode: "multiple",
       inactiveColor: color("axis-inactive"),
-      itemGap: 16,
-      textStyle: { color: color("ink2"), fontSize: 12 },
+      itemGap: theme.legendGap,
+      textStyle: { color: color("ink2"), fontSize: theme.font.tooltipFont },
       top: 2,
     };
   }

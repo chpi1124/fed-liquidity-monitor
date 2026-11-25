@@ -2744,7 +2744,7 @@
         "showSymbol": false,
         "step": "end",
         "symbol": "circle",
-        "symbolSize": 6,
+        "symbolSize": 9,
         "type": "line",
         "yAxisIndex": 0,
         "z": 3
@@ -3218,7 +3218,7 @@
         "showSymbol": false,
         "step": "end",
         "symbol": "circle",
-        "symbolSize": 6,
+        "symbolSize": 9,
         "type": "line",
         "yAxisIndex": 0,
         "z": 3
@@ -3692,7 +3692,7 @@
         "showSymbol": false,
         "step": "end",
         "symbol": "circle",
-        "symbolSize": 6,
+        "symbolSize": 9,
         "type": "line",
         "yAxisIndex": 0,
         "z": 3
@@ -4166,7 +4166,7 @@
         "showSymbol": false,
         "step": "end",
         "symbol": "circle",
-        "symbolSize": 6,
+        "symbolSize": 9,
         "type": "line",
         "yAxisIndex": 0,
         "z": 3

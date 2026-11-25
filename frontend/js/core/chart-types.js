@@ -6,8 +6,8 @@ import { alpha, color } from "./theme.js";
 // 存疑与已改值的可见化只在这一处实现：折线、柱、K 线共用同一套标记语言，
 // 不会再出现「某种图形形态悄悄不画标记」。
 function markOf(flag, theme) {
-  if (flag?.suspect) return { borderColor: theme.suspect, borderWidth: 1.6 };
-  if (flag?.corrected) return { borderColor: theme.corrected, borderWidth: 1.6 };
+  if (flag?.suspect) return { borderColor: theme.suspect, borderWidth: theme.flagBorderWidth };
+  if (flag?.corrected) return { borderColor: theme.corrected, borderWidth: theme.flagBorderWidth };
   return null;
 }
 
@@ -48,11 +48,11 @@ export const RECIPES = {
       connectNulls: !!style.connect,
       showSymbol: !!style.showSymbol,
       symbol: style.symbol || "circle",
-      symbolSize: style.symbolSize || 6,
+      symbolSize: style.symbolSize || theme.symbolSize,
       lineStyle: { color: hue, width: style.width ?? theme.lineWidth, opacity: style.opacity ?? 1 },
       // 阶梯线：政策利率两次决议之间是水平的 ⇒ step 才是真实形状，直线插值会画出不存在的坡
       step: style.step ? "end" : undefined,
-      itemStyle: { color: hue, borderColor: theme.bg1, borderWidth: style.showSymbol ? 1 : 0 },
+      itemStyle: { color: hue, borderColor: theme.bg1, borderWidth: style.showSymbol ? theme.hairline : 0 },
       areaStyle: style.area ? { color: alpha(layer.hue, style.area) } : undefined,
       data: seriesData(layer.values, layer.flags, theme, null, "point"),
     };
@@ -105,8 +105,8 @@ export const RECIPES = {
     const neg = color(layer.negColor || layer.hue);
     return {
       ...base(ctx, "bar", 2),
-      barWidth: style.barWidth || 3,
-      barMinHeight: style.barMinHeight ?? 2,
+      barWidth: style.barWidth || theme.barWidth,
+      barMinHeight: style.barMinHeight ?? theme.barMinHeight,
       itemStyle: { color: pos },
       data: seriesData(layer.values, layer.flags, theme, layer.posColor ? (v) => ({ color: v >= 0 ? pos : neg }) : null, "item"),
     };

@@ -39,11 +39,16 @@ body {
 .ind-nav { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--sp-8); padding: var(--sp-12) var(--sp-8); overflow-y: auto; }
 .side__foot { padding: var(--sp-16); border-top: 1px solid var(--line); color: var(--faint); font: var(--t-11)/1.7 var(--font-body); }
 
-.main { position: relative; z-index: 1; min-width: 0; overflow-y: auto; padding: var(--sp-24); }
+/* 面板是主展示核心：main 自己滚动，grid item 必须 min-height:0 才会把滚动容器
+   约束在视口内；去掉 scroll-snap —— 高卡片吸附到顶部后底部永远在视口外，
+   正是「下面面板被裁」的同类根因。底部留白保证最后一张图 x 轴/滑块完整可见。 */
+.main { position: relative; z-index: 1; min-width: 0; min-height: 0; overflow-y: auto; padding: var(--sp-24) var(--sp-24) var(--sp-48); }
 
 .strip { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--sp-12); margin: var(--sp-4) 0; }
 
+/* 同类根治：所有图卡之间预留统一间距，多图页/新增页自动继承，不需要逐页加规则 */
 .chart-panel { position: relative; padding: var(--sp-8) var(--sp-12) var(--sp-4); }
+.chart-panel + .chart-panel { margin-top: var(--sp-24); }
 /* 图形高度只由令牌 + size 类决定：新增一页不需要回来加一条 id 规则（数字驱动） */
 .chart { height: var(--chart-h); }
 .chart--compact { --chart-h: var(--chart-h-compact); }
@@ -78,7 +83,6 @@ body {
   .tile { min-width: 176px; scroll-snap-align: start; }
   .ecg { display: none; }
   .top__status { margin-left: 0; }
-  :root { --chart-h: clamp(420px, 52vw, 520px); --chart-h-mid: clamp(400px, 48vw, 480px); --chart-h-compact: clamp(380px, 44vw, 440px); }
   .page-nav { flex-direction: row; border-bottom: 0; padding: 0; gap: var(--sp-8); flex: 1 1 100%; min-width: 0; max-width: 100%; overflow-x: auto; }
   .page-btn { padding: var(--sp-8) var(--sp-12); white-space: nowrap; }
   .page-btn__sub { display: none; }

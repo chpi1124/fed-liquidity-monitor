@@ -22,9 +22,11 @@ export function rangeText(zones, i) {
 }
 
 // 区间求解的唯一实现：预设表由 charts/presets.json 提供，本函数只按天切。
+// 不自带「取最后一个」这类本地回退规则：默认预设由 owner 的 defaults/spec 下发，
+// 找不到 id 就明确返回全量，避免前后端各有一套不同的默认区间语义。
 export function zoomWindow(points, preset, presets = []) {
   if (!points || !points.length) return { start: 0, end: 0 };
-  const p = presets.find((x) => x.id === preset) || presets[presets.length - 1];
+  const p = presets.find((x) => x.id === preset);
   if (!p || !p.days) return { start: 0, end: points.length - 1 };
   const last = new Date(`${points[points.length - 1].date}T00:00:00Z`);
   const cut = new Date(last);

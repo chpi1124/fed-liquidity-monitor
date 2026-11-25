@@ -24,7 +24,7 @@
     {
       "projection": "panel",
       "container": "cb-chart",
-      "size": "lg"
+      "size": "mid"
     },
     {
       "projection": "desc",

@@ -135,15 +135,41 @@
   --chart-slider-height: 22;
   --chart-slider-bottom: 10;
   --chart-line-width: 1.6;
+  --chart-hairline: 1;
+  --chart-flag-border-width: 1.6;
+  --chart-font-axis-name: 11;
+  --chart-font-label: 10;
+  --chart-font-tooltip: 12;
+  --chart-mark-pad-x: 3;
+  --chart-mark-pad-y: 2;
+  --chart-legend-gap: 16;
+  --chart-tooltip-opacity: 0.94;
+  --chart-bar-width: 3;
+  --chart-bar-min-height: 2;
+  /* spec 层只引用令牌名，不写裸数字（main-trend 覆盖层 / gold-overlay 柱与点） */
+  --chart-line-width-strong: 1.2;
+  --chart-symbol-size-small: 6;
+  --chart-bar-width-thin: 4;
   --chart-bar-day: 62;
   --chart-bar-sheet: 72;
   --chart-symbol-size: 9;
-  /* 图形高度基线：面板是主展示核心，按宽度取合适比例（约 2:1），
-     有上下限避免过扁或过高；页面/main 自己滚动，不再按视口压缩图高。 */
+  /* 图形高度基线：面板是主展示核心，但必须整卡可读（x 轴 + dataZoom 不裁切）。
+     高度随视口高度自适应并设下限：大屏仍是主视觉，短屏整卡能落在可视区；
+     页面/main 自己滚动，不再按视口硬压缩也不让卡片停在半截。 */
   --chart-count: 1;
-  --chart-h: clamp(480px, 38vw, 640px);
-  --chart-h-mid: clamp(440px, 34vw, 580px);
-  --chart-h-compact: clamp(400px, 30vw, 520px);
+  --chart-h: clamp(420px, 52dvh, 620px);
+  --chart-h-mid: clamp(360px, 46dvh, 520px);
+  --chart-h-compact: clamp(320px, 40dvh, 460px);
   --spark-w: 104;
   --spark-h: 30;
+}
+
+/* 窄屏图幅覆盖仍写在 owner 内：tokens.css 是 --chart-h* 的唯一定义点，
+   layout.css 不得再复制一份同名令牌（G27 守此不变量）。 */
+@media (max-width: 960px) {
+  :root {
+    --chart-h: clamp(360px, 50dvh, 480px);
+    --chart-h-mid: clamp(320px, 44dvh, 440px);
+    --chart-h-compact: clamp(300px, 38dvh, 400px);
+  }
 }

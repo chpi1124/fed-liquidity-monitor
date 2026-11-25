@@ -83,13 +83,37 @@ export function palette() {
     },
     slider: { height: num("chart-slider-height"), bottom: num("chart-slider-bottom") },
     lineWidth: num("chart-line-width"),
+    hairline: num("chart-hairline"),
     barDay: num("chart-bar-day"),
     barSheet: num("chart-bar-sheet"),
     symbolSize: num("chart-symbol-size"),
+    barWidth: num("chart-bar-width"),
+    barMinHeight: num("chart-bar-min-height"),
+    flagBorderWidth: num("chart-flag-border-width"),
+    font: {
+      axisName: num("chart-font-axis-name"),
+      label: num("chart-font-label"),
+      tooltipFont: num("chart-font-tooltip"),
+    },
+    markPadding: [num("chart-mark-pad-y"), num("chart-mark-pad-x")],
+    legendGap: num("chart-legend-gap"),
+    tooltipOpacity: num("chart-tooltip-opacity"),
     spark: { w: num("spark-w"), h: num("spark-h") },
     hueScale: ["hue-1", "hue-2", "hue-3", "hue-4", "hue-5", "hue-6", "hue-7", "hue-8", "hue-9", "hue-10"].map(color),
   };
   return memo;
+}
+
+// spec 的 style 可以写 "$chart-line-width-strong" 这类 token 引用（值在 tokens.css 唯一声明）。
+// 解析只在这里做一次，recipe 与 spec 都不再出现裸样式数字。
+export function resolveStyle(style) {
+  if (!style) return {};
+  const out = {};
+  for (const [k, v] of Object.entries(style)) {
+    if (typeof v === "string" && v.startsWith("$")) out[k] = num(v.slice(1));
+    else out[k] = v;
+  }
+  return out;
 }
 
 // 内联 style 用的 CSS 值（DOM 侧唯一出口，与 canvas 的 color() 共用同一张 token 表）

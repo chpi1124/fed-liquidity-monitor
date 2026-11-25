@@ -31,3 +31,5 @@
 | G24 | 视觉回归基线 | 快照覆盖不全或内容与基线漂移 |
 | G25 | 政策事件：单一出处、官方证据、全站必画 | 见 tools/gates.mjs 对应实现 |
 | G7 | 端到端实测（浏览器判据） | 端到端未经浏览器实测（须 browser-use 留判据） |
+| G26 | 区间参数单一 owner（presets.json） | 见 tools/gates.mjs 对应实现 |
+| G27 | 图幅样式单一 owner（tokens.css） | 见 tools/gates.mjs 对应实现 |

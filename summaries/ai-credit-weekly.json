@@ -9,8 +9,118 @@
     "备注"
   ],
   "tolerance": 0.01,
-  "description": "AI 信用环境的权威可核验周度观察。单名 5Y CDS 的权威价格只在 S&P Global Market Intelligence（原 IHS Markit）CDS Pricing、ICE Data Services / Bloomberg / LSEG 等许可终端分发；DTCC 公开交易库只披露持仓名义金额、没有价格；SEC Regulation SBSR 免费公开 dissemination 已豁免至 2029-11-05。本站不接新闻转述、不用聚合指标冒充单名 CDS，故剔除全部单名 CDS 行。HKEX AI 指数官方日频历史仅经彭博 HKEXAI / LSEG .HKEXAI 或 HKEX Data Marketplace 许可分发；官网 widget 报价端点在本环境返回 403，官方月度 Factsheet 与「周高点」栏不同频，亦剔除。保留的美国投资级公司债 OAS 来自 ICE Data Indices 官方授权分发（FRED BAMLC0A0CM），并用 ALFRED vintage 复取验证取数与发布版本；它是聚合信用环境基准，不是单名 CDS 替代品。",
+  "description": "AI 信用周度观察。单名 5Y CDS 采用 ICE Clear Credit 官方公开的每日结算价（EOD settlement prices，points upfront），端点为 ICE 官网 getnewindicesquote 之外的官方 cds-settlement-prices/icc-single-names：由清算会员每日报价、ICE 类拍卖价格发现生成，经首席风险官复核并用于每日盯市，是权威结算基准。本站只取 USD / SNRFOR / 100 票息的 5Y 基准合约原始点位，不折算 bp、不混媒体转述；ICE 使用条款限制再分发，本站仅本地监控展示并署名 ICE Clear Credit。HKEX AI 指数官方日频历史仅经彭博 HKEXAI / LSEG .HKEXAI 或 HKEX Data Marketplace 许可分发，官网 widget 端点本环境 403、月度 Factsheet 与周高点不同频，故剔除。美国投资级公司债 OAS 来自 ICE Data Indices 官方授权分发（FRED BAMLC0A0CM），并用 ALFRED vintage 复取验证取数与发布版本；它是聚合信用环境基准，不是单名 CDS 替代品。",
   "rows": [
+    {
+      "id": "cds-alphabet",
+      "kind": "series",
+      "agg": "max",
+      "primary": {
+        "provider": "ice-cds",
+        "code": "ALPHINC",
+        "coupon": "100"
+      },
+      "unit": "点",
+      "precision": 4,
+      "zh": "Alphabet CDS",
+      "en": "Alphabet Inc 5Y CDS EOD settlement price",
+      "sourceLabel": "ICE Clear Credit 官方 EOD 结算价（points upfront）",
+      "checkLabel": "无第二独立源（ICE 官方清算结算价本身即结算基准）",
+      "note": "ICE 官方公开 5Y 单名 CDS 结算价，USD / SNRFOR / 100 票息基准合约；单位为 points upfront（每 100 面值点数），不是 bp、不折算利差。ICE 条款限制再分发，本站仅本地展示原始点位。",
+      "evidence": [
+        "https://www.ice.com/api/cds-settlement-prices/icc-single-names",
+        "https://www.ice.com/cds-settlement-prices/icc/single-name-instruments",
+        "https://www.ice.com/publicdocs/Markit_ICE_Settlement_Pricing_Terms_of_Use.pdf"
+      ]
+    },
+    {
+      "id": "cds-amazon",
+      "kind": "series",
+      "agg": "max",
+      "primary": {
+        "provider": "ice-cds",
+        "code": "AMZN",
+        "coupon": "100"
+      },
+      "unit": "点",
+      "precision": 4,
+      "zh": "Amazon CDS",
+      "en": "Amazon.com Inc 5Y CDS EOD settlement price",
+      "sourceLabel": "ICE Clear Credit 官方 EOD 结算价（points upfront）",
+      "checkLabel": "无第二独立源（ICE 官方清算结算价本身即结算基准）",
+      "note": "ICE 官方公开 5Y 单名 CDS 结算价，USD / SNRFOR / 100 票息基准合约；单位为 points upfront（每 100 面值点数），不是 bp、不折算利差。ICE 条款限制再分发，本站仅本地展示原始点位。",
+      "evidence": [
+        "https://www.ice.com/api/cds-settlement-prices/icc-single-names",
+        "https://www.ice.com/cds-settlement-prices/icc/single-name-instruments",
+        "https://www.ice.com/publicdocs/Markit_ICE_Settlement_Pricing_Terms_of_Use.pdf"
+      ]
+    },
+    {
+      "id": "cds-meta",
+      "kind": "series",
+      "agg": "max",
+      "primary": {
+        "provider": "ice-cds",
+        "code": "METAPL",
+        "coupon": "100"
+      },
+      "unit": "点",
+      "precision": 4,
+      "zh": "Meta CDS",
+      "en": "Meta Platforms Inc 5Y CDS EOD settlement price",
+      "sourceLabel": "ICE Clear Credit 官方 EOD 结算价（points upfront）",
+      "checkLabel": "无第二独立源（ICE 官方清算结算价本身即结算基准）",
+      "note": "ICE 官方公开 5Y 单名 CDS 结算价，USD / SNRFOR / 100 票息基准合约；单位为 points upfront（每 100 面值点数），不是 bp、不折算利差。ICE 条款限制再分发，本站仅本地展示原始点位。",
+      "evidence": [
+        "https://www.ice.com/api/cds-settlement-prices/icc-single-names",
+        "https://www.ice.com/cds-settlement-prices/icc/single-name-instruments",
+        "https://www.ice.com/publicdocs/Markit_ICE_Settlement_Pricing_Terms_of_Use.pdf"
+      ]
+    },
+    {
+      "id": "cds-microsoft",
+      "kind": "series",
+      "agg": "max",
+      "primary": {
+        "provider": "ice-cds",
+        "code": "MSFT",
+        "coupon": "100"
+      },
+      "unit": "点",
+      "precision": 4,
+      "zh": "Microsoft CDS",
+      "en": "Microsoft Corp 5Y CDS EOD settlement price",
+      "sourceLabel": "ICE Clear Credit 官方 EOD 结算价（points upfront）",
+      "checkLabel": "无第二独立源（ICE 官方清算结算价本身即结算基准）",
+      "note": "ICE 官方公开 5Y 单名 CDS 结算价，USD / SNRFOR / 100 票息基准合约；单位为 points upfront（每 100 面值点数），不是 bp、不折算利差。ICE 条款限制再分发，本站仅本地展示原始点位。",
+      "evidence": [
+        "https://www.ice.com/api/cds-settlement-prices/icc-single-names",
+        "https://www.ice.com/cds-settlement-prices/icc/single-name-instruments",
+        "https://www.ice.com/publicdocs/Markit_ICE_Settlement_Pricing_Terms_of_Use.pdf"
+      ]
+    },
+    {
+      "id": "cds-oracle",
+      "kind": "series",
+      "agg": "max",
+      "primary": {
+        "provider": "ice-cds",
+        "code": "ORCLE",
+        "coupon": "100"
+      },
+      "unit": "点",
+      "precision": 4,
+      "zh": "Oracle CDS",
+      "en": "Oracle Corp 5Y CDS EOD settlement price",
+      "sourceLabel": "ICE Clear Credit 官方 EOD 结算价（points upfront）",
+      "checkLabel": "无第二独立源（ICE 官方清算结算价本身即结算基准）",
+      "note": "ICE 官方公开 5Y 单名 CDS 结算价，USD / SNRFOR / 100 票息基准合约；单位为 points upfront（每 100 面值点数），不是 bp、不折算利差。ICE 条款限制再分发，本站仅本地展示原始点位。",
+      "evidence": [
+        "https://www.ice.com/api/cds-settlement-prices/icc-single-names",
+        "https://www.ice.com/cds-settlement-prices/icc/single-name-instruments",
+        "https://www.ice.com/publicdocs/Markit_ICE_Settlement_Pricing_Terms_of_Use.pdf"
+      ]
+    },
     {
       "id": "us-ig-oas",
       "kind": "series",
