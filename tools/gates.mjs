@@ -1020,6 +1020,34 @@ gate("G27", "图幅样式单一 owner（tokens.css）", () => {
   };
 });
 
+// 全屏下方板被裁 + 滑块划不动的同类根治：body grid 的隐式行会被内容撑高，
+// .main 的 overflow-y 只在被撑高的容器里滚，超出 body 视口的部分永远不可达。
+gate("G28", "滚动容器锁定视口（全屏裁切同类根治）", () => {
+  const fails = [];
+  const layout = read("frontend/css/layout.css") || "";
+  const bodyRule = layout.match(/(?:^|\n)\s*body\s*\{([^}]*)\}/);
+  if (!bodyRule) fails.push("layout.css 找不到 body 规则");
+  else {
+    const d = bodyRule[1];
+    if (!/display\s*:\s*grid/.test(d)) fails.push("body 必须是 grid 容器");
+    if (!/grid-template-rows\s*:\s*minmax\(\s*0\s*,\s*1fr\s*\)/.test(d))
+      fails.push("body 缺 grid-template-rows: minmax(0,1fr)（隐式行被内容撑高，滚动容器超出视口）");
+  }
+  const mainRule = layout.match(/(?:^|\n)\s*\.main\s*\{([^}]*)\}/);
+  if (!mainRule) fails.push("layout.css 找不到 .main 规则");
+  else {
+    const d = mainRule[1];
+    if (!/min-height\s*:\s*0/.test(d)) fails.push(".main 缺 min-height:0（grid item 无法收缩）");
+    if (!/overflow-y\s*:\s*auto/.test(d)) fails.push(".main 缺 overflow-y:auto（页面无法滚动）");
+  }
+  // 高卡片吸附顶部后底部永远在视口外，纵向 scroll-snap 一律禁止
+  if (/scroll-snap-type\s*:\s*y/.test(layout)) fails.push("出现纵向 scroll-snap（会裁掉高卡片底部）");
+  return {
+    ok: !fails.length,
+    detail: fails.join("; ") || "body 行高锁定视口；.main 可收缩且自身滚动；无纵向 scroll-snap",
+  };
+});
+
 // ---------- 执行 ----------
 const results = [];
 for (const g of gates) {

@@ -8,6 +8,10 @@ html, body { height: 100%; }
 body {
   display: grid;
   grid-template-columns: 232px minmax(0, 1fr);
+  /* 同类根治：grid 隐式行会被 .main 的内容撑高（实测 372px 视口撑到 976px），
+     .main 的 overflow-y:auto 只在被撑高的容器内部滚动，超出 body 的部分永远滚不到——
+     这正是「全屏下方被裁 + 滑块划不动」的根因。显式 minmax(0,1fr) 把滚动容器锁进视口。 */
+  grid-template-rows: minmax(0, 1fr);
   height: 100vh;
   overflow: hidden;
   background: var(--bg0);
