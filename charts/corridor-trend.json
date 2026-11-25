@@ -1,0 +1,121 @@
+{
+  "id": "corridor-trend",
+  "page": "monitor",
+  "region": "us",
+  "order": 2,
+  "title": "走廊与 SOFR（同图）",
+  "empty": "加载数据中…",
+  "needs": ["series"],
+  "views": [
+    {
+      "projection": "panel",
+      "container": "corridor-chart",
+      "size": "mid"
+    },
+    {
+      "projection": "desc",
+      "container": "desc"
+    }
+  ],
+  "axes": {
+    "rate": {
+      "unit": "%",
+      "side": "left",
+      "resolve": "shared"
+    },
+    "spread": {
+      "unit": "bp",
+      "side": "right",
+      "resolve": "independent",
+      "precision": 0
+    },
+    "amount": {
+      "unit": " 十亿美元",
+      "side": "right",
+      "resolve": "independent",
+      "precision": 3
+    },
+    "share": {
+      "unit": "%",
+      "side": "right",
+      "label": "准备金/银行资产 %",
+      "resolve": "independent",
+      "precision": 1
+    }
+  },
+  "axisBy": [
+    {
+      "when": {
+        "unit": "%"
+      },
+      "axis": "rate"
+    },
+    {
+      "when": {
+        "unit": "bp"
+      },
+      "axis": "spread"
+    },
+    {
+      "when": {
+        "unit": " 十亿美元"
+      },
+      "axis": "amount"
+    }
+  ],
+  "layers": [
+    {
+      "series": "srfrate",
+      "recipe": "line",
+      "style": {
+        "step": true
+      }
+    },
+    {
+      "series": "onrrp",
+      "recipe": "line",
+      "style": {
+        "step": true
+      }
+    },
+    {
+      "series": "effr",
+      "recipe": "line",
+      "style": {
+        "step": true
+      }
+    },
+    {
+      "series": "iorb",
+      "recipe": "line",
+      "style": {
+        "step": true
+      }
+    },
+    {
+      "series": "sofr",
+      "recipe": "bar"
+    }
+  ],
+  "overlay": {
+    "maxShared": 5
+  },
+  "presets": "standard",
+  "defaultPreset": "1Y",
+  "annotations": ["zones"],
+  "legend": "auto",
+  "tooltip": {
+    "columns": [
+      "value",
+      "ohlc",
+      "zone",
+      "validation",
+      "correction",
+      "suspect"
+    ]
+  },
+  "limits": {
+    "sharedMax": 5,
+    "totalMax": 6
+  }
+}

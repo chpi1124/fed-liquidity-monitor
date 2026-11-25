@@ -8,16 +8,16 @@
     "top": 30,
     "bottom": 64
   },
-  "xCount": 1925,
+  "xCount": 1926,
   "policyLines": 91,
   "window": [
     [
       0,
-      1924
+      1925
     ],
     [
       0,
-      1924
+      1925
     ]
   ],
   "option": {
@@ -25,7 +25,7 @@
     "backgroundColor": "transparent",
     "dataZoom": [
       {
-        "endValue": 1924,
+        "endValue": 1925,
         "startValue": 0,
         "type": "inside"
       },
@@ -41,7 +41,7 @@
             "color": "#aeaeb2"
           }
         },
-        "endValue": 1924,
+        "endValue": 1925,
         "fillerColor": "rgba(0,113,227,0.16)",
         "handleStyle": {
           "borderColor": "#0071e3",
@@ -1992,7 +1992,8 @@
           19.42,
           25.64,
           19.3,
-          35.89
+          35.89,
+          26.62
         ],
         "itemStyle": {
           "borderColor": "#ffffff",
@@ -6223,7 +6224,8 @@
         "2026-10-26",
         "2026-11-02",
         "2026-11-09",
-        "2026-11-16"
+        "2026-11-16",
+        "2026-11-23"
       ],
       "type": "category"
     },

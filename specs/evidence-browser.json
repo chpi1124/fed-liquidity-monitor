@@ -296,5 +296,27 @@
     },
     "gates": "门禁 26 条：GREEN 23 / RED 3 → 修复后待本轮 CI 终审",
     "consoleErrors": 0
+  },
+  "stackedDualPanelRound": {
+    "at": "2026-11-25T17:07:00+08:00",
+    "how": "Edge headless 1440×2200 截图 + /api/page/monitor 实读，默认态不点击任何切换。",
+    "panels": [
+      {
+        "container": "chart",
+        "specId": "main-trend",
+        "layers": ["sofr-effr"],
+        "axis": "bp"
+      },
+      {
+        "container": "corridor-chart",
+        "specId": "corridor-trend",
+        "layers": ["srfrate", "onrrp", "effr", "iorb", "sofr"],
+        "axis": "%"
+      }
+    ],
+    "toggle": "工具栏不再出现「视图 / 看法」分段控件；梗差与走廊/SOFR 同屏上下排列。",
+    "scroll": "页面/main 滚动，两张图的 x 轴与 dataZoom 滑块均完整可见。",
+    "primary": "侧栏点 SRF 只改上方面板，下方面板仍固定为走廊/SOFR 五层。",
+    "gates": "门禁 26 条：26/26 GREEN（--net）· selftest 15/15 PASS"
   }
 }
