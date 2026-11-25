@@ -105,8 +105,11 @@ export function setPage(page) {
 }
 
 export function selectPrimary(id) {
-  if (!id || id === state.primary) return;
-  set({ primary: id });
+  if (!id) return;
+  // 选指标 = 回到该指标的基础看法；不清 view 会被 replace 视图吞掉（SRF 等 9 个指标「无法显示」同类根因）
+  const changed = id !== state.primary || !!state.view;
+  if (!changed) return;
+  set({ primary: id, view: null });
   loadPage();
 }
 

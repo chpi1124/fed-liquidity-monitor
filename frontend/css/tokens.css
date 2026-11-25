@@ -138,9 +138,12 @@
   --chart-bar-day: 62;
   --chart-bar-sheet: 72;
   --chart-symbol-size: 9;
-  --chart-h: clamp(480px, 68vh, 860px);
-  --chart-h-mid: clamp(440px, 60vh, 780px);
-  --chart-h-compact: clamp(420px, 56vh, 720px);
+  /* 图形高度基线：实际高度由 app.js 按「视口 − 图容器真实 top」在装载槽上设置，
+     同类根治任何页/任何图数/任何视口下的 x 轴与滑块溢出，不再猜固定 chrome 常量。 */
+  --chart-count: 1;
+  --chart-h: max(280px, 480px);
+  --chart-h-mid: max(260px, 440px);
+  --chart-h-compact: max(240px, 400px);
   --spark-w: 104;
   --spark-h: 30;
 }

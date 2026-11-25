@@ -66,7 +66,10 @@ export function matches(cfg, pick) {
       if (v.lt != null) return Number(actual) < v.lt;
       return false;
     }
-    if (Array.isArray(v)) return v.includes(actual);
+    if (Array.isArray(v)) return v.some((x) => typeof x === "string" && typeof actual === "string" ? x.trim() === actual.trim() : x === actual);
+    // 字符串首尾空格归一：axisBy 的 " 十亿美元" 与指标的 "十亿美元" 曾挂错到 % 轴，
+    // 同类根因在匹配层修一处，所有 pick / axisBy / 视图匹配一并生效。
+    if (typeof v === "string" && typeof actual === "string") return v.trim() === actual.trim();
     return actual === v;
   });
 }
@@ -284,6 +287,8 @@ export function buildPage(pageId, params, read = store.read) {
     presets: loadPresets(),
     views,
     hasSpecs: onPage.length > 0,
+    // 同页图数：前端按此分摊图形高度（view 自适应，新增多图页面自动生效，G22）
+    chartCount: views.filter((v) => v.projection === "panel").length || 1,
   };
 }
 
@@ -370,12 +375,19 @@ export function buildPanel(specId, params, specsArg, read = store.read) {
   // 否则「叠加到其他参数图」会在走廊/SOFR 模式下静默失效（本轮实测踩过）。
   const overlaySpecs = (spec.layers || []).filter((l) => l.series === "overlay");
   const baseWanted = wanted.slice();
-  if (mode?.replace) wanted.length = 0;
-  for (const ml of mode?.layers || (mode?.layer ? [mode.layer] : [])) {
+  // 同类根治（两类同源于「视图模式与显式选择的优先级」）：
+  // · 用户显式选了指标（侧栏点 SRF/梗差/VIX 等）⇒ 视图完全不介入：只画该指标 + 用户显式叠加。
+  //   若仍套 replace/追加视图，会出现「层被吞」或「6 条 > sharedMax 上限而整图空白」两种「无法显示」。
+  // · 用户没选指标（点视图按钮）⇒ 按 spec 的视图语义完整替换/追加，行为不变。
+  const explicitPrimary = params.primary && indicators.some((c) => c.id === params.primary) ? params.primary : null;
+  const viewActive = !explicitPrimary && !!mode;
+  const replaceApplies = !!(viewActive && mode.replace);
+  if (replaceApplies) wanted.length = 0;
+  if (viewActive) for (const ml of mode.layers || (mode.layer ? [mode.layer] : [])) {
     const cfg = indicators.find((c) => c.id === ml.indicator);
     if (cfg && !wanted.some((w) => w.cfg?.id === cfg.id)) wanted.push({ layerSpec: { series: cfg.id, recipe: ml.recipe, style: ml.style }, cfg });
   }
-  for (const layerSpec of mode?.replace ? overlaySpecs : []) {
+  for (const layerSpec of replaceApplies ? overlaySpecs : []) {
     for (const id of (params.overlay || "").split(",").filter(Boolean)) {
       const cfg = indicators.find((c) => c.id === id);
       if (cfg && !wanted.some((w) => w.cfg?.id === cfg.id)) wanted.push({ layerSpec, cfg });
@@ -480,7 +492,9 @@ export function buildPanel(specId, params, specsArg, read = store.read) {
     presets: loadPresets()[spec.presets] || [],
     defaultPreset: spec.defaultPreset || (loadPresets()[spec.presets] || []).slice(-1)[0]?.id || "ALL",
     primary: primaryId,
-    view,
+    // 显式 primary 时视图未生效，回传 null 让工具栏不高亮误导性的看法
+    view: viewActive ? view : null,
+    viewModeActive: viewActive,
     viewModes,
     // viewGroups：顶层互斥视图组（如「梗差图」/「走廊与SOFR」），由 spec 声明。
     // 前端据此渲染两级切换，组内的模式共享同一组 tabs，不在此写任何页面 if。
