@@ -21,16 +21,6 @@
     ]
   },
   {
-    "slug": "cds-feed",
-    "name": "CDS 单名公开端点",
-    "kind": "占位响应",
-    "why": "端点可访问，但仅返回 15 字节占位（无数据序列），付费终端不在许可范围。",
-    "decision": "汇总页对应行标 status:「no-source」，不计入覆盖率，不以插值或他指数冒充。",
-    "declaredIn": [
-      "summaries/ai-credit-weekly.json"
-    ]
-  },
-  {
     "slug": "cfets-lpr",
     "name": "CFETS LPR 历史接口",
     "kind": "窗口上限",
@@ -49,16 +39,6 @@
     "decision": "GLD 序列 start 设为 2016-11-01 并在描述中写明留存期限，不回补更早数据。",
     "declaredIn": [
       "indicators/gold.json"
-    ]
-  },
-  {
-    "slug": "hkex-monthly",
-    "name": "港交所主题指数披露频率",
-    "kind": "频率上限",
-    "why": "仅月度披露，日频不可得；历史端点受 Akamai 保护。",
-    "decision": "对应汇总行标为月度可得，日频列留空不插值。",
-    "declaredIn": [
-      "summaries/ai-credit-weekly.json"
     ]
   },
   {

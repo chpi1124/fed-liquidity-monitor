@@ -2,11 +2,6 @@
   "at": "2026-11-24T04:22:02.287Z",
   "results": [
     {
-      "id": "cds-feed",
-      "ok": false,
-      "error": "cds-feed: no entitled snapshot at data/cds/absent-by-design"
-    },
-    {
       "id": "cfets-lpr",
       "ok": true,
       "rows": 12,
@@ -53,12 +48,6 @@
       "ok": true,
       "rows": 1249,
       "ms": 950
-    },
-    {
-      "id": "hkex-factsheet",
-      "ok": true,
-      "rows": 1,
-      "ms": 4401
     },
     {
       "id": "nasdaq",

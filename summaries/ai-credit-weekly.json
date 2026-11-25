@@ -9,158 +9,34 @@
     "备注"
   ],
   "tolerance": 0.01,
-  "description": "AI 超大规模厂商单名 CDS 与港交所 AI 指数周度观察。单名 CDS 权威实时价仅存在于 ICE Data Services / Bloomberg / S&P-Markit 许可终端；SEC Regulation SBSR 的免费公开 dissemination 已被豁免延至 2029-11-05（90 FR 17225）。本站采「可插拔权威源适配器」：把任一份你有权获得的权威快照 CSV（date,spread_bp）放入 data/cds/，即自动计算周高点并双文件交叉验证；快照缺失则透明标注缺口、绝不造数。HKEX AI 取官方月度 Factsheet；另附 FRED 投资级公司债 OAS 作为可自动核验的聚合信用代理（单源透明标注）。周窗口与美联储汇总表一致（H.4.1 asOf 锚）。",
+  "description": "AI 信用环境的权威可核验周度观察。单名 5Y CDS 的权威价格只在 S&P Global Market Intelligence（原 IHS Markit）CDS Pricing、ICE Data Services / Bloomberg / LSEG 等许可终端分发；DTCC 公开交易库只披露持仓名义金额、没有价格；SEC Regulation SBSR 免费公开 dissemination 已豁免至 2029-11-05。本站不接新闻转述、不用聚合指标冒充单名 CDS，故剔除全部单名 CDS 行。HKEX AI 指数官方日频历史仅经彭博 HKEXAI / LSEG .HKEXAI 或 HKEX Data Marketplace 许可分发；官网 widget 报价端点在本环境返回 403，官方月度 Factsheet 与「周高点」栏不同频，亦剔除。保留的美国投资级公司债 OAS 来自 ICE Data Indices 官方授权分发（FRED BAMLC0A0CM），并用 ALFRED vintage 复取验证取数与发布版本；它是聚合信用环境基准，不是单名 CDS 替代品。",
   "rows": [
-    {
-      "id": "cds-alphabet",
-      "kind": "series",
-      "agg": "max",
-      "primary": {
-        "provider": "cds-feed",
-        "file": "alphabet.csv"
-      },
-      "check": {
-        "provider": "cds-feed",
-        "file": "alphabet.check.csv"
-      },
-      "tolerance": 1,
-      "unit": "bp",
-      "precision": 0,
-      "zh": "Alphabet CDS",
-      "en": "Alphabet 5Y CDS",
-      "sourceLabel": "权威快照 data/cds/alphabet.csv",
-      "checkLabel": "第二独立源 alphabet.check.csv",
-      "noSourceNote": "5Y 单名 CDS 为 ICE/Bloomberg 许可数据，SEC Reg SBSR 免费公开端点豁免至 2029-11-05。接入你有权获得的权威快照（终端/券商导出 CSV：date,spread_bp）即自动算周高点并双源交叉验证。当前无快照，透明标注缺口、不造数。",
-      "evidence": [
-        "https://www.sec.gov/rules-regulations/2015/02/regulation-sbsr-reporting-dissemination-security-based-swap-information"
-      ]
-    },
-    {
-      "id": "cds-amazon",
-      "kind": "series",
-      "agg": "max",
-      "primary": {
-        "provider": "cds-feed",
-        "file": "amazon.csv"
-      },
-      "check": {
-        "provider": "cds-feed",
-        "file": "amazon.check.csv"
-      },
-      "tolerance": 1,
-      "unit": "bp",
-      "precision": 0,
-      "zh": "Amazon CDS",
-      "en": "Amazon 5Y CDS",
-      "sourceLabel": "权威快照 data/cds/amazon.csv",
-      "checkLabel": "第二独立源 amazon.check.csv",
-      "noSourceNote": "5Y 单名 CDS 为 ICE/Bloomberg 许可数据，SEC Reg SBSR 免费公开端点豁免至 2029-11-05。接入你有权获得的权威快照（终端/券商导出 CSV：date,spread_bp）即自动算周高点并双源交叉验证。当前无快照，透明标注缺口、不造数。",
-      "evidence": [
-        "https://www.sec.gov/rules-regulations/2015/02/regulation-sbsr-reporting-dissemination-security-based-swap-information"
-      ]
-    },
-    {
-      "id": "cds-meta",
-      "kind": "series",
-      "agg": "max",
-      "primary": {
-        "provider": "cds-feed",
-        "file": "meta.csv"
-      },
-      "check": {
-        "provider": "cds-feed",
-        "file": "meta.check.csv"
-      },
-      "tolerance": 1,
-      "unit": "bp",
-      "precision": 0,
-      "zh": "Meta CDS",
-      "en": "Meta 5Y CDS",
-      "sourceLabel": "权威快照 data/cds/meta.csv",
-      "checkLabel": "第二独立源 meta.check.csv",
-      "noSourceNote": "5Y 单名 CDS 为 ICE/Bloomberg 许可数据，SEC Reg SBSR 免费公开端点豁免至 2029-11-05。接入你有权获得的权威快照（终端/券商导出 CSV：date,spread_bp）即自动算周高点并双源交叉验证。当前无快照，透明标注缺口、不造数。",
-      "evidence": [
-        "https://www.sec.gov/rules-regulations/2015/02/regulation-sbsr-reporting-dissemination-security-based-swap-information"
-      ]
-    },
-    {
-      "id": "cds-microsoft",
-      "kind": "series",
-      "agg": "max",
-      "primary": {
-        "provider": "cds-feed",
-        "file": "microsoft.csv"
-      },
-      "check": {
-        "provider": "cds-feed",
-        "file": "microsoft.check.csv"
-      },
-      "tolerance": 1,
-      "unit": "bp",
-      "precision": 0,
-      "zh": "Microsoft CDS",
-      "en": "Microsoft 5Y CDS",
-      "sourceLabel": "权威快照 data/cds/microsoft.csv",
-      "checkLabel": "第二独立源 microsoft.check.csv",
-      "noSourceNote": "5Y 单名 CDS 为 ICE/Bloomberg 许可数据，SEC Reg SBSR 免费公开端点豁免至 2029-11-05。接入你有权获得的权威快照（终端/券商导出 CSV：date,spread_bp）即自动算周高点并双源交叉验证。当前无快照，透明标注缺口、不造数。",
-      "evidence": [
-        "https://www.sec.gov/rules-regulations/2015/02/regulation-sbsr-reporting-dissemination-security-based-swap-information"
-      ]
-    },
-    {
-      "id": "cds-oracle",
-      "kind": "series",
-      "agg": "max",
-      "primary": {
-        "provider": "cds-feed",
-        "file": "oracle.csv"
-      },
-      "check": {
-        "provider": "cds-feed",
-        "file": "oracle.check.csv"
-      },
-      "tolerance": 1,
-      "unit": "bp",
-      "precision": 0,
-      "zh": "Oracle CDS",
-      "en": "Oracle 5Y CDS",
-      "sourceLabel": "权威快照 data/cds/oracle.csv",
-      "checkLabel": "第二独立源 oracle.check.csv",
-      "noSourceNote": "5Y 单名 CDS 为 ICE/Bloomberg 许可数据，SEC Reg SBSR 免费公开端点豁免至 2029-11-05。接入你有权获得的权威快照（终端/券商导出 CSV：date,spread_bp）即自动算周高点并双源交叉验证。当前无快照，透明标注缺口、不造数。",
-      "evidence": [
-        "https://www.sec.gov/rules-regulations/2015/02/regulation-sbsr-reporting-dissemination-security-based-swap-information"
-      ]
-    },
-    {
-      "id": "hkex-ai",
-      "kind": "factsheet",
-      "primary": {
-        "provider": "hkex-factsheet"
-      },
-      "zh": "HKEX AI 指数",
-      "en": "HKEX Artificial Intelligence Index",
-      "unit": "点",
-      "precision": 2,
-      "sourceLabel": "港交所官方月度 Factsheet",
-      "checkLabel": "官方单一来源",
-      "note": "港交所自算指数。官方日度行情端点受 Akamai Bot Manager 保护（不绕 WAF），hsi.com.hk 列表无此指数，日报表不含；唯一 Node 可达权威源为官方月度 Factsheet PDF，自动解析 Index Level。周高点不可得，仅展示官方月度水平。"
-    },
     {
       "id": "us-ig-oas",
       "kind": "series",
       "agg": "max",
-      "proxy": true,
+      "tolerance": 0.011,
       "primary": {
         "provider": "fred",
         "series": "BAMLC0A0CM"
       },
-      "zh": "美国投资级公司债 OAS（聚合代理）",
-      "en": "ICE BofA US Corporate OAS",
+      "check": {
+        "provider": "fred",
+        "series": "BAMLC0A0CM",
+        "alfred": true
+      },
+      "zh": "美国投资级公司债 OAS",
+      "en": "ICE BofA US Corporate Index OAS",
       "unit": "%",
       "precision": 2,
-      "sourceLabel": "FRED BAMLC0A0CM（ICE BofA）",
-      "checkLabel": "无（单源透明标注）",
-      "note": "投资级公司债期权调整利差，本周最高值。作为单名 CDS 缺口的可自动核验聚合信用代理，非单名 CDS 本身；单一官方源，透明标注无第二源交叉验证。"
+      "sourceLabel": "ICE Data Indices 官方授权分发（FRED BAMLC0A0CM）",
+      "checkLabel": "ALFRED vintage 同序列复取（取数/版本校验，非独立源）",
+      "note": "ICE BofA 美国公司债主指数（投资级 BBB 及以上）市值加权期权调整利差，周内最高值。FRED 为 ICE Data Indices 授权分发；ALFRED 复取核对当前 vintage 与解析。0.93 = 93bp。该指标是聚合信用环境基准，不代表任何单名 CDS。",
+      "evidence": [
+        "https://fred.stlouisfed.org/series/BAMLC0A0CM",
+        "https://alfred.stlouisfed.org/series/BAMLC0A0CM",
+        "https://developer.ice.com/fixed-income-data-services/catalog/ice-data-indices"
+      ]
     }
   ],
   "providers": {

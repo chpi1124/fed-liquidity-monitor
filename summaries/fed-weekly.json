@@ -223,32 +223,6 @@
       "sourceLabel": "纽约联储回购操作",
       "checkLabel": "FRED RPONTSYD+AGY+MBS（已校验存储）",
       "note": "常备回购便利本周接受量合计。任何动用均为流动性后备支持被激活的信号。"
-    },
-    {
-      "id": "oracle-cds",
-      "kind": "series",
-      "agg": "max",
-      "primary": {
-        "provider": "cds-feed",
-        "file": "oracle.csv"
-      },
-      "check": {
-        "provider": "cds-feed",
-        "file": "oracle.check.csv"
-      },
-      "tolerance": 1,
-      "unit": "bp",
-      "precision": 0,
-      "zh": "甲骨文 CDS（最高）",
-      "en": "Oracle 5Y CDS",
-      "sourceLabel": "权威快照 data/cds/oracle.csv",
-      "checkLabel": "第二独立源 oracle.check.csv",
-      "noSourceNote": "单名 CDS 为 OTC 许可数据（ICE Data Services / Bloomberg CDSW / LSEG），无免费权威公开 feed；DTCC 仅公布持仓名义规模无价格；SEC Reg SBSR 免费公开 dissemination 已豁免至 2029-11-05（90 FR 17225）。本站不造数、不静默替换：放入有权获得的权威快照 CSV（date,spread_bp）即自动算周高点并双源交叉验证，透明标注缺口。",
-      "evidence": [
-        "https://www.sec.gov/rules-regulations/2015/02/regulation-sbsr-reporting-dissemination-security-based-swap-information",
-        "https://www.ice.com/fixed-income-data-services",
-        "https://www.dtcc.com/repository-and-derivatives-services/repository/single-name-cds"
-      ]
     }
   ],
   "providers": {

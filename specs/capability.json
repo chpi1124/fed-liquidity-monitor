@@ -1,14 +1,4 @@
 {
-  "cds-feed": {
-    "org": "Licensed CDS dissemination (operator-supplied snapshot)",
-    "endpoints": [
-      "file://data/cds/"
-    ],
-    "cadence": "weekly",
-    "note": "",
-    "usedBy": [],
-    "indicatorCount": 0
-  },
   "cfets-lpr": {
     "org": "中国外汇交易中心（全国银行间同业拆借中心）",
     "endpoints": [
@@ -118,16 +108,6 @@
       "VIXCLS"
     ],
     "indicatorCount": 10
-  },
-  "hkex-factsheet": {
-    "org": "HKEX (Hong Kong Exchanges and Clearing Limited)",
-    "endpoints": [
-      "https://www.hkex.com.hk/Services/Market-Data-Services/Index-Services/HKEX-Artificial-Intelligence-Index?sc_lang=en"
-    ],
-    "cadence": "monthly",
-    "note": "",
-    "usedBy": [],
-    "indicatorCount": 0
   },
   "nasdaq": {
     "org": "Nasdaq, Inc. (exchange-published market data)",

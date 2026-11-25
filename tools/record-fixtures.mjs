@@ -21,7 +21,6 @@ const TODAY = day(0);
 const PLAN = {
   "frb-h41": { src: {}, win: [day(10), TODAY] },
   "frb-h41-factors": { src: {}, win: [day(10), TODAY] },
-  "hkex-factsheet": { src: {}, win: [day(10), TODAY] },
   "cfets-shibor": { src: { tenor: "ON" }, win: [day(10), TODAY] },
   "cfets-rmb": { src: { pair: "USD/CNY" }, win: [day(10), TODAY] },
   "cfets-lpr": { src: { tenor: "1Y" }, win: [day(10), TODAY] },
@@ -36,7 +35,6 @@ const PLAN = {
   "uk-trade": { src: { measure: "net" }, win: [day(120), day(60)] },
   worldbank: { src: { column: "Gold" }, win: [day(120), day(60)] },
   uncomtrade: { src: { maxMonths: 1, paceMs: 0 }, win: [day(450), day(300)] },
-  "cds-feed": { src: { file: "absent-by-design" }, win: [day(10), TODAY] },
   "fed-policy": { src: {}, win: ["2024-09-01", "2024-09-30"] },
   "pbc-statement": { src: { item: "总资产", fmt: "htm" }, win: ["2026-01-01", TODAY] },
 };

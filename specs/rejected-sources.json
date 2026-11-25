@@ -13,8 +13,14 @@
   },
   {
     "slug": "hkex-daily-endpoint",
-    "name": "港交所指数日频端点",
-    "why": "Akamai 反爬保护，Node 在不绕过 WAF 前提下不可取。",
-    "decision": "相关汇总行按「不可得」标注，不冒充已取数。"
+    "name": "港交所人工智能指数日频端点",
+    "why": "官方 widget 端点 getnewindicesquote 在页面 HTML 中暴露 product=HKEXAI 与 token，但本环境直连返回 HTTP 403；官方日频历史经 Bloomberg HKEXAI / LSEG .HKEXAI / HKEX Data Marketplace 许可分发，月度 Factsheet 与周高点栏不同频。",
+    "decision": "剔除 HKEX AI 汇总行，不用月度值冒充周高点，也不接非授权第三方转载；取得授权行情后按官方代码 HKEXAI 重接入。"
+  },
+  {
+    "slug": "single-name-cds-free-public",
+    "name": "5Y 单名 CDS 免费公开日频源",
+    "why": "权威价格只在 S&P Global Market Intelligence（IHS Markit）CDS Pricing、ICE Data Services / Bloomberg / LSEG 等许可终端分发；DTCC 交易库披露持仓名义金额但无价格；SEC Reg SBSR 免费 dissemination 豁免至 2029-11-05；财经媒体仅有异动时点转述，非连续可核验序列。",
+    "decision": "剔除 Alphabet / Amazon / Meta / Microsoft / Oracle 及相关汇总行，不接新闻转述、不用聚合 OAS 冒充单名 CDS、不造数。"
   }
 ]

@@ -138,12 +138,12 @@
   --chart-bar-day: 62;
   --chart-bar-sheet: 72;
   --chart-symbol-size: 9;
-  /* 图形高度基线：实际高度由 app.js 按「视口 − 图容器真实 top」在装载槽上设置，
-     同类根治任何页/任何图数/任何视口下的 x 轴与滑块溢出，不再猜固定 chrome 常量。 */
+  /* 图形高度基线：面板是主展示核心，按宽度取合适比例（约 2:1），
+     有上下限避免过扁或过高；页面/main 自己滚动，不再按视口压缩图高。 */
   --chart-count: 1;
-  --chart-h: max(280px, 480px);
-  --chart-h-mid: max(260px, 440px);
-  --chart-h-compact: max(240px, 400px);
+  --chart-h: clamp(480px, 38vw, 640px);
+  --chart-h-mid: clamp(440px, 34vw, 580px);
+  --chart-h-compact: clamp(400px, 30vw, 520px);
   --spark-w: 104;
   --spark-h: 30;
 }

@@ -78,7 +78,7 @@ body {
   .tile { min-width: 176px; scroll-snap-align: start; }
   .ecg { display: none; }
   .top__status { margin-left: 0; }
-  :root { --chart-h: 420px; --chart-h-compact: 360px; --chart-h-mid: 390px; }
+  :root { --chart-h: clamp(420px, 52vw, 520px); --chart-h-mid: clamp(400px, 48vw, 480px); --chart-h-compact: clamp(380px, 44vw, 440px); }
   .page-nav { flex-direction: row; border-bottom: 0; padding: 0; gap: var(--sp-8); flex: 1 1 100%; min-width: 0; max-width: 100%; overflow-x: auto; }
   .page-btn { padding: var(--sp-8) var(--sp-12); white-space: nowrap; }
   .page-btn__sub { display: none; }
